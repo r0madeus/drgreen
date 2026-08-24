@@ -118,7 +118,9 @@ func _populate_picker() -> void:
 	if not im:
 		return
 		
-	var items = im.get_all_items()
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var pid = _p.player_id if _p and "player_id" in _p else ""
+	var items = im.get_all_items(pid)
 	for item_id in items.keys():
 		var count = items[item_id]
 		if count <= 0:
@@ -165,7 +167,9 @@ func _on_combine_pressed() -> void:
 	var cm = get_node_or_null("/root/CombinationManager")
 	var am = get_node_or_null("/root/AudioManager")
 	if not cm: return
-	var result = cm.perform_combination(slot_a_item, slot_b_item)
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var pid = _p.player_id if _p and "player_id" in _p else ""
+	var result = cm.perform_combination(pid, slot_a_item, slot_b_item)
 	if not result.get("success", false):
 		if am: am.play_sfx("ui_close")
 		_show_result("❌ " + result.get("error", "Failed combination."), Color(1.0, 0.4, 0.4))

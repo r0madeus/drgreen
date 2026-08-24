@@ -62,10 +62,10 @@ func get_combination(input_a: String, input_b: String) -> Dictionary:
 			
 	return {}
 
-func combine(input_a: String, input_b: String) -> Dictionary:
-	return perform_combination(input_a, input_b)
+func combine(player_id: String, input_a: String, input_b: String) -> Dictionary:
+	return perform_combination(player_id, input_a, input_b)
 
-func perform_combination(input_a: String, input_b: String) -> Dictionary:
+func perform_combination(player_id: String, input_a: String, input_b: String) -> Dictionary:
 
 	var combo = get_combination(input_a, input_b)
 	if combo.is_empty():
@@ -83,26 +83,26 @@ func perform_combination(input_a: String, input_b: String) -> Dictionary:
 		
 	# Check ingredient quantities
 	if input_a == input_b:
-		if not im.has_item(input_a, 2):
+a		if not im.has_item(player_id, input_a, 2):
 			return {
 				"success": false,
 				"error": "Requires at least 2 of " + input_a + "."
 			}
 	else:
-		if not im.has_item(input_a, 1) or not im.has_item(input_b, 1):
+		if not im.has_item(player_id, input_a, 1) or not im.has_item(player_id, input_b, 1):
 			return {
 				"success": false,
 				"error": "Missing required ingredients in inventory."
 			}
 			
 	# Deduct ingredients
-	im.remove_item(input_a, 1)
-	im.remove_item(input_b, 1)
+	im.remove_item(player_id, input_a, 1)
+	im.remove_item(player_id, input_b, 1)
 	
 	var output_id = combo.get("output", "")
 	# Give 1 crop of the new species (and optionally its seed)
-	im.add_item(output_id, 1)
-	im.add_item("seed_" + output_id, 1) # Also unlock seed so player can plant the discovery
+	im.add_item(player_id, output_id, 1)
+	im.add_item(player_id, "seed_" + output_id, 1) # Also unlock seed so player can plant the discovery
 	
 	var combo_id = combo.get("id", "")
 	var is_new: bool = false

@@ -61,8 +61,11 @@ func refresh() -> void:
 	for c in container.get_children():
 		c.queue_free()
 		
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	var p_state = psm.get_active_player_state() if psm else null
+		var p_state = null
+	if is_inside_tree():
+		var player = get_tree().get_first_node_in_group("local_player")
+		if player and "player_state" in player:
+			p_state = player.player_state
 	if not p_state: return
 	
 	var npcs = ["rowan", "elias", "mira"]

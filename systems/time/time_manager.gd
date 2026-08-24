@@ -199,7 +199,7 @@ func execute_sleep(from_exhaustion: bool = false) -> void:
 	if bus: bus.day_ended.emit(current_day)
 	
 	# 2. Restore active player energy
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
 		var p_state = psm.get_active_player_state()
 		if p_state:

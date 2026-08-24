@@ -28,21 +28,21 @@ func get_local_peer_id() -> int:
 # CLIENT REQUEST APIS
 # ==============================================================================
 
-func request_plant(world_id: String, grid_pos: Vector2i, seed_id: String) -> void:
+func request_plant(player_id: String, world_id: String, grid_pos: Vector2i, seed_id: String) -> void:
 	if is_offline():
-		_execute_local_plant(world_id, grid_pos, seed_id)
+		_execute_local_plant(player_id, world_id, grid_pos, seed_id)
 		return
 	rpc("client_request_plant", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y, seed_id)
 
-func request_water(world_id: String, grid_pos: Vector2i) -> void:
+func request_water(player_id: String, world_id: String, grid_pos: Vector2i) -> void:
 	if is_offline():
-		_execute_local_water(world_id, grid_pos)
+		_execute_local_water(player_id, world_id, grid_pos)
 		return
 	rpc("client_request_water", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y)
 
-func request_harvest(world_id: String, grid_pos: Vector2i) -> void:
+func request_harvest(player_id: String, world_id: String, grid_pos: Vector2i) -> void:
 	if is_offline():
-		_execute_local_harvest(world_id, grid_pos)
+		_execute_local_harvest(player_id, world_id, grid_pos)
 		return
 	rpc("client_request_harvest", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y)
 
@@ -54,44 +54,44 @@ func _get_active_grid_manager() -> GridManager:
 		return tree.root.find_child("GridManager", true, false) as GridManager
 	return null
 
-func request_hoe(world_id: String, grid_pos: Vector2i, item_id: String = "hoe_basic") -> void:
+func request_hoe(player_id: String, world_id: String, grid_pos: Vector2i, item_id: String = "hoe_basic") -> void:
 
 	if is_offline():
-		_execute_local_hoe(world_id, grid_pos, item_id)
+		_execute_local_hoe(player_id, world_id, grid_pos, item_id)
 		return
 	rpc("client_request_hoe", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y, item_id)
 
-func request_axe(world_id: String, grid_pos: Vector2i, item_id: String = "axe_basic") -> void:
+func request_axe(player_id: String, world_id: String, grid_pos: Vector2i, item_id: String = "axe_basic") -> void:
 	if is_offline():
-		_execute_local_axe(world_id, grid_pos, item_id)
+		_execute_local_axe(player_id, world_id, grid_pos, item_id)
 		return
 	rpc("client_request_axe", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y, item_id)
 
-func request_pickaxe(world_id: String, grid_pos: Vector2i, item_id: String = "pickaxe_basic") -> void:
+func request_pickaxe(player_id: String, world_id: String, grid_pos: Vector2i, item_id: String = "pickaxe_basic") -> void:
 	if is_offline():
-		_execute_local_pickaxe(world_id, grid_pos, item_id)
+		_execute_local_pickaxe(player_id, world_id, grid_pos, item_id)
 		return
 	rpc("client_request_pickaxe", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y, item_id)
 
-func _execute_local_hoe(world_id: String, grid_pos: Vector2i, _item_id: String) -> void:
+func _execute_local_hoe(player_id: String, world_id: String, grid_pos: Vector2i, _item_id: String) -> void:
 	var gm = _get_active_grid_manager()
 	if gm and gm.can_till_here(grid_pos):
 		gm.till_tile(grid_pos)
 
-func _execute_local_axe(world_id: String, grid_pos: Vector2i, _item_id: String) -> void:
+func _execute_local_axe(player_id: String, world_id: String, grid_pos: Vector2i, _item_id: String) -> void:
 	var gm = _get_active_grid_manager()
 	if gm and gm.can_chop_here(grid_pos):
-		var psm = get_node_or_null("/root/PlayerStateManager")
-		var p_state = psm.get_active_player_state() if psm else null
+		var psm = get_node_or_null("/root/PlayerRegistry")
+		var p_state = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
 		var drop = gm.chop_tile(grid_pos)
 		if not drop.is_empty() and p_state:
 			p_state.add_item(drop.get("item_id", "wood"), drop.get("count", 2))
 
-func _execute_local_pickaxe(world_id: String, grid_pos: Vector2i, _item_id: String) -> void:
+func _execute_local_pickaxe(player_id: String, world_id: String, grid_pos: Vector2i, _item_id: String) -> void:
 	var gm = _get_active_grid_manager()
 	if gm and gm.can_mine_here(grid_pos):
-		var psm = get_node_or_null("/root/PlayerStateManager")
-		var p_state = psm.get_active_player_state() if psm else null
+		var psm = get_node_or_null("/root/PlayerRegistry")
+		var p_state = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
 		var drop = gm.mine_tile(grid_pos)
 		if not drop.is_empty() and p_state:
 			p_state.add_item(drop.get("item_id", "stone"), drop.get("count", 2))
@@ -106,10 +106,10 @@ func request_world_snapshot(world_id: String) -> void:
 # ==============================================================================
 
 func _get_player_state_for_peer(peer_id: int) -> PlayerState:
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if not psm: return null
 	if peer_id == 1:
-		return psm.get_active_player_state()
+		return psm.players["player_001"] if psm.players.has("player_001") else null
 		
 	var nm = get_node_or_null("/root/NetworkManager")
 	if nm and nm.session:
@@ -122,7 +122,7 @@ func _get_player_state_for_peer(peer_id: int) -> PlayerState:
 	var id_raw = "player_%d" % peer_id
 	if psm.players.has(id_raw): return psm.players[id_raw]
 	
-	return psm.get_active_player_state()
+	return psm.players["player_001"] if psm.players.has("player_001") else null
 
 @rpc("any_peer", "call_local", "reliable")
 func client_request_plant(requester_peer: int, world_id: String, pos_x: int, pos_y: int, seed_id: String) -> void:
@@ -413,16 +413,16 @@ func _send_failure(peer_id: int, reason: String) -> void:
 # OFFLINE SINGLE-PLAYER FALLBACKS
 # ==============================================================================
 
-func _execute_local_plant(world_id: String, pos: Vector2i, seed_id: String) -> void:
+func _execute_local_plant(player_id: String, world_id: String, pos: Vector2i, seed_id: String) -> void:
 	var im = get_node_or_null("/root/InventoryManager")
 	var wm = get_node_or_null("/root/WorldManager")
 	var tree = get_tree()
 	var gm = tree.current_scene.find_child("GridManager", true, false) if (tree and tree.current_scene) else null
 	
-	if not im or not gm or not im.has_item(seed_id, 1): return
+	if not im or not gm or not im.has_item(player_id, seed_id, 1): return
 	var plant_id = seed_id.trim_prefix("seed_")
 	
-	if im.remove_item(seed_id, 1):
+	if im.remove_item(player_id, seed_id, 1):
 		if gm.plant_seed(pos, plant_id):
 			if wm:
 				wm.get_shared_world_state(world_id).add_or_update_plant(pos, plant_id, 0, 0, false)
@@ -434,7 +434,7 @@ func _execute_local_plant(world_id: String, pos: Vector2i, seed_id: String) -> v
 				spawner.spawn_planting_effect(world_pos)
 				spawner.spawn_floating_text(world_pos, "🌱 Planted", Color(0.6, 1.0, 0.5))
 
-func _execute_local_water(world_id: String, pos: Vector2i) -> void:
+func _execute_local_water(player_id: String, world_id: String, pos: Vector2i) -> void:
 	var wm = get_node_or_null("/root/WorldManager")
 	var tree = get_tree()
 	var gm = tree.current_scene.find_child("GridManager", true, false) if (tree and tree.current_scene) else null
@@ -454,7 +454,7 @@ func _execute_local_water(world_id: String, pos: Vector2i) -> void:
 			spawner.spawn_watering_effect(world_pos)
 			spawner.spawn_floating_text(world_pos, "💧 Watered", Color(0.4, 0.8, 1.0))
 
-func _execute_local_harvest(world_id: String, pos: Vector2i) -> void:
+func _execute_local_harvest(player_id: String, world_id: String, pos: Vector2i) -> void:
 	var im = get_node_or_null("/root/InventoryManager")
 	var wm = get_node_or_null("/root/WorldManager")
 	var tree = get_tree()
@@ -466,7 +466,7 @@ func _execute_local_harvest(world_id: String, pos: Vector2i) -> void:
 		if not res.is_empty():
 			var crop_id = res.get("item_id", "")
 			var count = res.get("yield", 1)
-			im.add_item(crop_id, count)
+			im.add_item(player_id, crop_id, count)
 			if wm: wm.get_shared_world_state(world_id).remove_plant(pos)
 			var am = get_node_or_null("/root/AudioManager")
 			var spawner = EffectSpawner.get_instance()

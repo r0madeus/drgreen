@@ -21,7 +21,7 @@ var is_transitioning: bool = false
 @onready var main_menu: Control = get_node_or_null("UIContainer/MainMenu")
 
 var current_world_scene: Node = null
-var current_editor_shell: EditorShell = null
+var current_editor_shell: Node = null
 
 func _ready() -> void:
 	_setup_nodes()
@@ -154,7 +154,9 @@ func open_editor() -> void:
 	var tm = _get_safe_node("TimeManager")
 	if tm and "is_paused" in tm: tm.is_paused = true
 	
-	current_editor_shell = EditorShell.new()
+	push_warning("Editor is disabled in runtime.")
+	return
+		# current_editor_shell = EditorShell.new()
 	current_editor_shell.name = "EditorShell"
 	editor_container.add_child(current_editor_shell)
 

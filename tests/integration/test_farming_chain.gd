@@ -23,7 +23,7 @@ func _get_gm():
 	return Engine.get_main_loop().root.find_child("GridManager", true, false)
 
 func _get_psm() -> Node:
-	return Engine.get_main_loop().root.get_node_or_null("/root/PlayerStateManager")
+	return Engine.get_main_loop().root.get_node_or_null("/root/PlayerRegistry")
 
 func _get_tm() -> Node:
 	return Engine.get_main_loop().root.get_node_or_null("/root/TimeManager")

@@ -161,8 +161,7 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 	var world_pos = gm.grid_to_world(target_pos, true)
 	var spawner = EffectSpawner.get_instance()
 	var am = player.get_node_or_null("/root/AudioManager")
-	var psm = player.get_node_or_null("/root/PlayerStateManager")
-	var player_state = psm.get_active_player_state() if psm else null
+	var player_state = player.player_state if "player_state" in player else null
 	var wl = player.get_node_or_null("/root/WorldLoader")
 	var current_world = wl.current_world_id if wl else "farm"
 	var ng = player.get_node_or_null("/root/NetworkGameplay")
@@ -170,7 +169,9 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 	
 	# 1. Harvest is a universal tool interaction if plant is mature
 	if gm.is_tile_harvestable(target_pos):
-		if ng: ng.request_harvest(current_world, target_pos)
+		if ng:
+			var pid = player.player_id if "player_id" in player else ""
+			ng.request_harvest(pid, current_world, target_pos)
 		else:
 			var res = gm.harvest_tile(target_pos)
 			if not res.is_empty() and player_state:
@@ -206,7 +207,8 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 					spawner.spawn_planting_effect(world_pos)
 					spawner.spawn_floating_text(world_pos, "⛏️ Soil Tilled", Color(0.8, 0.6, 0.3))
 			if ng and not ng.is_offline():
-				ng.request_hoe(current_world, target_pos, item_id)
+				var pid = player.player_id if "player_id" in player else ""
+				ng.request_hoe(pid, current_world, target_pos, item_id)
 			return true
 			
 		ItemRegistry.UseAction.WATER:
@@ -224,7 +226,8 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 					spawner.spawn_watering_effect(world_pos)
 					spawner.spawn_floating_text(world_pos, "💧 Watered", Color(0.4, 0.8, 1.0))
 			if ng and not ng.is_offline():
-				ng.request_water(current_world, target_pos)
+				var pid = player.player_id if "player_id" in player else ""
+				ng.request_water(pid, current_world, target_pos)
 			return true
 			
 		ItemRegistry.UseAction.PLANT:
@@ -246,7 +249,8 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 						spawner.spawn_planting_effect(world_pos)
 						spawner.spawn_floating_text(world_pos, "🌱 Planted %s" % crop_id.replace("_", " ").capitalize(), Color(0.6, 1.0, 0.5))
 			if ng and not ng.is_offline():
-				ng.request_plant(current_world, target_pos, item_id)
+				var pid = player.player_id if "player_id" in player else ""
+				ng.request_plant(pid, current_world, target_pos, item_id)
 			return true
 			
 		ItemRegistry.UseAction.AXE:
@@ -273,7 +277,8 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 					if spawner:
 						spawner.spawn_floating_text(world_pos, "🪓 Chop! (HP: %d)" % int(res.get("remaining_hp", 1)), Color(0.9, 0.7, 0.4))
 			if ng and not ng.is_offline():
-				ng.request_axe(current_world, target_pos, item_id)
+				var pid = player.player_id if "player_id" in player else ""
+				ng.request_axe(pid, current_world, target_pos, item_id)
 			return true
 			
 		ItemRegistry.UseAction.PICKAXE:
@@ -300,7 +305,8 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 					if spawner:
 						spawner.spawn_floating_text(world_pos, "⛏️ Mine! (HP: %d)" % int(res.get("remaining_hp", 1)), Color(0.8, 0.8, 0.9))
 			if ng and not ng.is_offline():
-				ng.request_pickaxe(current_world, target_pos, item_id)
+				var pid = player.player_id if "player_id" in player else ""
+				ng.request_pickaxe(pid, current_world, target_pos, item_id)
 			return true
 
 			

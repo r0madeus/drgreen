@@ -113,7 +113,7 @@ func _test_current_world_updated_after_transition() -> void:
 func _test_player_state_world_synced() -> void:
 	begin_test("player_state_world_synced")
 	var wm = _get_wm()
-	var psm = Engine.get_main_loop().root.get_node_or_null("/root/PlayerStateManager") 
+	var psm = Engine.get_main_loop().root.get_node_or_null("/root/PlayerRegistry") 
 	if not wm or not psm:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return

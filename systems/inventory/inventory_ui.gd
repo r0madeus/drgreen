@@ -10,8 +10,8 @@ func _ready() -> void:
 	visible = false
 	var im = get_node_or_null("/root/InventoryManager")
 	if im:
-		im.inventory_updated.connect(refresh_ui)
-		im.item_selected.connect(_on_item_selected)
+		EventBus.world_changed.connect(_bind_local_player)
+		
 	var lm = get_node_or_null("/root/LocalizationManager")
 	if lm:
 		lm.locale_changed.connect(func(_l): refresh_ui())
@@ -44,6 +44,8 @@ func toggle_visibility() -> void:
 		if am: am.play_sfx("ui_close")
 
 func refresh_ui() -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else ""
 	if not grid_container:
 		return
 		
@@ -55,14 +57,14 @@ func refresh_ui() -> void:
 	if not im:
 		return
 		
-	var all_items = im.get_all_items()
-	var selected = im.get_selected_item()
+	var all_items = im.get_all_items(player_id)
+	var selected = im.get_selected_item(player_id)
 	var lm = get_node_or_null("/root/LocalizationManager")
 	
 	if selected_label:
 		if selected != "":
 			var sel_name = ItemRegistry.get_localized_name(selected)
-			var sel_cnt = im.get_item_count(selected)
+			var sel_cnt = im.get_item_count(player_id, selected)
 			if lm:
 				selected_label.text = lm.format("ui.hud.selected_format", { "item": sel_name, "count": sel_cnt })
 			else:
@@ -81,11 +83,20 @@ func refresh_ui() -> void:
 		if is_sel:
 			btn.modulate = Color(0.8, 1.2, 0.8)
 		btn.pressed.connect(func():
-			im.select_item(item_id)
+			im.select_item(player_id, item_id)
 			refresh_ui()
 		)
 		grid_container.add_child(btn)
 
 
 func _on_item_selected(_item_id: String) -> void:
+	refresh_ui()
+
+func _bind_local_player(world_id: String, _world_data: Dictionary = {}) -> void:
+	var player = get_tree().get_first_node_in_group("local_player")
+	if player and player.player_state:
+		if not player.player_state.inventory_changed.is_connected(refresh_ui):
+			player.player_state.inventory_changed.connect(refresh_ui)
+		if not player.player_state.item_selected.is_connected(_on_item_selected):
+			player.player_state.item_selected.connect(_on_item_selected)
 	refresh_ui()

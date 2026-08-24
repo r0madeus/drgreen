@@ -319,13 +319,13 @@ func _test_21_save_persists_after_restart() -> void:
 
 func _test_22_loaded_player_state_correct() -> void:
 	begin_test("22_LoadedPlayerStateCorrect")
-	var psm = PlayerStateManager
+	var psm = PlayerRegistry
 	if psm:
-		assert_true(psm.has_method("get_active_player_state"), "PlayerStateManager has get_active_player_state")
+		assert_true(psm.has_method("get_active_player_state"), "PlayerRegistry has get_active_player_state")
 		var p = psm.get_active_player_state()
 		assert_true(p != null, "Active player state exists")
 	else:
-		assert_true(true, "PlayerStateManager verified")
+		assert_true(true, "PlayerRegistry verified")
 
 func _test_23_loaded_world_state_correct() -> void:
 	begin_test("23_LoadedWorldStateCorrect")

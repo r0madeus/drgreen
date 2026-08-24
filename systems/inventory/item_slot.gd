@@ -45,5 +45,5 @@ func _on_pressed() -> void:
 	if am: am.play_sfx("ui_select")
 	var im = get_node_or_null("/root/InventoryManager")
 	if im and item_id != "":
-		im.select_item(item_id)
+		im.select_item(player_id, item_id)
 	slot_clicked.emit(item_id)

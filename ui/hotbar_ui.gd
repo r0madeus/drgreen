@@ -68,9 +68,8 @@ func _ready() -> void:
 	_create_tooltip()
 	
 	# Connect to PlayerState
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	if psm:
-		psm.active_player_changed.connect(_on_active_player_changed)
+	var bus = get_node_or_null("/root/EventBus")
+	if bus: bus.world_changed.connect(func(_w, _d={}): _on_world_changed())
 	_bind_player_state()
 	_refresh_hotbar()
 
@@ -181,13 +180,15 @@ func _bind_player_state() -> void:
 func _on_locale_changed(_locale_id: String) -> void:
 	_refresh_hotbar()
 
-func _on_active_player_changed(_pid: String) -> void:
+func _on_world_changed() -> void:
 	_bind_player_state()
 	_refresh_hotbar()
 
 func _get_active_state() -> PlayerState:
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	return psm.get_active_player_state() if psm else null
+	if not is_inside_tree(): return null
+	var player = get_tree().get_first_node_in_group("local_player")
+	if player and "player_state" in player: return player.player_state
+	return null
 
 func _refresh_hotbar() -> void:
 	var state = _get_active_state()

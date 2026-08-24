@@ -21,7 +21,7 @@ const MOD_MANAGER_PANEL_SCRIPT = preload("res://editor/ui/panels/mod_manager_pan
 const DIALOGUE_MGR_SCRIPT = preload("res://systems/dialogue/dialogue_manager.gd")
 const QUEST_MGR_SCRIPT = preload("res://systems/quest/quest_manager.gd")
 const INVENTORY_MGR_SCRIPT = preload("res://systems/inventory/inventory_manager.gd")
-const PLAYER_STATE_MGR_SCRIPT = preload("res://systems/player/player_state_manager.gd")
+const PLAYER_STATE_MGR_SCRIPT = preload("res://systems/player/player_registry.gd")
 
 func _get_root_node(path: String = "") -> Node:
 	var loop = Engine.get_main_loop()
@@ -469,7 +469,7 @@ func _test_UA09_real_item_crop_tool_editor_ui_fields_and_inventory_integration()
 	if root: root.add_child(main)
 	main.start_gameplay(1, false)
 
-	var psm = main.get_tree().root.get_node_or_null("PlayerStateManager") if (main.is_inside_tree() and main.get_tree() and main.get_tree().root) else null
+	var psm = main.get_tree().root.get_node_or_null("PlayerRegistry") if (main.is_inside_tree() and main.get_tree() and main.get_tree().root) else null
 	var im = main.get_tree().root.get_node_or_null("InventoryManager") if (main.is_inside_tree() and main.get_tree() and main.get_tree().root) else null
 	if psm and im:
 		var p_state = psm.get_or_create_player("player_001", "Botanist")

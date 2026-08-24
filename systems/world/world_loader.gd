@@ -102,7 +102,7 @@ func change_world(target_world_id: String, target_spawn: Variant = null, animate
 		spawn_coord = Vector2i(int(sp_arr[0]), int(sp_arr[1]))
 		
 	var spawn_world_pos = gm.grid_to_world(spawn_coord, true) if gm else Vector2(spawn_coord.x * 16 + 8, spawn_coord.y * 16 + 8)
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
 		var p_state = psm.get_active_player_state()
 		if p_state:

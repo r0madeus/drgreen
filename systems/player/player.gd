@@ -17,7 +17,14 @@ var facing_direction: Vector2i = Vector2i.DOWN
 var is_movement_locked: bool = false
 var mouse_grid_position: Vector2i = Vector2i(-1, -1)
 
+var player_id: String = "player_001"
+var player_state: PlayerState = null
+
 func _ready() -> void:
+	add_to_group("local_player")
+	var psm = get_node_or_null("/root/PlayerRegistry")
+	if psm:
+		player_state = psm.get_or_create_player(player_id, "Botanist")
 	movement = get_node_or_null("Movement") as PlayerMovement
 	interaction = get_node_or_null("Interaction") as PlayerInteraction
 	animation_handler = get_node_or_null("Animation") as PlayerAnimation
@@ -113,7 +120,7 @@ func _update_mouse_targeting() -> void:
 	var valid = in_range
 	
 	var im = get_node_or_null("/root/InventoryManager")
-	var selected = im.get_selected_item() if im else ""
+	var selected = im.get_selected_item(player_id) if im else ""
 	var use_act = ItemRegistry.get_use_action(selected)
 	
 	# Detect entity / tile state
@@ -183,12 +190,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	# 1. Hotbar Mouse Wheel (10 Slots)
 	if event.is_action_pressed("hotbar_next") or (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
 		var im = get_node_or_null("/root/InventoryManager")
-		if im: im.cycle_hotbar(1)
+		if im: im.cycle_hotbar(player_id, 1)
 		get_viewport().set_input_as_handled()
 		return
 	elif event.is_action_pressed("hotbar_prev") or (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_UP):
 		var im = get_node_or_null("/root/InventoryManager")
-		if im: im.cycle_hotbar(-1)
+		if im: im.cycle_hotbar(player_id, -1)
 		get_viewport().set_input_as_handled()
 		return
 		
@@ -197,12 +204,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			var slot_idx = event.keycode - KEY_1
 			var im = get_node_or_null("/root/InventoryManager")
-			if im: im.select_slot_index(slot_idx)
+			if im: im.select_slot_index(player_id, slot_idx)
 			get_viewport().set_input_as_handled()
 			return
 		elif event.keycode == KEY_0:
 			var im = get_node_or_null("/root/InventoryManager")
-			if im: im.select_slot_index(9) # 10th Slot (Index 9)
+			if im: im.select_slot_index(player_id, 9) # 10th Slot (Index 9)
 			get_viewport().set_input_as_handled()
 			return
 			
@@ -240,19 +247,16 @@ func _face_towards(target_grid: Vector2i) -> void:
 func use_tool_at(target_pos: Vector2i) -> bool:
 	if not grid_manager: return false
 	var im = get_node_or_null("/root/InventoryManager")
-	var selected = im.get_selected_item() if im else ""
+	var selected = im.get_selected_item(player_id) if im else ""
 	return ToolUseManager.use_selected_item(self, target_pos, selected)
 
 func _on_movement_started(_target_pos: Vector2i) -> void:
 	animation_handler.set_state("walk")
 
 func _persist_continuous_position() -> void:
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	if psm:
-		var state = psm.get_active_player_state()
-		if state:
-			state.position = global_position
-			state.facing_direction = facing_direction
+	if player_state:
+		player_state.position = global_position
+		player_state.facing_direction = facing_direction
 
 func _on_grid_position_changed(new_pos: Vector2i) -> void:
 	grid_position = new_pos

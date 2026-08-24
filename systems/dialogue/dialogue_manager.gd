@@ -46,7 +46,7 @@ func start_dialogue(dialogue_id: String, speaker_name: String = "", npc_id: Stri
 		if name_key != "": dname = tr(name_key)
 		else: dname = data.get("npc_name", dialogue_id.capitalize())
 		
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_active_player_state() if psm else null
 	
 	var node_key = evaluate_dialogue_node_key(dialogue_id, p_state)

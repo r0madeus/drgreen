@@ -26,7 +26,7 @@ signal quit_requested()
 
 var save_select_ui: SaveSelectUI = null
 var credits_ui: CreditsUI = null
-var editor_shell: EditorShell = null
+var editor_shell: Node = null
 var settings_ui: SettingsUI = null
 var multiplayer_ui: MultiplayerUI = null
 
@@ -52,6 +52,7 @@ func _bind_buttons() -> void:
 		new_game_btn.pressed.connect(_on_new_game)
 	if saves_btn and not saves_btn.pressed.is_connected(_on_saves):
 		saves_btn.pressed.connect(_on_saves)
+		if editor_btn: editor_btn.hide()
 	if editor_btn and not editor_btn.pressed.is_connected(_on_editor):
 		editor_btn.pressed.connect(_on_editor)
 	if multiplayer_btn and not multiplayer_btn.pressed.is_connected(_on_multiplayer):

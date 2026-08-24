@@ -87,7 +87,7 @@ func create_host(port: int = DEFAULT_PORT) -> bool:
 	session.port = port
 	
 	# Register host local identity
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var host_state = psm.get_active_player_state() if psm else null
 	var host_id = host_state.player_id if host_state else "player_host"
 	var host_name = host_state.display_name if host_state else "Host Botanist"
@@ -142,7 +142,7 @@ func _on_connected_to_server() -> void:
 	var local_id = multiplayer.get_unique_id()
 	print("[NetworkManager] Client connected to server with peer ID: %d" % local_id)
 	
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_active_player_state() if psm else null
 	var pid = p_state.player_id if p_state else ("player_%d" % local_id)
 	var pname = p_state.display_name if p_state else ("Botanist %d" % local_id)

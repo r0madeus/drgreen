@@ -30,7 +30,7 @@ func load_all_shops() -> void:
 func get_shop(shop_id: String) -> Dictionary:
 	return shop_catalogs.get(shop_id, {})
 
-func buy_item(shop_id: String, item_id: String, count: int = 1) -> Dictionary:
+func buy_item(player_id: String, shop_id: String, item_id: String, count: int = 1) -> Dictionary:
 	var shop = get_shop(shop_id)
 	if shop.is_empty():
 		return { "success": false, "message": "Shop not found." }
@@ -55,10 +55,10 @@ func buy_item(shop_id: String, item_id: String, count: int = 1) -> Dictionary:
 	if not im:
 		return { "success": false, "message": "InventoryManager not available." }
 		
-	if not em.spend_gold(total_price):
+	if not em.spend_gold(player_id, total_price):
 		return { "success": false, "message": "Transaction failed." }
 		
-	im.add_item(item_id, count)
+	im.add_item(player_id, item_id, count)
 	item_purchased.emit(item_id, count, total_price)
 	EventBus.item_bought.emit(item_id, count, total_price)
 	
@@ -74,7 +74,7 @@ func buy_item(shop_id: String, item_id: String, count: int = 1) -> Dictionary:
 		
 	return { "success": true, "message": "Purchase successful!", "total_price": total_price }
 
-func sell_crop(item_id: String, count: int = 1) -> Dictionary:
+func sell_crop(player_id: String, item_id: String, count: int = 1) -> Dictionary:
 	var im = get_node_or_null("/root/InventoryManager")
 	if not im or not im.has_item(item_id, count):
 		return { "success": false, "message": "Not enough items in inventory." }
@@ -94,7 +94,7 @@ func sell_crop(item_id: String, count: int = 1) -> Dictionary:
 	if not im.remove_item(item_id, count):
 		return { "success": false, "message": "Failed to remove item from inventory." }
 		
-	if em: em.add_gold(total_earnings)
+	if em: em.add_gold(player_id, total_earnings)
 		
 	item_sold.emit(item_id, count, total_earnings)
 	EventBus.item_sold.emit(item_id, count, total_earnings)
