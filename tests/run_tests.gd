@@ -3,7 +3,7 @@ extends SceneTree
 const AUTOLOADS: Array = [
 	["EventBus", "res://core/event_bus.gd"],
 	["GameLogger", "res://core/logger.gd"],
-	["PlayerStateManager", "res://systems/player/player_state_manager.gd"],
+	["PlayerRegistry", "res://systems/player/player_registry.gd"],
 	["PlantManager", "res://systems/plants/plant_manager.gd"],
 	["InventoryManager", "res://systems/inventory/inventory_manager.gd"],
 	["CombinationManager", "res://systems/combination/combination_manager.gd"],

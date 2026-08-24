@@ -37,7 +37,9 @@ func is_plant_discovered(plant_id: String) -> bool:
 	# Check if in inventory
 	var im = get_node_or_null("/root/InventoryManager")
 	if im:
-		if im.get_item_count(plant_id) > 0 or im.get_item_count("seed_" + plant_id) > 0:
+		var _p = get_tree().get_first_node_in_group("local_player")
+		var pid = _p.player_id if _p and "player_id" in _p else ""
+		if im.get_item_count(pid, plant_id) > 0 or im.get_item_count(pid, "seed_" + plant_id) > 0:
 			return true
 			
 	return false

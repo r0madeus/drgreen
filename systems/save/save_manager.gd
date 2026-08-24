@@ -365,16 +365,17 @@ func new_game(slot_idx: int = 1) -> bool:
 	active_slot = maxi(1, slot_idx)
 	create_new_save(active_slot)
 	
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm and psm.has_method("reset_state"):
 		psm.reset_state()
-		var p_state = psm.get_active_player_state()
-		if p_state and p_state.has_method("init_starter_kit"):
-			p_state.init_starter_kit()
+		for pid in psm.players.keys():
+			var p_state = psm.players[pid]
+			if p_state and p_state.has_method("init_starter_kit"):
+				p_state.init_starter_kit()
 		
 	var im = get_node_or_null("/root/InventoryManager")
 	if im and im.has_method("reset_inventory"):
-		im.reset_inventory()
+		im.reset_inventory("player_001")
 		
 	var tm = get_node_or_null("/root/TimeManager")
 	if tm:
@@ -394,7 +395,7 @@ func new_game(slot_idx: int = 1) -> bool:
 		
 	var econ = get_node_or_null("/root/EconomyManager")
 	if econ and econ.has_method("set_gold"):
-		econ.set_gold(100)
+		econ.set_gold("player_001", 100)
 		
 	var wl = get_node_or_null("/root/WorldLoader")
 	if wl:
@@ -435,19 +436,19 @@ func save_game(target = null) -> bool:
 	if cm and cm.has_method("get_discovery_state"):
 		save.discoveries = cm.get_discovery_state()
 		
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
 		save.players = psm.get_all_player_states_dict()
-		var p_act = psm.get_active_player_state()
-		if p_act:
+		var _p1 = psm.players.get("player_001")
+		if _p1:
 			save.player = {
-				"position": [p_act.grid_position.x, p_act.grid_position.y],
-				"facing": [p_act.facing_direction.x, p_act.facing_direction.y],
+				"position": [_p1.grid_position.x, _p1.grid_position.y],
+				"facing": [_p1.facing_direction.x, _p1.facing_direction.y],
 				"position_space": "grid"
 			}
 			save.inventory = {
-				"items": p_act.inventory.duplicate(true),
-				"selected": p_act.selected_item_id
+				"items": _p1.inventory.duplicate(true),
+				"selected": _p1.selected_item_id
 			}
 			
 	var wl = get_node_or_null("/root/WorldLoader")
@@ -467,7 +468,7 @@ func save_game(target = null) -> bool:
 	if econ and econ.has_method("get_economy_state"):
 		save.economy = econ.get_economy_state()
 	elif econ:
-		save.economy = { "gold": econ.get_gold() }
+		pass # save.economy removed, gold is in player_state
 		
 	var qm = get_node_or_null("/root/QuestManager")
 	if qm and qm.has_method("get_quest_state"):
@@ -572,19 +573,18 @@ func load_game(target = null) -> bool:
 		cm.load_discovery_state(save.discoveries)
 		
 	# 3. Player States Restoration
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm and not save.players.is_empty():
 		psm.players.clear()
 		for pid in save.players.keys():
 			var p_dict = save.players[pid]
 			psm.players[pid] = PlayerState.from_dict(p_dict)
-		psm.active_player_changed.emit(psm.active_player_id)
+		
 		
 	# 3b. Inventory & Economy Forwarding
-	var im = get_node_or_null("/root/InventoryManager")
-	if im:
-		im.inventory_updated.emit()
-		im.item_selected.emit(im.selected_item_id)
+	var bus = get_node_or_null("/root/EventBus")
+	if bus:
+		bus.world_changed.emit("farm", {}) # Force UI refresh
 		
 	# 4. Multi-World & Grid restoration
 	var wl = get_node_or_null("/root/WorldLoader")
@@ -627,12 +627,7 @@ func load_game(target = null) -> bool:
 			player.animation_handler.set_direction(facing_dir)
 			
 	# 6. Economy
-	var econ = get_node_or_null("/root/EconomyManager")
-	if econ and econ.has_method("load_economy_state"):
-		econ.load_economy_state(save.economy)
-	elif econ:
-		var saved_gold = int(save.economy.get("gold", 100))
-		econ.set_gold(saved_gold)
+	pass # Economy is now loaded per-player via PlayerState
 		
 	# 7. Quest state
 	var qm = get_node_or_null("/root/QuestManager")

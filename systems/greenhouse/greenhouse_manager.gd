@@ -29,18 +29,18 @@ func load_config() -> void:
 				repair_cost = int(json.data.get("repair_cost", 500))
 				growth_bonus = float(json.data.get("growth_bonus", 0.25))
 
-func can_repair() -> bool:
+func can_repair(player_id: String = "player_001") -> bool:
 	if is_repaired:
 		return false
 	var em = get_node_or_null("/root/EconomyManager")
-	return em != null and em.can_afford(repair_cost)
+	return em != null and em.can_afford(player_id, repair_cost)
 
-func repair_greenhouse() -> bool:
+func repair_greenhouse(player_id: String = "player_001") -> bool:
 	if is_repaired:
 		return false
 		
 	var em = get_node_or_null("/root/EconomyManager")
-	if not em or not em.spend_gold(repair_cost):
+	if not em or not em.spend_gold(player_id, repair_cost):
 		var am = get_node_or_null("/root/AudioManager")
 		if am: am.play_sfx("insufficient_gold")
 		return false

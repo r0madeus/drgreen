@@ -709,7 +709,7 @@ func _on_safe_delete_entry() -> void:
 	_load_item_catalog()
 
 func _on_playtest_entry() -> void:
-	var psm = Engine.get_main_loop().root.get_node_or_null("/root/PlayerStateManager") if Engine.get_main_loop() else null
+	var psm = Engine.get_main_loop().root.get_node_or_null("/root/PlayerRegistry") if Engine.get_main_loop() else null
 	if psm:
 		var p_state = psm.get_active_player_state()
 		if p_state: p_state.add_item(current_item_id, 5)

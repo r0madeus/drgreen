@@ -383,7 +383,7 @@ func is_tile_harvestable(pos: Vector2i) -> bool:
 		return plant_instances[pos].is_mature
 	return tile.state == "mature"
 
-func harvest_tile(pos: Vector2i) -> Dictionary:
+func harvest_tile(pos: Vector2i, player_id: String = "player_001") -> Dictionary:
 	if not is_tile_harvestable(pos):
 		return {}
 		
@@ -394,7 +394,7 @@ func harvest_tile(pos: Vector2i) -> Dictionary:
 	if pm: yield_count = pm.get_harvest_yield(plant_id)
 		
 	var econ = get_node_or_null("/root/EconomyManager")
-	if econ and econ.has_upgrade("better_tools"): yield_count += 1
+	if econ and econ.has_upgrade(player_id, "better_tools"): yield_count += 1
 		
 	if plant_instances.has(pos):
 		var inst = plant_instances[pos]

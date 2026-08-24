@@ -31,7 +31,7 @@ func _get_sm() -> Node:
 	return Engine.get_main_loop().root.get_node_or_null("/root/SaveManager")
 
 func _get_psm() -> Node:
-	return Engine.get_main_loop().root.get_node_or_null("/root/PlayerStateManager")
+	return Engine.get_main_loop().root.get_node_or_null("/root/PlayerRegistry")
 
 func _temp_path() -> String:
 	return "user://saves/slot_%d.json" % TEMP_SLOT

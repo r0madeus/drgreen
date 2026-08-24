@@ -298,7 +298,7 @@ func receive_npc_snapshot(world_id: String, snapshot: Dictionary) -> void:
 
 @rpc("authority", "call_local", "reliable")
 func receive_personal_reward(reward_summary: Dictionary) -> void:
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_active_player_state() if psm else null
 	if p_state:
 		var rid = str(reward_summary.get("reward_id", ""))
@@ -348,14 +348,14 @@ func client_receive_npc_error(reason: String) -> void:
 func _local_interact_npc(world_id: String, npc_id: String) -> void:
 	var nm_mgr = get_node_or_null("/root/NPCManager")
 	var ndata = nm_mgr.get_npc_data(npc_id) if nm_mgr else {}
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_active_player_state() if psm else null
 	if p_state: p_state.add_friendship(npc_id, 5)
 	
 	client_confirm_interaction(world_id, npc_id, ndata)
 
 func _local_dialogue_action(world_id: String, npc_id: String, action_id: String, action_params: Dictionary) -> void:
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_active_player_state() if psm else null
 	var wm = get_node_or_null("/root/WorldManager")
 	var w_state = wm.get_shared_world_state(world_id) if wm else null

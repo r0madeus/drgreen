@@ -193,7 +193,7 @@ func transition_to(target_world_id: String, target_spawn: Variant = "default", a
 		
 	current_world_id = target_world_id
 	
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
 		var p_state = psm.get_active_player_state()
 		if p_state:

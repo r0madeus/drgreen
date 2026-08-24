@@ -284,7 +284,7 @@ func open_ui() -> void:
 	_update_localized_texts()
 	
 	# Pre-populate name if available
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm and name_input:
 		var st = psm.get_active_player_state()
 		if st and st.display_name != "":
@@ -413,7 +413,7 @@ func _apply_player_name() -> void:
 	var p_name = name_input.text.strip_edges() if name_input else "Botanist"
 	if p_name == "": p_name = "Botanist"
 	
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
 		var st = psm.get_active_player_state()
 		if st: st.display_name = p_name

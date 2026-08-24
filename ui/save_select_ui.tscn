@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://dy0a7h2q5w8p3"]
+[gd_scene format=3 uid="uid://dy0a7h2q5w8p3"]
 
 [ext_resource type="Script" path="res://ui/save_select_ui.gd" id="1_saveselect"]
 

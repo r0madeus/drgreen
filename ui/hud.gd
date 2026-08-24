@@ -238,10 +238,8 @@ func _connect_managers() -> void:
 	var wm = get_node_or_null("/root/WeatherManager")
 	if wm: wm.weather_changed.connect(func(_o, _n): update_day_display())
 		
-	var em = get_node_or_null("/root/EconomyManager")
-	if em: em.gold_changed.connect(func(_g, _d): update_gold_display())
-	
-	EventBus.world_changed.connect(func(_wid, _wdata = {}): update_day_display())
+		
+	EventBus.world_changed.connect(func(_wid, _wdata = {}): _bind_and_refresh())
 	
 	var lm = get_node_or_null("/root/LocalizationManager")
 	if lm:
@@ -252,9 +250,7 @@ func _connect_managers() -> void:
 			_update_quick_buttons()
 		)
 	
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	if psm:
-		psm.active_player_changed.connect(_on_active_player_changed)
+	
 	_bind_player_state()
 
 func _update_quick_buttons() -> void:
@@ -265,16 +261,25 @@ func _update_quick_buttons() -> void:
 	if quick_buttons.has("day"): quick_buttons["day"].text = tr("ui.hud.btn.day")
 	if quick_buttons.has("menu"): quick_buttons["menu"].text = tr("ui.hud.btn.menu")
 
+func _get_local_state() -> PlayerState:
+	if not is_inside_tree(): return null
+	var player = get_tree().get_first_node_in_group("local_player")
+	if player and "player_state" in player: return player.player_state
+	return null
+
+func _bind_and_refresh() -> void:
+	_bind_player_state()
+	update_day_display()
+	update_stamina_display()
+	update_gold_display()
+
 func _bind_player_state() -> void:
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	var p_state = psm.get_active_player_state() if psm else null
+	var p_state = _get_local_state()
 	if p_state:
 		if not p_state.energy_changed.is_connected(_on_energy_changed):
 			p_state.energy_changed.connect(_on_energy_changed)
-
-func _on_active_player_changed(_pid: String) -> void:
-	_bind_player_state()
-	update_stamina_display()
+		if not p_state.gold_changed.is_connected(func(_g): update_gold_display()):
+			p_state.gold_changed.connect(func(_g): update_gold_display())
 
 func _on_energy_changed(_cur: float, _max_val: float) -> void:
 	update_stamina_display()
@@ -326,15 +331,16 @@ func update_day_display() -> void:
 
 func update_gold_display() -> void:
 	var em = get_node_or_null("/root/EconomyManager")
-	var gold = em.get_gold() if em else 100
+	var _lp = get_tree().get_first_node_in_group("local_player")
+	var pid = _lp.player_id if _lp and "player_id" in _lp else "player_001"
+	var gold = em.get_gold(pid) if em else 100
 	var lm = get_node_or_null("/root/LocalizationManager")
 	if gold_label:
 		if lm: gold_label.text = "🪙 " + lm.format("ui.hud.gold", { "gold": gold })
 		else: gold_label.text = "🪙 %d G" % gold
 
 func update_stamina_display() -> void:
-	var psm = get_node_or_null("/root/PlayerStateManager")
-	var p_state = psm.get_active_player_state() if psm else null
+	var p_state = _get_local_state()
 	var cur = p_state.energy if p_state else 100.0
 	var max_val = p_state.max_energy if p_state else 100.0
 	var lm = get_node_or_null("/root/LocalizationManager")

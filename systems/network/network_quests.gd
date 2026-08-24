@@ -334,7 +334,7 @@ func receive_quest_reward(quest_id: String, reward_summary: Dictionary) -> void:
 		qm.quest_reward_claimed.emit(quest_id, reward_summary.get("rewards", {}))
 		EventBus.quest_claimed.emit(quest_id)
 		
-	var psm = get_node_or_null("/root/PlayerStateManager")
+	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_active_player_state() if psm else null
 	if p_state:
 		p_state.mark_reward_claimed(quest_id)

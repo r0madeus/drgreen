@@ -14,7 +14,7 @@ static func grant_rewards(rewards: Dictionary, target_pstate = null) -> Dictiona
 	
 	var p_state: PlayerState = target_pstate
 	if not p_state:
-		var psm = Engine.get_main_loop().root.get_node_or_null("PlayerStateManager")
+		var psm = Engine.get_main_loop().root.get_node_or_null("PlayerRegistry")
 		if psm: p_state = psm.get_active_player_state()
 		
 	# 1. Gold

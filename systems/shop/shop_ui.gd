@@ -43,12 +43,11 @@ func _ready() -> void:
 	
 	var em = get_node_or_null("/root/EconomyManager")
 	if em:
-		em.gold_changed.connect(func(_g, _d): _update_gold_display())
-		em.upgrade_purchased.connect(func(_u): refresh_ui())
+				em.upgrade_purchased.connect(func(_u): refresh_ui())
 		
 	var im = get_node_or_null("/root/InventoryManager")
 	if im:
-		im.inventory_updated.connect(refresh_ui)
+		EventBus.world_changed.connect(_bind_local_player)
 
 func _update_tab_texts() -> void:
 	if title_label: title_label.text = tr("ui.shop.title")
@@ -151,19 +150,23 @@ func refresh_ui() -> void:
 			_populate_sell()
 
 func _update_gold_display() -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else "player_001"
 	var em = get_node_or_null("/root/EconomyManager")
-	var g = em.get_gold() if em else 0
+	var g = em.get_gold(player_id) if em else 0
 	if gold_label:
 		gold_label.text = "💰 Your Gold: %d G" % g
 
 func _populate_seeds() -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else ""
 	_clear_list()
 	var seeds = shop_catalog.get("seeds", [])
 	var em = get_node_or_null("/root/EconomyManager")
 	var im = get_node_or_null("/root/InventoryManager")
 	var cm = get_node_or_null("/root/CombinationManager")
 	var jm = get_node_or_null("/root/JournalManager")
-	var current_gold = em.get_gold() if em else 0
+	var current_gold = em.get_gold(player_id) if em else 0
 	
 	for s_info in seeds:
 		var item_id = s_info.get("id", "")
@@ -185,7 +188,7 @@ func _populate_seeds() -> void:
 				is_discovered = (plant_id in ["red_flower", "blue_flower", "yellow_herb", "green_vine", "white_lily"])
 			is_unlocked = is_discovered
 			
-		var owned_count = im.get_item_count(item_id) if im else 0
+		var owned_count = im.get_item_count(player_id, item_id) if im else 0
 		
 		# Row container
 		var row = PanelContainer.new()
@@ -245,18 +248,20 @@ func _populate_seeds() -> void:
 		item_list_vbox.add_child(row)
 
 func _populate_supplies() -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else ""
 	_clear_list()
 	var supplies = shop_catalog.get("supplies", [])
 	var em = get_node_or_null("/root/EconomyManager")
 	var im = get_node_or_null("/root/InventoryManager")
-	var current_gold = em.get_gold() if em else 0
+	var current_gold = em.get_gold(player_id) if em else 0
 	
 	for sup in supplies:
 		var item_id = sup.get("id", "")
 		var item_name = sup.get("name", "Supply")
 		var desc = sup.get("description", "")
 		var price = int(sup.get("price", 30))
-		var owned_count = im.get_item_count(item_id) if im else 0
+		var owned_count = im.get_item_count(player_id, item_id) if im else 0
 		
 		var row = PanelContainer.new()
 		row.custom_minimum_size = Vector2(480, 52)
@@ -309,17 +314,19 @@ func _populate_supplies() -> void:
 		item_list_vbox.add_child(row)
 
 func _populate_upgrades() -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else ""
 	_clear_list()
 	var upgrades = upgrades_catalog.get("upgrades", [])
 	var em = get_node_or_null("/root/EconomyManager")
-	var current_gold = em.get_gold() if em else 0
+	var current_gold = em.get_gold(player_id) if em else 0
 	
 	for up in upgrades:
 		var up_id = up.get("id", "")
 		var up_name = up.get("name", "Upgrade")
 		var desc = up.get("description", "")
 		var price = int(up.get("price", 100))
-		var is_purchased = em.has_upgrade(up_id) if em else false
+		var is_purchased = em.has_upgrade(player_id, up_id) if em else false
 		
 		var row = PanelContainer.new()
 		row.custom_minimum_size = Vector2(480, 56)
@@ -375,7 +382,7 @@ func _populate_upgrades() -> void:
 			if not can_buy: buy_btn.modulate = Color(0.7, 0.7, 0.7, 0.6)
 			buy_btn.pressed.connect(func():
 				if em:
-					em.purchase_upgrade(up_id, price)
+					em.purchase_upgrade(player_id, up_id, price)
 					refresh_ui()
 			)
 			hbox.add_child(buy_btn)
@@ -383,12 +390,14 @@ func _populate_upgrades() -> void:
 		item_list_vbox.add_child(row)
 
 func _populate_sell() -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else ""
 	_clear_list()
 	var im = get_node_or_null("/root/InventoryManager")
 	var pm = get_node_or_null("/root/PlantManager")
 	var em = get_node_or_null("/root/EconomyManager")
 	
-	var all_items = im.get_all_items() if im else {}
+	var all_items = im.get_all_items(player_id) if im else {}
 	var has_crops = false
 	
 	for item_id in all_items.keys():
@@ -460,6 +469,8 @@ func _clear_list() -> void:
 	if scroll_container: scroll_container.visible = true
 
 func _on_buy_item(item_id: String, item_name: String, price: int) -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else "player_001"
 	var ns = get_node_or_null("/root/NetworkShop")
 	if ns:
 		var wl = get_node_or_null("/root/WorldLoader")
@@ -476,7 +487,7 @@ func _on_buy_item(item_id: String, item_name: String, price: int) -> void:
 	var player = get_tree().root.find_child("Player", true, false)
 	var pos = player.global_position if player else Vector2(240, 180)
 	if em and em.can_afford(price):
-		if em.spend_gold(price):
+		if em.spend_gold(player_id, price):
 			if im: im.add_item(item_id, 1)
 			if am: am.play_sfx("buy")
 			if spawner:
@@ -507,10 +518,17 @@ func _on_sell_item(item_id: String, item_name: String, unit_price: int, count: i
 	if im and im.has_item(item_id, count):
 		if im.remove_item(item_id, count):
 			var total_gold = unit_price * count
-			if em: em.add_gold(total_gold)
+			if em: em.add_gold(player_id, total_gold)
 			if am: am.play_sfx("sell")
 			if spawner:
 				spawner.spawn_floating_text(pos, "+%d Gold\n-%d %s" % [total_gold, count, item_name], Color(1.0, 0.9, 0.2))
 			var bus = get_node_or_null("/root/EventBus")
 			if bus: bus.item_sold.emit(item_id, count, total_gold)
 			refresh_ui()
+
+func _bind_local_player(world_id: String, _world_data: Dictionary = {}) -> void:
+	var player = get_tree().get_first_node_in_group("local_player")
+	if player and player.player_state:
+		if not player.player_state.inventory_changed.is_connected(refresh_ui):
+			player.player_state.inventory_changed.connect(refresh_ui)
+	refresh_ui()
