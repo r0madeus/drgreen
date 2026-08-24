@@ -1,0 +1,404 @@
+{
+  "quests": [
+    {
+      "description": "Plant your very first seed in the tilled farm soil.",
+      "description_key": "quest.quest_01.desc",
+      "giver": "Rowan",
+      "id": "quest_01",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Plant 1 seed in tilled soil",
+          "target": "any",
+          "text_key": "quest.quest_01.obj",
+          "type": "plant"
+        }
+      ],
+      "rewards": {
+        "gold": 25.0,
+        "unlock": "quest_02"
+      },
+      "title": "First Seeds",
+      "title_key": "quest.quest_01.title",
+      "unlock": {
+        "type": "auto"
+      }
+    },
+    {
+      "description": "Water your growing crops 3 times to ensure healthy growth.",
+      "description_key": "quest.quest_02.desc",
+      "giver": "Rowan",
+      "id": "quest_02",
+      "objectives": [
+        {
+          "amount": 3.0,
+          "current": 0.0,
+          "description": "Water crops 3 times",
+          "target": "any",
+          "text_key": "quest.quest_02.obj",
+          "type": "water"
+        }
+      ],
+      "rewards": {
+        "gold": 25.0,
+        "unlock": "quest_03"
+      },
+      "title": "Keep Them Alive",
+      "title_key": "quest.quest_02.title",
+      "unlock": {
+        "quest_id": "quest_01",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Harvest your first mature plant from the fields.",
+      "description_key": "quest.quest_03.desc",
+      "giver": "Rowan",
+      "id": "quest_03",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Harvest 1 mature crop",
+          "target": "any",
+          "text_key": "quest.quest_03.obj",
+          "type": "harvest"
+        }
+      ],
+      "rewards": {
+        "gold": 35.0,
+        "unlock": "quest_04"
+      },
+      "title": "First Harvest",
+      "title_key": "quest.quest_03.title",
+      "unlock": {
+        "quest_id": "quest_02",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Synthesize two different crops in the Laboratory station.",
+      "description_key": "quest.quest_04.desc",
+      "giver": "Rowan",
+      "id": "quest_04",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Perform 1 botanical combination",
+          "target": "any",
+          "text_key": "quest.quest_04.obj",
+          "type": "combine"
+        }
+      ],
+      "rewards": {
+        "gold": 50.0,
+        "unlock": "quest_05"
+      },
+      "title": "Botanical Alchemy",
+      "title_key": "quest.quest_04.title",
+      "unlock": {
+        "quest_id": "quest_03",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Discover a new hybrid plant and record it in your Journal.",
+      "description_key": "quest.quest_05.desc",
+      "giver": "Rowan",
+      "id": "quest_05",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Discover 1 new plant hybrid",
+          "target": "any",
+          "text_key": "quest.quest_05.obj",
+          "type": "discover"
+        }
+      ],
+      "rewards": {
+        "gold": 50.0,
+        "unlock": "quest_06"
+      },
+      "title": "Discovery Journal",
+      "title_key": "quest.quest_05.title",
+      "unlock": {
+        "quest_id": "quest_04",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Travel north from your farm and visit Botanist Village.",
+      "description_key": "quest.quest_06.desc",
+      "giver": "Rowan",
+      "id": "quest_06",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Travel to Botanist Village",
+          "target": "town",
+          "text_key": "quest.quest_06.obj",
+          "type": "visit_world"
+        }
+      ],
+      "rewards": {
+        "gold": 60.0,
+        "unlock": "quest_07"
+      },
+      "title": "Visit the Town",
+      "title_key": "quest.quest_06.title",
+      "unlock": {
+        "quest_id": "quest_05",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Buy fresh seeds or sell crops in the Town square.",
+      "description_key": "quest.quest_07.desc",
+      "giver": "Elias",
+      "id": "quest_07",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Purchase 1 seed from merchant",
+          "target": "any",
+          "text_key": "quest.quest_07.obj",
+          "type": "buy"
+        }
+      ],
+      "rewards": {
+        "gold": 60.0,
+        "unlock": "quest_08"
+      },
+      "title": "Village Merchant",
+      "title_key": "quest.quest_07.title",
+      "unlock": {
+        "quest_id": "quest_06",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Venture east from Town into the mysterious Whispering Forest.",
+      "description_key": "quest.quest_08.desc",
+      "giver": "Elias",
+      "id": "quest_08",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Travel to Whispering Forest",
+          "target": "forest",
+          "text_key": "quest.quest_08.obj",
+          "type": "visit_world"
+        }
+      ],
+      "rewards": {
+        "gold": 75.0,
+        "unlock": "quest_09"
+      },
+      "title": "Into the Forest",
+      "title_key": "quest.quest_08.title",
+      "unlock": {
+        "quest_id": "quest_07",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Collect or discover 2 wild plant specimens in the Forest.",
+      "description_key": "quest.quest_09.desc",
+      "giver": "Mira",
+      "id": "quest_09",
+      "objectives": [
+        {
+          "amount": 2.0,
+          "current": 0.0,
+          "description": "Harvest 2 plants in the wild",
+          "target": "any",
+          "text_key": "quest.quest_09.obj",
+          "type": "harvest"
+        }
+      ],
+      "rewards": {
+        "gold": 100.0,
+        "unlock": "quest_10"
+      },
+      "title": "Wild Specimens",
+      "title_key": "quest.quest_09.title",
+      "unlock": {
+        "quest_id": "quest_08",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Find the secret pathway into the ancient Botanical Grove and meet researcher Mira.",
+      "description_key": "quest.quest_10.desc",
+      "giver": "Mira",
+      "id": "quest_10",
+      "objectives": [
+        {
+          "amount": 1.0,
+          "current": 0.0,
+          "description": "Enter the Botanical Grove",
+          "target": "botanical_grove",
+          "text_key": "quest.quest_10.obj",
+          "type": "visit_world"
+        }
+      ],
+      "rewards": {
+        "gold": 200.0,
+        "title": "Master Botanist"
+      },
+      "title": "The Hidden Grove",
+      "title_key": "quest.quest_10.title",
+      "unlock": {
+        "quest_id": "quest_09",
+        "type": "quest_completed"
+      }
+    },
+    {
+      "description": "Work together to cultivate and harvest 10 mature crops on the shared farm.",
+      "description_key": "quest.coop_harvest_01.desc",
+      "giver": "Rowan",
+      "id": "coop_harvest_01",
+      "objectives": [
+        {
+          "amount": 10.0,
+          "current": 0.0,
+          "description": "Harvest 10 crops collectively",
+          "target": "any",
+          "text_key": "quest.coop_harvest_01.obj",
+          "type": "harvest"
+        }
+      ],
+      "rewards": {
+        "gold": 150.0,
+        "items": [
+          {
+            "count": 3.0,
+            "item_id": "seed_white_lily"
+          }
+        ]
+      },
+      "scope": "shared",
+      "title": "Community Harvest",
+      "title_key": "quest.coop_harvest_01.title",
+      "unlock": {
+        "type": "auto"
+      }
+    },
+    {
+      "description": "Combine rare specimens in the laboratory to restore the ancient Greenhouse.",
+      "description_key": "quest.coop_synthesis_01.desc",
+      "giver": "Mira",
+      "id": "coop_synthesis_01",
+      "objectives": [
+        {
+          "amount": 3.0,
+          "current": 0.0,
+          "description": "Perform 3 botanical combinations",
+          "target": "any",
+          "text_key": "quest.coop_synthesis_01.obj",
+          "type": "combine"
+        }
+      ],
+      "rewards": {
+        "gold": 250.0,
+        "world_unlock": "botanical_grove"
+      },
+      "scope": "shared",
+      "title": "Greenhouse Restoration",
+      "title_key": "quest.coop_synthesis_01.title",
+      "unlock": {
+        "type": "auto"
+      }
+    },
+    {
+      "description": "Rowan needs healthy red flowers to formulate a revitalizing botanical tonic.",
+      "description_key": "quest.rowan_herbalist.desc",
+      "giver": "Rowan",
+      "id": "quest_rowan_herbalist",
+      "objectives": [
+        {
+          "amount": 3.0,
+          "current": 0.0,
+          "description": "Harvest 3 Red Flowers",
+          "target": "plant_red_flower",
+          "text_key": "quest.rowan_herbalist.obj",
+          "type": "harvest"
+        }
+      ],
+      "rewards": {
+        "gold": 150.0,
+        "friendship": {
+          "npc_id": "rowan",
+          "points": 50.0
+        }
+      },
+      "title": "Rowan's Herbal Tonic",
+      "title_key": "quest.rowan_herbalist.title",
+      "unlock": {
+        "type": "manual"
+      }
+    },
+    {
+      "description": "Elias is running low on construction lumber for town repairs.",
+      "description_key": "quest.elias_supplies.desc",
+      "giver": "Elias",
+      "id": "quest_elias_supplies",
+      "objectives": [
+        {
+          "amount": 5.0,
+          "current": 0.0,
+          "description": "Collect 5 Wood",
+          "target": "wood_oak",
+          "text_key": "quest.elias_supplies.obj",
+          "type": "collect"
+        }
+      ],
+      "rewards": {
+        "gold": 150.0,
+        "friendship": {
+          "npc_id": "elias",
+          "points": 50.0
+        }
+      },
+      "title": "Town Repairs",
+      "title_key": "quest.elias_supplies.title",
+      "unlock": {
+        "type": "manual"
+      }
+    },
+    {
+      "description": "Mira requires white lily petals for her photosynthesis spectroscopy study.",
+      "description_key": "quest.mira_specimen.desc",
+      "giver": "Mira",
+      "id": "quest_mira_specimen",
+      "objectives": [
+        {
+          "amount": 2.0,
+          "current": 0.0,
+          "description": "Harvest 2 White Lilies",
+          "target": "plant_white_lily",
+          "text_key": "quest.mira_specimen.obj",
+          "type": "harvest"
+        }
+      ],
+      "rewards": {
+        "gold": 200.0,
+        "friendship": {
+          "npc_id": "mira",
+          "points": 50.0
+        }
+      },
+      "title": "Grove Spectroscopy",
+      "title_key": "quest.mira_specimen.title",
+      "unlock": {
+        "type": "manual"
+      }
+    }
+  ]
+}

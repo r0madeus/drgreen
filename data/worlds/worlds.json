@@ -1,0 +1,176 @@
+{
+	"worlds": {
+		"botanical_grove": {
+			"connections": {
+				"south": {
+					"spawn": "forest_from_grove",
+					"world": "forest"
+				},
+				"west": {
+					"spawn": "farm_from_grove",
+					"world": "farm"
+				}
+			},
+			"display_name": "Botanical Grove",
+			"enabled": true,
+			"height": 24.0,
+			"id": "botanical_grove",
+			"map_data": "res://data/worlds/botanical_grove.json",
+			"metadata": {
+				"ambient": "waterfall",
+				"music": "grove_theme"
+			},
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"default": [
+					16.0,
+					12.0
+				],
+				"from_farm": [
+					2.0,
+					12.0
+				],
+				"grove_from_farm": [
+					2.0,
+					12.0
+				],
+				"grove_from_forest": [
+					16,
+					21
+				]
+			},
+			"width": 32.0
+		},
+		"farm": {
+			"connections": {
+				"east": {
+					"spawn": "grove_from_farm",
+					"world": "botanical_grove"
+				},
+				"north": {
+					"spawn": "town_from_farm",
+					"world": "town"
+				}
+			},
+			"display_name": "Peaceful Farm",
+			"enabled": true,
+			"height": 24.0,
+			"id": "farm",
+			"map_data": "res://data/worlds/farm.json",
+			"metadata": {
+				"ambient": "farm_birds",
+				"music": "cozy_field"
+			},
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"default": [
+					16.0,
+					12.0
+				],
+				"farm_from_grove": [
+					29.0,
+					12.0
+				],
+				"farm_from_town": [
+					16.0,
+					2.0
+				],
+				"from_grove": [
+					29.0,
+					12.0
+				],
+				"from_town": [
+					16.0,
+					2.0
+				]
+			},
+			"width": 32.0
+		},
+		"forest": {
+			"connections": {
+				"north": {
+					"spawn": "grove_from_forest",
+					"world": "botanical_grove"
+				},
+				"south": {
+					"spawn": "town_from_forest",
+					"world": "town"
+				}
+			},
+			"display_name": "Whispering Forest",
+			"enabled": true,
+			"height": 24.0,
+			"id": "forest",
+			"map_data": "res://data/worlds/forest.json",
+			"metadata": {
+				"ambient": "forest_wind",
+				"music": "forest_theme"
+			},
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"default": [
+					16.0,
+					12.0
+				],
+				"forest_from_grove": [
+					16,
+					2
+				],
+				"forest_from_town": [
+					16.0,
+					21.0
+				],
+				"from_town": [
+					16.0,
+					21.0
+				]
+			},
+			"width": 32.0
+		},
+		"town": {
+			"connections": {
+				"north": {
+					"spawn": "forest_from_town",
+					"world": "forest"
+				},
+				"south": {
+					"spawn": "farm_from_town",
+					"world": "farm"
+				}
+			},
+			"display_name": "Botanist Village",
+			"enabled": true,
+			"height": 24.0,
+			"id": "town",
+			"map_data": "res://data/worlds/town.json",
+			"metadata": {
+				"ambient": "town_murmur",
+				"music": "village_theme"
+			},
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"default": [
+					16.0,
+					12.0
+				],
+				"from_farm": [
+					16.0,
+					21.0
+				],
+				"from_forest": [
+					16.0,
+					2.0
+				],
+				"town_from_farm": [
+					16.0,
+					21.0
+				],
+				"town_from_forest": [
+					16.0,
+					2.0
+				]
+			},
+			"width": 32.0
+		}
+	}
+}

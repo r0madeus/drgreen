@@ -1,0 +1,21 @@
+{
+	"dialogue_id": "mira",
+	"display_name": "Researcher Mira",
+	"id": "mira",
+	"interactable": true,
+	"name": "Mira",
+	"portrait": "res://assets/sprites/npc/mira_portrait.png",
+	"position": [
+		16,
+		10
+	],
+	"role": "botanical_researcher",
+	"schedule": {
+		"afternoon": "botanical_grove",
+		"evening": "botanical_grove",
+		"morning": "botanical_grove"
+	},
+	"shop_id": "mira_research_shop",
+	"sprite": "mira",
+	"world": "botanical_grove"
+}

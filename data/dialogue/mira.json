@@ -1,0 +1,50 @@
+{
+	"nodes": {
+		"default": {
+			"priority": 0,
+			"action": "open_quest_or_shop",
+			"lines": [
+				"The ancient Grove holds mysterious botanical energies.",
+				"I'm cataloging the rare flora of this grove. Have you made any new discoveries?"
+			],
+			"lines_keys": [
+				"dialogue.mira.default_1"
+			]
+		},
+		"hybrid_interest": {
+			"priority": 15,
+			"action": "open_quest_or_shop",
+			"conditions": [
+				{ "type": "plants_discovered", "count": 2 }
+			],
+			"lines": [
+				"Fascinating! The genetic markers on your hybrid plants show remarkable stability.",
+				"Keep experimenting with rare combinations in the Lab!"
+			]
+		},
+		"heart_2_greeting": {
+			"priority": 10,
+			"action": "open_quest_or_shop",
+			"conditions": [
+				{ "type": "heart_level", "min": 2 }
+			],
+			"lines": [
+				"Professor, your research notes on local photosynthesis have been invaluable.",
+				"I'm preparing a collaborative study on rare Grove specimens!"
+			]
+		},
+		"rain_greeting": {
+			"priority": 5,
+			"action": "open_quest_or_shop",
+			"conditions": [
+				{ "type": "weather", "is": "rain" }
+			],
+			"lines": [
+				"Rain accelerates spore dispersal in the Grove. A perfect day for sample collection!"
+			]
+		}
+	},
+	"npc_id": "mira",
+	"npc_name": "Researcher Mira",
+	"npc_name_key": "dialogue.mira.name"
+}

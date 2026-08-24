@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://nxsddis6rnoj"]
+
+[ext_resource type="Script" uid="uid://ba37s2wjqedwk" path="res://systems/combination/combination_ui.gd" id="1_87x01"]
+
+[node name="CombinationUI" type="Control" unique_id=1550551128]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_87x01")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1725221868]
+custom_minimum_size = Vector2(540, 420)
+layout_mode = 1
+offset_left = 306.0
+offset_top = 114.0
+offset_right = 846.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=109343099]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1211133012]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1761428843]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=977090901]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⚗️ Synthesis Lab (Hybridization)"
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=2002724375]
+layout_mode = 2
+text = " ✖ "
+
+[node name="SlotsHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=991274733]
+layout_mode = 2
+alignment = 1
+
+[node name="SlotAButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SlotsHBox" unique_id=984717600]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Slot A: [ Empty Slot ]"
+
+[node name="PlusLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/SlotsHBox" unique_id=1747730394]
+layout_mode = 2
+text = " ➕ "
+
+[node name="SlotBButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SlotsHBox" unique_id=1846605265]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+text = "Slot B: [ Empty Slot ]"
+
+[node name="ActionsHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1394750797]
+layout_mode = 2
+alignment = 1
+
+[node name="CombineButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ActionsHBox" unique_id=978778172]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+text = "🧪 Synthesize / Combine"
+
+[node name="ClearButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ActionsHBox" unique_id=1486250461]
+custom_minimum_size = Vector2(90, 38)
+layout_mode = 2
+text = "Clear"
+
+[node name="ResultBanner" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=142172477]
+visible = false
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ResultBanner" unique_id=317248552]
+layout_mode = 2
+text = "Result"
+horizontal_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1325980477]
+layout_mode = 2
+text = "Select an item below for Slot A:"
+
+[node name="PickerScroll" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=416471826]
+custom_minimum_size = Vector2(480, 180)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PickerGrid" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PickerScroll" unique_id=1460367492]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2

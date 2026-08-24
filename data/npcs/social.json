@@ -1,0 +1,19 @@
+{
+  "relationships": {
+    "rowan": {
+      "friends": ["elias", "mira"],
+      "social_locations": ["seed_shop", "farm_porch", "town_square"],
+      "talkative_chance": 0.8
+    },
+    "elias": {
+      "friends": ["rowan", "mira"],
+      "social_locations": ["town_square", "elias_shop"],
+      "talkative_chance": 0.7
+    },
+    "mira": {
+      "friends": ["rowan", "elias"],
+      "social_locations": ["mira_grove_lab", "town_square"],
+      "talkative_chance": 0.6
+    }
+  }
+}

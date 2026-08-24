@@ -1,0 +1,377 @@
+[gd_scene format=3 uid="uid://bu1n140qjlqt"]
+
+[ext_resource type="Script" uid="uid://cu37cddb0dik" path="res://editor/world_builder/world_builder.gd" id="1_4ikl6"]
+[ext_resource type="Script" uid="uid://ddm8bo7dcb4pr" path="res://editor/world_builder/asset_palette.gd" id="2_lxd05"]
+[ext_resource type="Script" uid="uid://bnse4cdlotebr" path="res://editor/world_builder/world_canvas.gd" id="3_by3pd"]
+[ext_resource type="Script" uid="uid://bkj4mkh263d86" path="res://editor/world_builder/validation_panel.gd" id="4_lxd05"]
+[ext_resource type="Script" uid="uid://dnvncnr3t7r5b" path="res://editor/world_builder/world_inspector.gd" id="4_xwgyv"]
+
+[node name="WorldBuilder" type="Control" unique_id=349005368]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_4ikl6")
+
+[node name="TopBar" type="PanelContainer" parent="." unique_id=1507395555]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 0
+anchor_right = 1.0
+
+[node name="@MarginContainer@24683" type="MarginContainer" parent="TopBar" unique_id=1223829061]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="@HBoxContainer@24684" type="HBoxContainer" parent="TopBar/@MarginContainer@24683" unique_id=1869014294]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="AppTitle" type="Label" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1173753078]
+modulate = Color(1, 0.85, 0.3, 1)
+layout_mode = 2
+text = " World Builder Pro"
+
+[node name="@VSeparator@24685" type="VSeparator" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1592542157]
+layout_mode = 2
+
+[node name="WorldOption" type="OptionButton" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1263059512]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1093169663]
+layout_mode = 2
+text = " Save"
+
+[node name="OpenButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1399864372]
+layout_mode = 2
+text = " Open"
+
+[node name="NewButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=577728547]
+layout_mode = 2
+text = " New"
+
+[node name="GraphButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1612417362]
+layout_mode = 2
+text = " Graph"
+
+[node name="ValidateButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=770397292]
+modulate = Color(0.4, 1, 0.7, 1)
+layout_mode = 2
+text = " Validate (F5)"
+
+[node name="@VSeparator@24696" type="VSeparator" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=100826260]
+layout_mode = 2
+
+[node name="ToolSelect" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=972117247]
+layout_mode = 2
+text = ""
+
+[node name="ToolBrush" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1615686503]
+layout_mode = 2
+text = ""
+
+[node name="ToolEraser" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=649692614]
+layout_mode = 2
+text = ""
+
+[node name="ToolRect" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=269913070]
+layout_mode = 2
+text = ""
+
+[node name="ToolFill" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=751068602]
+layout_mode = 2
+text = ""
+
+[node name="@VSeparator@24697" type="VSeparator" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1791076465]
+layout_mode = 2
+
+[node name="ToggleGrid" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1257645535]
+layout_mode = 2
+text = ""
+
+[node name="ToggleCollision" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=939419814]
+layout_mode = 2
+text = ""
+
+[node name="CreatePrefabBtn" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1293853810]
+layout_mode = 2
+text = ""
+
+[node name="@VSeparator@24698" type="VSeparator" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=25112298]
+layout_mode = 2
+
+[node name="UndoButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1105218674]
+layout_mode = 2
+text = "↩"
+
+[node name="RedoButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1804625915]
+layout_mode = 2
+text = "↪"
+
+[node name="@VSeparator@24699" type="VSeparator" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=25112299]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="TopBar/@MarginContainer@24683/@HBoxContainer@24684" unique_id=1804625999]
+layout_mode = 2
+modulate = Color(1, 0.4, 0.4, 1)
+text = " Close (F2)"
+
+[node name="HSplit" type="HBoxContainer" parent="." unique_id=1748186705]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 46.0
+offset_bottom = 620.0
+
+[node name="LeftPanel" type="VBoxContainer" parent="HSplit" unique_id=1852889349]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+
+[node name="AssetPalette" type="PanelContainer" parent="HSplit/LeftPanel" unique_id=2137364800]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_lxd05")
+
+[node name="@MarginContainer@24699" type="MarginContainer" parent="HSplit/LeftPanel/AssetPalette" unique_id=279863576]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="@VBoxContainer@24700" type="VBoxContainer" parent="HSplit/LeftPanel/AssetPalette/@MarginContainer@24699" unique_id=832640499]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="@Label@24701" type="Label" parent="HSplit/LeftPanel/AssetPalette/@MarginContainer@24699/@VBoxContainer@24700" unique_id=1928054854]
+modulate = Color(1, 0.85, 0.3, 1)
+layout_mode = 2
+text = " Palette & Prefabs"
+
+[node name="SearchEdit" type="LineEdit" parent="HSplit/LeftPanel/AssetPalette/@MarginContainer@24699/@VBoxContainer@24700" unique_id=2120923191]
+layout_mode = 2
+placeholder_text = " Search assets..."
+
+[node name="TabContainer" type="TabContainer" parent="HSplit/LeftPanel/AssetPalette/@MarginContainer@24699/@VBoxContainer@24700" unique_id=694152970]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LayerPanel" type="PanelContainer" parent="HSplit/LeftPanel" unique_id=1000728337]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="@MarginContainer@24705" type="MarginContainer" parent="HSplit/LeftPanel/LayerPanel" unique_id=158648669]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="@VBoxContainer@24706" type="VBoxContainer" parent="HSplit/LeftPanel/LayerPanel/@MarginContainer@24705" unique_id=1818504537]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="@Label@24707" type="Label" parent="HSplit/LeftPanel/LayerPanel/@MarginContainer@24705/@VBoxContainer@24706" unique_id=1789442403]
+modulate = Color(1, 0.85, 0.3, 1)
+layout_mode = 2
+text = " Layer Manager"
+
+[node name="@ScrollContainer@24710" type="ScrollContainer" parent="HSplit/LeftPanel/LayerPanel/@MarginContainer@24705/@VBoxContainer@24706" unique_id=1406530933]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LayerListVBox" type="VBoxContainer" parent="HSplit/LeftPanel/LayerPanel/@MarginContainer@24705/@VBoxContainer@24706/@ScrollContainer@24710" unique_id=2015932942]
+layout_mode = 2
+
+[node name="CenterVBox" type="VBoxContainer" parent="HSplit" unique_id=720664623]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterArea" type="PanelContainer" parent="HSplit/CenterVBox" unique_id=1485855985]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WorldCanvas" type="Control" parent="HSplit/CenterVBox/CenterArea" unique_id=336646714]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_by3pd")
+
+[node name="ValidationPanel" type="PanelContainer" parent="HSplit/CenterVBox" unique_id=388082994]
+visible = false
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+script = ExtResource("4_lxd05")
+
+[node name="@MarginContainer@24711" type="MarginContainer" parent="HSplit/CenterVBox/ValidationPanel" unique_id=2044405440]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="@VBoxContainer@24712" type="VBoxContainer" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711" unique_id=1883088024]
+layout_mode = 2
+
+[node name="@HBoxContainer@24713" type="HBoxContainer" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711/@VBoxContainer@24712" unique_id=1315912585]
+layout_mode = 2
+
+[node name="ValidationStatusLabel" type="Label" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711/@VBoxContainer@24712/@HBoxContainer@24713" unique_id=315934845]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "World Validation"
+
+[node name="FilterOption" type="OptionButton" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711/@VBoxContainer@24712/@HBoxContainer@24713" unique_id=1800519480]
+layout_mode = 2
+
+[node name="@Button@24724" type="Button" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711/@VBoxContainer@24712/@HBoxContainer@24713" unique_id=1895409020]
+layout_mode = 2
+text = ""
+
+[node name="@ScrollContainer@24727" type="ScrollContainer" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711/@VBoxContainer@24712" unique_id=1018920019]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResultsVBox" type="VBoxContainer" parent="HSplit/CenterVBox/ValidationPanel/@MarginContainer@24711/@VBoxContainer@24712/@ScrollContainer@24727" unique_id=1905300575]
+layout_mode = 2
+
+[node name="RightPanel" type="PanelContainer" parent="HSplit" unique_id=74450991]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+
+[node name="WorldInspector" type="PanelContainer" parent="HSplit/RightPanel" unique_id=910095784]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_xwgyv")
+
+[node name="@MarginContainer@24728" type="MarginContainer" parent="HSplit/RightPanel/WorldInspector" unique_id=1938561249]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="@VBoxContainer@24729" type="VBoxContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728" unique_id=627198761]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729" unique_id=540921826]
+modulate = Color(1, 0.85, 0.3, 1)
+layout_mode = 2
+text = " Inspector"
+
+[node name="EmptyLabel" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729" unique_id=981396244]
+modulate = Color(0.6, 0.6, 0.6, 1)
+layout_mode = 2
+text = "No element selected.\\nClick a tile or drag-select objects."
+autowrap_mode = 3
+
+[node name="PropsContainer" type="VBoxContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729" unique_id=1910104732]
+visible = false
+layout_mode = 2
+
+[node name="@GridContainer@24730" type="GridContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=1146082138]
+layout_mode = 2
+columns = 2
+
+[node name="PresetWalkable" type="Button" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@GridContainer@24730" unique_id=2014300720]
+layout_mode = 2
+text = "Walkable"
+
+[node name="PresetSolid" type="Button" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@GridContainer@24730" unique_id=1391423029]
+layout_mode = 2
+text = "Solid"
+
+[node name="PresetInteractable" type="Button" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@GridContainer@24730" unique_id=1529452086]
+layout_mode = 2
+text = "Interact"
+
+[node name="PresetDecoration" type="Button" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@GridContainer@24730" unique_id=1758406632]
+layout_mode = 2
+text = "Decor"
+
+[node name="@HSeparator@24731" type="HSeparator" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=576894338]
+layout_mode = 2
+
+[node name="@HBoxContainer@24733" type="HBoxContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=358351345]
+layout_mode = 2
+
+[node name="@Label@24732" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24733" unique_id=428986345]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Asset ID:"
+
+[node name="AssetIdValue" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24733" unique_id=521931144]
+layout_mode = 2
+text = "grass"
+
+[node name="@HBoxContainer@24735" type="HBoxContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=1661768127]
+layout_mode = 2
+
+[node name="@Label@24734" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24735" unique_id=2133182025]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Instance:"
+
+[node name="InstanceEdit" type="LineEdit" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24735" unique_id=486322951]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="@HBoxContainer@24741" type="HBoxContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=410307881]
+layout_mode = 2
+
+[node name="@Label@24736" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24741" unique_id=269907177]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Pos (X, Y):"
+
+[node name="XSpin" type="SpinBox" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24741" unique_id=888057005]
+layout_mode = 2
+
+[node name="YSpin" type="SpinBox" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24741" unique_id=351583186]
+layout_mode = 2
+
+[node name="@HBoxContainer@24753" type="HBoxContainer" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=1133385960]
+layout_mode = 2
+
+[node name="@Label@24742" type="Label" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24753" unique_id=136463417]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Layer:"
+
+[node name="LayerOption" type="OptionButton" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer/@HBoxContainer@24753" unique_id=937096414]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WalkableCheck" type="CheckBox" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=618065686]
+layout_mode = 2
+text = "Walkable"
+
+[node name="SolidCheck" type="CheckBox" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=1258995359]
+layout_mode = 2
+text = "Solid"
+
+[node name="InteractableCheck" type="CheckBox" parent="HSplit/RightPanel/WorldInspector/@MarginContainer@24728/@VBoxContainer@24729/PropsContainer" unique_id=1050440676]
+layout_mode = 2
+text = "Interactable"
+
+[node name="BottomBar" type="PanelContainer" parent="." unique_id=336358857]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="@MarginContainer@24754" type="MarginContainer" parent="BottomBar" unique_id=1624759263]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="BottomStatusLabel" type="Label" parent="BottomBar/@MarginContainer@24754" unique_id=666606931]
+modulate = Color(0.7, 0.9, 1, 1)
+layout_mode = 2
+text = "X: 0  Y: 0 | Zoom: 150% | Layer: TERRAIN | Selected: 0"

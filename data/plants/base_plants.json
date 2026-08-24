@@ -1,0 +1,814 @@
+{
+  "plants": [
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "red_flower",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "red_flower",
+      "name": "Red Flower",
+      "rarity": "common",
+      "type": "plant",
+      "value": {
+        "base_price": 50.0
+      },
+      "visual": {
+        "accent_color": "#FF758F",
+        "color": "#E63946"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "blue_flower",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "blue_flower",
+      "name": "Blue Flower",
+      "rarity": "common",
+      "type": "plant",
+      "value": {
+        "base_price": 60.0
+      },
+      "visual": {
+        "accent_color": "#8338EC",
+        "color": "#3A86FF"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          1.0
+        ],
+        "stages": 3.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "yellow_herb",
+        "yield": [
+          2.0,
+          3.0
+        ]
+      },
+      "id": "yellow_herb",
+      "name": "Yellow Herb",
+      "rarity": "common",
+      "type": "plant",
+      "value": {
+        "base_price": 35.0
+      },
+      "visual": {
+        "accent_color": "#FB5607",
+        "color": "#FFBE0B"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "green_vine",
+        "yield": [
+          1.0,
+          3.0
+        ]
+      },
+      "id": "green_vine",
+      "name": "Green Vine",
+      "rarity": "uncommon",
+      "type": "plant",
+      "value": {
+        "base_price": 80.0
+      },
+      "visual": {
+        "accent_color": "#52B788",
+        "color": "#2A9D8F"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "white_lily",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "white_lily",
+      "name": "White Lily",
+      "rarity": "uncommon",
+      "type": "plant",
+      "value": {
+        "base_price": 75.0
+      },
+      "visual": {
+        "accent_color": "#DEE2E6",
+        "color": "#F8F9FA"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "purple_flower",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "purple_flower",
+      "name": "Purple Flower",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 120.0
+      },
+      "visual": {
+        "accent_color": "#E0AAFF",
+        "color": "#9D4EDD"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          2.0
+        ],
+        "stages": 3.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "orange_herb",
+        "yield": [
+          2.0,
+          3.0
+        ]
+      },
+      "id": "orange_herb",
+      "name": "Orange Herb",
+      "rarity": "uncommon",
+      "type": "plant",
+      "value": {
+        "base_price": 90.0
+      },
+      "visual": {
+        "accent_color": "#FFBE0B",
+        "color": "#FB5607"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          2.0
+        ],
+        "stages": 3.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "green_herb",
+        "yield": [
+          2.0,
+          4.0
+        ]
+      },
+      "id": "green_herb",
+      "name": "Green Herb",
+      "rarity": "uncommon",
+      "type": "plant",
+      "value": {
+        "base_price": 95.0
+      },
+      "visual": {
+        "accent_color": "#118AB2",
+        "color": "#06D6A0"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "golden_lily",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "golden_lily",
+      "name": "Golden Lily",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 160.0
+      },
+      "visual": {
+        "accent_color": "#FFF3B0",
+        "color": "#FFD166"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "crimson_vine",
+        "yield": [
+          1.0,
+          3.0
+        ]
+      },
+      "id": "crimson_vine",
+      "name": "Crimson Vine",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 150.0
+      },
+      "visual": {
+        "accent_color": "#DC2F02",
+        "color": "#D00000"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "frost_vine",
+        "yield": [
+          1.0,
+          3.0
+        ]
+      },
+      "id": "frost_vine",
+      "name": "Frost Vine",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 155.0
+      },
+      "visual": {
+        "accent_color": "#CAF0F8",
+        "color": "#90E0EF"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "pink_lily",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "pink_lily",
+      "name": "Pink Lily",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 140.0
+      },
+      "visual": {
+        "accent_color": "#FF9770",
+        "color": "#FF70A6"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "sapphire_lily",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "sapphire_lily",
+      "name": "Sapphire Lily",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 165.0
+      },
+      "visual": {
+        "accent_color": "#00B4D8",
+        "color": "#0077B6"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          2.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "sun_vine",
+        "yield": [
+          1.0,
+          3.0
+        ]
+      },
+      "id": "sun_vine",
+      "name": "Sun Vine",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 145.0
+      },
+      "visual": {
+        "accent_color": "#FB8500",
+        "color": "#FFB703"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          3.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "moon_vine",
+        "yield": [
+          1.0,
+          3.0
+        ]
+      },
+      "id": "moon_vine",
+      "name": "Moon Vine",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 170.0
+      },
+      "visual": {
+        "accent_color": "#C1D3FE",
+        "color": "#E2EAFC"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          3.0,
+          3.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "deep_crimson_bloom",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "deep_crimson_bloom",
+      "name": "Deep Crimson Bloom",
+      "rarity": "epic",
+      "type": "plant",
+      "value": {
+        "base_price": 250.0
+      },
+      "visual": {
+        "accent_color": "#9D0208",
+        "color": "#6A040F"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          3.0,
+          3.0
+        ],
+        "stages": 4.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "azure_lotus",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "azure_lotus",
+      "name": "Azure Lotus",
+      "rarity": "epic",
+      "type": "plant",
+      "value": {
+        "base_price": 270.0
+      },
+      "visual": {
+        "accent_color": "#0077B6",
+        "color": "#03045E"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          3.0
+        ],
+        "stages": 3.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "radiant_essence_herb",
+        "yield": [
+          2.0,
+          4.0
+        ]
+      },
+      "id": "radiant_essence_herb",
+      "name": "Radiant Essence Herb",
+      "rarity": "epic",
+      "type": "plant",
+      "value": {
+        "base_price": 230.0
+      },
+      "visual": {
+        "accent_color": "#FFDD00",
+        "color": "#FFEA00"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          3.0,
+          3.0,
+          3.0
+        ],
+        "stages": 5.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "celestial_lily",
+        "yield": [
+          1.0,
+          2.0
+        ]
+      },
+      "id": "celestial_lily",
+      "name": "Celestial Lily",
+      "rarity": "legendary",
+      "type": "plant",
+      "value": {
+        "base_price": 500.0
+      },
+      "visual": {
+        "accent_color": "#FFD700",
+        "color": "#F0F3F4"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2.0,
+          2.0,
+          3.0,
+          3.0
+        ],
+        "stages": 5.0,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "ancient_evergreen_tendril",
+        "yield": [
+          1.0,
+          3.0
+        ]
+      },
+      "id": "ancient_evergreen_tendril",
+      "name": "Ancient Evergreen Tendril",
+      "rarity": "epic",
+      "type": "plant",
+      "value": {
+        "base_price": 300.0
+      },
+      "visual": {
+        "accent_color": "#40916C",
+        "color": "#1B4332"
+      }
+    },
+    {
+      "greenhouse_only": true,
+      "growth": {
+        "days_per_stage": [
+          1,
+          2,
+          2
+        ],
+        "stages": 4,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "moon_orchid",
+        "yield": [
+          1,
+          2
+        ]
+      },
+      "id": "moon_orchid",
+      "name": "Moon Orchid",
+      "rarity": "rare",
+      "type": "greenhouse_plant",
+      "value": {
+        "base_price": 180
+      },
+      "visual": {
+        "accent_color": "#E7C6FF",
+        "color": "#B8C0FF"
+      }
+    },
+    {
+      "greenhouse_only": true,
+      "growth": {
+        "days_per_stage": [
+          1,
+          2,
+          2
+        ],
+        "stages": 4,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "glass_fern",
+        "yield": [
+          1,
+          2
+        ]
+      },
+      "id": "glass_fern",
+      "name": "Glass Fern",
+      "rarity": "rare",
+      "type": "greenhouse_plant",
+      "value": {
+        "base_price": 190
+      },
+      "visual": {
+        "accent_color": "#A0C4FF",
+        "color": "#C8E7FF"
+      }
+    },
+    {
+      "greenhouse_only": true,
+      "growth": {
+        "days_per_stage": [
+          1,
+          2
+        ],
+        "stages": 3,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "star_moss",
+        "yield": [
+          2,
+          3
+        ]
+      },
+      "id": "star_moss",
+      "name": "Star Moss",
+      "rarity": "rare",
+      "type": "greenhouse_plant",
+      "value": {
+        "base_price": 160
+      },
+      "visual": {
+        "accent_color": "#CAFFBF",
+        "color": "#FDFFB6"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2,
+          3,
+          3
+        ],
+        "stages": 4,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "lunar_bloom",
+        "yield": [
+          1,
+          1
+        ]
+      },
+      "id": "lunar_bloom",
+      "name": "Lunar Bloom",
+      "rarity": "legendary",
+      "type": "plant",
+      "value": {
+        "base_price": 600
+      },
+      "visual": {
+        "accent_color": "#7073E8",
+        "color": "#D0D1FF"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2,
+          2,
+          2
+        ],
+        "stages": 4,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "crystal_fern",
+        "yield": [
+          1,
+          2
+        ]
+      },
+      "id": "crystal_fern",
+      "name": "Crystal Fern",
+      "rarity": "epic",
+      "type": "plant",
+      "value": {
+        "base_price": 320
+      },
+      "visual": {
+        "accent_color": "#A0C4FF",
+        "color": "#9BF6FF"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          2,
+          2
+        ],
+        "stages": 3,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "astral_moss",
+        "yield": [
+          2,
+          3
+        ]
+      },
+      "id": "astral_moss",
+      "name": "Astral Moss",
+      "rarity": "epic",
+      "type": "plant",
+      "value": {
+        "base_price": 340
+      },
+      "visual": {
+        "accent_color": "#7B2CBF",
+        "color": "#5A189A"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1,
+          2,
+          2
+        ],
+        "stages": 4,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "twilight_orchid",
+        "yield": [
+          1,
+          2
+        ]
+      },
+      "id": "twilight_orchid",
+      "name": "Twilight Orchid",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 220
+      },
+      "visual": {
+        "accent_color": "#C77DFF",
+        "color": "#9D4EDD"
+      }
+    },
+    {
+      "growth": {
+        "days_per_stage": [
+          1,
+          2
+        ],
+        "stages": 3,
+        "water_daily": true
+      },
+      "harvest": {
+        "item_id": "solar_moss",
+        "yield": [
+          2,
+          3
+        ]
+      },
+      "id": "solar_moss",
+      "name": "Solar Moss",
+      "rarity": "rare",
+      "type": "plant",
+      "value": {
+        "base_price": 210
+      },
+      "visual": {
+        "accent_color": "#FB8500",
+        "color": "#FFB703"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+	"id": "mira_research_shop",
+	"items": [
+		{
+			"buy_price": 100,
+			"item_id": "ancient_seed",
+			"stock": 3
+		},
+		{
+			"buy_price": 150,
+			"item_id": "seed_solar_bloom",
+			"stock": 2
+		},
+		{
+			"buy_price": 150,
+			"item_id": "seed_azure_crystal",
+			"stock": 2
+		}
+	],
+	"owner": "mira",
+	"title": "Mira's Research Archive"
+}

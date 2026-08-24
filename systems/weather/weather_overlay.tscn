@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dtr6i6npkp537"]
+
+[ext_resource type="Script" uid="uid://ptyqkei6qitd" path="res://systems/weather/weather_overlay.gd" id="1_42vxh"]
+
+[node name="WeatherOverlay" type="Node2D" unique_id=530301235]
+script = ExtResource("1_42vxh")

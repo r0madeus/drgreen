@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://d4j7y4lbwptt6"]
+
+[ext_resource type="Script" uid="uid://bpmjslikx00cm" path="res://systems/grid/grid_manager.gd" id="1_jjgid"]
+[ext_resource type="Script" uid="uid://dsxqqq52njn47" path="res://systems/grid/grid_renderer.gd" id="2_k3ns2"]
+[ext_resource type="PackedScene" uid="uid://iyp7gttjunky" path="res://systems/player/player.tscn" id="3_7byxm"]
+[ext_resource type="PackedScene" uid="uid://b5a0wt7r754u" path="res://ui/hud.tscn" id="4_7byxm"]
+[ext_resource type="PackedScene" uid="uid://gidup7udoaif" path="res://systems/inventory/inventory_ui.tscn" id="5_5q3ck"]
+[ext_resource type="PackedScene" uid="uid://nxsddis6rnoj" path="res://systems/combination/combination_ui.tscn" id="6_5q3ck"]
+[ext_resource type="PackedScene" uid="uid://babslhclmnsub" path="res://systems/journal/journal_ui.tscn" id="7_6buwl"]
+[ext_resource type="Script" uid="uid://cyapxiujk6dn3" path="res://systems/effects/effect_spawner.gd" id="8_fq2vd"]
+[ext_resource type="PackedScene" uid="uid://d3qtcqt1o8f2a" path="res://systems/npc/seed_merchant.tscn" id="9_merchant"]
+[ext_resource type="PackedScene" uid="uid://f4ha43p81r85" path="res://systems/shop/shop_ui.tscn" id="10_shop"]
+[ext_resource type="PackedScene" uid="uid://rwsngv2w6enc" path="res://systems/dialogue/dialogue_ui.tscn" id="11_dialogue"]
+[ext_resource type="PackedScene" uid="uid://d2hi4fyyhu000" path="res://systems/quest/quest_ui.tscn" id="12_quest"]
+[ext_resource type="PackedScene" uid="uid://cq3ed40wcsxbg" path="res://systems/world/greenhouse_building.tscn" id="13_greenhouse"]
+[ext_resource type="PackedScene" uid="uid://d2w7csm35evlj" path="res://systems/world/wooden_gate.tscn" id="14_gate"]
+[ext_resource type="PackedScene" uid="uid://dtr6i6npkp537" path="res://systems/weather/weather_overlay.tscn" id="15_weather"]
+[ext_resource type="PackedScene" uid="uid://dn6ms4q64qmy0" path="res://ui/pause_menu.tscn" id="16_pause"]
+[ext_resource type="Script" path="res://systems/tutorial/tutorial_guide.gd" id="18_tutorial"]
+[ext_resource type="Script" path="res://systems/time/day_night_overlay.gd" id="20_daynight"]
+[ext_resource type="Script" path="res://ui/sleep_confirmation_ui.gd" id="21_sleepui"]
+
+[node name="Farm" type="Node2D" unique_id=111041553]
+
+[node name="DayNightOverlay" type="CanvasModulate" parent="." unique_id=160700493]
+script = ExtResource("20_daynight")
+
+[node name="WeatherOverlay" parent="." unique_id=160700492 instance=ExtResource("15_weather")]
+
+
+[node name="GridManager" type="Node2D" parent="." unique_id=363754784]
+script = ExtResource("1_jjgid")
+
+[node name="GridRenderer" type="Node2D" parent="GridManager" unique_id=492888086]
+script = ExtResource("2_k3ns2")
+
+[node name="SeedMerchant" parent="." unique_id=1122334455 instance=ExtResource("9_merchant")]
+
+[node name="GreenhouseBuilding" parent="." unique_id=-2061521730 instance=ExtResource("13_greenhouse")]
+
+[node name="WoodenGate" parent="." unique_id=-950410619 instance=ExtResource("14_gate")]
+
+[node name="Player" parent="." unique_id=1896307064 instance=ExtResource("3_7byxm")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1875470930]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 512
+limit_bottom = 384
+position_smoothing_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1911291768]
+
+[node name="HUD" parent="UI" unique_id=1561162505 instance=ExtResource("4_7byxm")]
+
+[node name="InventoryUI" parent="UI" unique_id=245397055 instance=ExtResource("5_5q3ck")]
+
+[node name="CombinationUI" parent="UI" unique_id=1550551128 instance=ExtResource("6_5q3ck")]
+
+[node name="JournalUI" parent="UI" unique_id=1684015128 instance=ExtResource("7_6buwl")]
+
+[node name="ShopUI" parent="UI" unique_id=1789012345 instance=ExtResource("10_shop")]
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueUI" parent="UI" unique_id=1789012346 instance=ExtResource("11_dialogue")]
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestUI" parent="UI" unique_id=1789012347 instance=ExtResource("12_quest")]
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TutorialGuide" type="Control" parent="UI" unique_id=1789012349]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_tutorial")
+
+[node name="PauseMenu" parent="UI" unique_id=1789012348 instance=ExtResource("16_pause")]
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SleepConfirmationUI" type="Control" parent="UI" unique_id=1789012352]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("21_sleepui")
+
+[node name="EffectSpawner" type="Node2D" parent="." unique_id=578488634]
+script = ExtResource("8_fq2vd")
+
+
+

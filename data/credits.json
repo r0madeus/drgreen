@@ -1,0 +1,32 @@
+{
+	"title": "Botanical Haven",
+	"version": "1.0.0-phase26",
+	"sections": [
+		{
+			"role": "Game Design & Architecture",
+			"members": ["Google DeepMind Team", "Antigravity Pair Programmer", "Botanical Haven Studio"]
+		},
+		{
+			"role": "Engine & Technology",
+			"members": ["Godot Engine 4.3", "GDScript Runtime Engine", "In-Game Content Creation Suite"]
+		},
+		{
+			"role": "Systems & Mechanics",
+			"members": [
+				"Farming & Crop Growth Simulation",
+				"NPC Living World & Daily Schedules",
+				"5-Tier Heart Progression & Dialogue Condition Engine",
+				"Multiplayer Host-Authoritative Architecture",
+				"Data-Driven In-Game Editor & Mod Framework"
+			]
+		},
+		{
+			"role": "Special Thanks",
+			"members": [
+				"All Botanical Haven Beta Testers",
+				"Open Source Godot Community",
+				"Pixel Art & Audio Creators"
+			]
+		}
+	]
+}

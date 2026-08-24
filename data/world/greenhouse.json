@@ -1,0 +1,23 @@
+{
+  "default_stage": 0,
+  "growth_bonus": 0.25,
+  "max_stage": 2,
+  "repair_cost": 500,
+  "special_seeds": [
+    {
+      "id": "seed_moon_orchid",
+      "name": "Moon Orchid Seed",
+      "price": 90
+    },
+    {
+      "id": "seed_glass_fern",
+      "name": "Glass Fern Seed",
+      "price": 95
+    },
+    {
+      "id": "seed_star_moss",
+      "name": "Star Moss Seed",
+      "price": 80
+    }
+  ]
+}

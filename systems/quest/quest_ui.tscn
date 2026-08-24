@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://d2hi4fyyhu000"]
+
+[ext_resource type="Script" uid="uid://dpwpmdxcy2ovr" path="res://systems/quest/quest_ui.gd" id="1_brl1o"]
+
+[node name="QuestUI" type="Control" unique_id=157442141]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_brl1o")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1547287132]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1671431901]
+custom_minimum_size = Vector2(520, 380)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=345176460]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=812817654]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=136534323]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1923609028]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "📜 Valley Quests & Tasks"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=784800543]
+custom_minimum_size = Vector2(32, 28)
+layout_mode = 2
+text = "✕"
+
+[node name="TabButtons" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=598678117]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ActiveTabButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=1952740747]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⏳ Active Quests"
+
+[node name="CompletedTabButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=1211111400]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "✅ Completed"
+
+[node name="@HSeparator@29780" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=902327840]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2038808542]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActiveScroll" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=245668545]
+custom_minimum_size = Vector2(480, 240)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActiveList" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Content/ActiveScroll" unique_id=264664873]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ActiveEmptyLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=835582699]
+visible = false
+custom_minimum_size = Vector2(480, 200)
+layout_mode = 2
+text = "No active quests at the moment.
+Talk to Rowan for new tasks!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompletedScroll" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=1102918138]
+visible = false
+custom_minimum_size = Vector2(480, 240)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CompletedList" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Content/CompletedScroll" unique_id=530639854]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="CompletedEmptyLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=1898937959]
+visible = false
+custom_minimum_size = Vector2(480, 200)
+layout_mode = 2
+text = "No completed quests yet."
+horizontal_alignment = 1
+vertical_alignment = 1

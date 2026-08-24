@@ -1,0 +1,25 @@
+{
+  "preferences": {
+    "rowan": {
+      "loved": ["plant_sun_petal", "plant_golden_sunflower", "fertilizer_organic"],
+      "liked": ["plant_red_flower", "plant_yellow_herb", "seed_red_flower", "seed_yellow_herb"],
+      "neutral": ["wood_oak", "stone"],
+      "disliked": ["weeds", "debris_rock"],
+      "hated": ["trash", "rotten_plant"]
+    },
+    "elias": {
+      "loved": ["crop_apple", "plant_frost_lily", "crafted_jam"],
+      "liked": ["plant_blue_flower", "seed_blue_flower", "wood_oak"],
+      "neutral": ["stone", "clay"],
+      "disliked": ["plant_red_flower"],
+      "hated": ["trash", "weeds"]
+    },
+    "mira": {
+      "loved": ["plant_crystal_bloom", "plant_ember_fern", "hybrid_seed_special"],
+      "liked": ["plant_white_lily", "plant_glow_vine", "seed_white_lily"],
+      "neutral": ["wood_oak", "plant_yellow_herb"],
+      "disliked": ["stone", "hoe_basic"],
+      "hated": ["trash", "polluted_water"]
+    }
+  }
+}

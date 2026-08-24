@@ -1,0 +1,32 @@
+{
+  "game_id": "empty_template",
+  "name": "Empty Game Template",
+  "version": "1.0.0",
+  "author": "Engine Creator",
+  "description": "A minimal empty game template ready for custom world and character authoring.",
+  "engine_version": "4.7.0",
+  "starting_world": "main",
+  "player_definition": {
+    "speed": 150.0,
+    "max_energy": 100.0,
+    "inventory_capacity": 24,
+    "default_tools": []
+  },
+  "content_paths": {
+    "worlds": "res://games/empty_template/worlds/",
+    "npcs": "res://games/empty_template/npcs/",
+    "dialogue": "res://games/empty_template/dialogue/",
+    "quests": "res://games/empty_template/quests/",
+    "plants": "res://games/empty_template/plants/",
+    "tools": "res://games/empty_template/tools/",
+    "shops": "res://games/empty_template/shops/",
+    "assets": "res://games/empty_template/assets/"
+  },
+  "game_rules": {
+    "day_length_seconds": 600.0,
+    "stamina_depletion_enabled": false,
+    "starting_gold": 0,
+    "seasons_enabled": false
+  },
+  "dependencies": []
+}

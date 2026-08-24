@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://b8yv9e2x3w4q1"]
+
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_mainmenu"]
+
+[node name="MainMenu" type="Control" unique_id=89234891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainmenu")
+
+[node name="BackgroundDim" type="ColorRect" parent="." unique_id=12398412]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.08, 0.06, 0.88)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=98712345]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=45678912]
+custom_minimum_size = Vector2(400, 420)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=34567891]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=23456789]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345678]
+modulate = Color(0.5, 1, 0.6, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "🌿 BOTANICAL HAVEN"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345679]
+modulate = Color(0.8, 0.9, 0.8, 0.8)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "A Cozy Cooperative Botanical RPG"
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345680]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345682]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "📂 Continue"
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345681]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "🌱 New Game"
+
+[node name="SavesButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345687]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "💾 Saves"
+
+[node name="EditorButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345688]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "🛠️ Editor"
+
+[node name="MultiplayerButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345683]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "🌐 Multiplayer Co-op"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345684]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "⚙️ Settings & Audio"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345689]
+custom_minimum_size = Vector2(280, 32)
+layout_mode = 2
+text = "📜 Credits"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345685]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12345686]
+custom_minimum_size = Vector2(280, 30)
+layout_mode = 2
+text = "✕ Quit"

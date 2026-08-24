@@ -1,0 +1,86 @@
+{
+  "milestones": {
+    "rowan": [
+      {
+        "heart_level": 1,
+        "rewards": { "gold": 50 },
+        "unlock_dialogue": "heart_1_dialogue",
+        "description_key": "milestone.rowan.heart_1"
+      },
+      {
+        "heart_level": 2,
+        "rewards": { "unlock": "quest_rowan_herbalist" },
+        "description_key": "milestone.rowan.heart_2"
+      },
+      {
+        "heart_level": 3,
+        "rewards": { "gold": 150, "item": { "seed_golden_sunflower": 3 } },
+        "description_key": "milestone.rowan.heart_3"
+      },
+      {
+        "heart_level": 4,
+        "rewards": { "unlock": "recipe_herbal_tonic" },
+        "description_key": "milestone.rowan.heart_4"
+      },
+      {
+        "heart_level": 5,
+        "rewards": { "gold": 500, "item": { "trophy_master_botanist": 1 } },
+        "description_key": "milestone.rowan.heart_5"
+      }
+    ],
+    "elias": [
+      {
+        "heart_level": 1,
+        "rewards": { "gold": 50 },
+        "description_key": "milestone.elias.heart_1"
+      },
+      {
+        "heart_level": 2,
+        "rewards": { "unlock": "quest_elias_supplies" },
+        "description_key": "milestone.elias.heart_2"
+      },
+      {
+        "heart_level": 3,
+        "rewards": { "gold": 200 },
+        "description_key": "milestone.elias.heart_3"
+      },
+      {
+        "heart_level": 4,
+        "rewards": { "unlock": "recipe_wooden_planter" },
+        "description_key": "milestone.elias.heart_4"
+      },
+      {
+        "heart_level": 5,
+        "rewards": { "gold": 500, "item": { "trophy_town_benefactor": 1 } },
+        "description_key": "milestone.elias.heart_5"
+      }
+    ],
+    "mira": [
+      {
+        "heart_level": 1,
+        "rewards": { "gold": 50 },
+        "description_key": "milestone.mira.heart_1"
+      },
+      {
+        "heart_level": 2,
+        "rewards": { "unlock": "quest_mira_specimen" },
+        "description_key": "milestone.mira.heart_2"
+      },
+      {
+        "heart_level": 3,
+        "rewards": { "gold": 200, "item": { "hybrid_seed_special": 2 } },
+        "description_key": "milestone.mira.heart_3"
+      },
+      {
+        "heart_level": 4,
+        "rewards": { "unlock": "recipe_synthesis_booster" },
+        "description_key": "milestone.mira.heart_4"
+      },
+      {
+        "heart_level": 5,
+        "rewards": { "gold": 600, "item": { "trophy_grove_researcher": 1 } },
+        "description_key": "milestone.mira.heart_5"
+      }
+    ]
+  }
+}

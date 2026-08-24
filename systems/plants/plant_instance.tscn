@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b45jsxaa3jk0i"]
+
+[ext_resource type="Script" uid="uid://bo7rk18cfrbh" path="res://systems/plants/plant_instance.gd" id="1_jjmpc"]
+
+[node name="PlantInstance" type="Node2D" unique_id=920404452]
+script = ExtResource("1_jjmpc")

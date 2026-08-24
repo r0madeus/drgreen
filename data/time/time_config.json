@@ -1,0 +1,38 @@
+﻿{
+  "day_start_minutes": 360,
+  "day_end_minutes": 1440,
+  "default_time_minutes": 360,
+  "minutes_per_real_second": 1.0,
+  "time_scale": 1.0,
+  "auto_sleep_at_midnight": true,
+  "phases": {
+    "dawn": {
+      "name_key": "time.phase.dawn",
+      "start_minute": 360,
+      "end_minute": 480,
+      "ambient_color": [0.88, 0.80, 0.90, 1.0],
+      "light_energy": 0.85
+    },
+    "day": {
+      "name_key": "time.phase.day",
+      "start_minute": 480,
+      "end_minute": 1080,
+      "ambient_color": [1.0, 1.0, 1.0, 1.0],
+      "light_energy": 1.0
+    },
+    "dusk": {
+      "name_key": "time.phase.dusk",
+      "start_minute": 1080,
+      "end_minute": 1260,
+      "ambient_color": [0.94, 0.70, 0.52, 1.0],
+      "light_energy": 0.78
+    },
+    "night": {
+      "name_key": "time.phase.night",
+      "start_minute": 1260,
+      "end_minute": 1440,
+      "ambient_color": [0.35, 0.40, 0.62, 1.0],
+      "light_energy": 0.45
+    }
+  }
+}

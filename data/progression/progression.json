@@ -1,0 +1,46 @@
+{
+  "chapters": [
+    {
+      "description": "Learn the basics of tilling, planting, watering and harvesting.",
+      "id": "chapter_1",
+      "quests": [
+        "quest_01",
+        "quest_02",
+        "quest_03",
+        "quest_04",
+        "quest_05"
+      ],
+      "title": "Chapter 1: The First Garden",
+      "world": "farm"
+    },
+    {
+      "description": "Visit the village, trade with merchants and expand your botanical horizons.",
+      "id": "chapter_2",
+      "quests": [
+        "quest_06",
+        "quest_07"
+      ],
+      "title": "Chapter 2: Botanist's Market",
+      "world": "town"
+    },
+    {
+      "description": "Explore the Whispering Forest and discover untamed flora.",
+      "id": "chapter_3",
+      "quests": [
+        "quest_08",
+        "quest_09"
+      ],
+      "title": "Chapter 3: Wild Botany",
+      "world": "forest"
+    },
+    {
+      "description": "Uncover the secrets of the ancient Botanical Grove.",
+      "id": "chapter_4",
+      "quests": [
+        "quest_10"
+      ],
+      "title": "Chapter 4: The Hidden Grove",
+      "world": "botanical_grove"
+    }
+  ]
+}

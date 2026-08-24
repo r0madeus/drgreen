@@ -1,0 +1,772 @@
+{
+	"assets": {
+		"audio.sfx.ambient.rain": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/rain_ambient.wav"
+		},
+		"audio.sfx.ambient.snow": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/snow_wind.wav"
+		},
+		"audio.sfx.dialogue.next": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/dialogue_next.wav"
+		},
+		"audio.sfx.dialogue.open": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/dialogue_open.wav"
+		},
+		"audio.sfx.farming.combine": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/combine.wav"
+		},
+		"audio.sfx.farming.discovery": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/discovery.wav"
+		},
+		"audio.sfx.farming.harvest": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/harvest.wav"
+		},
+		"audio.sfx.farming.plant": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/plant.wav"
+		},
+		"audio.sfx.farming.water": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/water.wav"
+		},
+		"audio.sfx.quest.accept": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/quest_accept.wav"
+		},
+		"audio.sfx.quest.complete": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/quest_complete.wav"
+		},
+		"audio.sfx.shop.buy": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/buy.wav"
+		},
+		"audio.sfx.shop.sell": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/sell.wav"
+		},
+		"audio.sfx.ui.close": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/ui_close.wav"
+		},
+		"audio.sfx.ui.open": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/ui_open.wav"
+		},
+		"audio.sfx.ui.select": {
+			"category": "audio_sfx",
+			"path": "res://assets/audio/sfx/ui_select.wav"
+		},
+		"building.barn": {
+			"category": "building",
+			"size": [
+				48,
+				48
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_repaired.png"
+		},
+		"building.farm_house": {
+			"category": "building",
+			"size": [
+				48,
+				48
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_repaired.png"
+		},
+		"building.greenhouse_repaired": {
+			"category": "building",
+			"size": [
+				48,
+				48
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_repaired.png"
+		},
+		"building.greenhouse_ruined": {
+			"category": "building",
+			"size": [
+				48,
+				48
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_ruined.png"
+		},
+		"building.laboratory": {
+			"category": "building",
+			"size": [
+				48,
+				48
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_ruined.png"
+		},
+		"building.seed_shop": {
+			"category": "building",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/market_stall.png"
+		},
+		"building.shipping_box": {
+			"category": "building",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/market_stall.png"
+		},
+		"building.storage_shed": {
+			"category": "building",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_ruined.png"
+		},
+		"character.player": {
+			"category": "player",
+			"size": [
+				16,
+				24
+			],
+			"texture": "res://assets/sprites/player/player_down.png"
+		},
+		"effect.farming.growth": {
+			"category": "effect",
+			"color": "#58b83d",
+			"type": "particles"
+		},
+		"effect.farming.harvest": {
+			"category": "effect",
+			"color": "#ffcc24",
+			"type": "particles"
+		},
+		"effect.farming.plant": {
+			"category": "effect",
+			"color": "#6e3d1a",
+			"type": "particles"
+		},
+		"effect.farming.water": {
+			"category": "effect",
+			"color": "#3a82e8",
+			"type": "particles"
+		},
+		"item.astral_moss": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/astral_moss.png"
+		},
+		"item.blue_flower": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/blue_flower.png"
+		},
+		"item.fertilizer_growth": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/fertilizer.png"
+		},
+		"item.frost_leaf": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/frost_leaf.png"
+		},
+		"item.green_vine": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/green_vine.png"
+		},
+		"item.herbal_tonic": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/tonic.png"
+		},
+		"item.red_flower": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/red_flower.png"
+		},
+		"item.seed_blue_flower": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/seed_blue_flower.png"
+		},
+		"item.seed_green_vine": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/seed_green_vine.png"
+		},
+		"item.seed_red_flower": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/seed_red_flower.png"
+		},
+		"item.seed_white_lily": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/seed_white_lily.png"
+		},
+		"item.seed_yellow_herb": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/seed_yellow_herb.png"
+		},
+		"item.shadow_root": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/shadow_root.png"
+		},
+		"item.sun_petal": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/sun_petal.png"
+		},
+		"item.white_lily": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/white_lily.png"
+		},
+		"item.yellow_herb": {
+			"category": "item",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/yellow_herb.png"
+		},
+		"npc.elias": {
+			"category": "npc",
+			"portrait": "npc.elias.portrait",
+			"size": [
+				16,
+				24
+			],
+			"texture": "res://assets/sprites/npc/elias_idle_0.png"
+		},
+		"npc.elias.portrait": {
+			"category": "npc_portrait",
+			"size": [
+				48,
+				48
+			],
+			"texture": "res://assets/sprites/npc/elias_portrait.png"
+		},
+		"npc.mira": {
+			"category": "npc",
+			"portrait": "npc.mira.portrait",
+			"size": [
+				16,
+				24
+			],
+			"texture": "res://assets/sprites/npc/mira_idle_0.png"
+		},
+		"npc.mira.portrait": {
+			"category": "npc_portrait",
+			"size": [
+				48,
+				48
+			],
+			"texture": "res://assets/sprites/npc/mira_portrait.png"
+		},
+		"npc.rowan": {
+			"category": "npc",
+			"portrait": "npc.rowan.portrait",
+			"size": [
+				16,
+				24
+			],
+			"texture": "res://assets/sprites/npc/merchant_idle_0.png"
+		},
+		"npc.rowan.portrait": {
+			"category": "npc_portrait",
+			"size": [
+				48,
+				48
+			],
+			"texture": "res://assets/sprites/npc/merchant_portrait.png"
+		},
+		"prop.ancient_tree": {
+			"category": "prop",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/bush_small.png"
+		},
+		"prop.bench": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/tree_stump.png"
+		},
+		"prop.bush": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/bush_small.png"
+		},
+		"prop.chest": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/items/expanded_satchel.png"
+		},
+		"prop.fallen_branch": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/fallen_branch.png"
+		},
+		"prop.flower_patch": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/environment/flower_patch.png"
+		},
+		"prop.mushroom": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crystal_fern_stage_3.png"
+		},
+		"prop.pond": {
+			"category": "prop",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/flower_patch.png"
+		},
+		"prop.portal": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/astral_moss.png"
+		},
+		"prop.rock": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/rock_small.png"
+		},
+		"prop.rock_small": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/rock_small.png"
+		},
+		"prop.signpost": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/wooden_gate.png"
+		},
+		"prop.tree": {
+			"category": "prop",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/tree_stump.png"
+		},
+		"prop.tree_stump": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/tree_stump.png"
+		},
+		"prop.wooden_gate": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/wooden_gate.png"
+		},
+		"prop.workbench": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/items/better_tools.png"
+		},
+		"prop.world_exit": {
+			"category": "prop",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/environment/wooden_gate.png"
+		},
+		"tile.fence": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/tiles/fence.png"
+		},
+		"tile.grass": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/grass.png"
+		},
+		"tile.path": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/path.png"
+		},
+		"tile.sand": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/path_2.png"
+		},
+		"tile.soil": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/soil.png"
+		},
+		"tile.stone": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/path_1.png"
+		},
+		"tile.water": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/tiles/watered_soil.png"
+		},
+		"tile.watered_soil": {
+			"category": "tile",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/watered_soil.png"
+		},
+		"tool.axe.basic": {
+			"category": "tool",
+			"quality": "basic",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/axe_basic.png"
+		},
+		"tool.hoe.basic": {
+			"category": "tool",
+			"quality": "basic",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/hoe_basic.png"
+		},
+		"tool.hoe.copper": {
+			"category": "tool",
+			"quality": "copper",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/hoe_copper.png"
+		},
+		"tool.hoe.gold": {
+			"category": "tool",
+			"quality": "gold",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/hoe_gold.png"
+		},
+		"tool.hoe.iron": {
+			"category": "tool",
+			"quality": "iron",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/hoe_iron.png"
+		},
+		"tool.pickaxe.basic": {
+			"category": "tool",
+			"quality": "basic",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/pickaxe_basic.png"
+		},
+		"tool.watering_can.basic": {
+			"category": "tool",
+			"quality": "basic",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/watering_can_basic.png"
+		},
+		"tool.watering_can.copper": {
+			"category": "tool",
+			"quality": "copper",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/watering_can_copper.png"
+		},
+		"tool.watering_can.gold": {
+			"category": "tool",
+			"quality": "gold",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/watering_can_gold.png"
+		},
+		"tool.watering_can.iron": {
+			"category": "tool",
+			"quality": "iron",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/items/watering_can_iron.png"
+		},
+		"ui.icon.day": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_day.png"
+		},
+		"ui.icon.gold": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_gold.png"
+		},
+		"ui.icon.inventory": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_inventory.png"
+		},
+		"ui.icon.journal": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_journal.png"
+		},
+		"ui.icon.lab": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_lab.png"
+		},
+		"ui.icon.load": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_load.png"
+		},
+		"ui.icon.quest": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_quest.png"
+		},
+		"ui.icon.save": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_save.png"
+		},
+		"ui.icon.settings": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_settings.png"
+		},
+		"ui.icon.shop": {
+			"category": "ui_icon",
+			"size": [
+				16,
+				16
+			],
+			"texture": "res://assets/sprites/ui/icon_shop.png"
+		}
+	},
+	"pixel_art_rules": {
+		"base_tile_size": [
+			16,
+			16
+		],
+		"character_size": [
+			16,
+			24
+		],
+		"prop_sizes": {
+			"large": [
+				48,
+				48
+			],
+			"medium": [
+				32,
+				32
+			],
+			"small": [
+				16,
+				16
+			]
+		},
+		"texture_filter": "nearest",
+		"viewport_base": [
+			1152,
+			648
+		]
+	},
+	"version": "1.0"
+}

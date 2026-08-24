@@ -1,0 +1,21 @@
+{
+  "heart_levels": [
+    { "level": 0, "min_points": 0, "max_points": 99, "status_key": "social.status.stranger" },
+    { "level": 1, "min_points": 100, "max_points": 199, "status_key": "social.status.acquaintance" },
+    { "level": 2, "min_points": 200, "max_points": 299, "status_key": "social.status.friendly" },
+    { "level": 3, "min_points": 300, "max_points": 399, "status_key": "social.status.friend" },
+    { "level": 4, "min_points": 400, "max_points": 499, "status_key": "social.status.close_friend" },
+    { "level": 5, "min_points": 500, "max_points": 9999, "status_key": "social.status.best_friend" }
+  ],
+  "gift_points": {
+    "loved": 80,
+    "liked": 45,
+    "neutral": 20,
+    "disliked": -20,
+    "hated": -40
+  },
+  "daily_limits": {
+    "daily_talk_points": 20,
+    "daily_gift_limit": 1
+  }
+}
