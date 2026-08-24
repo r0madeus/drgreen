@@ -1,0 +1,86 @@
+{
+	"nodes": {
+		"default": {
+			"priority": 0,
+			"action": "open_shop",
+			"lines": [
+				"Greetings, professor! The valley's soil is vibrant today.",
+				"Looking for fresh seeds or ready to sell your bountiful harvest?"
+			],
+			"lines_keys": [
+				"dialogue.rowan.default_1",
+				"dialogue.rowan.default_2"
+			]
+		},
+		"rain_greeting": {
+			"priority": 5,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "weather", "is": "rain" }
+			],
+			"lines": [
+				"A refreshing rain for the crops! It saves us the watering work today.",
+				"Step inside out of the wet and see what seeds we have in store."
+			],
+			"lines_keys": [
+				"dialogue.rowan.rain_1",
+				"dialogue.rowan.rain_2"
+			]
+		},
+		"heart_2_greeting": {
+			"priority": 20,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "heart_level", "min": 2 }
+			],
+			"lines": [
+				"Ah, my favorite botanist! Your dedication to this valley has been truly inspiring.",
+				"I've been preparing some special herbal blends for our next project!"
+			],
+			"lines_keys": [
+				"dialogue.rowan.heart2_1",
+				"dialogue.rowan.heart2_2"
+			]
+		},
+		"intro": {
+			"priority": 30,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "quest_active", "quest_id": "quest_01" }
+			],
+			"lines": [
+				"Ah, welcome to the valley! It's wonderful to meet a fellow botanist.",
+				"Take some seeds, till the rich soil and see what sprouts!"
+			],
+			"lines_keys": [
+				"dialogue.rowan.intro_1",
+				"dialogue.rowan.intro_2"
+			]
+		},
+		"first_hybrid": {
+			"priority": 10,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "plants_discovered", "count": 2 }
+			],
+			"lines": [
+				"By the Great Oak! You actually synthesized a brand new hybrid species?!",
+				"I knew your biology background would bear fruit! What other impossible combinations might exist?"
+			]
+		},
+		"botanical_master": {
+			"priority": 25,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "plants_discovered", "count": 8 }
+			],
+			"lines": [
+				"Incredible! You have discovered nearly every botanical anomaly in the valley!",
+				"The Haven is truly alive thanks to your botanical research."
+			]
+		}
+	},
+	"npc_id": "rowan",
+	"npc_name": "Rowan the Herbalist",
+	"npc_name_key": "dialogue.rowan.name"
+}

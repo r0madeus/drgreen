@@ -1,0 +1,351 @@
+keys,en,tr
+ui.menu.title,Botanical Haven,Botanical Haven
+ui.menu.new_game,New Game,Yeni Oyun
+ui.menu.continue,Continue,Devam Et
+ui.menu.multiplayer,Multiplayer,Çok Oyunculu
+ui.menu.settings,Settings,Ayarlar
+ui.menu.quit,Quit Game,Oyundan Çık
+ui.menu.back,Back,Geri
+ui.menu.apply,Apply,Uygula
+ui.menu.cancel,Cancel,İptal
+ui.menu.reset,Reset to Defaults,Varsayılanlara Sıfırla
+ui.menu.close,Close,Kapat
+ui.menu.select_slot,Select Save Slot,Kayıt Yuvası Seç
+ui.menu.slot_empty,Empty Slot,Boş Yuva
+ui.menu.slot_play,Play,Oyna
+ui.menu.slot_delete,Delete,Sil
+ui.menu.slot_new,New Adventure,Yeni Macera
+ui.menu.confirm_delete,Are you sure you want to delete this save?,Bu kaydı silmek istediğinizden emin misiniz?
+ui.pause.title,Game Paused,Oyun Duraklatıldı
+ui.pause.resume,Resume,Devam Et
+ui.pause.save,Save Game,Oyunu Kaydet
+ui.pause.load,Load Game,Oyunu Yükle
+ui.pause.settings,Settings,Ayarlar
+ui.pause.main_menu,Main Menu,Ana Menü
+ui.hud.location,Location,Konum
+ui.hud.day_season,Day {day} • {season},Gün {day} • {season}
+ui.hud.weather_time,{weather} • {time},{weather} • {time}
+ui.hud.gold,{gold} G,{gold} G
+ui.hud.stamina,Stamina,Enerji
+ui.hud.stamina_format,⚡ {cur} / {max},⚡ {cur} / {max}
+ui.hud.btn.bag,🎒 Bag [I],🎒 Çanta [I]
+ui.hud.btn.quest,📜 Quests [Q],📜 Görevler [Q]
+ui.hud.btn.journal,📖 Codex [J],📖 Kodeks [J]
+ui.hud.btn.lab,⚗️ Lab [C],⚗️ Laboratuvar [C]
+ui.hud.btn.day,⏩ Sleep [T],⏩ Uyu [T]
+ui.hud.btn.menu,⚙️ Menu [Esc],⚙️ Menü [Esc]
+ui.hud.selected_none,Selected: None,Seçili: Yok
+ui.hud.selected_format,Selected: {item} ({count}),Seçili: {item} ({count})
+ui.hotbar.slot,Slot {slot},Yuva {slot}
+ui.hotbar.stamina_cost,Stamina: -{cost},Enerji: -{cost}
+ui.hotbar.tooltip_tool,{name} [{quality}] • Stamina: -{cost},{name} [{quality}] • Enerji: -{cost}
+ui.hotbar.tooltip_stack,{name} (x{count}),{name} (x{count})
+ui.inventory.title,Backpack Inventory,Sırt Çantası Envanteri
+ui.inventory.capacity,{cur} / {max} Slots,{cur} / {max} Yuva
+ui.inventory.empty,Your backpack is empty.,Sırt çantanız boş.
+ui.inventory.items_count,{count} item,{count} eşya
+ui.inventory.items_count_plural,{count} items,{count} eşya
+ui.shop.title,Village Market,Köy Pazarı
+ui.shop.buy_tab,Buy Seeds,Tohum Satın Al
+ui.shop.sell_tab,Sell Harvest,Hasat Sat
+ui.shop.buy_btn,Buy ({price} G),Satın Al ({price} G)
+ui.shop.sell_btn,Sell ({price} G),Sat ({price} G)
+ui.shop.not_enough_gold,Not enough gold!,Yetersiz altın!
+ui.shop.purchase_success,Purchased {count}x {item}!,{count}x {item} satın alındı!
+ui.shop.sell_success,Sold {count}x {item} for {gold} G!,{count}x {item} {gold} G karşılığında satıldı!
+ui.dialogue.title,Dialogue,Diyalog
+ui.dialogue.continue_hint,[Space / Enter] Next,[Boşluk / Enter] İlerle
+ui.dialogue.close_btn,Leave,Ayrıl
+ui.quest.title,Quest Journal,Görev Günlüğü
+ui.quest.active_tab,Active Quests,Aktif Görevler
+ui.quest.completed_tab,Completed Quests,Tamamlanan Görevler
+ui.quest.rewards,Rewards:,Ödüller:
+ui.quest.reward_gold,{gold} Gold,{gold} Altın
+ui.quest.reward_item,{count}x {item},{count}x {item}
+ui.quest.reward_unlock,Unlock: {world},Kilit Aç: {world}
+ui.quest.no_active,No active quests.,Aktif görev yok.
+ui.journal.title,Botanical Codex,Botanik Kodeksi
+ui.lab.title,Synthesis Laboratory,Sentez Laboratuvarı
+ui.lab.combine_btn,Synthesize Hybrid,Hibrit Sentezle
+ui.lab.select_prompt,Select two different crops to combine,Sentezlemek için iki farklı ekin seçin
+ui.lab.success,Synthesis successful: {hybrid}!,Sentez başarılı: {hybrid}!
+ui.settings.tab.graphics,Graphics,Grafik
+ui.settings.tab.audio,Audio,Ses
+ui.settings.tab.gameplay,Gameplay,Oynanış
+ui.settings.tab.controls,Controls,Kontroller
+ui.settings.tab.accessibility,Accessibility,Erişilebilirlik
+ui.settings.tab.language,Language,Dil
+ui.settings.resolution,Resolution,Çözünürlük
+ui.settings.window_mode,Window Mode,Pencere Modu
+ui.settings.vsync,VSync,Dikey Senkronizasyon
+ui.settings.fps_limit,FPS Limit,Kare Hızı Sınırı
+ui.settings.camera_zoom,Camera Zoom,Kamera Yakınlaştırma
+ui.settings.master_vol,Master Volume,Genel Ses
+ui.settings.music_vol,Music Volume,Müzik Sesi
+ui.settings.sfx_vol,SFX Volume,Efekt Sesi
+ui.settings.screen_shake,Screen Shake,Ekran Sarsıntısı
+ui.settings.ui_scale,UI Scale,Arayüz Ölçeği
+ui.settings.language_select,Language / Dil,Dil Seçimi
+world.farm.name,Peaceful Farm,Huzurlu Çiftlik
+world.town.name,Botanist Village,Botanik Köyü
+world.forest.name,Whispering Forest,Fısıltılı Orman
+world.botanical_grove.name,Botanical Grove,Kadim Koruluk
+world.laboratory.name,Research Lab,Araştırma Laboratuvarı
+season.spring.name,Spring,İlkbahar
+season.summer.name,Summer,Yaz
+season.autumn.name,Autumn,Sonbahar
+season.winter.name,Winter,Kış
+weather.clear.name,Clear,Güneşli
+weather.sunny.name,Sunny,Açık
+weather.rain.name,Rainy,Yağmurlu
+weather.storm.name,Stormy,Fırtınalı
+weather.wind.name,Windy,Rüzgarlı
+weather.snow.name,Snowy,Karlı
+tool.quality.basic,Basic,Temel
+tool.quality.copper,Copper,Bakır
+tool.quality.iron,Iron,Demir
+tool.quality.gold,Gold,Altın
+tool.hoe_basic.name,Basic Hoe,Temel Çapa
+tool.hoe_copper.name,Copper Hoe,Bakır Çapa
+tool.hoe_iron.name,Iron Hoe,Demir Çapa
+tool.hoe_gold.name,Gold Hoe,Altın Çapa
+tool.hoe.desc,Tills soil into fertile farmland.,Toprağı verimli tarım arazisine dönüştürür.
+tool.watering_can_basic.name,Basic Watering Can,Temel Sulama Kabı
+tool.watering_can_copper.name,Copper Watering Can,Bakır Sulama Kabı
+tool.watering_can_iron.name,Iron Watering Can,Demir Sulama Kabı
+tool.watering_can_gold.name,Gold Watering Can,Altın Sulama Kabı
+tool.watering_can.desc,Waters tilled soil and growing plants.,Toprağı ve büyüyen ekinleri sular.
+tool.axe_basic.name,Basic Axe,Temel Balta
+tool.axe_copper.name,Copper Axe,Bakır Balta
+tool.axe_iron.name,Iron Axe,Demir Balta
+tool.axe_gold.name,Gold Axe,Altın Balta
+tool.axe.desc,Chops trees and stumps into wood.,Ağaçları ve kütükleri keserek odun elde eder.
+tool.pickaxe_basic.name,Basic Pickaxe,Temel Kazma
+tool.pickaxe_copper.name,Copper Pickaxe,Bakır Kazma
+tool.pickaxe_iron.name,Iron Pickaxe,Demir Kazma
+tool.pickaxe_gold.name,Gold Pickaxe,Altın Kazma
+tool.pickaxe.desc,Mines stone, rocks and valuable minerals.,Taşları, kayaları ve madenleri kırar.
+item.seed_red_flower.name,Red Flower Seed,Kırmızı Çiçek Tohumu
+item.seed_blue_flower.name,Blue Flower Seed,Mavi Çiçek Tohumu
+item.seed_yellow_herb.name,Yellow Herb Seed,Sarı Ot Tohumu
+item.seed_green_vine.name,Green Vine Seed,Yeşil Asma Tohumu
+item.seed_white_lily.name,White Lily Seed,Beyaz Zambak Tohumu
+item.seed.desc,Plant on tilled soil to grow crops.,Ekin yetiştirmek için çapalanmış toprağa ekin.
+item.red_flower.name,Red Flower,Kırmızı Çiçek
+item.blue_flower.name,Blue Flower,Mavi Çiçek
+item.yellow_herb.name,Yellow Herb,Sarı Ot
+item.green_vine.name,Green Vine,Yeşil Asma
+item.white_lily.name,White Lily,Beyaz Zambak
+item.wood.name,Wood,Odun
+item.stone.name,Stone,Taş
+item.wood.desc,Useful material collected by chopping trees.,Ağaç keserek elde edilen temel malzeme.
+item.stone.desc,Useful material collected by mining rocks.,Kaya kırarak elde edilen dayanıklı malzeme.
+tutorial.move.title,Welcome to Botanical Haven!,Botanical Haven'a Hoş Geldiniz!
+tutorial.move.desc,Use [W A S D] or [Arrow Keys] to walk around your farm.,Çiftliğinizde yürümek için [W A S D] tuşlarını kullanın.
+tutorial.talk_rowan.title,Meet Rowan the Herbalist,Bitki Uzmanı Rowan ile Tanışın
+tutorial.talk_rowan.desc,Approach Rowan near the market stall and press [Space] or [Right Click] to talk.,Rowan'ın yanına gidip [Boşluk] veya [Sağ Tık] ile konuşun.
+tutorial.plant.title,Sow Your First Seeds,İlk Tohumlarınızı Ekin
+tutorial.plant.desc,Select seeds in your hotbar and Left Click on tilled soil.,Hotbar'dan tohum seçip çapalanmış toprağa Sol Tık ile ekin.
+tutorial.water.title,Nurture Your Crop,Ekinlerinizi Sulayın
+tutorial.water.desc,Select your watering can and Left Click on planted crops.,Sulama kabını seçip ekili toprağa Sol Tık ile su verin.
+tutorial.harvest.title,Bountiful Harvest,Bereketli Hasat
+tutorial.harvest.desc,Wait for crops to mature or sleep, then Left Click to harvest.,Ekinler olgunlaştığında Sol Tık ile hasat edin.
+tutorial.commerce.title,Market Trade,Pazar Ticareti
+tutorial.commerce.desc,Talk to Rowan or open Shop to sell crops and buy seeds.,Rowan ile konuşup ürün satın ve yeni tohumlar alın.
+tutorial.synthesis.title,Botanical Alchemy,Botanik Simyası
+tutorial.synthesis.desc,Press [C] to open Laboratory and combine two crops into a hybrid!,Laboratuvarı [C] açıp iki ekini birleştirerek hibrit üretin!
+tutorial.explore.title,Expand Your Horizons,Ufkunuzu Genişletin
+tutorial.explore.desc,Follow the northern path to visit Botanist Village!,Kuzey patikasını takip ederek Botanik Köyü'nü keşfedin!
+quest.quest_01.title,First Seeds,İlk Tohumlar
+quest.quest_01.desc,Plant your very first seed in the tilled farm soil.,Çapalanmış toprağa ilk tohumunuzu ekin.
+quest.quest_01.obj,Plant 1 seed in tilled soil,Çapalanmış toprağa 1 tohum ekin
+quest.quest_02.title,Keep Them Alive,Onları Yaşat
+quest.quest_02.desc,Water your growing crops 3 times to ensure healthy growth.,Sağlıklı büyüme için ekinlerinizi 3 kez sulayın.
+quest.quest_02.obj,Water crops 3 times,Ekinleri 3 kez sulayın
+quest.quest_03.title,First Harvest,İlk Hasat
+quest.quest_03.desc,Harvest your first mature plant from the fields.,Tarladan ilk olgunlaşmış bitkinizi toplayın.
+quest.quest_03.obj,Harvest 1 mature crop,1 olgun ekin hasat edin
+quest.quest_04.title,Botanical Alchemy,Botanik Simyası
+quest.quest_04.desc,Synthesize two different crops in the Laboratory station.,Laboratuvarda iki farklı ekini sentezleyin.
+quest.quest_04.obj,Perform 1 botanical combination,1 botanik sentez gerçekleştirin
+quest.quest_05.title,Discovery Journal,Keşif Günlüğü
+quest.quest_05.desc,Discover a new hybrid plant and record it in your Journal.,Yeni bir hibrit bitki keşfedip günlüğe kaydedin.
+quest.quest_05.obj,Discover 1 new plant hybrid,1 yeni bitki hibridi keşfedin
+quest.quest_06.title,Visit the Town,Köyü Ziyaret Et
+quest.quest_06.desc,Travel north from your farm and visit Botanist Village.,Çiftliğinizden kuzeye yürüyerek Botanik Köyü'nü ziyaret edin.
+quest.quest_06.obj,Travel to Botanist Village,Botanik Köyü'ne seyahat edin
+quest.quest_07.title,Village Merchant,Köy Tüccarı
+quest.quest_07.desc,Buy fresh seeds or sell crops in the Town square.,Köy meydanında tohum satın alın veya hasat satın.
+quest.quest_07.obj,Purchase 1 seed from merchant,Tüccardan 1 tohum satın alın
+quest.quest_08.title,Into the Forest,Ormanın Derinliklerine
+quest.quest_08.desc,Venture east from Town into the mysterious Whispering Forest.,Köyden doğuya ilerleyerek Fısıltılı Orman'a adım atın.
+quest.quest_08.obj,Travel to Whispering Forest,Fısıltılı Orman'a seyahat edin
+quest.quest_09.title,Wild Specimens,Yabani Numuneler
+quest.quest_09.desc,Collect or discover 2 wild plant specimens in the Forest.,Ormandan 2 yabani bitki numunesi toplayın.
+quest.quest_09.obj,Harvest 2 plants in the wild,Doğadan 2 bitki hasat edin
+quest.quest_10.title,The Hidden Grove,Gizli Koruluk
+quest.quest_10.desc,Find the secret pathway into the ancient Botanical Grove and meet researcher Mira.,Kadim Koruluğa giden gizli yolu bulun ve araştırmacı Mira ile tanışın.
+quest.quest_10.obj,Enter the Botanical Grove,Kadim Koruluğa giriş yapın
+quest.coop_harvest_01.title,Community Harvest,Topluluk Hasadı
+quest.coop_harvest_01.desc,Work together to cultivate and harvest 10 mature crops on the shared farm.,Paylaşılan çiftlikte birlikte 10 olgun ekin hasat edin.
+quest.coop_harvest_01.obj,Harvest 10 crops collectively,Birlikte 10 ekin hasat edin
+quest.coop_synthesis_01.title,Greenhouse Restoration,Sera Restorasyonu
+quest.coop_synthesis_01.desc,Combine rare specimens in the laboratory to restore the ancient Greenhouse.,Kadim Serayı restore etmek için laboratuvarda nadir numuneleri birleştirin.
+quest.coop_synthesis_01.obj,Perform 3 botanical combinations,3 botanik sentez gerçekleştirin
+dialogue.rowan.name,Rowan the Herbalist,Bitki Uzmanı Rowan
+dialogue.rowan.intro_1,Ah welcome to the valley! It's wonderful to meet a fellow botanist.,Vadiye hoş geldiniz! Başka bir botanikçiyle tanışmak harika.
+dialogue.rowan.intro_2,Take some seeds till the rich soil and see what sprouts!,Tohumları alın zengin toprağı çapalayın ve filizlenmelerini izleyin!
+dialogue.rowan.default_1,Greetings professor! The valley's soil is vibrant today.,Selamlar profesör! Vadinin toprağı bugün çok canlı.
+dialogue.rowan.default_2,Looking for fresh seeds or ready to sell your bountiful harvest?,Taze tohum mu arıyorsunuz yoksa hasadınızı satmaya hazır mısınız?
+dialogue.elias.name,Elias the Merchant,Tüccar Elias
+dialogue.elias.intro_1,Welcome traveler! The finest goods in the valley are right here.,Hoş geldin yolcu! Vadideki en kaliteli mallar burada bulunur.
+dialogue.elias.default_1,Need supplies for your journey or tools to upgrade?,Yolculuğun için erzak veya alet geliştirmesi ister misin?
+dialogue.mira.name,Mira the Researcher,Araştırmacı Mira
+dialogue.mira.intro_1,Fascinating! The bio-luminescence in this grove is unprecedented.,Büyüleyici! Bu koruluktaki biyolüminesans daha önce görülmemiş seviyede.
+dialogue.mira.default_1,Keep synthesizing new species! Together we will unravel the ancient flora.,Yeni türler sentezlemeye devam et! Birlikte kadim floranın sırrını çözeceğiz.
+notification.cant_use_here,Can't use this here,Bunu burada kullanamazsınız
+notification.soil_tilled,⛏️ Soil Tilled,⛏️ Toprak Çapalandı
+notification.watered,💧 Watered,💧 Sulandı
+notification.planted,🌱 Planted {crop},🌱 {crop} Ekildi
+notification.harvested,✨ +{count} {crop},✨ +{count} {crop}
+notification.wood_gained,🪓 +{count} Wood,🪓 +{count} Odun
+notification.stone_gained,⛏️ +{count} Stone,⛏️ +{count} Taş
+notification.save_success,💾 Game Saved Successfully!,💾 Oyun Başarıyla Kaydedildi!
+notification.save_error,❌ Save Failed!,❌ Kaydetme Başarısız!
+notification.load_success,📂 Game Loaded Successfully!,📂 Oyun Başarıyla Yüklendi!
+notification.load_error,❌ Load Failed!,❌ Yükleme Başarısız!
+resource.tree.name,Tree,Ağaç
+resource.tree_stump.name,Tree Stump,Ağaç Kütüğü
+resource.fallen_branch.name,Fallen Branch,Kırık Dal
+resource.rock.name,Rock,Kaya
+resource.rock_small.name,Small Rock,Küçük Kaya
+resource.copper_ore.name,Copper Ore,Bakır Cevheri
+resource.iron_ore.name,Iron Ore,Demir Cevheri
+resource.wood.name,Wood,Odun
+resource.stone.name,Stone,Taş
+
+resource.wood,Wood,Odun
+resource.stone,Stone,Taş
+
+time.phase.dawn,Dawn,Şafak
+time.phase.day,Day,Gündüz
+time.phase.dusk,Dusk,Alacakaranlık
+time.phase.night,Night,Gece
+ui.sleep.title,Rest & Sleep,Dinlen ve Uyu
+ui.sleep.confirm_prompt,Sleep until tomorrow morning?,Yarına kadar uyumak istiyor musunuz?
+ui.sleep.confirm_yes,Yes - Sleep,Evet - Uyu
+ui.sleep.confirm_no,Cancel,İptal
+ui.sleep.restored,Fully rested! Energy restored.,İyice dinlendiniz! Enerji yenilendi.
+ui.hud.year_format,Year {year},Yıl {year}
+location.rowan_home,Rowan's House,Rowan'ın Evi
+location.seed_shop,Seed Shop Stall,Tohum Tezgahı
+location.farm_porch,Farm Porch,Çiftlik Verandası
+location.elias_home,Elias's Residence,Elias'ın Evi
+location.elias_shop,General Store,Genel Mağaza
+location.town_square,Town Square,Kasaba Meydanı
+location.mira_grove_lab,Grove Laboratory,Koru Laboratuvarı
+location.mira_research_post,Research Outpost,Araştırma Noktası
+npc.activity.home,Resting at Home,Evde Dinleniyor
+npc.activity.work,Working,Çalışıyor
+npc.activity.break,Taking a Break,Mola Veriyor
+npc.activity.sleep,Sleeping,Uyuyor
+npc.activity.research,Conducting Research,Araştırma Yapıyor
+npc.activity.field_study,Field Study,Saha İncelemesi
+npc.activity.eat,Eating,Yemek Yiyor
+npc.activity.rest,Resting,Dinleniyor
+npc.activity.wander,Wandering,Dolaşıyor
+npc.activity.sit,Sitting,Oturuyor
+npc.activity.shop,Shopping,Alışveriş Yapıyor
+npc.activity.talk,Talking,Konuşuyor
+npc.activity.socialize,Socializing,Sohbet Ediyor
+social.status.stranger,Stranger,Yabancı
+social.status.acquaintance,Acquaintance,Tanıdık
+social.status.friendly,Friendly,Dostane
+social.status.friend,Friend,Arkadaş
+social.status.close_friend,Close Friend,Yakın Arkadaş
+social.status.best_friend,Best Friend,En İyi Dost
+social.gift.loved,Loved Gift!,Çok Sevilen Hediye!
+social.gift.liked,Liked Gift!,Beğenilen Hediye!
+social.gift.neutral,Accepted Gift,Kabul Edilen Hediye
+social.gift.disliked,Disliked Gift...,Beğenilmeyen Hediye...
+social.gift.hated,Hated Gift!,Nefret Edilen Hediye!
+social.ui.relationships,Relationships,İlişkiler
+social.ui.gift_prompt,[G] Give Gift,[G] Hediye Ver
+social.ui.hearts,Hearts,Kalpler
+dialogue.rowan.rain_1,A refreshing rain for the crops! It saves us the watering work today.,Mahsuller için canlandırıcı bir yağmur! Bugün sulama zahmetinden kurtulduk.
+dialogue.rowan.rain_2,Step inside out of the wet and see what seeds we have in store.,Islanmadan içeri gel ve dükkanda hangi tohumların olduğuna bak.
+dialogue.rowan.heart2_1,Ah my favorite botanist! Your dedication to this valley has been truly inspiring.,Ah en sevdiğim botanikçi! Bu vadiye olan adanmışlığın gerçekten ilham verici.
+dialogue.rowan.heart2_2,I have been preparing some special herbal blends for our next project!,Bir sonraki projemiz için özel bitkisel karışımlar hazırlıyordum!
+quest.rowan_herbalist.title,Rowan's Herbal Tonic,Rowan'ın Bitkisel Toniği
+quest.rowan_herbalist.desc,Rowan needs healthy red flowers to formulate a revitalizing botanical tonic.,Rowan canlandırıcı bir botanik tonik hazırlamak için sağlıklı kırmızı çiçeklere ihtiyaç duyuyor.
+quest.rowan_herbalist.obj,Harvest 3 Red Flowers,3 Kırmızı Çiçek Hasat Et
+quest.elias_supplies.title,Town Repairs,Kasaba Onarımları
+quest.elias_supplies.desc,Elias is running low on construction lumber for town repairs.,Elias'ın kasaba onarımları için inşaat kerestesi tükeniyor.
+quest.elias_supplies.obj,Collect 5 Wood,5 Odun Topla
+quest.mira_specimen.title,Grove Spectroscopy,Koru Spektroskopisi
+quest.mira_specimen.desc,Mira requires white lily petals for her photosynthesis spectroscopy study.,Mira fotosentez spektroskopisi çalışması için beyaz zambak yapraklarına ihtiyaç duyuyor.
+quest.mira_specimen.obj,Harvest 2 White Lilies,2 Beyaz Zambak Hasat Et
+farming.feedback.invalid,Can't use this here,Bunu burada kullanamazsın
+ui.menu.saves,Saves,Kayıtlar
+ui.menu.editor,Editor,Düzenleyici
+ui.menu.credits,Credits,Emeği Geçenler
+ui.credits.title,Botanical Haven — Credits,Botanical Haven — Emeği Geçenler
+ui.credits.close,Close,Kapat
+ui.editor.title,Botanical Haven In-Game Editor,Botanical Haven Oyun İçi Düzenleyici
+ui.editor.save,Save Overrides,Değişiklikleri Kaydet
+ui.editor.undo,Undo,Geri Al
+ui.editor.redo,Redo,Yinele
+ui.editor.discard,Discard Changes,Değişiklikleri İptal Et
+ui.editor.restore_default,Restore Default,Varsayılana Sıfırla
+ui.editor.exit,Exit to Menu,Menüye Dön
+ui.editor.dirty,Unsaved Changes,Kaydedilmemiş Değişiklikler
+ui.editor.clean,Clean,Temiz
+ui.editor.status_editing,Status: Editing,Durum: Düzenleniyor
+ui.editor.validation_ok,Validation: OK,Doğrulama: Başarılı
+ui.editor.validation_err,Validation: Issues Detected,Doğrulama: Sorunlar Bulundu
+ui.editor.cat_world,World,Dünya
+ui.editor.cat_npc,NPCs,NPC'ler
+ui.editor.cat_dialogue,Dialogue,Diyalog
+ui.editor.cat_quest,Quests,Görevler
+ui.editor.cat_items,Items,Eşyalar
+ui.editor.cat_crops,Crops,Mahsuller
+ui.editor.cat_tools,Tools,Aletler
+ui.editor.cat_shops,Shops,Dükkanlar
+ui.editor.cat_schedules,Schedules,Rutinler
+ui.editor.cat_events,Events,Olaylar
+ui.editor.cat_relationships,Relationships,İlişkiler
+ui.editor.cat_assets,Assets,Varlıklar
+ui.editor.cat_settings,Settings,Ayarlar
+ui.editor.cat_mods,Mods,Modlar
+ui.editor.placeholder_future,Module framework ready. Detailed visual sub-editor coming in next phase.,Modül altyapısı hazır. Detaylı görsel alt düzenleyici sonraki fazda eklenecek.
+ui.editor.exit_confirm_title,Unsaved Changes,Kaydedilmemiş Değişiklikler
+ui.editor.exit_confirm_msg,You have unsaved changes in the editor. Would you like to save or discard before returning to the Main Menu?,Düzenleyicide kaydedilmemiş değişiklikler var. Ana menüye dönmeden önce kaydetmek mi yoksa vazgeçmek mi istersiniz?
+ui.editor.save_exit,Save & Exit,Kaydet ve Çık
+ui.editor.discard_exit,Discard & Exit,Vazgeç ve Çık
+ui.editor.cancel,Cancel,İptal
+multiplayer.title,Co-op Multiplayer Lobby,Çok Oyunculu Lobi
+multiplayer.subtitle,Host or join a cooperative botanical haven,Birlikte bir botanik cenneti kurun veya katılın
+multiplayer.host,✨ Host Game (Server),✨ Oyun Kur (Sunucu)
+multiplayer.join,🌱 Join Game (Client),🌱 Oyuna Katıl (İstemci)
+multiplayer.ip,IP Address:,IP Adresi:
+multiplayer.port,Port:,Port:
+multiplayer.player_name,Player Name:,Oyuncu Adı:
+multiplayer.status_offline,Offline,Çevrimdışı
+multiplayer.status_hosting,Hosting on {ip}:{port} (Waiting for players...),{ip}:{port} üzerinde sunucu açık (Oyuncular bekleniyor...)
+multiplayer.status_connecting,Connecting to {ip}:{port}...,{ip}:{port} adresine bağlanılıyor...
+multiplayer.status_connected,Connected to Server (Peer {peer_id}),Sunucuya Bağlanıldı (Eş {peer_id})
+multiplayer.status_disconnected,Disconnected from session,Oturum bağlantısı kesildi
+multiplayer.disconnect,❌ Disconnect / Cancel,❌ Bağlantıyı Kes / İptal
+multiplayer.back,⬅️ Back to Main Menu,⬅️ Ana Menüye Dön
+multiplayer.error.invalid_address,Invalid IP address or port number,Geçersiz IP adresi veya port numarası
+multiplayer.error.server_creation_failed,Failed to create host server on port {port},Port {port} üzerinde sunucu başlatılamadı
+multiplayer.error.connection_failed,Could not reach host server,Sunucuya ulaşılamadı
+multiplayer.error.timeout,Connection timed out,Bağlantı zaman aşımına uğradı
+multiplayer.error.disconnected,Disconnected from host server,Sunucu ile bağlantı koptu
+farming.feedback.invalid,Invalid target for farming tool!,Tarım aleti için geçersiz hedef!
+
+
+
+
+
+

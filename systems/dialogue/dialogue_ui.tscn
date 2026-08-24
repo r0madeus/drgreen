@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://rwsngv2w6enc"]
+
+[ext_resource type="Script" uid="uid://bk8hue8erxsas" path="res://systems/dialogue/dialogue_ui.gd" id="1_3cqgq"]
+
+[node name="DialogueUI" type="Control" unique_id=1298130694]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_3cqgq")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1002736898]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=164389069]
+custom_minimum_size = Vector2(580, 160)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1577239473]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1274613742]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="PortraitRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1314988578]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="TextVBox" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1834415929]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="SpeakerLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/TextVBox" unique_id=1912326339]
+modulate = Color(1, 0.9, 0.4, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "💬 Rowan the Herbalist"
+
+[node name="ContentLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/TextVBox" unique_id=1796807422]
+custom_minimum_size = Vector2(460, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Welcome to the valley!"
+autowrap_mode = 3
+
+[node name="ActionHBox" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/TextVBox" unique_id=976105831]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="NextButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/TextVBox/ActionHBox" unique_id=64215177]
+custom_minimum_size = Vector2(130, 28)
+layout_mode = 2
+text = "Next (E / Space) ▶"
+
+[node name="ShopButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/TextVBox/ActionHBox" unique_id=1002937582]
+visible = false
+custom_minimum_size = Vector2(140, 28)
+layout_mode = 2
+text = "🏪 Open Seed Stall"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HBoxContainer/TextVBox/ActionHBox" unique_id=864521280]
+visible = false
+custom_minimum_size = Vector2(90, 28)
+layout_mode = 2
+text = "✕ Goodbye"

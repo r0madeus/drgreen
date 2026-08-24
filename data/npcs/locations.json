@@ -1,0 +1,52 @@
+﻿{
+  "locations": {
+    "rowan_home": {
+      "world": "farm",
+      "position": [224.0, 56.0],
+      "grid_position": [14, 3],
+      "name_key": "location.rowan_home"
+    },
+    "seed_shop": {
+      "world": "farm",
+      "position": [248.0, 56.0],
+      "grid_position": [15, 3],
+      "name_key": "location.seed_shop"
+    },
+    "farm_porch": {
+      "world": "farm",
+      "position": [160.0, 80.0],
+      "grid_position": [10, 5],
+      "name_key": "location.farm_porch"
+    },
+    "elias_home": {
+      "world": "town",
+      "position": [112.0, 96.0],
+      "grid_position": [7, 6],
+      "name_key": "location.elias_home"
+    },
+    "elias_shop": {
+      "world": "town",
+      "position": [256.0, 192.0],
+      "grid_position": [16, 12],
+      "name_key": "location.elias_shop"
+    },
+    "town_square": {
+      "world": "town",
+      "position": [208.0, 144.0],
+      "grid_position": [13, 9],
+      "name_key": "location.town_square"
+    },
+    "mira_grove_lab": {
+      "world": "botanical_grove",
+      "position": [256.0, 160.0],
+      "grid_position": [16, 10],
+      "name_key": "location.mira_grove_lab"
+    },
+    "mira_research_post": {
+      "world": "botanical_grove",
+      "position": [320.0, 200.0],
+      "grid_position": [20, 12],
+      "name_key": "location.mira_research_post"
+    }
+  }
+}

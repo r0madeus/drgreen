@@ -1,0 +1,182 @@
+{
+  "seeds": [
+    {
+      "id": "seed_red_flower",
+      "name": "Red Flower Seed",
+      "plant_id": "red_flower",
+      "price": 25,
+      "rarity": "common",
+      "unlock_type": "always"
+    },
+    {
+      "id": "seed_blue_flower",
+      "name": "Blue Flower Seed",
+      "plant_id": "blue_flower",
+      "price": 30,
+      "rarity": "common",
+      "unlock_type": "always"
+    },
+    {
+      "id": "seed_yellow_herb",
+      "name": "Yellow Herb Seed",
+      "plant_id": "yellow_herb",
+      "price": 20,
+      "rarity": "common",
+      "unlock_type": "always"
+    },
+    {
+      "id": "seed_green_vine",
+      "name": "Green Vine Seed",
+      "plant_id": "green_vine",
+      "price": 40,
+      "rarity": "uncommon",
+      "unlock_type": "always"
+    },
+    {
+      "id": "seed_white_lily",
+      "name": "White Lily Seed",
+      "plant_id": "white_lily",
+      "price": 35,
+      "rarity": "uncommon",
+      "unlock_type": "always"
+    },
+    {
+      "id": "seed_purple_flower",
+      "name": "Purple Flower Seed",
+      "plant_id": "purple_flower",
+      "price": 60,
+      "rarity": "rare",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_orange_herb",
+      "name": "Orange Herb Seed",
+      "plant_id": "orange_herb",
+      "price": 45,
+      "rarity": "uncommon",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_green_herb",
+      "name": "Green Herb Seed",
+      "plant_id": "green_herb",
+      "price": 45,
+      "rarity": "uncommon",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_golden_lily",
+      "name": "Golden Lily Seed",
+      "plant_id": "golden_lily",
+      "price": 80,
+      "rarity": "rare",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_crimson_vine",
+      "name": "Crimson Vine Seed",
+      "plant_id": "crimson_vine",
+      "price": 75,
+      "rarity": "rare",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_frost_vine",
+      "name": "Frost Vine Seed",
+      "plant_id": "frost_vine",
+      "price": 75,
+      "rarity": "rare",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_pink_lily",
+      "name": "Pink Lily Seed",
+      "plant_id": "pink_lily",
+      "price": 70,
+      "rarity": "rare",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_sapphire_lily",
+      "name": "Sapphire Lily Seed",
+      "plant_id": "sapphire_lily",
+      "price": 85,
+      "rarity": "epic",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_sun_vine",
+      "name": "Sun Vine Seed",
+      "plant_id": "sun_vine",
+      "price": 70,
+      "rarity": "rare",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_moon_vine",
+      "name": "Moon Vine Seed",
+      "plant_id": "moon_vine",
+      "price": 85,
+      "rarity": "epic",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_deep_crimson_bloom",
+      "name": "Deep Crimson Bloom Seed",
+      "plant_id": "deep_crimson_bloom",
+      "price": 125,
+      "rarity": "epic",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_azure_lotus",
+      "name": "Azure Lotus Seed",
+      "plant_id": "azure_lotus",
+      "price": 135,
+      "rarity": "epic",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_radiant_essence_herb",
+      "name": "Radiant Essence Herb Seed",
+      "plant_id": "radiant_essence_herb",
+      "price": 115,
+      "rarity": "epic",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_celestial_lily",
+      "name": "Celestial Lily Seed",
+      "plant_id": "celestial_lily",
+      "price": 250,
+      "rarity": "legendary",
+      "unlock_type": "discovery"
+    },
+    {
+      "id": "seed_ancient_evergreen_tendril",
+      "name": "Ancient Evergreen Tendril Seed",
+      "plant_id": "ancient_evergreen_tendril",
+      "price": 150,
+      "rarity": "legendary",
+      "unlock_type": "discovery"
+    }
+  ],
+  "supplies": [
+    {
+      "description": "Rich compost that enriches farm soil.",
+      "icon": "fertilizer",
+      "id": "fertilizer_growth",
+      "name": "Botanical Fertilizer",
+      "price": 30,
+      "unlock_type": "always"
+    },
+    {
+      "description": "Herbal infusion that invigoratingly refreshes crops.",
+      "icon": "tonic",
+      "id": "herbal_tonic",
+      "name": "Vitality Tonic",
+      "price": 45,
+      "unlock_type": "always"
+    }
+  ]
+}

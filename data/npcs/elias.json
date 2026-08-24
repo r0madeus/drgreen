@@ -1,0 +1,21 @@
+{
+	"dialogue_id": "elias",
+	"display_name": "Merchant Elias",
+	"id": "elias",
+	"interactable": true,
+	"name": "Elias",
+	"portrait": "res://assets/sprites/npc/elias_portrait.png",
+	"position": [
+		16,
+		12
+	],
+	"role": "general_merchant",
+	"schedule": {
+		"afternoon": "town",
+		"evening": "town",
+		"morning": "town"
+	},
+	"shop_id": "elias_general_shop",
+	"sprite": "elias",
+	"world": "town"
+}

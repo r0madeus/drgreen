@@ -1,0 +1,27 @@
+{
+	"id": "elias_general_shop",
+	"items": [
+		{
+			"buy_price": 28,
+			"item_id": "seed_red_flower",
+			"stock": -1
+		},
+		{
+			"buy_price": 35,
+			"item_id": "seed_blue_flower",
+			"stock": -1
+		},
+		{
+			"buy_price": 40,
+			"item_id": "seed_white_lily",
+			"stock": -1
+		},
+		{
+			"buy_price": 120,
+			"item_id": "ancient_seed",
+			"stock": 5
+		}
+	],
+	"owner": "elias",
+	"title": "Elias's Village Trade Post"
+}

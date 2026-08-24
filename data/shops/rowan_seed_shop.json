@@ -1,0 +1,32 @@
+{
+	"id": "rowan_seed_shop",
+	"items": [
+		{
+			"buy_price": 25,
+			"item_id": "seed_red_flower",
+			"stock": -1
+		},
+		{
+			"buy_price": 30,
+			"item_id": "seed_blue_flower",
+			"stock": -1
+		},
+		{
+			"buy_price": 20,
+			"item_id": "seed_yellow_herb",
+			"stock": -1
+		},
+		{
+			"buy_price": 40,
+			"item_id": "seed_green_vine",
+			"stock": -1
+		},
+		{
+			"buy_price": 35,
+			"item_id": "seed_white_lily",
+			"stock": -1
+		}
+	],
+	"owner": "rowan",
+	"title": "Rowan's Seed & Farm Goods"
+}

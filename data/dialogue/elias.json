@@ -1,0 +1,39 @@
+{
+	"nodes": {
+		"default": {
+			"priority": 0,
+			"action": "open_shop",
+			"lines": [
+				"Welcome to Botanist Village! I buy all kinds of farm produce and supply tools.",
+				"Bring me high quality crops and I'll make sure you're handsomely compensated!"
+			],
+			"lines_keys": [
+				"dialogue.elias.default_1"
+			]
+		},
+		"heart_2_greeting": {
+			"priority": 10,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "heart_level", "min": 2 }
+			],
+			"lines": [
+				"Ah, partner! Doing business with you has revitalized our entire town square.",
+				"I've got some premium merchandise set aside just for you."
+			]
+		},
+		"rain_greeting": {
+			"priority": 5,
+			"action": "open_shop",
+			"conditions": [
+				{ "type": "weather", "is": "rain" }
+			],
+			"lines": [
+				"Damp day, but trade never stops! Come in out of the drizzle."
+			]
+		}
+	},
+	"npc_id": "elias",
+	"npc_name": "Merchant Elias",
+	"npc_name_key": "dialogue.elias.name"
+}

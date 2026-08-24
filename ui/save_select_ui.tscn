@@ -1,0 +1,73 @@
+﻿[gd_scene format=3 uid="uid://dy0a7h2q5w8p3"]
+
+[ext_resource type="Script" path="res://ui/save_select_ui.gd" id="1_saveselect"]
+
+[node name="SaveSelectUI" type="Control" unique_id=98127341]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_saveselect")
+
+[node name="BackgroundDim" type="ColorRect" parent="." unique_id=12312312]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.06, 0.05, 0.88)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=12312313]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=12312314]
+custom_minimum_size = Vector2(500, 380)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=12312315]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=12312316]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12312317]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=12312318]
+modulate = Color(1, 0.9, 0.4, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "📂 Select Save Slot"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12312319]
+layout_mode = 2
+
+[node name="SlotsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12312320]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Footer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=12312321]
+layout_mode = 2
+alignment = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=12312322]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+text = "◀ Back"
+
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="." unique_id=12312323]
+title = "Delete Save Slot"
+dialog_text = "Are you sure you want to delete this save slot?"

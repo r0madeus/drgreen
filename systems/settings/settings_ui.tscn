@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bdomh6f4e2e8w"]
+
+[ext_resource type="Script" uid="uid://b5yb5qqulwkbm" path="res://systems/settings/settings_ui.gd" id="1_1jdh8"]
+
+[node name="SettingsUI" type="Control" unique_id=1195205121]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_1jdh8")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1898999430]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1189831022]
+custom_minimum_size = Vector2(560, 420)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1854509442]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=2022065325]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1014210242]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1885869976]
+modulate = Color(1, 0.85, 0.3, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⚙️ Game Settings"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1810667834]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+text = "✖"
+
+[node name="TabButtons" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1452315964]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="GraphicsTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=1840682644]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🖥️ Graphics"
+
+[node name="AudioTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=311832860]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔊 Audio"
+
+[node name="GameplayTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=2140251424]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🎮 Gameplay"
+
+[node name="ControlsTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=905288118]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⌨️ Controls"
+
+[node name="AccessTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=917897117]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "👁️ Access"
+
+[node name="LangTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=909440273]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🌐 Language"
+
+[node name="@HSeparator@31719" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=355811637]
+layout_mode = 2
+
+[node name="ContentScroll" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1034824784]
+custom_minimum_size = Vector2(520, 260)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContentVBox" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentScroll" unique_id=614605608]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="@HSeparator@31722" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=575727999]
+layout_mode = 2
+
+[node name="Footer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=753287857]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResetButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1534598846]
+custom_minimum_size = Vector2(140, 32)
+layout_mode = 2
+text = "↺ Reset to Defaults"
+
+[node name="@Control@31723" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=529257425]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=129834841]
+custom_minimum_size = Vector2(90, 32)
+layout_mode = 2
+text = "Cancel"
+
+[node name="ApplyButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1182832064]
+custom_minimum_size = Vector2(130, 32)
+layout_mode = 2
+text = "💾 Apply Settings"

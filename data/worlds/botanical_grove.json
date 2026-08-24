@@ -1,0 +1,7031 @@
+{
+	"default_layer": "GROUND",
+	"display_name": "Botanical Grove",
+	"height": 24.0,
+	"layers": [
+		{
+			"locked": false,
+			"name": "GROUND",
+			"visible": true
+		},
+		{
+			"locked": false,
+			"name": "TERRAIN",
+			"visible": true
+		},
+		{
+			"locked": false,
+			"name": "DECORATION",
+			"visible": true
+		},
+		{
+			"locked": false,
+			"name": "OBJECT",
+			"visible": true
+		},
+		{
+			"locked": false,
+			"name": "NPC",
+			"visible": true
+		},
+		{
+			"locked": false,
+			"name": "OVERLAY",
+			"visible": true
+		}
+	],
+	"objects": [
+		{
+			"asset_id": "ancient_tree",
+			"instance_id": "ancient_tree_center",
+			"layer": "DECORATION",
+			"name": "Heart of the Grove",
+			"position": [
+				16.0,
+				10.0
+			],
+			"properties": {
+				"interactable": false,
+				"solid": true,
+				"walkable": false
+			}
+		},
+		{
+			"asset_id": "pond",
+			"instance_id": "grove_pond",
+			"layer": "DECORATION",
+			"name": "Nectar Pond",
+			"position": [
+				10.0,
+				14.0
+			],
+			"properties": {
+				"interactable": false,
+				"solid": true,
+				"walkable": false
+			}
+		}
+	],
+	"spawn": [
+		16.0,
+		12.0
+	],
+	"spawn_points": {
+		"default": [
+			16.0,
+			12.0
+		],
+		"grove_from_farm": [
+			2.0,
+			12.0
+		],
+		"grove_from_forest": [
+			16,
+			21
+		]
+	},
+	"tile_size": 16.0,
+	"tiles": [
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 1.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 2.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 3.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 4.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 5.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 6.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 7.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 8.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 9.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 10.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 11.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 12.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 13.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 14.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 15.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 16.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 17.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 18.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 19.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 20.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 21.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 22.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 23.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 24.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 25.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 26.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 27.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 28.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 29.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 30.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 0.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 1.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 2.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 3.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 4.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 5.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 6.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 7.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 8.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 9.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 10.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 11.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 11.0
+		},
+		{
+			"interactable": true,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 0.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 1.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 2.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 3.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 4.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 5.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 6.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 7.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 8.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 9.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 10.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 11.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 12.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 13.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 19.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 20.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 21.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 22.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 23.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 24.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 25.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 26.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 27.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 28.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 29.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 30.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 31.0,
+			"y": 12.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 13.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 14.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 15.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 14.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 15.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 16.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 17.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": false,
+			"type": "path",
+			"walkable": true,
+			"x": 18.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 16.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 17.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 18.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 19.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 20.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 21.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 1.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 2.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 3.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 4.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 5.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 6.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 7.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 8.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 9.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 10.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 11.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 12.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 13.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 14.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 15.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 16.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 17.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 18.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 19.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 20.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 21.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 22.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 23.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 24.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 25.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 26.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 27.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 28.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 29.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "GROUND",
+			"solid": false,
+			"type": "grass",
+			"walkable": true,
+			"x": 30.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 22.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 0.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 1.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 2.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 3.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 4.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 5.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 6.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 7.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 8.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 9.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 10.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 11.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 12.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 13.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 14.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 15.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 16.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 17.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 18.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 19.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 20.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 21.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 22.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 23.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 24.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 25.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 26.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 27.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 28.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 29.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 30.0,
+			"y": 23.0
+		},
+		{
+			"interactable": false,
+			"layer": "TERRAIN",
+			"solid": true,
+			"type": "fence",
+			"walkable": false,
+			"x": 31.0,
+			"y": 23.0
+		}
+	],
+	"transitions": [
+		{
+			"instance_id": "grove_to_farm",
+			"name": "Grove Exit to Farm",
+			"position": [
+				0.0,
+				12.0
+			],
+			"required_progression": "",
+			"target_spawn": "farm_from_grove",
+			"target_world": "farm",
+			"transition_id": "grove_to_farm"
+		},
+		{
+			"instance_id": "grove_to_forest",
+			"name": "Ancient Portal to Forest",
+			"position": [
+				16,
+				23
+			],
+			"required_progression": "",
+			"target_spawn": "forest_from_grove",
+			"target_world": "forest",
+			"transition_id": "grove_to_forest"
+		}
+	],
+	"version": 3.0,
+	"width": 32.0,
+	"world_id": "botanical_grove"
+}

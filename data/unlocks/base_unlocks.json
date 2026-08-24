@@ -1,0 +1,16 @@
+{
+  "unlocks": [
+    {
+      "condition": "auto",
+      "id": "unlock_lab",
+      "title": "Synthesis Lab",
+      "unlocked": true
+    },
+    {
+      "condition": "auto",
+      "id": "unlock_codex",
+      "title": "Botanical Codex",
+      "unlocked": true
+    }
+  ]
+}

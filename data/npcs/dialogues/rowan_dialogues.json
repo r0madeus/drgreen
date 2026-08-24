@@ -1,0 +1,26 @@
+{
+  "dialogues": {
+    "botanical_master": [
+      "Your garden has become the finest botanical sanctuary in the entire valley!",
+      "I'm honored to supply seeds for a master herbalist like you."
+    ],
+    "default": [
+      "Greetings, professor! The soil is rich today. Need any fresh seeds or looking to sell your harvest?"
+    ],
+    "first_harvest": [
+      "Splendid harvest! You can sell extra crops to me for Gold, or keep them for synthesis experiments.",
+      "Speaking of experiments... have you tried taking two different crops to your Synthesis Lab (C)?"
+    ],
+    "first_hybrid": [
+      "By the Great Oak! You actually synthesized a brand new hybrid species?!",
+      "I knew your biology background would bear fruit! What other impossible combinations might exist?"
+    ],
+    "intro": [
+      "Ah, welcome to the valley, professor! It's peaceful here, isn't it?",
+      "I heard you used to teach biology. These soils are far more intriguing than ordinary earth.",
+      "Take some starter seeds from my stall, plant them, and see what botanical wonders emerge!"
+    ]
+  },
+  "npc_id": "rowan",
+  "npc_name": "Rowan the Herbalist"
+}

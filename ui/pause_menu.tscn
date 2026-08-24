@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dn6ms4q64qmy0"]
+
+[ext_resource type="Script" uid="uid://cefrxfrsyg2mm" path="res://ui/pause_menu.gd" id="1_50142"]
+
+[node name="PauseMenu" type="Control" unique_id=428033905]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_50142")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1182987857]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=53155599]
+custom_minimum_size = Vector2(320, 280)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=148363949]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=931591822]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=743855888]
+modulate = Color(1, 0.85, 0.3, 1)
+layout_mode = 2
+text = "🌿 Game Paused"
+horizontal_alignment = 1
+
+[node name="@HSeparator@32640" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=346079050]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=354510468]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+text = "▶ Resume Game"
+
+[node name="SaveButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=377923660]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+text = "💾 Save Game (F5)"
+
+[node name="LoadButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1318029048]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+text = "📂 Load Game (F9)"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=980279637]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+text = "⚙️ Audio & Settings"
+
+[node name="OptionsPanel" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=340239296]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MasterHBox" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsPanel" unique_id=1855883113]
+layout_mode = 2
+
+[node name="SFXHBox" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsPanel" unique_id=1185347234]
+layout_mode = 2
+
+[node name="MusicHBox" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsPanel" unique_id=2032264256]
+layout_mode = 2
+
+[node name="@HSeparator@32644" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1432614869]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=328118206]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 2
+text = "✕ Quit Game"

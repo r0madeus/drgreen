@@ -1,0 +1,149 @@
+{
+	"resources": {
+		"prop.fallen_branch": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "wood",
+					"max": 2,
+					"min": 1
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "prop.fallen_branch",
+			"max_health": 1,
+			"name_key": "resource.fallen_branch.name",
+			"required_power": 1,
+			"required_tool": "axe"
+		},
+		"prop.rock": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "stone",
+					"max": 4,
+					"min": 2
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "prop.rock",
+			"max_health": 3,
+			"name_key": "resource.rock.name",
+			"required_power": 1,
+			"required_tool": "pickaxe"
+		},
+		"prop.rock_small": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "stone",
+					"max": 2,
+					"min": 1
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "prop.rock_small",
+			"max_health": 1,
+			"name_key": "resource.rock_small.name",
+			"required_power": 1,
+			"required_tool": "pickaxe"
+		},
+		"prop.tree": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "wood",
+					"max": 4,
+					"min": 2
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "prop.tree",
+			"max_health": 3,
+			"name_key": "resource.tree.name",
+			"required_power": 1,
+			"required_tool": "axe"
+		},
+		"prop.tree_stump": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "wood",
+					"max": 2,
+					"min": 1
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "prop.tree_stump",
+			"max_health": 2,
+			"name_key": "resource.tree_stump.name",
+			"required_power": 1,
+			"required_tool": "axe"
+		},
+		"resource.copper_ore": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "stone",
+					"max": 2,
+					"min": 1
+				},
+				{
+					"chance": 1.0,
+					"item_id": "copper_ore",
+					"max": 3,
+					"min": 1
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "resource.copper_ore",
+			"max_health": 4,
+			"name_key": "resource.copper_ore.name",
+			"required_power": 2,
+			"required_tool": "pickaxe"
+		},
+		"resource.iron_ore": {
+			"destroy_effect": "effect.farming.harvest",
+			"destroy_sfx": "farming.harvest",
+			"drops": [
+				{
+					"chance": 1.0,
+					"item_id": "stone",
+					"max": 3,
+					"min": 1
+				},
+				{
+					"chance": 1.0,
+					"item_id": "iron_ore",
+					"max": 3,
+					"min": 1
+				}
+			],
+			"hit_effect": "effect.farming.plant",
+			"hit_sfx": "ui.select",
+			"id": "resource.iron_ore",
+			"max_health": 5,
+			"name_key": "resource.iron_ore.name",
+			"required_power": 3,
+			"required_tool": "pickaxe"
+		}
+	}
+}

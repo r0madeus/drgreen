@@ -1,0 +1,53 @@
+{
+  "days_per_season": 7,
+  "seasons": [
+    {
+      "banner": "🌱 Spring Begins!",
+      "icon": "🌱",
+      "id": "spring",
+      "name": "Spring",
+      "tint": [
+        1.0,
+        1.05,
+        0.98,
+        1.0
+      ]
+    },
+    {
+      "banner": "☀️ Summer Begins!",
+      "icon": "☀️",
+      "id": "summer",
+      "name": "Summer",
+      "tint": [
+        1.05,
+        1.05,
+        0.9,
+        1.0
+      ]
+    },
+    {
+      "banner": "🍂 Autumn Begins!",
+      "icon": "🍂",
+      "id": "autumn",
+      "name": "Autumn",
+      "tint": [
+        1.1,
+        0.95,
+        0.8,
+        1.0
+      ]
+    },
+    {
+      "banner": "❄️ Winter Begins!",
+      "icon": "❄️",
+      "id": "winter",
+      "name": "Winter",
+      "tint": [
+        0.85,
+        0.95,
+        1.15,
+        1.0
+      ]
+    }
+  ]
+}

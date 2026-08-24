@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://gidup7udoaif"]
+
+[ext_resource type="Script" uid="uid://csgfxb3hghdnc" path="res://systems/inventory/inventory_ui.gd" id="1_13i4w"]
+
+[node name="InventoryUI" type="Control" unique_id=245397055]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_13i4w")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1582434426]
+custom_minimum_size = Vector2(450, 300)
+layout_mode = 1
+offset_left = 351.0
+offset_top = 174.0
+offset_right = 801.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=355551337]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2079303268]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=143258039]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1183956975]
+layout_mode = 2
+text = "🎒 Inventory"
+
+[node name="SelectedLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1627078267]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Selected: None"
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=739095485]
+layout_mode = 2
+text = " ✖ "
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=83747229]
+custom_minimum_size = Vector2(400, 220)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1594305668]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2

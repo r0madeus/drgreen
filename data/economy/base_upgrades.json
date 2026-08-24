@@ -1,0 +1,31 @@
+{
+  "upgrades": [
+    {
+      "category": "farming",
+      "description": "Refined bronze trowel and watering can. Improves farming efficiency and soil hydration.",
+      "icon": "better_tools",
+      "id": "better_tools",
+      "name": "Master Tools",
+      "price": 150,
+      "unlock_type": "always"
+    },
+    {
+      "category": "inventory",
+      "description": "Sturdy woven herbalist bag. Expands inventory carrying capacity.",
+      "icon": "expanded_satchel",
+      "id": "expanded_satchel",
+      "name": "Expanded Satchel",
+      "price": 200,
+      "unlock_type": "always"
+    },
+    {
+      "category": "progression",
+      "description": "Detailed botanical research ledger. Grants +10% bonus gold when selling rare and hybrid flora.",
+      "icon": "botanists_notebook",
+      "id": "botanists_notebook",
+      "name": "Botanist's Notebook",
+      "price": 300,
+      "unlock_type": "always"
+    }
+  ]
+}

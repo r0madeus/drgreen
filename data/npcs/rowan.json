@@ -1,0 +1,21 @@
+{
+	"dialogue_id": "rowan",
+	"display_name": "Rowan the Herbalist",
+	"id": "rowan",
+	"interactable": true,
+	"name": "Rowan",
+	"portrait": "res://assets/sprites/npc/merchant_portrait.png",
+	"position": [
+		15,
+		3
+	],
+	"role": "seed_merchant",
+	"schedule": {
+		"afternoon": "farm",
+		"evening": "farm",
+		"morning": "farm"
+	},
+	"shop_id": "rowan_seed_shop",
+	"sprite": "merchant",
+	"world": "farm"
+}

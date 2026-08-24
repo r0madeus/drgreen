@@ -1,0 +1,96 @@
+{
+  "height": 3,
+  "id": "small_garden",
+  "name": "Small Garden",
+  "objects": [
+    {
+      "asset_id": "red_flower",
+      "layer": "DECORATION",
+      "offset": [
+        1,
+        1
+      ],
+      "properties": {
+        "interactable": true,
+        "solid": false,
+        "walkable": true
+      }
+    }
+  ],
+  "tiles": [
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 1,
+      "y": 0
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 2,
+      "y": 0
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 0,
+      "y": 1
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 1,
+      "y": 1
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 2,
+      "y": 1
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 0,
+      "y": 2
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 1,
+      "y": 2
+    },
+    {
+      "interactable": false,
+      "solid": false,
+      "type": "soil",
+      "walkable": true,
+      "x": 2,
+      "y": 2
+    }
+  ],
+  "version": 1,
+  "width": 3
+}

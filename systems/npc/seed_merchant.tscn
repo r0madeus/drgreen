@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d3qtcqt1o8f2a"]
+
+[ext_resource type="Script" uid="uid://dw0vl67elmrr6" path="res://systems/npc/seed_merchant.gd" id="1_hca2p"]
+
+[node name="SeedMerchant" type="Node2D" unique_id=785954504]
+script = ExtResource("1_hca2p")
+
+[node name="StallSprite" type="Sprite2D" parent="." unique_id=1910550368]
+
+[node name="MerchantSprite" type="Sprite2D" parent="." unique_id=947245009]
+
+[node name="PromptLabel" type="Label" parent="." unique_id=2021928004]
+
+[node name="AnimTimer" type="Timer" parent="." unique_id=148115604]

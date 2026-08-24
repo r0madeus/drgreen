@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://iyp7gttjunky"]
+
+[ext_resource type="Script" uid="uid://65k245hpdmmx" path="res://systems/player/player.gd" id="1_q27vv"]
+[ext_resource type="Script" uid="uid://d3hwg1tb7yvuc" path="res://systems/player/player_movement.gd" id="2_e4lrk"]
+[ext_resource type="Script" uid="uid://dlog4bhwcpm5m" path="res://systems/player/player_interaction.gd" id="3_4khys"]
+[ext_resource type="Script" uid="uid://l4ykjnfhcflb" path="res://systems/player/player_animation.gd" id="4_7n85q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(12, 12)
+
+[node name="Player" type="CharacterBody2D" unique_id=1896307064]
+script = ExtResource("1_q27vv")
+
+[node name="Movement" type="Node" parent="." unique_id=2011993117]
+script = ExtResource("2_e4lrk")
+
+[node name="Interaction" type="Node" parent="." unique_id=1280121086]
+script = ExtResource("3_4khys")
+
+[node name="Animation" type="Node2D" parent="." unique_id=454592189]
+script = ExtResource("4_7n85q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=843384585]
+shape = SubResource("RectangleShape2D_player")

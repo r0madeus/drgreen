@@ -1,0 +1,43 @@
+{
+  "probabilities": {
+    "autumn": {
+      "clear": 0.55,
+      "rain": 0.45,
+      "snow": 0.0
+    },
+    "spring": {
+      "clear": 0.65,
+      "rain": 0.35,
+      "snow": 0.0
+    },
+    "summer": {
+      "clear": 0.8,
+      "rain": 0.2,
+      "snow": 0.0
+    },
+    "winter": {
+      "clear": 0.4,
+      "rain": 0.0,
+      "snow": 0.6
+    }
+  },
+  "types": [
+    {
+      "icon": "☀️",
+      "id": "clear",
+      "name": "Clear"
+    },
+    {
+      "auto_water_outdoor": true,
+      "icon": "🌧️",
+      "id": "rain",
+      "name": "Rain"
+    },
+    {
+      "freeze_outdoor": true,
+      "icon": "❄️",
+      "id": "snow",
+      "name": "Snow"
+    }
+  ]
+}

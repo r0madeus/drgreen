@@ -1,0 +1,216 @@
+{
+  "schedules": {
+    "rowan": {
+      "default": [
+        {
+          "start_time": "06:00",
+          "start_minute": 360,
+          "end_time": "08:30",
+          "end_minute": 510,
+          "location_id": "rowan_home",
+          "activity": "home",
+          "priority": 2,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "09:00",
+          "start_minute": 540,
+          "end_time": "12:30",
+          "end_minute": 750,
+          "location_id": "seed_shop",
+          "activity": "work",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "13:00",
+          "start_minute": 780,
+          "end_time": "14:30",
+          "end_minute": 870,
+          "location_id": "farm_porch",
+          "activity": "eat",
+          "priority": 2,
+          "facing": [1, 0],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "15:00",
+          "start_minute": 900,
+          "end_time": "16:30",
+          "end_minute": 990,
+          "location_id": "farm_porch",
+          "activity": "rest",
+          "priority": 2,
+          "facing": [1, 0],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "17:00",
+          "start_minute": 1020,
+          "end_time": "20:30",
+          "end_minute": 1230,
+          "location_id": "seed_shop",
+          "activity": "work",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "21:00",
+          "start_minute": 1260,
+          "end_time": "06:00",
+          "end_minute": 1440,
+          "location_id": "rowan_home",
+          "activity": "sleep",
+          "priority": 4,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        }
+      ],
+      "rain": [
+        {
+          "start_time": "06:00",
+          "start_minute": 360,
+          "end_time": "08:30",
+          "end_minute": 510,
+          "location_id": "rowan_home",
+          "activity": "home",
+          "priority": 2,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "09:00",
+          "start_minute": 540,
+          "end_time": "17:30",
+          "end_minute": 1050,
+          "location_id": "seed_shop",
+          "activity": "work",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        },
+        {
+          "start_time": "18:00",
+          "start_minute": 1080,
+          "end_time": "06:00",
+          "end_minute": 1440,
+          "location_id": "rowan_home",
+          "activity": "sleep",
+          "priority": 4,
+          "facing": [0, 1],
+          "fallback_location_id": "rowan_home"
+        }
+      ]
+    },
+    "elias": {
+      "default": [
+        {
+          "start_time": "06:00",
+          "start_minute": 360,
+          "end_time": "08:00",
+          "end_minute": 480,
+          "location_id": "elias_home",
+          "activity": "home",
+          "priority": 2,
+          "facing": [0, 1],
+          "fallback_location_id": "elias_home"
+        },
+        {
+          "start_time": "08:30",
+          "start_minute": 510,
+          "end_time": "13:30",
+          "end_minute": 810,
+          "location_id": "elias_shop",
+          "activity": "work",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "elias_home"
+        },
+        {
+          "start_time": "14:00",
+          "start_minute": 840,
+          "end_time": "17:00",
+          "end_minute": 1020,
+          "location_id": "town_square",
+          "activity": "wander",
+          "priority": 2,
+          "facing": [-1, 0],
+          "fallback_location_id": "elias_home"
+        },
+        {
+          "start_time": "17:30",
+          "start_minute": 1050,
+          "end_time": "21:00",
+          "end_minute": 1260,
+          "location_id": "elias_shop",
+          "activity": "work",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "elias_home"
+        },
+        {
+          "start_time": "21:30",
+          "start_minute": 1290,
+          "end_time": "06:00",
+          "end_minute": 1440,
+          "location_id": "elias_home",
+          "activity": "sleep",
+          "priority": 4,
+          "facing": [0, 1],
+          "fallback_location_id": "elias_home"
+        }
+      ]
+    },
+    "mira": {
+      "default": [
+        {
+          "start_time": "06:00",
+          "start_minute": 360,
+          "end_time": "10:30",
+          "end_minute": 630,
+          "location_id": "mira_grove_lab",
+          "activity": "research",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "mira_grove_lab"
+        },
+        {
+          "start_time": "11:00",
+          "start_minute": 660,
+          "end_time": "15:30",
+          "end_minute": 930,
+          "location_id": "mira_research_post",
+          "activity": "field_study",
+          "priority": 3,
+          "facing": [1, 0],
+          "fallback_location_id": "mira_grove_lab"
+        },
+        {
+          "start_time": "16:00",
+          "start_minute": 960,
+          "end_time": "21:30",
+          "end_minute": 1290,
+          "location_id": "mira_grove_lab",
+          "activity": "research",
+          "priority": 3,
+          "facing": [0, 1],
+          "fallback_location_id": "mira_grove_lab"
+        },
+        {
+          "start_time": "22:00",
+          "start_minute": 1320,
+          "end_time": "06:00",
+          "end_minute": 1440,
+          "location_id": "mira_grove_lab",
+          "activity": "sleep",
+          "priority": 4,
+          "facing": [0, 1],
+          "fallback_location_id": "mira_grove_lab"
+        }
+      ]
+    }
+  }
+}
