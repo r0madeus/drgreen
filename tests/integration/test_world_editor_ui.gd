@@ -89,7 +89,7 @@ func _test_06_right_tabbed_dock() -> void:
 	begin_test("T06_RightTabbedDock")
 	var panel = WORLD_EDITOR_PANEL_SCRIPT.new()
 	panel.setup(EditorService.get_instance())
-	assert_eq(panel.right_dock.get_tab_count(), 3, "Right dock has 3 tabs: Assets, Inspector, Layers")
+	assert_eq(panel.right_dock.get_tab_count(), 4, "Right dock has 4 tabs: Assets, Inspector, Layers, World Settings")
 	panel.free()
 
 func _test_07_asset_palette_integration() -> void:

@@ -3,7 +3,7 @@ extends RefCounted
 
 ## Central static distributor for quest rewards (gold, items, seeds, discoveries).
 
-static func grant_rewards(rewards: Dictionary, target_pstate = null) -> Dictionary:
+static func grant_rewards(player_id: String, rewards: Dictionary) -> Dictionary:
 	var granted_summary = {
 		"gold": 0,
 		"items": [],
@@ -12,10 +12,10 @@ static func grant_rewards(rewards: Dictionary, target_pstate = null) -> Dictiona
 		"world_unlock": ""
 	}
 	
-	var p_state: PlayerState = target_pstate
-	if not p_state:
-		var psm = Engine.get_main_loop().root.get_node_or_null("PlayerRegistry")
-		if psm: p_state = psm.get_active_player_state()
+
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var psm = root.get_node_or_null("PlayerRegistry") if root else null
+	var p_state: PlayerState = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
 		
 	# 1. Gold
 	var gold_amt = int(rewards.get("gold", 0))
@@ -23,8 +23,8 @@ static func grant_rewards(rewards: Dictionary, target_pstate = null) -> Dictiona
 		if p_state:
 			p_state.add_gold(gold_amt)
 		else:
-			var em = Engine.get_main_loop().root.get_node_or_null("EconomyManager")
-			if em: em.add_gold(gold_amt)
+			var em = root.get_node_or_null("EconomyManager") if root else null
+			if em and em.has_method("add_gold"): em.add_gold(player_id, gold_amt)
 		granted_summary["gold"] = gold_amt
 			
 	# 2. Items / Seeds
@@ -37,7 +37,7 @@ static func grant_rewards(rewards: Dictionary, target_pstate = null) -> Dictiona
 				if p_state:
 					p_state.add_item(item_id, count)
 				else:
-					var im = Engine.get_main_loop().root.get_node_or_null("InventoryManager")
+					var im = root.get_node_or_null("InventoryManager") if root else null
 					if im: im.add_item(item_id, count)
 				granted_summary["items"].append({ "item_id": item_id, "amount": count })
 				
@@ -77,7 +77,7 @@ static func grant_rewards(rewards: Dictionary, target_pstate = null) -> Dictiona
 	var spawner = EffectSpawner.get_instance()
 	var player = Engine.get_main_loop().root.find_child("Player", true, false)
 	var pos = player.global_position if player else Vector2(240, 180)
-	if spawner:
+	if spawner and spawner.is_inside_tree():
 		var txt = "🎁 QUEST REWARD!"
 		if gold_amt > 0: txt += "\n+ %d Gold" % gold_amt
 		for itm in granted_summary["items"]:

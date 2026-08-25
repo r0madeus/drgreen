@@ -43,9 +43,10 @@ func get_all_combos() -> Array:
 	return combinations_list.duplicate()
 
 func _normalize_item_id(item_id: String) -> String:
-	# Allows combining either crops ("red_flower") or seeds ("seed_red_flower")
 	if item_id.begins_with("seed_"):
 		return item_id.trim_prefix("seed_")
+	elif item_id.begins_with("item_"):
+		return item_id.trim_prefix("item_")
 	return item_id
 
 func get_combination(input_a: String, input_b: String) -> Dictionary:
@@ -83,7 +84,7 @@ func perform_combination(player_id: String, input_a: String, input_b: String) ->
 		
 	# Check ingredient quantities
 	if input_a == input_b:
-a		if not im.has_item(player_id, input_a, 2):
+		if not im.has_item(player_id, input_a, 2):
 			return {
 				"success": false,
 				"error": "Requires at least 2 of " + input_a + "."
@@ -119,12 +120,12 @@ a		if not im.has_item(player_id, input_a, 2):
 		var bus = get_node_or_null("/root/EventBus")
 		if bus:
 			bus.combination_discovered.emit(combo_id, output_id)
-			bus.plant_discovered.emit(output_id)
+			bus.plant_discovered.emit(player_id, output_id)
 
 			
 	var bus_all = get_node_or_null("/root/EventBus")
 	if bus_all:
-		bus_all.plant_combined.emit(input_a, input_b, output_id)
+		bus_all.plant_combined.emit(player_id, input_a, input_b, output_id)
 			
 	combination_performed.emit(combo_id, output_id, is_new)
 	

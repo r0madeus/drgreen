@@ -58,7 +58,7 @@ func repair_greenhouse(player_id: String = "player_001") -> bool:
 		
 	var qm = get_node_or_null("/root/QuestManager")
 	if qm:
-		qm.advance_objective("repair_greenhouse", 1, "greenhouse")
+		qm.advance_objective("", "repair_greenhouse", 1, "greenhouse")
 		
 	var spawner = EffectSpawner.get_instance()
 	var player = get_tree().root.find_child("Player", true, false)
@@ -74,7 +74,7 @@ func set_zone(zone_name: String) -> void:
 	
 	var qm = get_node_or_null("/root/QuestManager")
 	if qm and zone_name == "botanical_grove":
-		qm.advance_objective("explore_zone", 1, "botanical_grove")
+		qm.advance_objective("", "explore_zone", 1, "botanical_grove")
 
 func is_greenhouse_tile(pos: Vector2i) -> bool:
 	return greenhouse_tiles.has(pos)

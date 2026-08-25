@@ -1,0 +1,7 @@
+{
+	"inheritance": {
+		"prob_mutation": 0.1,
+		"prob_parent_a": 0.7,
+		"prob_parent_b": 0.2
+	}
+}

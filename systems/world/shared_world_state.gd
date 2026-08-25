@@ -27,13 +27,15 @@ func _init(p_world_id: String = "farm", p_display_name: String = "Farm") -> void
 	world_id = p_world_id
 	display_name = p_display_name
 
-func add_or_update_plant(pos: Vector2i, plant_id: String, stage: int = 0, days: int = 0, watered: bool = false) -> void:
+func add_or_update_plant(pos: Vector2i, plant_id: String, stage: int = 0, days: int = 0, watered: bool = false, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	plants[pos] = {
 		"position": [pos.x, pos.y],
 		"plant_id": plant_id,
 		"growth_stage": stage,
 		"days_in_stage": days,
-		"watered_today": watered
+		"watered_today": watered,
+		"genetic_identity": gen_id,
+		"genetic_profile": gen_prof
 	}
 	plant_added.emit(pos, plant_id)
 

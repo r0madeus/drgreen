@@ -87,7 +87,7 @@ func _test_roundtrip_gold() -> void:
 	if not psm:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	if not ps:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
@@ -97,7 +97,7 @@ func _test_roundtrip_gold() -> void:
 	if sm: sm.save_game(_temp_path())
 	ps.set_gold(1)
 	if sm: sm.load_game(_temp_path())
-	ps = psm.get_active_player_state()
+	ps = psm.get_local_player_state()
 	assert_eq(ps.gold, 777, "gold preserved in save/load")
 	ps.set_gold(original_gold)
 
@@ -107,7 +107,7 @@ func _test_roundtrip_inventory() -> void:
 	if not psm:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	if not ps:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
@@ -116,7 +116,7 @@ func _test_roundtrip_inventory() -> void:
 	if sm: sm.save_game(_temp_path())
 	ps.remove_item("test_item_abc", 42)
 	if sm: sm.load_game(_temp_path())
-	ps = psm.get_active_player_state()
+	ps = psm.get_local_player_state()
 	assert_eq(ps.get_item_count("test_item_abc"), 42, "inventory item persisted")
 	ps.remove_item("test_item_abc", 42)
 
@@ -127,7 +127,7 @@ func _test_roundtrip_position_world_space() -> void:
 	if not psm or not player:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	var test_pos = Vector2(317.3, 188.7)
 	player.position = test_pos
 	if ps: ps.position = test_pos
@@ -136,7 +136,7 @@ func _test_roundtrip_position_world_space() -> void:
 	player.position = Vector2.ZERO
 	if ps: ps.position = Vector2.ZERO
 	if sm: sm.load_game(_temp_path())
-	ps = psm.get_active_player_state()
+	ps = psm.get_local_player_state()
 	var res_pos = player.position if player else (ps.position if ps else Vector2.ZERO)
 	assert_approx_eq(res_pos.x, test_pos.x, 16.0, "position.x world-space preserved")
 	assert_approx_eq(res_pos.y, test_pos.y, 16.0, "position.y world-space preserved")
@@ -147,7 +147,7 @@ func _test_roundtrip_hotbar() -> void:
 	if not psm:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	if not ps:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
@@ -156,7 +156,7 @@ func _test_roundtrip_hotbar() -> void:
 	if sm: sm.save_game(_temp_path())
 	ps.set_hotbar_slot(7, "")
 	if sm: sm.load_game(_temp_path())
-	ps = psm.get_active_player_state()
+	ps = psm.get_local_player_state()
 	assert_eq(ps.get_hotbar_slot(7), "hoe_copper", "hotbar slot 7 preserved")
 	ps.set_hotbar_slot(7, "")
 
@@ -168,7 +168,7 @@ func _test_roundtrip_current_world() -> void:
 	if not psm or not wl:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	var orig_world = ps.current_world if ps else "farm"
 	if ps: ps.current_world = "town"
 	wl.current_world_id = "town"
@@ -179,7 +179,7 @@ func _test_roundtrip_current_world() -> void:
 	wl.current_world_id = "farm"
 	if wm: wm.current_world_id = "farm"
 	if sm: sm.load_game(_temp_path())
-	ps = psm.get_active_player_state()
+	ps = psm.get_local_player_state()
 	var restored_w = wl.current_world_id
 	assert_eq(restored_w, "town", "current_world preserved")
 	if ps: ps.current_world = orig_world
@@ -192,7 +192,7 @@ func _test_roundtrip_tool_upgrades() -> void:
 	if not psm:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	if not ps:
 		_results.append({"test": _current_test, "assertion": "SKIP", "status": "PASS"})
 		return
@@ -201,7 +201,7 @@ func _test_roundtrip_tool_upgrades() -> void:
 	if sm: sm.save_game(_temp_path())
 	ps.remove_item("hoe_copper", 1)
 	if sm: sm.load_game(_temp_path())
-	ps = psm.get_active_player_state()
+	ps = psm.get_local_player_state()
 	assert_true(ps.has_item("hoe_copper"), "upgraded tool preserved")
 	ps.remove_item("hoe_copper", 1)
 

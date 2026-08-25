@@ -7,6 +7,14 @@ extends TestCase
 func test_name_id() -> String:
 	return "BALANCE.FirstHourPlaytest"
 
+
+var _npc_mock = null
+func _get_npc_mock():
+	if not _npc_mock:
+		_npc_mock = load("res://systems/npc/npc_manager.gd").new()
+		_npc_mock.load_social_data()
+	return _npc_mock
+
 func _get_root_node(path: String) -> Node:
 	var loop = Engine.get_main_loop()
 	if loop and "root" in loop and loop.root:
@@ -138,7 +146,7 @@ func _test_T08_loved_gift_progression() -> void:
 	# Day 1: Talk (+20) + Loved Gift (+80)
 	p.add_item("plant_sun_petal", 1)
 	p.add_friendship("rowan", 20, "talk")
-	p.give_gift("rowan", "plant_sun_petal")
+	_get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	
 	assert_eq(p.get_friendship_points("rowan"), 100, "100 pts reached on Day 1 with loved gift")
 	assert_eq(p.get_heart_level("rowan"), 1, "Heart 1 unlocked on Day 1")
@@ -165,7 +173,7 @@ func _test_T10_first_three_days_progression() -> void:
 	p.use_energy(17.5) # plant + water
 	p.add_friendship("rowan", 20, "talk")
 	p.add_item("plant_sun_petal", 1)
-	p.give_gift("rowan", "plant_sun_petal") # +80 pts -> 100 pts (Heart 1)
+	_get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p) # +80 pts -> 100 pts (Heart 1)
 	RewardManager.grant_rewards({ "gold": 25 }, p) # Quest 1: First Seeds
 	
 	# Night 1: Sleep -> reset limits & restore energy
@@ -191,7 +199,7 @@ func _test_T10_first_three_days_progression() -> void:
 	# Talk & gift Rowan -> Reach Heart 2
 	p.add_friendship("rowan", 20, "talk")
 	p.add_item("plant_sun_petal", 1)
-	p.give_gift("rowan", "plant_sun_petal") # +80 pts -> 220 pts (Heart 2)
+	_get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p) # +80 pts -> 220 pts (Heart 2)
 	
 	assert_true(p.gold >= 400, "Day 3 ending gold >= 400g (Started with 100g)")
 	assert_eq(p.get_heart_level("rowan"), 2, "Day 3 reaches Heart 2 with Rowan")
@@ -227,12 +235,12 @@ func _test_T14_no_save_load_exploit() -> void:
 	begin_test("T14_NoSaveLoadExploit")
 	var p = PlayerState.new("p_save_exploit")
 	p.add_item("plant_sun_petal", 1)
-	p.give_gift("rowan", "plant_sun_petal")
+	_get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	
 	var save_blob = p.to_dict()
 	var reloaded_p = PlayerState.from_dict(save_blob)
 	
-	assert_false(reloaded_p.can_give_gift("rowan", "plant_sun_petal"), "Reloading save retains daily gift cooldown")
+	assert_false(reloaded__get_npc_mock().can_give_gift(p.player_id, "rowan", "plant_sun_petal", p), "Reloading save retains daily gift cooldown")
 	assert_eq(reloaded_p.get_item_count("plant_sun_petal"), 0, "Reloading does not duplicate consumed gift item")
 
 func _test_T15_no_time_exploit() -> void:
@@ -271,7 +279,7 @@ func _test_T17_core_gameplay_loop() -> void:
 	p.add_item("seed_red_flower", 1)
 	
 	# 4. Gift surplus & progress relationship
-	p.give_gift("rowan", "plant_red_flower")
+	_get_npc_mock().give_gift(p.player_id, "rowan", "plant_red_flower", p)
 	
 	assert_true(p.get_friendship_points("rowan") > 0, "Loop successfully feeds into social progression")
 	assert_true(p.gold > 100, "Loop generates economic surplus")

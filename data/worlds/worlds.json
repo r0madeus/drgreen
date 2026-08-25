@@ -35,11 +35,68 @@
 					12.0
 				],
 				"grove_from_forest": [
-					16,
-					21
+					16.0,
+					21.0
 				]
 			},
 			"width": 32.0
+		},
+		"central_town": {
+			"connections": {
+				"north": {
+					"spawn": "forest_from_town",
+					"world": "forest"
+				},
+				"south": {
+					"spawn": "farm_from_town",
+					"world": "farm"
+				}
+			},
+			"display_name": "Central Town",
+			"enabled": true,
+			"height": 100.0,
+			"id": "central_town",
+			"map_data": "res://data/worlds/central_town.json",
+			"metadata": {
+				"ambient": "town_murmur",
+				"music": "village_theme"
+			},
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"central_town_from_farm": [
+					50.0,
+					92.0
+				],
+				"central_town_from_forest": [
+					50.0,
+					6.0
+				],
+				"default": [
+					50.0,
+					90.0
+				],
+				"from_farm": [
+					50.0,
+					92.0
+				],
+				"from_forest": [
+					50.0,
+					6.0
+				],
+				"town_from_farm": [
+					50.0,
+					92.0
+				],
+				"town_from_forest": [
+					50.0,
+					6.0
+				],
+				"town_square": [
+					50.0,
+					52.0
+				]
+			},
+			"width": 100.0
 		},
 		"farm": {
 			"connections": {
@@ -59,7 +116,7 @@
 			"map_data": "res://data/worlds/farm.json",
 			"metadata": {
 				"ambient": "farm_birds",
-				"music": "cozy_field"
+				"music": "res://assets/audio/sfx/ui_select.wav"
 			},
 			"scene": "res://scenes/farm.tscn",
 			"spawn_points": {
@@ -113,14 +170,56 @@
 					12.0
 				],
 				"forest_from_grove": [
-					16,
-					2
+					16.0,
+					2.0
 				],
 				"forest_from_town": [
 					16.0,
 					21.0
 				],
 				"from_town": [
+					16.0,
+					21.0
+				]
+			},
+			"width": 32.0
+		},
+		"home": {
+			"display_name": "My House",
+			"enabled": true,
+			"height": 16.0,
+			"id": "home",
+			"map_data": "res://data/worlds/home.json",
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"default": [
+					8.0,
+					8.0
+				],
+				"from_farm": [
+					8.0,
+					13.0
+				],
+				"from_lab": [
+					12.0,
+					5.0
+				]
+			},
+			"width": 16.0
+		},
+		"laboratory": {
+			"display_name": "Grand Synthesis Laboratory",
+			"enabled": true,
+			"height": 24.0,
+			"id": "laboratory",
+			"map_data": "res://data/worlds/laboratory.json",
+			"scene": "res://scenes/farm.tscn",
+			"spawn_points": {
+				"default": [
+					16.0,
+					12.0
+				],
+				"from_home": [
 					16.0,
 					21.0
 				]

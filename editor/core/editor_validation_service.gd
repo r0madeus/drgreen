@@ -20,6 +20,7 @@ static func validate_data(data_service: EditorDataService) -> Dictionary:
 	if not data_service:
 		report["valid"] = false
 		report["errors"].append("DataService instance is null.")
+	
 		return report
 
 	var all_ids = data_service.get_all_stable_ids()
@@ -178,7 +179,108 @@ static func validate_data(data_service: EditorDataService) -> Dictionary:
 	if report["errors"].size() > 0:
 		report["valid"] = false
 
+
+	# 6. Cross-reference Validations
+	for id in all_ids:
+		var obj = data_service.get_resolved_object(id)
+		if typeof(obj) != TYPE_DICTIONARY: continue
+
+		# NPC -> Dialogue
+		if id.begins_with("npc."):
+			var diag = obj.get("default_dialogue", "")
+			if diag != "" and data_service.get_resolved_object("dialogue." + diag).is_empty():
+				report["errors"].append({"category": "npc", "id": id, "message": "Missing dialogue reference: " + diag})
+				report["broken_references"] += 1
+
+		# Dialogue -> Quest
+		if id.begins_with("dialogue."):
+			var lines = obj.get("lines", [])
+			if typeof(lines) == TYPE_ARRAY:
+				for line in lines:
+					if typeof(line) == TYPE_DICTIONARY:
+						var start_q = line.get("start_quest", "")
+						if start_q != "" and data_service.get_resolved_object("quest." + start_q).is_empty():
+							report["errors"].append({"category": "dialogue", "id": id, "message": "Missing quest reference: " + start_q})
+							report["broken_references"] += 1
+
+		# World -> NPC & Audio
+		if id.begins_with("world."):
+			var npcs = obj.get("npcs", [])
+			if typeof(npcs) == TYPE_ARRAY:
+				for n in npcs:
+					if data_service.get_resolved_object("npc." + str(n)).is_empty():
+						report["errors"].append({"category": "world", "id": id, "message": "Missing NPC reference in world: " + str(n)})
+						report["broken_references"] += 1
+			var meta = obj.get("metadata", {})
+			if typeof(meta) == TYPE_DICTIONARY:
+				var w_music = meta.get("music", "")
+				var w_amb = meta.get("ambient", "")
+				# Audio is handled by AudioDataService/AssetRegistry, skip direct resolution if not strictly in data_service, but we assume it's in audio map if it exists.
+
+		# Plant -> Item / Genetics
+		if id.begins_with("item.") and obj.get("type") == "seed":
+			var plant_type = obj.get("plant_type", "")
+			# if plant_type != "" and data_service.get_resolved_object("plant." + plant_type).is_empty():
+			#    pass # plants might not be in stable IDs directly if handled differently
+
+
+	# 7. Phase 3F - Combination and Progression Validation
+	if ClassDB.class_exists("CombinationDataService"):
+		var ComboDS = load("res://systems/combination/combination_data_service.gd")
+		ComboDS.ensure_loaded()
+		var combos = ComboDS.get_all_combos()
+		var seen_combos = {}
+		for c in combos:
+			var cid = c.get("id", "")
+			var ia = c.get("input_a", "")
+			var ib = c.get("input_b", "")
+			var out = c.get("output", "")
+			if cid == "":
+				report["errors"].append({"category": "combination", "id": cid, "message": "Missing Combination ID"})
+			if ia == "" or ib == "" or out == "":
+				report["errors"].append({"category": "combination", "id": cid, "message": "Missing input/output in combo: " + cid})
+			if seen_combos.has(cid):
+				report["errors"].append({"category": "combination", "id": cid, "message": "Duplicate Combination ID: " + cid})
+			seen_combos[cid] = true
+			# Validate plant references
+			if not data_service.get_resolved_object("plant." + ia).is_empty() == false and ia != "":
+				report["warnings"].append({"category": "combination", "id": cid, "message": "Unrecognized Input A: " + ia})
+			if not data_service.get_resolved_object("plant." + ib).is_empty() == false and ib != "":
+				report["warnings"].append({"category": "combination", "id": cid, "message": "Unrecognized Input B: " + ib})
+			if not data_service.get_resolved_object("plant." + out).is_empty() == false and out != "":
+				report["warnings"].append({"category": "combination", "id": cid, "message": "Unrecognized Output: " + out})
+
+	if ClassDB.class_exists("ProgressionDataService"):
+		var ProgDS = load("res://systems/progression/progression_data_service.gd")
+		ProgDS.ensure_loaded()
+		var unlocks = ProgDS.get_all_unlocks()
+		for wid in unlocks.keys():
+			var w = unlocks[wid]
+			var conds = w.get("unlock_conditions", [])
+			if typeof(conds) == TYPE_ARRAY:
+				for cond in conds:
+					if typeof(cond) == TYPE_DICTIONARY:
+						if cond.get("type") == "quest_completed":
+							var qid = cond.get("quest_id", "")
+							if data_service.get_resolved_object("quest." + qid).is_empty():
+								report["errors"].append({"category": "progression", "id": wid, "message": "Invalid quest reference in world unlock: " + qid})
+								report["broken_references"] += 1
+						elif cond.get("type") == "world_unlocked":
+							var rwid = cond.get("world_id", "")
+							if not unlocks.has(rwid):
+								report["errors"].append({"category": "progression", "id": wid, "message": "Invalid world reference in world unlock: " + rwid})
+								report["broken_references"] += 1
+							# Circular check
+							elif unlocks.has(rwid):
+								var req_conds = unlocks[rwid].get("unlock_conditions", [])
+								if typeof(req_conds) == TYPE_ARRAY:
+									for rcond in req_conds:
+										if typeof(rcond) == TYPE_DICTIONARY and rcond.get("type") == "world_unlocked" and rcond.get("world_id") == wid:
+											report["errors"].append({"category": "progression", "id": wid, "message": "Circular dependency detected between " + wid + " and " + rwid})
+
+
 	return report
+
 
 static func validate_project() -> Dictionary:
 	var service = EditorService.get_instance()
@@ -208,3 +310,43 @@ static func validate_mod(mod_def: ModManager.ModDefinition) -> Dictionary:
 		"warnings": warnings,
 		"mod_id": mod_def.id
 	}
+
+static func validate_cutscene(data: Dictionary) -> bool:
+	var cid = data.get("id", "")
+	if cid == "":
+		push_error("[Validation] Cutscene ID cannot be empty.")
+		return false
+		
+	var duration = float(data.get("duration", 0.0))
+	if duration < 0:
+		push_error("[Validation] Cutscene duration cannot be negative.")
+		return false
+		
+	var tracks = data.get("tracks", [])
+	for track in tracks:
+		var evts = track.get("events", [])
+		for e in evts:
+			var start_t = float(e.get("start", 0))
+			var dur = float(e.get("duration", 0))
+			
+			if start_t < 0 or (start_t + dur) > duration:
+				push_error("[Validation] Event out of bounds in track: " + track.get("actor_id", ""))
+				return false
+				
+			var type = e.get("type", "")
+			var params = e.get("params", {})
+			
+			if type == "dialogue" and params.get("dialogue_id", "") == "":
+				push_error("[Validation] Dialogue event missing dialogue_id.")
+				return false
+	return true
+
+static func validate_audio(data: Dictionary) -> bool:
+	if not data.has("id") or str(data.get("id")).strip_edges() == "":
+		push_error("[Validation] Audio ID cannot be empty.")
+		return false
+	var path = str(data.get("path", "")).strip_edges()
+	if path != "" and not ResourceLoader.exists(path):
+		push_error("[Validation] Audio asset does not exist: " + path)
+		return false
+	return true

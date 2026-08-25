@@ -103,7 +103,7 @@ func host_request_interaction(requester_peer: int, world_id: String, npc_id: Str
 		
 	# Increase friendship on interaction
 	p_state.add_friendship(npc_id, 5)
-	EventBus.friendship_changed.emit(npc_id, p_state.get_friendship(npc_id))
+	EventBus.friendship_changed.emit(player_id, npc_id, p_state.get_friendship(npc_id))
 	
 	if requester_peer == 1:
 		client_confirm_interaction(world_id, npc_id, npc_data)
@@ -117,7 +117,7 @@ func host_request_dialogue_action(requester_peer: int, world_id: String, npc_id:
 	var w_state = _get_world_state(world_id)
 	if not p_state or not w_state: return
 	
-	EventBus.dialogue_action_executed.emit(npc_id, action_id, action_params)
+	EventBus.dialogue_action_executed.emit("", npc_id, action_id, action_params)
 	
 	match action_id:
 		"open_shop":
@@ -143,7 +143,7 @@ func host_request_dialogue_action(requester_peer: int, world_id: String, npc_id:
 			for itm in items:
 				p_state.add_item(str(itm.get("item_id", "")), int(itm.get("count", 1)))
 			p_state.add_friendship(npc_id, int(action_params.get("friendship", 10)))
-			EventBus.friendship_changed.emit(npc_id, p_state.get_friendship(npc_id))
+			EventBus.friendship_changed.emit(player_id, npc_id, p_state.get_friendship(npc_id))
 			
 			var reward_summary = { "reward_id": reward_id, "gold": gold_amt, "items": items, "npc_id": npc_id }
 			if requester_peer == 1:
@@ -299,7 +299,8 @@ func receive_npc_snapshot(world_id: String, snapshot: Dictionary) -> void:
 @rpc("authority", "call_local", "reliable")
 func receive_personal_reward(reward_summary: Dictionary) -> void:
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	var p_state = psm.get_active_player_state() if psm else null
+	var peer_id = multiplayer.get_remote_sender_id()
+	var p_state = _get_player_state(peer_id)
 	if p_state:
 		var rid = str(reward_summary.get("reward_id", ""))
 		if rid != "": p_state.mark_reward_claimed(rid)
@@ -349,14 +350,16 @@ func _local_interact_npc(world_id: String, npc_id: String) -> void:
 	var nm_mgr = get_node_or_null("/root/NPCManager")
 	var ndata = nm_mgr.get_npc_data(npc_id) if nm_mgr else {}
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	var p_state = psm.get_active_player_state() if psm else null
+	var peer_id = multiplayer.get_remote_sender_id()
+	var p_state = _get_player_state(peer_id)
 	if p_state: p_state.add_friendship(npc_id, 5)
 	
 	client_confirm_interaction(world_id, npc_id, ndata)
 
 func _local_dialogue_action(world_id: String, npc_id: String, action_id: String, action_params: Dictionary) -> void:
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	var p_state = psm.get_active_player_state() if psm else null
+	var peer_id = multiplayer.get_remote_sender_id()
+	var p_state = _get_player_state(peer_id)
 	var wm = get_node_or_null("/root/WorldManager")
 	var w_state = wm.get_shared_world_state(world_id) if wm else null
 	

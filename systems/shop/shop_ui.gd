@@ -486,14 +486,14 @@ func _on_buy_item(item_id: String, item_name: String, price: int) -> void:
 	var spawner = EffectSpawner.get_instance()
 	var player = get_tree().root.find_child("Player", true, false)
 	var pos = player.global_position if player else Vector2(240, 180)
-	if em and em.can_afford(price):
+	if em and em.can_afford(player_id, price):
 		if em.spend_gold(player_id, price):
-			if im: im.add_item(item_id, 1)
+			if im: im.add_item(player_id, item_id, 1)
 			if am: am.play_sfx("buy")
 			if spawner:
 				spawner.spawn_floating_text(pos, "+1 %s\n-%d Gold" % [item_name, price], Color(0.4, 1.0, 0.4))
 			var bus = get_node_or_null("/root/EventBus")
-			if bus: bus.item_bought.emit(item_id, 1, price)
+			if bus: bus.item_bought.emit(player_id, item_id, 1, price)
 			refresh_ui()
 	else:
 		if am: am.play_sfx("insufficient_gold")
@@ -501,6 +501,8 @@ func _on_buy_item(item_id: String, item_name: String, price: int) -> void:
 			spawner.spawn_floating_text(pos, "Not enough Gold!", Color(1.0, 0.4, 0.4))
 
 func _on_sell_item(item_id: String, item_name: String, unit_price: int, count: int) -> void:
+	var _p = get_tree().get_first_node_in_group("local_player")
+	var player_id = _p.player_id if _p and "player_id" in _p else "player_001"
 	var ns = get_node_or_null("/root/NetworkShop")
 	if ns:
 		var wl = get_node_or_null("/root/WorldLoader")
@@ -515,15 +517,15 @@ func _on_sell_item(item_id: String, item_name: String, unit_price: int, count: i
 	var spawner = EffectSpawner.get_instance()
 	var player = get_tree().root.find_child("Player", true, false)
 	var pos = player.global_position if player else Vector2(240, 180)
-	if im and im.has_item(item_id, count):
-		if im.remove_item(item_id, count):
+	if im and im.has_item(player_id, item_id, count):
+		if im.remove_item(player_id, item_id, count):
 			var total_gold = unit_price * count
 			if em: em.add_gold(player_id, total_gold)
 			if am: am.play_sfx("sell")
 			if spawner:
 				spawner.spawn_floating_text(pos, "+%d Gold\n-%d %s" % [total_gold, count, item_name], Color(1.0, 0.9, 0.2))
 			var bus = get_node_or_null("/root/EventBus")
-			if bus: bus.item_sold.emit(item_id, count, total_gold)
+			if bus: bus.item_sold.emit(player_id, item_id, count, total_gold)
 			refresh_ui()
 
 func _bind_local_player(world_id: String, _world_data: Dictionary = {}) -> void:

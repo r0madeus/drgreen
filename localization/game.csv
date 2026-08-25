@@ -75,6 +75,8 @@ ui.settings.tab.gameplay,Gameplay,Oynanış
 ui.settings.tab.controls,Controls,Kontroller
 ui.settings.tab.accessibility,Accessibility,Erişilebilirlik
 ui.settings.tab.language,Language,Dil
+ui.settings.tab.developer,Developer,Geliştirici
+ui.settings.developer_mode,Developer Mode,Geliştirici Modu
 ui.settings.resolution,Resolution,Çözünürlük
 ui.settings.window_mode,Window Mode,Pencere Modu
 ui.settings.vsync,VSync,Dikey Senkronizasyon

@@ -58,16 +58,28 @@ func _send_error(peer_id: int, reason: String) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func host_synthesis(requester_peer: int, world_id: String, input_a: String, input_b: String) -> void:
 	if not is_host(): return
+	var player_state = _get_player_state(requester_peer)
+	if not player_state:
+		_send_error(requester_peer, "INVALID_PLAYER")
+		return
+	
+
+		
+	var owner_id = ""
+	var parts = world_id.split(":")
+	if parts.size() > 1:
+		owner_id = parts[1]
+		
+	if owner_id != "" and player_state.player_id != owner_id:
+		_send_error(requester_peer, "ACCESS_DENIED")
+		return
 	
 	var ws = _get_world_state(world_id)
 	if not ws:
 		_send_error(requester_peer, "INVALID_WORLD")
 		return
 	
-	var player_state = _get_player_state(requester_peer)
-	if not player_state:
-		_send_error(requester_peer, "INVALID_PLAYER")
-		return
+
 	
 	# Look up formula
 	var cm = get_node_or_null("/root/CombinationManager")
@@ -96,10 +108,15 @@ func host_synthesis(requester_peer: int, world_id: String, input_a: String, inpu
 	var output_id = str(combo.get("output", ""))
 	var combo_id = str(combo.get("id", ""))
 	
+	var prof_a = _get_or_create_profile(player_state, input_a)
+	var prof_b = _get_or_create_profile(player_state, input_b)
+	var engine = GeneticsEngine.new()
+	var offspring = engine.breed(prof_a, prof_b)
+	
 	player_state.remove_item(input_a, 1)
 	player_state.remove_item(input_b, 1)
 	player_state.add_item(output_id, 1)
-	player_state.add_item("seed_" + output_id, 1)
+	player_state.add_item("seed_" + output_id, 1, offspring)
 	
 	# Check if new discovery for SharedWorldState
 	var is_new = not ws.is_combination_discovered(combo_id)
@@ -123,8 +140,8 @@ func host_synthesis(requester_peer: int, world_id: String, input_a: String, inpu
 @rpc("authority", "call_remote", "reliable")
 func client_receive_synthesis_result(combo_id: String, output_item: String, is_new_discovery: bool) -> void:
 	synthesis_completed.emit(combo_id, output_item, is_new_discovery)
-	EventBus.synthesis_performed.emit(combo_id, output_item, 1)
-	EventBus.plant_combined.emit(combo_id, output_item, output_item)
+	EventBus.synthesis_performed.emit("", combo_id, output_item, 1)
+	EventBus.plant_combined.emit("", combo_id, output_item, output_item)
 
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("discovery" if is_new_discovery else "plant")
@@ -166,3 +183,25 @@ func _local_synthesis(world_id: String, input_a: String, input_b: String) -> voi
 		synthesis_completed.emit(result.get("combo_id", ""), result.get("output", ""), result.get("is_new_discovery", false))
 	else:
 		synthesis_error.emit(result.get("error", "Synthesis failed"))
+
+func _get_or_create_profile(player_state: PlayerState, compound_key: String) -> GeneticProfile:
+	var h = PlayerState.get_genetic_hash(compound_key)
+	if h != "" and player_state.genetic_instances.has(h):
+		return GeneticProfile.from_dict(player_state.genetic_instances[h])
+	
+	var base_id = PlayerState.get_base_item_id(compound_key)
+	var crop_id = base_id.trim_prefix("seed_")
+	
+	var pm = get_node_or_null("/root/PlantManager")
+	var data = pm.get_plant_data(crop_id) if pm else {}
+	
+	var profile = GeneticProfile.new()
+	profile.size = str(data.get("size", "medium"))
+	profile.color = str(data.get("color", "white"))
+	profile.shape = str(data.get("shape", "flower"))
+	profile.productivity = int(data.get("productivity", 1))
+	profile.taste_profile = Array(data.get("taste_profile", ["sweet"]), TYPE_STRING, "", null)
+	profile.water_required = bool(data.get("water_required", false))
+	profile.growth_speed = str(data.get("growth_speed", "medium"))
+	
+	return profile

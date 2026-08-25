@@ -42,8 +42,22 @@ func _ready() -> void:
 	var lm = _get_localization_manager()
 	if lm:
 		lm.locale_changed.connect(func(_l): _update_localized_texts())
+	var sm = _get_settings_manager()
+	if sm:
+		if sm.has_signal("setting_changed") and not sm.setting_changed.is_connected(_on_setting_changed):
+			sm.setting_changed.connect(_on_setting_changed)
+		if sm.has_signal("settings_applied") and not sm.settings_applied.is_connected(_on_settings_applied):
+			sm.settings_applied.connect(_on_settings_applied)
 	_update_localized_texts()
 	_update_continue_button()
+	_update_editor_button_visibility()
+
+func _on_setting_changed(category: String, key: String, _value: Variant) -> void:
+	if category == "developer" or key == "developer_mode":
+		_update_editor_button_visibility()
+
+func _on_settings_applied() -> void:
+	_update_editor_button_visibility()
 
 func _bind_buttons() -> void:
 	if continue_btn and not continue_btn.pressed.is_connected(_on_continue):
@@ -52,7 +66,6 @@ func _bind_buttons() -> void:
 		new_game_btn.pressed.connect(_on_new_game)
 	if saves_btn and not saves_btn.pressed.is_connected(_on_saves):
 		saves_btn.pressed.connect(_on_saves)
-		if editor_btn: editor_btn.hide()
 	if editor_btn and not editor_btn.pressed.is_connected(_on_editor):
 		editor_btn.pressed.connect(_on_editor)
 	if multiplayer_btn and not multiplayer_btn.pressed.is_connected(_on_multiplayer):
@@ -68,7 +81,7 @@ func _update_localized_texts() -> void:
 	if continue_btn: continue_btn.text = "📂 " + tr("ui.menu.continue")
 	if new_game_btn: new_game_btn.text = "🌱 " + tr("ui.menu.new_game")
 	if saves_btn: saves_btn.text = "💾 " + tr("ui.menu.saves")
-	if editor_btn: editor_btn.text = "🛠️ " + tr("ui.menu.editor")
+	if editor_btn: editor_btn.text = "🛠️ EDITOR"
 	if multiplayer_btn: multiplayer_btn.text = "🌐 " + tr("ui.menu.multiplayer")
 	if settings_btn: settings_btn.text = "⚙️ " + tr("ui.menu.settings")
 	if credits_btn: credits_btn.text = "📜 " + tr("ui.menu.credits")
@@ -94,6 +107,16 @@ func _get_localization_manager() -> Node:
 		return get_tree().root.get_node_or_null("LocalizationManager")
 	return null
 
+func _get_settings_manager() -> Node:
+	if is_inside_tree() and get_tree() and get_tree().root:
+		return get_tree().root.get_node_or_null("SettingsManager")
+	return null
+
+func _get_local_state_manager() -> Node:
+	if is_inside_tree() and get_tree() and get_tree().root:
+		return get_tree().root.get_node_or_null("LocalStateManager")
+	return null
+
 func _update_continue_button() -> void:
 	if continue_btn:
 		var sm = _get_save_manager()
@@ -101,9 +124,25 @@ func _update_continue_button() -> void:
 		continue_btn.disabled = not has_save
 		continue_btn.modulate = Color(1.0, 1.0, 1.0) if has_save else Color(0.6, 0.6, 0.6, 0.5)
 
+func _update_editor_button_visibility() -> void:
+	if not editor_btn: return
+	var is_dev_mode = false
+	var sm = _get_settings_manager()
+	if sm:
+		is_dev_mode = bool(sm.get_setting("developer", "developer_mode", false))
+	else:
+		var lsm = _get_local_state_manager()
+		if lsm:
+			is_dev_mode = bool(lsm.get_setting("developer", "developer_mode", false))
+		else:
+			var defs = SettingsData.get_default_settings()
+			is_dev_mode = bool(defs.get("developer", {}).get("developer_mode", false))
+	editor_btn.visible = is_dev_mode
+
 func open_menu() -> void:
 	visible = true
 	_update_continue_button()
+	_update_editor_button_visibility()
 	var player = _get_player()
 	if player and player.has_method("set_movement_locked"):
 		player.set_movement_locked(true)

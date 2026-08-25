@@ -15,6 +15,8 @@ var npcs_catalog: Dictionary = {} # npc_id -> Dictionary
 var locations_catalog: Dictionary = {} # location_id -> Dictionary
 var schedules_catalog: Dictionary = {} # npc_id -> Dictionary (variants -> Array)
 var relationships_catalog: Dictionary = {} # npc_id -> Dictionary
+var preferences_catalog: Dictionary = {}
+var milestones_catalog: Dictionary = {}
 var active_npc_instances: Dictionary = {} # npc_id -> Node2D
 
 # Current active schedule entry tracked per NPC: npc_id -> Dictionary
@@ -97,16 +99,34 @@ func load_schedules() -> void:
 
 func load_social_data() -> void:
 	relationships_catalog.clear()
-	if not FileAccess.file_exists(SOCIAL_PATH): return
-	var f = FileAccess.open(SOCIAL_PATH, FileAccess.READ)
-	if not f: return
-	var text = f.get_as_text()
-	f.close()
-	var json = JSON.new()
-	if json.parse(text) == OK and typeof(json.data) == TYPE_DICTIONARY:
-		var d: Dictionary = json.data
-		relationships_catalog = d.get("relationships", {})
-	print("[NPCManager] Loaded %d NPC social relationship profiles." % relationships_catalog.size())
+	preferences_catalog.clear()
+	milestones_catalog.clear()
+	
+	if FileAccess.file_exists(SOCIAL_PATH):
+		var f = FileAccess.open(SOCIAL_PATH, FileAccess.READ)
+		if f:
+			var json = JSON.new()
+			if json.parse(f.get_as_text()) == OK and typeof(json.data) == TYPE_DICTIONARY:
+				relationships_catalog = json.data.get("relationships", {})
+			f.close()
+			
+	if FileAccess.file_exists("res://data/npcs/preferences.json"):
+		var f = FileAccess.open("res://data/npcs/preferences.json", FileAccess.READ)
+		if f:
+			var json = JSON.new()
+			if json.parse(f.get_as_text()) == OK and typeof(json.data) == TYPE_DICTIONARY:
+				preferences_catalog = json.data.get("preferences", {})
+			f.close()
+			
+	if FileAccess.file_exists("res://data/npcs/milestones.json"):
+		var f = FileAccess.open("res://data/npcs/milestones.json", FileAccess.READ)
+		if f:
+			var json = JSON.new()
+			if json.parse(f.get_as_text()) == OK and typeof(json.data) == TYPE_DICTIONARY:
+				milestones_catalog = json.data.get("milestones", {})
+			f.close()
+	
+	print("[NPCManager] Loaded %d NPC social relationship profiles, %d preferences, %d milestones." % [relationships_catalog.size(), preferences_catalog.size(), milestones_catalog.size()])
 
 # ---------- Location & Schedule Resolution ----------
 
@@ -412,3 +432,89 @@ func get_npc_debug_info(npc_id: String) -> Dictionary:
 		"social_partner": ctrl.social_partner_id if ctrl else "",
 		"social_cooldown": ctrl.social_cooldown if ctrl else 0.0
 	}
+
+
+# ---------- Social Gifting & Milestones ----------
+
+func _get_player_state(player_id: String):
+	var root = Engine.get_main_loop().root if Engine.get_main_loop() else null
+	var psm = root.get_node_or_null("/root/PlayerRegistry") if root else null
+	if psm and psm.has_method("get_player_state"):
+		return psm.get_player_state(player_id)
+	return null
+
+func can_give_gift(player_id: String, npc_id: String, item_id: String, _override_pstate = null) -> bool:
+	var p_state = _override_pstate if _override_pstate else _get_player_state(player_id)
+	if not p_state: return false
+	if npc_id.is_empty() or item_id.is_empty(): return false
+	if bool(p_state.daily_gifted_npcs.get(npc_id, false)): return false
+	if not p_state.has_item(item_id, 1): return false
+	return true
+
+func get_gift_reaction_type(npc_id: String, item_id: String) -> String:
+	var npc_prefs = preferences_catalog.get(npc_id, {})
+	if item_id in npc_prefs.get("loved", []): return "loved"
+	if item_id in npc_prefs.get("liked", []): return "liked"
+	if item_id in npc_prefs.get("disliked", []): return "disliked"
+	if item_id in npc_prefs.get("hated", []): return "hated"
+	return "neutral"
+
+func give_gift(player_id: String, npc_id: String, item_id: String, _override_pstate = null) -> Dictionary:
+	var p_state = _override_pstate if _override_pstate else _get_player_state(player_id)
+	if not p_state:
+		return { "success": false, "error": "Player state not found" }
+		
+	if not can_give_gift(player_id, npc_id, item_id, _override_pstate):
+		return { "success": false, "error": "Cannot give gift (limit reached or missing item)" }
+		
+	var reaction = get_gift_reaction_type(npc_id, item_id)
+	var pts_map = { "loved": 80, "liked": 45, "neutral": 20, "disliked": -20, "hated": -40 }
+	var pts = int(pts_map.get(reaction, 20))
+	
+	p_state.remove_item(item_id, 1)
+	p_state.daily_gifted_npcs[npc_id] = true
+	
+	var old_hearts = p_state.get_heart_level(npc_id)
+	var new_pts = p_state.add_friendship(npc_id, pts, "gift")
+	var new_hearts = p_state.get_heart_level(npc_id)
+	
+	var EventBus = get_node_or_null("/root/EventBus")
+	if EventBus: EventBus.friendship_changed.emit(player_id, npc_id, new_pts)
+	
+	var unlocked_milestones = []
+	if new_hearts > old_hearts:
+		unlocked_milestones = check_and_grant_heart_milestones(player_id, npc_id, _override_pstate)
+		
+	return {
+		"success": true,
+		"reaction": reaction,
+		"points_added": pts,
+		"new_total": new_pts,
+		"new_heart_level": new_hearts,
+		"milestones_unlocked": unlocked_milestones
+	}
+
+func check_and_grant_heart_milestones(player_id: String, npc_id: String, _override_pstate = null) -> Array[Dictionary]:
+	var p_state = _override_pstate if _override_pstate else _get_player_state(player_id)
+	if not p_state: return []
+	
+	var cur_heart = p_state.get_heart_level(npc_id)
+	var claimed: Array = p_state.claimed_heart_milestones.get(npc_id, [])
+	var newly_claimed: Array[Dictionary] = []
+	
+	var npc_ms: Array = milestones_catalog.get(npc_id, [])
+	
+	for ms in npc_ms:
+		var req_h = int(ms.get("heart_level", 1))
+		if cur_heart >= req_h and req_h not in claimed:
+			claimed.append(req_h)
+			var rew = ms.get("rewards", {})
+			RewardManager.grant_rewards(rew, p_state)
+			newly_claimed.append({ "npc_id": npc_id, "heart_level": req_h, "rewards": rew })
+			
+			var EventBus = get_node_or_null("/root/EventBus")
+			if EventBus and EventBus.has_signal("heart_milestone_unlocked"):
+				EventBus.heart_milestone_unlocked.emit(player_id, npc_id, req_h, rew)
+			
+	p_state.claimed_heart_milestones[npc_id] = claimed
+	return newly_claimed

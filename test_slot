@@ -1,0 +1,2395 @@
+{
+	"active_mods": [],
+	"current_world": "farm",
+	"day": 1,
+	"discoveries": {
+		"discovered_combos": []
+	},
+	"economy": {},
+	"game_id": "botanical_haven",
+	"game_version": "1.0.0",
+	"gameplay_state": {},
+	"grid": {},
+	"inventory": {},
+	"npc_state": {},
+	"player": {},
+	"players": {
+		"player_A": {
+			"active_quests": {},
+			"claimed_heart_milestones": {},
+			"completed_quests": [
+				"test_quest"
+			],
+			"current_world": "farm",
+			"daily_gifted_npcs": {},
+			"daily_talked_npcs": {},
+			"display_name": "Botanist",
+			"energy": 100.0,
+			"equipment": {},
+			"friendship": {},
+			"genetic_instances": {
+				"21ada03587": {
+					"color": "white",
+					"growth_speed": "normal",
+					"productivity": 1,
+					"shape": "flower",
+					"size": "medium",
+					"taste_profile": [],
+					"water_required": false
+				}
+			},
+			"gold": 200,
+			"home_owner_id": "player_A",
+			"hotbar_slots": [
+				"hoe_basic",
+				"watering_can_basic",
+				"axe_basic",
+				"pickaxe_basic",
+				"seed_red_flower",
+				"seed_blue_flower",
+				"seed_yellow_herb",
+				"",
+				"",
+				""
+			],
+			"inventory": {
+				"axe_basic": 1,
+				"hoe_basic": 1,
+				"pickaxe_basic": 1,
+				"seed_blue_flower": 3,
+				"seed_green_vine": 2,
+				"seed_hybrid::21ada03587": 1,
+				"seed_red_flower": 2,
+				"seed_white_lily": 2,
+				"seed_yellow_herb": 4,
+				"watering_can_basic": 1
+			},
+			"max_energy": 100.0,
+			"personal_claimed_rewards": {},
+			"personal_dialogue_history": {},
+			"personal_quests": {},
+			"player_id": "player_A",
+			"position": [
+				240.0,
+				160.0
+			],
+			"position_space": "world",
+			"purchased_upgrades": [],
+			"selected_hotbar_slot": 0,
+			"selected_item_id": "hoe_basic",
+			"statistics": {}
+		},
+		"player_B": {
+			"active_quests": {
+				"test_quest": {
+					"progress": [
+						0
+					],
+					"status": "active"
+				}
+			},
+			"claimed_heart_milestones": {},
+			"completed_quests": [],
+			"current_world": "farm",
+			"daily_gifted_npcs": {},
+			"daily_talked_npcs": {},
+			"display_name": "Botanist",
+			"energy": 100.0,
+			"equipment": {},
+			"friendship": {},
+			"genetic_instances": {},
+			"gold": 150,
+			"home_owner_id": "player_B",
+			"hotbar_slots": [
+				"hoe_basic",
+				"watering_can_basic",
+				"axe_basic",
+				"pickaxe_basic",
+				"seed_red_flower",
+				"seed_blue_flower",
+				"seed_yellow_herb",
+				"",
+				"",
+				""
+			],
+			"inventory": {
+				"axe_basic": 1,
+				"hoe_basic": 1,
+				"pickaxe_basic": 1,
+				"seed_blue_flower": 3,
+				"seed_green_vine": 2,
+				"seed_white_lily": 2,
+				"seed_yellow_herb": 4,
+				"watering_can_basic": 1
+			},
+			"max_energy": 100.0,
+			"personal_claimed_rewards": {},
+			"personal_dialogue_history": {},
+			"personal_quests": {},
+			"player_id": "player_B",
+			"position": [
+				240.0,
+				160.0
+			],
+			"position_space": "world",
+			"purchased_upgrades": [],
+			"selected_hotbar_slot": 0,
+			"selected_item_id": "hoe_basic",
+			"statistics": {}
+		}
+	},
+	"progression": {
+		"unlocked_worlds": {
+			"mountain": true
+		},
+		"visited_worlds": {
+			"farm": true
+		}
+	},
+	"quests": {},
+	"season": {
+		"day_of_season": 1,
+		"season": "spring",
+		"season_index": 0,
+		"year": 1
+	},
+	"time": {
+		"current_day": 1,
+		"current_day_phase": "dawn",
+		"current_time": "dawn",
+		"current_time_minutes": 360.0,
+		"total_played_days": 1
+	},
+	"timestamp": 1787653685,
+	"version": 8,
+	"weather": {
+		"current": "clear"
+	},
+	"world": {
+		"greenhouse": {
+			"repaired": false,
+			"stage": 0,
+			"zone": "farm"
+		}
+	},
+	"world_states": {
+		"farm": {
+			"interactables_hp": {},
+			"interactables_keys": [
+				"(15, 3)",
+				"(23, 6)",
+				"(31, 12)",
+				"(20, 10)"
+			],
+			"modified_tiles": {
+				"(2, 2)": {
+					"state": "planted",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				}
+			},
+			"plants": [
+				{
+					"days_in_stage": 0,
+					"growth_stage": 0,
+					"plant_id": "hybrid",
+					"position": [
+						2,
+						2
+					],
+					"watered_today": false
+				}
+			]
+		}
+	},
+	"worlds": {
+		"farm": {
+			"interactables_hp": {},
+			"interactables_keys": [
+				"(15, 3)",
+				"(23, 6)",
+				"(31, 12)",
+				"(20, 10)"
+			],
+			"modified_tiles": {
+				"(2, 2)": {
+					"state": "planted",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(4, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(5, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(6, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(7, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(8, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(9, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(10, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(11, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(12, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(19, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(20, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(21, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(22, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(23, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(24, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(25, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(26, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 3)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 4)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 5)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 6)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 7)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 8)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 15)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 16)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 17)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 18)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 19)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				},
+				"(27, 20)": {
+					"state": "empty",
+					"type": "soil",
+					"watered_today": false
+				}
+			},
+			"plants": [
+				{
+					"days_in_stage": 0,
+					"growth_stage": 0,
+					"plant_id": "hybrid",
+					"position": [
+						2,
+						2
+					],
+					"watered_today": false
+				}
+			]
+		}
+	}
+}

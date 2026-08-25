@@ -53,6 +53,9 @@ static func get_default_settings() -> Dictionary:
 		},
 		"language": {
 			"current_language": "en"
+		},
+		"developer": {
+			"developer_mode": false
 		}
 	}
 

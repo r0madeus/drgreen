@@ -63,7 +63,7 @@ func refresh_ui() -> void:
 	
 	if selected_label:
 		if selected != "":
-			var sel_name = ItemRegistry.get_localized_name(selected)
+			var sel_name = ItemRegistry.get_localized_name(PlayerState.get_base_item_id(selected))
 			var sel_cnt = im.get_item_count(player_id, selected)
 			if lm:
 				selected_label.text = lm.format("ui.hud.selected_format", { "item": sel_name, "count": sel_cnt })
@@ -77,8 +77,8 @@ func refresh_ui() -> void:
 		var btn = Button.new()
 		btn.custom_minimum_size = Vector2(150, 40)
 		var is_sel = (item_id == selected)
-		var icon = ItemRegistry.get_icon(item_id)
-		var dname = ItemRegistry.get_localized_name(item_id)
+		var icon = ItemRegistry.get_icon(PlayerState.get_base_item_id(item_id))
+		var dname = ItemRegistry.get_localized_name(PlayerState.get_base_item_id(item_id))
 		btn.text = "%s %s (x%d)" % [icon, dname, count]
 		if is_sel:
 			btn.modulate = Color(0.8, 1.2, 0.8)

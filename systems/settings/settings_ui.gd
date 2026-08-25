@@ -6,7 +6,7 @@ extends Control
 signal back_pressed()
 signal closed()
 
-enum Tab { GRAPHICS, AUDIO, GAMEPLAY, CONTROLS, ACCESSIBILITY, LANGUAGE }
+enum Tab { GRAPHICS, AUDIO, GAMEPLAY, CONTROLS, ACCESSIBILITY, LANGUAGE, DEVELOPER }
 
 var current_tab: Tab = Tab.GRAPHICS
 
@@ -20,6 +20,7 @@ var current_tab: Tab = Tab.GRAPHICS
 @onready var tab_controls_btn: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons/ControlsTabBtn
 @onready var tab_access_btn: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons/AccessTabBtn
 @onready var tab_lang_btn: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons/LangTabBtn
+@onready var tab_developer_btn: Button = find_child("DeveloperTabBtn", true, false)
 
 @onready var content_vbox: VBoxContainer = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ContentScroll/ContentVBox
 @onready var apply_btn: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Footer/ApplyButton
@@ -55,6 +56,7 @@ func _update_localized_texts() -> void:
 	if tab_controls_btn: tab_controls_btn.text = tr("ui.settings.tab.controls")
 	if tab_access_btn: tab_access_btn.text = tr("ui.settings.tab.accessibility")
 	if tab_lang_btn: tab_lang_btn.text = tr("ui.settings.tab.language")
+	if tab_developer_btn: tab_developer_btn.text = tr("ui.settings.tab.developer") if tr("ui.settings.tab.developer") != "ui.settings.tab.developer" else "🛠️ Developer"
 
 func _bind_header_footer() -> void:
 	if close_btn: close_btn.pressed.connect(close_settings)
@@ -68,6 +70,7 @@ func _bind_header_footer() -> void:
 	if tab_controls_btn: tab_controls_btn.pressed.connect(func(): _switch_tab(Tab.CONTROLS))
 	if tab_access_btn: tab_access_btn.pressed.connect(func(): _switch_tab(Tab.ACCESSIBILITY))
 	if tab_lang_btn: tab_lang_btn.pressed.connect(func(): _switch_tab(Tab.LANGUAGE))
+	if tab_developer_btn: tab_developer_btn.pressed.connect(func(): _switch_tab(Tab.DEVELOPER))
 
 
 func open_settings() -> void:
@@ -124,7 +127,7 @@ func _switch_tab(tab: Tab) -> void:
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("ui_select")
 	
-	var tab_btns = [tab_graphics_btn, tab_audio_btn, tab_gameplay_btn, tab_controls_btn, tab_access_btn, tab_lang_btn]
+	var tab_btns = [tab_graphics_btn, tab_audio_btn, tab_gameplay_btn, tab_controls_btn, tab_access_btn, tab_lang_btn, tab_developer_btn]
 	for i in range(tab_btns.size()):
 		if tab_btns[i]:
 			tab_btns[i].modulate = Color(1.3, 1.3, 0.8) if i == tab else Color.WHITE
@@ -139,6 +142,7 @@ func _switch_tab(tab: Tab) -> void:
 		Tab.CONTROLS: _populate_controls()
 		Tab.ACCESSIBILITY: _populate_accessibility()
 		Tab.LANGUAGE: _populate_language()
+		Tab.DEVELOPER: _populate_developer()
 
 func _populate_graphics() -> void:
 	var g = temp_settings.get("graphics", {})
@@ -203,6 +207,14 @@ func _populate_language() -> void:
 				l["current_language"] = code
 				break
 	)
+
+func _populate_developer() -> void:
+	var dev = temp_settings.get("developer", {})
+	if typeof(dev) != TYPE_DICTIONARY:
+		dev = {}
+		temp_settings["developer"] = dev
+	var is_dev_mode = bool(dev.get("developer_mode", false))
+	_add_option_checkbox(tr("ui.settings.developer_mode") if tr("ui.settings.developer_mode") != "ui.settings.developer_mode" else "Developer Mode", is_dev_mode, func(b): dev["developer_mode"] = b)
 
 func _add_option_dropdown(label_text: String, items: Array, selected_item: String, on_change: Callable) -> void:
 	var hbox = HBoxContainer.new()

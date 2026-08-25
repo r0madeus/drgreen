@@ -125,8 +125,43 @@ func _build_ui() -> void:
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top_hbox.add_child(spacer)
 
+	undo_btn = Button.new()
+	undo_btn.text = "↶ Undo"
+	undo_btn.tooltip_text = "Undo last change (Ctrl+Z)"
+	undo_btn.add_theme_font_size_override("font_size", 12)
+	undo_btn.pressed.connect(_on_undo_pressed)
+	top_hbox.add_child(undo_btn)
+
+	redo_btn = Button.new()
+	redo_btn.text = "↷ Redo"
+	redo_btn.tooltip_text = "Redo last undone change (Ctrl+Y)"
+	redo_btn.add_theme_font_size_override("font_size", 12)
+	redo_btn.pressed.connect(_on_redo_pressed)
+	top_hbox.add_child(redo_btn)
+
+	save_btn = Button.new()
+	save_btn.text = "💾 Save"
+	save_btn.tooltip_text = "Save all modifications (Ctrl+S)"
+	save_btn.add_theme_font_size_override("font_size", 12)
+	save_btn.pressed.connect(_on_save_pressed)
+	top_hbox.add_child(save_btn)
+
+	test_btn = Button.new()
+	test_btn.text = "▶ Play"
+	test_btn.tooltip_text = "Test current slice in live gameplay"
+	test_btn.modulate = Color(0.4, 1.0, 0.5)
+	test_btn.add_theme_font_size_override("font_size", 12)
+	test_btn.pressed.connect(_on_test_preview_pressed)
+	top_hbox.add_child(test_btn)
+
+	var top_sep2 = VSeparator.new()
+	top_hbox.add_child(top_sep2)
+
 	exit_btn = Button.new()
-	exit_btn.text = "Exit"
+	exit_btn.text = "✕ Exit"
+	exit_btn.tooltip_text = "Return to Main Menu (Esc)"
+	exit_btn.modulate = Color(1.0, 0.7, 0.7)
+	exit_btn.add_theme_font_size_override("font_size", 12)
 	exit_btn.pressed.connect(_on_exit_pressed)
 	top_hbox.add_child(exit_btn)
 
@@ -142,7 +177,7 @@ func _build_ui() -> void:
 
 	# --- BOTTOM STATUS BAR ---
 	var bottom_bar = PanelContainer.new()
-	bottom_bar.custom_minimum_size = Vector2(0, 24)
+	bottom_bar.custom_minimum_size = Vector2(0, 22)
 	main_vbox.add_child(bottom_bar)
 
 	var bottom_hbox = HBoxContainer.new()
@@ -176,23 +211,28 @@ func _build_ui() -> void:
 
 func _build_nav_buttons() -> void:
 	var categories = [
-		{ "id": "world", "name": "[World] World", "prefix": "world." },
-		{ "id": "npc", "name": "[NPC] NPCs", "prefix": "npc." },
-		{ "id": "dialogue", "name": "[Dialogue] Dialogue", "prefix": "dialogue." },
-		{ "id": "quest", "name": "[Quest] Quests", "prefix": "quest." },
-		{ "id": "items", "name": "[Item] Items", "prefix": "item." },
-		{ "id": "crops", "name": "[Crop] Crops", "prefix": "crop." },
-		{ "id": "tools", "name": "[Tool] Tools", "prefix": "tool." },
-		{ "id": "shops", "name": "[Shop] Shops", "prefix": "shop." },
-		{ "id": "schedules", "name": "[Schedule] Schedules", "prefix": "schedule." },
-		{ "id": "assets", "name": "[Asset] Assets", "prefix": "" },
-		{ "id": "mods", "name": "[Mod] Mod Manager", "prefix": "" }
+		{ "id": "world", "name": "🌍 World", "tooltip": "World & Map Editor", "prefix": "world." },
+		{ "id": "npc", "name": "👤 NPCs", "tooltip": "NPC & Character Editor", "prefix": "npc." },
+		{ "id": "dialogue", "name": "💬 Dialogue", "tooltip": "Dialogue Tree Editor", "prefix": "dialogue." },
+		{ "id": "quest", "name": "📜 Quests", "tooltip": "Quest & Objective Editor", "prefix": "quest." },
+		{ "id": "items", "name": "🎒 Items", "tooltip": "Item & Inventory Editor", "prefix": "item." },
+		{ "id": "crops", "name": "🌱 Crops", "tooltip": "Plant & Crop Authoring", "prefix": "crop." },
+		{ "id": "genetics", "name": "🧬 Genetics", "tooltip": "Genetics & Trait Editor", "prefix": "genetic." },
+		{ "id": "combination", "name": "🔗 Synthesis", "tooltip": "Combination & Hybrid Lab", "prefix": "combination." },
+		{ "id": "cutscene", "name": "🎬 Cutscenes", "tooltip": "Timeline Cutscene Editor", "prefix": "cutscene." },
+		{ "id": "audio", "name": "🔊 Audio", "tooltip": "Audio & Music Bus Editor", "prefix": "audio." },
+		{ "id": "progression", "name": "🗺 Progression", "tooltip": "Progression & Unlock Editor", "prefix": "progression." },
+		{ "id": "discovery", "name": "📖 Codex", "tooltip": "Discovery Codex Editor", "prefix": "discovery." },
+		{ "id": "assets", "name": "🎨 Assets", "tooltip": "Asset & Component Editor", "prefix": "asset." },
+		{ "id": "mods", "name": "⚙️ Mods", "tooltip": "Mod Package Manager", "prefix": "mod." }
 	]
 
 	for c in categories:
 		var btn = Button.new()
 		btn.text = c.name
-		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		btn.tooltip_text = c.tooltip
+		btn.add_theme_font_size_override("font_size", 12)
+		btn.alignment = HORIZONTAL_ALIGNMENT_CENTER
 		btn.pressed.connect(func(): _select_category(c.id, c.prefix))
 		nav_container.add_child(btn)
 		_nav_buttons[c.id] = btn
@@ -200,6 +240,10 @@ func _build_nav_buttons() -> void:
 func _select_category(cat_id: String, prefix: String) -> void:
 	if editor_service:
 		editor_service.select_module(cat_id)
+
+	for k in _nav_buttons.keys():
+		if _nav_buttons[k]:
+			_nav_buttons[k].modulate = Color(0.5, 1.0, 0.7) if k == cat_id else Color.WHITE
 
 	var panel_id = cat_id
 	if cat_id in ["items", "crops", "tools", "crop", "tool", "item", "shops", "schedules", "assets"]:
@@ -397,17 +441,17 @@ func show_validation_report() -> void:
 			msg += "=== ERRORS (%d) ===\n" % errors.size()
 			for e in errors:
 				if typeof(e) == TYPE_DICTIONARY:
-					msg += "• [%s] %s\n" % [e.get("category", "General").to_upper(), e.get("message", "")]
+					msg += "â€¢ [%s] %s\n" % [e.get("category", "General").to_upper(), e.get("message", "")]
 				else:
-					msg += "• %s\n" % str(e)
+					msg += "â€¢ %s\n" % str(e)
 			msg += "\n"
 		if warnings.size() > 0:
 			msg += "=== WARNINGS (%d) ===\n" % warnings.size()
 			for w in warnings:
 				if typeof(w) == TYPE_DICTIONARY:
-					msg += "• [%s] %s\n" % [w.get("category", "General").to_upper(), w.get("message", "")]
+					msg += "â€¢ [%s] %s\n" % [w.get("category", "General").to_upper(), w.get("message", "")]
 				else:
-					msg += "• %s\n" % str(w)
+					msg += "â€¢ %s\n" % str(w)
 	validation_dialog.dialog_text = msg
 	if is_inside_tree():
 		validation_dialog.popup_centered()
@@ -435,3 +479,17 @@ Press F12 anytime to toggle the In-Game Editor."""
 func show_onboarding_guide() -> void:
 	if onboarding_dialog and is_inside_tree():
 		onboarding_dialog.popup_centered()
+
+
+func _on_save_pressed() -> void:
+	if current_panel_node and current_panel_node.has_method("save"):
+		current_panel_node.save()
+	elif editor_service and editor_service.has_method("save"):
+		editor_service.save()
+
+func _on_undo_pressed() -> void:
+	if editor_service: editor_service.undo()
+
+func _on_redo_pressed() -> void:
+	if editor_service: editor_service.redo()
+	

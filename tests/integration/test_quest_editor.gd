@@ -276,7 +276,7 @@ func _test_26_quest_state_transitions() -> void:
 	begin_test("T26_QuestStateTransitions")
 	var qm = _get_root_node("/root/QuestManager")
 	if qm:
-		var st = qm.get_quest_status("quest_01")
+		var st = qm.get_quest_status("player_001", "quest_01")
 		assert_true(st in ["locked", "active", "completed", "claimed"], "Valid quest state machine transition")
 	else:
 		assert_true(true, "State transition verified")
@@ -285,7 +285,7 @@ func _test_27_objective_progression() -> void:
 	begin_test("T27_ObjectiveProgression")
 	var qm = _get_root_node("/root/QuestManager")
 	if qm:
-		qm.advance_objective("plant", 1, "any")
+		qm.advance_objective("player_001", "plant", 1, "any")
 		assert_true(true, "Objective progressed via EventBus")
 	else:
 		assert_true(true, "Objective progression verified")
@@ -417,6 +417,6 @@ func _test_43_duplicate_reward_protection() -> void:
 	begin_test("T43_DuplicateRewardProtection")
 	var qm = _get_root_node("/root/QuestManager")
 	if qm:
-		assert_true(qm.get_quest_status("quest_nonexistent") == "locked", "Duplicate reward injection prevented")
+		assert_true(qm.get_quest_status("player_001", "quest_nonexistent") == "locked", "Duplicate reward injection prevented")
 	else:
 		assert_true(true, "Duplicate reward protection verified")

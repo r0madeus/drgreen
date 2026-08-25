@@ -57,7 +57,8 @@ func _test_01_main_menu_opens() -> void:
 func _test_02_continue_button_state() -> void:
 	begin_test("02_ContinueButtonState")
 	# Continue button correctness depends on SaveManager.has_any_save()
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		var has_saves = sm.has_any_save()
 		assert_true(has_saves is bool, "has_any_save returns a bool")
@@ -71,7 +72,8 @@ func _test_03_continue_with_no_save() -> void:
 	var continued = false
 	menu.game_continued.connect(func(_s): continued = true)
 	# If SaveManager reports no saves, menu should not emit game_continued
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm and not sm.has_any_save():
 		menu._on_continue()
 		assert_false(continued, "Continue does not emit when no save exists")
@@ -81,7 +83,8 @@ func _test_03_continue_with_no_save() -> void:
 
 func _test_04_continue_with_valid_save() -> void:
 	begin_test("04_ContinueWithValidSave")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.create_new_save(1)
 		assert_true(sm.has_any_save(), "has_any_save returns true after creating save")
@@ -103,7 +106,8 @@ func _test_05_new_game_opens_slot_selection() -> void:
 
 func _test_06_empty_slot_detected() -> void:
 	begin_test("06_EmptySlotDetected")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.delete_slot(99)
 		assert_eq(sm.get_slot_state(99), "EMPTY", "Deleted slot returns EMPTY state")
@@ -113,7 +117,8 @@ func _test_06_empty_slot_detected() -> void:
 
 func _test_07_new_game_creates_save() -> void:
 	begin_test("07_NewGameCreatesSave")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.delete_slot(90)
 		var ok = sm.create_new_save(90)
@@ -155,7 +160,8 @@ func _test_09_load_game_opens_slot_selection() -> void:
 
 func _test_10_occupied_slot_detected() -> void:
 	begin_test("10_OccupiedSlotDetected")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.create_new_save(91)
 		assert_true(sm.has_slot_save(91), "has_slot_save returns true for occupied slot")
@@ -166,7 +172,8 @@ func _test_10_occupied_slot_detected() -> void:
 
 func _test_11_save_manager_load_returns_false_on_empty() -> void:
 	begin_test("11_SaveManagerLoadReturnsFalseOnEmpty")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.delete_slot(98)
 		var loaded = sm.load_game(98)
@@ -176,7 +183,8 @@ func _test_11_save_manager_load_returns_false_on_empty() -> void:
 
 func _test_12_empty_slot_cannot_load() -> void:
 	begin_test("12_EmptySlotCannotLoad")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.delete_slot(97)
 		assert_eq(sm.get_slot_state(97), "EMPTY", "Slot 97 is empty")
@@ -187,7 +195,8 @@ func _test_12_empty_slot_cannot_load() -> void:
 
 func _test_13_corrupt_slot_handled_safely() -> void:
 	begin_test("13_CorruptSlotHandledSafely")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		var corrupt_path = sm.get_slot_path(96)
 		var f = FileAccess.open(corrupt_path, FileAccess.WRITE)
@@ -209,7 +218,8 @@ func _test_13_corrupt_slot_handled_safely() -> void:
 
 func _test_14_three_initial_slots() -> void:
 	begin_test("14_ThreeInitialSlots")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		# Delete all saves to get clean state
 		for i in range(1, 10): sm.delete_slot(i)
@@ -220,7 +230,8 @@ func _test_14_three_initial_slots() -> void:
 
 func _test_15_one_occupied_slot_still_shows_3() -> void:
 	begin_test("15_OneOccupiedSlotStillShows3")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		for i in range(1, 10): sm.delete_slot(i)
 		sm.create_new_save(1)
@@ -232,7 +243,8 @@ func _test_15_one_occupied_slot_still_shows_3() -> void:
 
 func _test_16_two_occupied_slots_still_shows_3() -> void:
 	begin_test("16_TwoOccupiedSlotsStillShows3")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		for i in range(1, 10): sm.delete_slot(i)
 		sm.create_new_save(1)
@@ -246,7 +258,8 @@ func _test_16_two_occupied_slots_still_shows_3() -> void:
 
 func _test_17_three_occupied_slots_show_4() -> void:
 	begin_test("17_ThreeOccupiedSlotsShow4")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		for i in range(1, 10): sm.delete_slot(i)
 		sm.create_new_save(1)
@@ -260,7 +273,8 @@ func _test_17_three_occupied_slots_show_4() -> void:
 
 func _test_18_four_occupied_slots_show_5() -> void:
 	begin_test("18_FourOccupiedSlotsShow5")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		for i in range(1, 10): sm.delete_slot(i)
 		for i in range(1, 5): sm.create_new_save(i)
@@ -272,7 +286,8 @@ func _test_18_four_occupied_slots_show_5() -> void:
 
 func _test_19_sparse_slots_prevent_unnecessary_expansion() -> void:
 	begin_test("19_SparseSlotsPreventUnnecessaryExpansion")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		for i in range(1, 10): sm.delete_slot(i)
 		sm.create_new_save(1)
@@ -292,7 +307,8 @@ func _test_19_sparse_slots_prevent_unnecessary_expansion() -> void:
 
 func _test_20_slot_metadata_accuracy() -> void:
 	begin_test("20_SlotMetadataAccuracy")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.create_new_save(1)
 		var meta = sm.get_save_slot_metadata(1)
@@ -305,7 +321,8 @@ func _test_20_slot_metadata_accuracy() -> void:
 
 func _test_21_save_persists_after_restart() -> void:
 	begin_test("21_SavePersistsAfterRestart")
-	var sm = SaveManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var sm = root.get_node_or_null("SaveManager") if root else null
 	if sm:
 		sm.create_new_save(1)
 		var path = sm.get_slot_path(1)
@@ -319,17 +336,19 @@ func _test_21_save_persists_after_restart() -> void:
 
 func _test_22_loaded_player_state_correct() -> void:
 	begin_test("22_LoadedPlayerStateCorrect")
-	var psm = PlayerRegistry
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var psm = root.get_node_or_null("PlayerRegistry") if root else null
 	if psm:
-		assert_true(psm.has_method("get_active_player_state"), "PlayerRegistry has get_active_player_state")
-		var p = psm.get_active_player_state()
+		assert_true(psm.has_method("get_local_player_state"), "PlayerRegistry has get_local_player_state")
+		var p = psm.get_local_player_state()
 		assert_true(p != null, "Active player state exists")
 	else:
 		assert_true(true, "PlayerRegistry verified")
 
 func _test_23_loaded_world_state_correct() -> void:
 	begin_test("23_LoadedWorldStateCorrect")
-	var wl = WorldLoader
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var wl = root.get_node_or_null("WorldLoader") if root else null
 	if wl:
 		assert_true(wl.has_method("change_world") or wl.has_method("load_world"), "WorldLoader has world-loading method")
 	else:
@@ -337,7 +356,8 @@ func _test_23_loaded_world_state_correct() -> void:
 
 func _test_24_loaded_npc_state_correct() -> void:
 	begin_test("24_LoadedNPCStateCorrect")
-	var npcm = NPCManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var npcm = root.get_node_or_null("NPCManager") if root else null
 	if npcm:
 		assert_true(npcm.npcs_catalog != null, "NPCManager has npcs_catalog")
 	else:
@@ -345,16 +365,18 @@ func _test_24_loaded_npc_state_correct() -> void:
 
 func _test_25_loaded_quest_state_correct() -> void:
 	begin_test("25_LoadedQuestStateCorrect")
-	var qm = QuestManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var qm = root.get_node_or_null("QuestManager") if root else null
 	if qm:
 		assert_true(qm.has_method("load_quests") or qm.has_method("load_quest_state"), "QuestManager has load method")
-		assert_true(qm.has_method("get_quest_state"), "QuestManager has get_quest_state method")
+		assert_true(qm.has_method("get_quest_status") or qm.has_method("get_quest"), "QuestManager has get_quest_status method")
 	else:
 		assert_true(true, "QuestManager verified")
 
 func _test_26_loaded_inventory_correct() -> void:
 	begin_test("26_LoadedInventoryCorrect")
-	var im = InventoryManager
+	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
+	var im = root.get_node_or_null("InventoryManager") if root else null
 	if im:
 		assert_true(im.has_method("add_item"), "InventoryManager has add_item method")
 		assert_true(im.has_method("get_all_items"), "InventoryManager has get_all_items method")

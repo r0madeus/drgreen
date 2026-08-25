@@ -1,40 +1,49 @@
 {
-  "worlds": {
-    "botanical_grove": {
-      "description": "An ancient sanctuary brimming with rare primal hybrids and arcane research.",
-      "id": "botanical_grove",
-      "name": "Botanical Grove",
-      "unlock_conditions": [
-        {
-          "quest_id": "quest_09",
-          "type": "quest_completed"
-        }
-      ],
-      "unlocked_by_default": false
-    },
-    "farm": {
-      "description": "Your family heritage farm where botanical journey begins.",
-      "id": "farm",
-      "name": "Peaceful Farm",
-      "unlocked_by_default": true
-    },
-    "forest": {
-      "description": "A dense mysterious woodland rich in wild botanical specimens.",
-      "id": "forest",
-      "name": "Whispering Forest",
-      "unlock_conditions": [
-        {
-          "quest_id": "quest_06",
-          "type": "quest_completed"
-        }
-      ],
-      "unlocked_by_default": false
-    },
-    "town": {
-      "description": "The bustling village square with seed merchant and local botanists.",
-      "id": "town",
-      "name": "Botanist Village",
-      "unlocked_by_default": true
-    }
-  }
+	"worlds": {
+		"botanical_grove": {
+			"description": "An ancient sanctuary brimming with rare primal hybrids and arcane research.",
+			"id": "botanical_grove",
+			"name": "Botanical Grove",
+			"unlock_conditions": [
+				{
+					"quest_id": "quest_09",
+					"type": "quest_completed"
+				}
+			],
+			"unlocked_by_default": false
+		},
+		"farm": {
+			"description": "Your family heritage farm where botanical journey begins.",
+			"id": "farm",
+			"name": "Peaceful Farm",
+			"unlocked_by_default": true
+		},
+		"forest": {
+			"description": "A dense mysterious woodland rich in wild botanical specimens.",
+			"id": "forest",
+			"name": "Whispering Forest",
+			"unlock_conditions": [
+				{
+					"quest_id": "quest_06",
+					"type": "quest_completed"
+				}
+			],
+			"unlocked_by_default": false
+		},
+		"luminous_grove": {
+			"unlock_conditions": [
+				{
+					"quest_id": "quest_luminous",
+					"type": "quest_completed"
+				}
+			],
+			"world_id": "luminous_grove"
+		},
+		"town": {
+			"description": "The bustling village square with seed merchant and local botanists.",
+			"id": "town",
+			"name": "Botanist Village",
+			"unlocked_by_default": true
+		}
+	}
 }

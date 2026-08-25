@@ -119,7 +119,7 @@ func _test_player_state_world_synced() -> void:
 		return
 	var orig_world = wm.current_world_id
 	wm.transition_to("town", "default", false)
-	var ps = psm.get_active_player_state()
+	var ps = psm.get_local_player_state()
 	if ps:
 		assert_eq(ps.current_world, "town", "PlayerState.current_world synced after transition")
 	wm.transition_to(orig_world, "default", false)

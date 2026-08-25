@@ -314,7 +314,7 @@ func can_plant_here(pos: Vector2i) -> bool:
 	var tile = get_tile(pos)
 	return tile != null and tile.type == "soil" and tile.state == "empty"
 
-func plant_seed(pos: Vector2i, plant_id: String) -> bool:
+func plant_seed(pos: Vector2i, plant_id: String, player_id: String = "player_001", gen_id: String = "", gen_prof: Dictionary = {}) -> bool:
 	if not can_plant_here(pos):
 		return false
 		
@@ -333,17 +333,19 @@ func plant_seed(pos: Vector2i, plant_id: String) -> bool:
 	tile.days_in_stage = 0
 	tile.watered_today = false
 	tile.state = "planted"
+	tile.genetic_identity = gen_id
+	tile.genetic_profile = gen_prof
 	
-	_spawn_plant_instance(pos, plant_id, 0, 0, false)
+	_spawn_plant_instance(pos, plant_id, 0, 0, false, gen_id, gen_prof)
 	
 	tile_updated.emit(pos, tile)
 	var bus = get_node_or_null("/root/EventBus")
 	if bus:
 		bus.tile_changed.emit(pos, tile.to_dict())
-		bus.plant_planted.emit(pos, plant_id)
+		bus.plant_planted.emit(player_id, pos, plant_id)
 	return true
 
-func _spawn_plant_instance(pos: Vector2i, plant_id: String, stage: int, days: int, watered: bool) -> void:
+func _spawn_plant_instance(pos: Vector2i, plant_id: String, stage: int, days: int, watered: bool, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	if plant_instances.has(pos):
 		var old = plant_instances[pos]
 		if is_instance_valid(old): old.queue_free()
@@ -351,11 +353,11 @@ func _spawn_plant_instance(pos: Vector2i, plant_id: String, stage: int, days: in
 		
 	var inst = PLANT_INSTANCE_SCENE.instantiate() as PlantInstance
 	add_child(inst)
-	inst.setup(plant_id, pos, stage, watered)
+	inst.setup(plant_id, pos, stage, watered, gen_id, gen_prof)
 	inst.days_in_stage = days
 	plant_instances[pos] = inst
 
-func water_tile(pos: Vector2i) -> bool:
+func water_tile(pos: Vector2i, player_id: String = "player_001") -> bool:
 	if not is_within_bounds(pos):
 		return false
 	var tile = get_tile(pos)
@@ -370,7 +372,7 @@ func water_tile(pos: Vector2i) -> bool:
 	var bus = get_node_or_null("/root/EventBus")
 	if bus:
 		bus.tile_changed.emit(pos, tile.to_dict())
-		bus.plant_watered.emit(pos)
+		bus.plant_watered.emit(player_id, pos)
 	return true
 
 func is_tile_harvestable(pos: Vector2i) -> bool:
@@ -391,7 +393,7 @@ func harvest_tile(pos: Vector2i, player_id: String = "player_001") -> Dictionary
 	var plant_id = tile.plant_id
 	var yield_count = 1
 	var pm = get_node_or_null("/root/PlantManager")
-	if pm: yield_count = pm.get_harvest_yield(plant_id)
+	if pm: yield_count = pm.get_harvest_yield(plant_id, tile.genetic_profile)
 		
 	var econ = get_node_or_null("/root/EconomyManager")
 	if econ and econ.has_upgrade(player_id, "better_tools"): yield_count += 1
@@ -406,21 +408,23 @@ func harvest_tile(pos: Vector2i, player_id: String = "player_001") -> Dictionary
 	tile.days_in_stage = 0
 	tile.watered_today = false
 	tile.state = "empty"
+	tile.genetic_identity = ""
+	tile.genetic_profile = {}
 	
 	tile_updated.emit(pos, tile)
-	plant_harvested.emit(pos, plant_id, yield_count)
+	plant_harvested.emit(player_id, pos, plant_id, yield_count)
 	
 	var gm_mgr = get_node_or_null("/root/GreenhouseManager")
 	if gm_mgr and gm_mgr.is_greenhouse_tile(pos):
 		var qm = get_node_or_null("/root/QuestManager")
-		if qm: qm.advance_objective("harvest_greenhouse", yield_count)
+		if qm: qm.advance_objective(player_id, "harvest_greenhouse", yield_count)
 	
 	var bus = get_node_or_null("/root/EventBus")
 	if bus:
 		bus.tile_changed.emit(pos, tile.to_dict())
-		bus.plant_harvested.emit(pos, plant_id, yield_count)
+		bus.plant_harvested.emit(player_id, pos, plant_id, yield_count)
 		
-	return { "item_id": plant_id, "yield": yield_count }
+	return { "item_id": plant_id, "yield": yield_count, "genetic_identity": tile.genetic_identity, "genetic_profile": tile.genetic_profile.duplicate() }
 
 func apply_rain_watering() -> void:
 	var gm_mgr = get_node_or_null("/root/GreenhouseManager")

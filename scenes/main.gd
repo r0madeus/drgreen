@@ -92,6 +92,10 @@ func enter_menu_mode() -> void:
 	current_mode = AppMode.MENU
 	is_transitioning = false
 	var tm = _get_safe_node("TimeManager")
+	if not tm:
+		var loop = Engine.get_main_loop()
+		if loop and loop.root:
+			tm = loop.root.get_node_or_null("TimeManager")
 	if tm and "is_paused" in tm: tm.is_paused = true
 	
 	_clear_gameplay()
@@ -154,9 +158,7 @@ func open_editor() -> void:
 	var tm = _get_safe_node("TimeManager")
 	if tm and "is_paused" in tm: tm.is_paused = true
 	
-	push_warning("Editor is disabled in runtime.")
-	return
-		# current_editor_shell = EditorShell.new()
+	current_editor_shell = preload("res://editor/ui/editor_shell.gd").new()
 	current_editor_shell.name = "EditorShell"
 	editor_container.add_child(current_editor_shell)
 

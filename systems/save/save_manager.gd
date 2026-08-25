@@ -608,7 +608,7 @@ func load_game(target = null) -> bool:
 	if wl:
 		wl.current_world_id = target_w
 		wl.world_states = save.world_states.duplicate(true)
-		wl.change_world(target_w, player_pos, false)
+		wl.change_world("player_001", target_w, player_pos, false)
 		
 	# 5. Player Facing & Position
 	var player = get_tree().root.find_child("Player", true, false)

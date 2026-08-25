@@ -372,7 +372,7 @@ func _test_10_real_dialogue_authoring_and_gameplay_interaction() -> void:
 	# Boot gameplay and verify DialogueManager can resolve dialogue
 	var dm = _get_root_node("/root/DialogueManager")
 	if dm and dm.has_method("start_dialogue"):
-		dm.start_dialogue("rowan")
+		dm.start_dialogue("player_001", "rowan")
 		assert_true(dm.is_dialogue_active or dm.current_dialogue_id == "rowan", "Dialogue started in gameplay")
 		if dm.has_method("end_dialogue"): dm.end_dialogue()
 		
@@ -397,7 +397,7 @@ func _test_11_real_quest_authoring_and_gameplay_completion() -> void:
 	# Trigger EventBus harvest event to verify quest system reaction
 	var qm = _get_root_node("/root/QuestManager")
 	if qm and qm.has_method("advance_objective"):
-		qm.advance_objective("harvest", 1, "plant_red_flower")
+		qm.advance_objective("player_001", "harvest", 1, "plant_red_flower")
 		assert_true(true, "Quest progression event dispatched cleanly without crash")
 		
 	service.reset_all()
@@ -417,9 +417,9 @@ func _test_12_real_item_crop_authoring_and_harvest_flow() -> void:
 	# Add item to inventory and verify count
 	var im = _get_root_node("/root/InventoryManager")
 	if im and im.has_method("add_item"):
-		im.add_item("plant_red_flower", 2)
-		assert_gte(im.get_item_count("plant_red_flower"), 2, "Inventory received harvested crop items")
-		im.remove_item("plant_red_flower", 2)
+		im.add_item("player_001", "plant_red_flower", 2)
+		assert_gte(im.get_item_count("player_001", "plant_red_flower"), 2, "Inventory received harvested crop items")
+		im.remove_item("player_001", "plant_red_flower", 2)
 		
 	service.reset_all()
 

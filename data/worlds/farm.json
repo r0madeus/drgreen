@@ -82,6 +82,25 @@
         "walkable": true,
         "z_index": 0.0
       }
+    },
+    {
+      "asset_id": "wooden_gate",
+      "instance_id": "house_door_1",
+      "layer": "OBJECT",
+      "name": "House Door",
+      "position": [
+        20,
+        10
+      ],
+      "properties": {
+        "interactable": true,
+        "solid": false,
+        "walkable": true,
+        "z_index": 0.0,
+        "interaction_type": "world_transition",
+        "target_world": "home",
+        "interaction_id": "from_farm"
+      }
     }
   ],
   "spawn": [
@@ -7050,6 +7069,18 @@
       "target_spawn": "grove_from_farm",
       "target_world": "botanical_grove",
       "transition_id": "farm_to_grove"
+    },
+    {
+      "instance_id": "farm_to_home",
+      "name": "Enter House",
+      "position": [
+        20,
+        10
+      ],
+      "required_progression": "",
+      "target_spawn": "from_farm",
+      "target_world": "home",
+      "transition_id": "farm_to_home"
     }
   ],
   "version": 3,

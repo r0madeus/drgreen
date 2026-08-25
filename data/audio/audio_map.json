@@ -1,0 +1,18 @@
+{
+	"event.boss": "res://assets/audio/sfx/ui_select.wav",
+	"farming.plant": "res://assets/audio/sfx/ui_select.wav",
+	"my_sfx": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_147": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_230": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_333": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_367": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_415": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_481": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_616": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_710": "res://assets/audio/sfx/ui_select.wav",
+	"new_audio_861": "res://assets/audio/sfx/ui_select.wav",
+	"redo_test": "res://assets/audio/sfx/ui_select.wav",
+	"reload_test": "res://assets/audio/sfx/ui_select.wav",
+	"save_test": "res://assets/audio/sfx/ui_select.wav",
+	"undo_test": "res://assets/audio/sfx/ui_select.wav"
+}

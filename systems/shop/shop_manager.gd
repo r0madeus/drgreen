@@ -48,7 +48,7 @@ func buy_item(player_id: String, shop_id: String, item_id: String, count: int = 
 	var total_price = unit_price * count
 	
 	var em = get_node_or_null("/root/EconomyManager")
-	if not em or not em.can_afford(total_price):
+	if not em or not em.can_afford(player_id, total_price):
 		return { "success": false, "message": "Not enough Gold!" }
 		
 	var im = get_node_or_null("/root/InventoryManager")
@@ -60,7 +60,7 @@ func buy_item(player_id: String, shop_id: String, item_id: String, count: int = 
 		
 	im.add_item(player_id, item_id, count)
 	item_purchased.emit(item_id, count, total_price)
-	EventBus.item_bought.emit(item_id, count, total_price)
+	EventBus.item_bought.emit(player_id, item_id, count, total_price)
 	
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("purchase")
@@ -76,7 +76,7 @@ func buy_item(player_id: String, shop_id: String, item_id: String, count: int = 
 
 func sell_crop(player_id: String, item_id: String, count: int = 1) -> Dictionary:
 	var im = get_node_or_null("/root/InventoryManager")
-	if not im or not im.has_item(item_id, count):
+	if not im or not im.has_item(player_id, item_id, count):
 		return { "success": false, "message": "Not enough items in inventory." }
 		
 	var pm = get_node_or_null("/root/PlantManager")
@@ -87,17 +87,17 @@ func sell_crop(player_id: String, item_id: String, count: int = 1) -> Dictionary
 			base_sell_price = int(pinfo.get("sell_price", 20))
 			
 	var em = get_node_or_null("/root/EconomyManager")
-	var mult = em.get_sell_price_multiplier(item_id) if em else 1.0
+	var mult = em.get_sell_price_multiplier(player_id, item_id) if em else 1.0
 	var unit_price = int(round(base_sell_price * mult))
 	var total_earnings = unit_price * count
 	
-	if not im.remove_item(item_id, count):
+	if not im.remove_item(player_id, item_id, count):
 		return { "success": false, "message": "Failed to remove item from inventory." }
 		
 	if em: em.add_gold(player_id, total_earnings)
 		
 	item_sold.emit(item_id, count, total_earnings)
-	EventBus.item_sold.emit(item_id, count, total_earnings)
+	EventBus.item_sold.emit(player_id, item_id, count, total_earnings)
 	
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("sell")
@@ -110,3 +110,12 @@ func sell_crop(player_id: String, item_id: String, count: int = 1) -> Dictionary
 		spawner.spawn_floating_text(pos, "💰 Sold %dx %s (+%d G)" % [count, dname, total_earnings], Color(0.4, 1.0, 0.4))
 		
 	return { "success": true, "message": "Sold successfully!", "total_earnings": total_earnings }
+
+func open_shop(shop_id: String = "") -> void:
+	## Compatibility stub - actual shop UI is handled by ShopUI node.
+	## Called by DialogueManager when NPC has 'open_shop' action.
+	var root = Engine.get_main_loop().root if Engine.get_main_loop() else null
+	var shop_ui = root.find_child("ShopUI", true, false) if root else null
+	if shop_ui and shop_ui.has_method("open_shop"):
+		shop_ui.open_shop()
+	# else: ShopUI not available, shop will open via in-world interaction

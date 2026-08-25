@@ -37,6 +37,8 @@ func _ready() -> void:
 	
 	if not grid_manager and get_parent():
 		grid_manager = get_parent().get_node_or_null("GridManager") as GridManager
+	if not grid_manager and get_tree() and get_tree().root:
+		grid_manager = get_tree().root.find_child("GridManager", true, false) as GridManager
 		
 	if grid_manager:
 		position = grid_manager.grid_to_world(grid_position, true)
@@ -48,7 +50,7 @@ func _ready() -> void:
 	if grid_manager:
 		grid_manager.add_child(tile_highlight)
 	else:
-		add_sibling(tile_highlight)
+		if get_parent(): get_parent().add_child.call_deferred(tile_highlight)
 		
 	if movement:
 		if not movement.movement_started.is_connected(_on_movement_started):
@@ -80,6 +82,8 @@ func _physics_process(delta: float) -> void:
 		
 	if not grid_manager and get_parent():
 		grid_manager = get_parent().get_node_or_null("GridManager") as GridManager
+	if not grid_manager and get_tree() and get_tree().root:
+		grid_manager = get_tree().root.find_child("GridManager", true, false) as GridManager
 		
 	var previous_grid_position = grid_position
 	if movement:
@@ -276,7 +280,7 @@ func _on_grid_position_changed(new_pos: Vector2i) -> void:
 			var target_world = str(tr.get("target_world", ""))
 			var target_spawn = tr.get("target_spawn", null)
 			if target_world != "":
-				wl.change_world(target_world, target_spawn)
+				wl.change_world(player_id, target_world, target_spawn)
 
 func _on_direction_changed(new_dir: Vector2i) -> void:
 	facing_direction = new_dir
@@ -285,6 +289,8 @@ func _on_direction_changed(new_dir: Vector2i) -> void:
 func _on_interaction_triggered(target_pos: Vector2i) -> void:
 	if not grid_manager and get_parent():
 		grid_manager = get_parent().get_node_or_null("GridManager") as GridManager
+	if not grid_manager and get_tree() and get_tree().root:
+		grid_manager = get_tree().root.find_child("GridManager", true, false) as GridManager
 	if not grid_manager: return
 		
 	var tile = grid_manager.get_tile(target_pos)
@@ -301,7 +307,7 @@ func _on_interaction_triggered(target_pos: Vector2i) -> void:
 			var target_spawn = tr.get("target_spawn", "default")
 			if target_world != "":
 				if wm: wm.transition_to(target_world, target_spawn)
-				else: wl.change_world(target_world, target_spawn)
+				else: wl.change_world(player_id, target_world, target_spawn)
 				return
 				
 	# 2. NPC / Dialogue / Shop Interaction
@@ -323,6 +329,16 @@ func _on_interaction_triggered(target_pos: Vector2i) -> void:
 		var tm = get_node_or_null("/root/TimeManager")
 		if tm: tm.request_sleep()
 		return
+
+	# 5. Generic Object Interactions (Synthesis Station)
+	if grid_manager.interactables.has(target_pos):
+		var obj = grid_manager.interactables[target_pos]
+		var props = AssetDefinitionManager.resolve_instance_properties(obj.get("asset_id", ""), obj.get("properties", {}))
+		if props.get("interaction_type") == "synthesis_station":
+			var hud = get_tree().root.find_child("HUD", true, false)
+			if hud and hud.combination_ui and not hud.combination_ui.visible:
+				hud.combination_ui.toggle_visibility()
+			return
 
 
 
