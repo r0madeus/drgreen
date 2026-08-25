@@ -77,6 +77,9 @@ func run_all() -> Dictionary:
 	_run_path("res://tests/integration/test_asset_editor.gd")
 	_run_path("res://tests/integration/test_editor_full_regression.gd")
 	_run_path("res://tests/integration/test_editor_user_acceptance.gd")
+	_run_path("res://tests/unit/test_genetics_data.gd")
+	_run_path("res://tests/unit/test_genetics_engine.gd")
+	_run_path("res://tests/qa/test_phase_3b_genetics_editor.gd")
 
 	if main and main.has_method("return_to_main_menu"):
 		main.return_to_main_menu()

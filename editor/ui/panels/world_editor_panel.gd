@@ -22,6 +22,7 @@ var current_world_data: Dictionary = {}
 
 # Top Bar
 var world_option: OptionButton
+var btn_zoom_reset: Button
 
 # Left Sidebar & Tool Buttons
 var left_sidebar_container: VBoxContainer
@@ -57,7 +58,7 @@ var world_history: EditorHistory
 var graph_dialog: WorldGraphDialog
 var clipboard_object: Dictionary = {}
 var _is_dirty: bool = false
-var _available_worlds: Array[String] = ["farm", "town", "forest", "greenhouse"]
+var _available_worlds: Array[String] = ["farm", "central_town", "town", "forest", "greenhouse"]
 
 func _init() -> void:
 	super._init("world", "ui.editor.cat_world", "icon_world")
@@ -90,22 +91,24 @@ func _build_ui() -> void:
 	add_child(main_vbox)
 
 	# =========================================================================
-	# 1. TOP GLOBAL BAR (Clean, global actions only)
+	# 1. TOP GLOBAL BAR (Clean, compact viewport & world controls)
 	# =========================================================================
 	var top_bar = PanelContainer.new()
-	top_bar.custom_minimum_size = Vector2(0, 36)
+	top_bar.custom_minimum_size = Vector2(0, 32)
 	main_vbox.add_child(top_bar)
 
 	var top_hbox = HBoxContainer.new()
+	top_hbox.add_theme_constant_override("separation", 6)
 	top_bar.add_child(top_hbox)
 
 	var title_lbl = Label.new()
-	title_lbl.text = "[Map] World Editor"
+	title_lbl.text = "🌍 World Editor"
 	title_lbl.add_theme_font_size_override("font_size", 13)
 	title_lbl.modulate = Color(0.95, 0.88, 0.4)
 	top_hbox.add_child(title_lbl)
 
-	top_hbox.add_spacer(false)
+	var sep_w = VSeparator.new()
+	top_hbox.add_child(sep_w)
 
 	var world_lbl = Label.new()
 	world_lbl.text = "World:"
@@ -113,49 +116,88 @@ func _build_ui() -> void:
 	top_hbox.add_child(world_lbl)
 
 	world_option = OptionButton.new()
-	world_option.custom_minimum_size = Vector2(120, 26)
+	world_option.custom_minimum_size = Vector2(110, 24)
+	world_option.add_theme_font_size_override("font_size", 11)
 	world_option.item_selected.connect(_on_world_selected)
 	top_hbox.add_child(world_option)
 
-	top_hbox.add_spacer(false)
+	var sep_v = VSeparator.new()
+	top_hbox.add_child(sep_v)
 
-	# Center Actions: Undo / Redo / View Tools
+	# --- Viewport Navigation Controls ---
+	var btn_zoom_out = Button.new()
+	btn_zoom_out.text = "−"
+	btn_zoom_out.tooltip_text = "Zoom Out (Wheel Down)"
+	btn_zoom_out.add_theme_font_size_override("font_size", 12)
+	btn_zoom_out.pressed.connect(func(): if canvas: canvas.zoom_out())
+	top_hbox.add_child(btn_zoom_out)
+
+	btn_zoom_reset = Button.new()
+	btn_zoom_reset.text = "100%"
+	btn_zoom_reset.tooltip_text = "Reset Zoom to 100%"
+	btn_zoom_reset.add_theme_font_size_override("font_size", 11)
+	btn_zoom_reset.pressed.connect(func(): if canvas: canvas.reset_zoom())
+	top_hbox.add_child(btn_zoom_reset)
+
+	var btn_zoom_in = Button.new()
+	btn_zoom_in.text = "+"
+	btn_zoom_in.tooltip_text = "Zoom In (Wheel Up)"
+	btn_zoom_in.add_theme_font_size_override("font_size", 12)
+	btn_zoom_in.pressed.connect(func(): if canvas: canvas.zoom_in())
+	top_hbox.add_child(btn_zoom_in)
+
+	var btn_fit = Button.new()
+	btn_fit.text = "Fit"
+	btn_fit.tooltip_text = "Fit entire map in viewport (Home)"
+	btn_fit.add_theme_font_size_override("font_size", 11)
+	btn_fit.pressed.connect(func(): if canvas: canvas.fit_to_screen())
+	top_hbox.add_child(btn_fit)
+
+	var btn_center = Button.new()
+	btn_center.text = "⊙"
+	btn_center.tooltip_text = "Center view on map (F)"
+	btn_center.add_theme_font_size_override("font_size", 12)
+	btn_center.pressed.connect(func(): if canvas: canvas.center_map())
+	top_hbox.add_child(btn_center)
+
+	var spacer_top = Control.new()
+	spacer_top.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top_hbox.add_child(spacer_top)
+
+	# --- Actions: Undo / Redo / Save / Reset / Playtest ---
 	var undo_btn = Button.new()
-	undo_btn.text = "[Undo]"
+	undo_btn.text = "↶ Undo"
+	undo_btn.tooltip_text = "Undo last action (Ctrl+Z)"
+	undo_btn.add_theme_font_size_override("font_size", 11)
 	undo_btn.pressed.connect(_on_undo)
 	top_hbox.add_child(undo_btn)
 
 	var redo_btn = Button.new()
-	redo_btn.text = "[Redo]"
+	redo_btn.text = "↷ Redo"
+	redo_btn.tooltip_text = "Redo last action (Ctrl+Y)"
+	redo_btn.add_theme_font_size_override("font_size", 11)
 	redo_btn.pressed.connect(_on_redo)
 	top_hbox.add_child(redo_btn)
 
-	var fit_btn = Button.new()
-	fit_btn.text = "[Fit]"
-	fit_btn.pressed.connect(func(): if canvas: canvas.fit_to_screen())
-	top_hbox.add_child(fit_btn)
-
-	var zoom_1_btn = Button.new()
-	zoom_1_btn.text = "100%"
-	zoom_1_btn.pressed.connect(func(): if canvas: canvas.zoom_level = 1.0; canvas.queue_redraw())
-	top_hbox.add_child(zoom_1_btn)
-
-	top_hbox.add_spacer(false)
-
-	# Right Global Actions: Save / Reset / Playtest
 	var save_btn = Button.new()
-	save_btn.text = "[Save]"
+	save_btn.text = "💾 Save"
+	save_btn.tooltip_text = "Save world modifications"
+	save_btn.add_theme_font_size_override("font_size", 11)
 	save_btn.pressed.connect(_on_save_overrides)
 	top_hbox.add_child(save_btn)
 
 	var reset_btn = Button.new()
-	reset_btn.text = "[Reset]"
+	reset_btn.text = "↺ Reset"
+	reset_btn.tooltip_text = "Reset world to base defaults"
+	reset_btn.add_theme_font_size_override("font_size", 11)
 	reset_btn.pressed.connect(_on_reset_to_default)
 	top_hbox.add_child(reset_btn)
 
 	var playtest_btn = Button.new()
-	playtest_btn.text = "â–¶ï¸ Test World"
+	playtest_btn.text = "▶ Test World"
+	playtest_btn.tooltip_text = "Launch live playtest for this world"
 	playtest_btn.modulate = Color(0.4, 1.0, 0.5)
+	playtest_btn.add_theme_font_size_override("font_size", 11)
 	playtest_btn.pressed.connect(_on_playtest_pressed)
 	top_hbox.add_child(playtest_btn)
 
@@ -386,14 +428,14 @@ func _build_tool_sidebar(container: VBoxContainer) -> void:
 	tools_lbl.modulate = Color(0.7, 0.7, 0.7)
 	container.add_child(tools_lbl)
 
-	tool_buttons[WorldCanvas.ToolMode.SELECT] = _add_sidebar_tool_btn(container, "[Select] Select [1]", WorldCanvas.ToolMode.SELECT)
-	tool_buttons[WorldCanvas.ToolMode.BRUSH] = _add_sidebar_tool_btn(container, "[Paint]  Paint [2]", WorldCanvas.ToolMode.BRUSH)
-	tool_buttons[WorldCanvas.ToolMode.ERASER] = _add_sidebar_tool_btn(container, "[Erase] Erase [3]", WorldCanvas.ToolMode.ERASER)
-	tool_buttons[WorldCanvas.ToolMode.FILL] = _add_sidebar_tool_btn(container, "[Fill] Fill [4]", WorldCanvas.ToolMode.FILL)
-	tool_buttons[WorldCanvas.ToolMode.RECTANGLE] = _add_sidebar_tool_btn(container, "[Rect] Rect [5]", WorldCanvas.ToolMode.RECTANGLE)
-	tool_buttons[WorldCanvas.ToolMode.LINE] = _add_sidebar_tool_btn(container, "[Line] Line", WorldCanvas.ToolMode.LINE)
-	tool_buttons[WorldCanvas.ToolMode.SCATTER] = _add_sidebar_tool_btn(container, "[Scatter] Scatter", WorldCanvas.ToolMode.SCATTER)
-	tool_buttons[WorldCanvas.ToolMode.TRANSITION] = _add_sidebar_tool_btn(container, "[Transition] Transition", WorldCanvas.ToolMode.TRANSITION)
+	tool_buttons[WorldCanvas.ToolMode.SELECT] = _add_sidebar_tool_btn(container, "🖱 Select [1]", WorldCanvas.ToolMode.SELECT, "Select and move entities. Shortcut: 1")
+	tool_buttons[WorldCanvas.ToolMode.BRUSH] = _add_sidebar_tool_btn(container, "🖌 Paint [2]", WorldCanvas.ToolMode.BRUSH, "Paint selected tile onto the map. Shortcut: 2")
+	tool_buttons[WorldCanvas.ToolMode.ERASER] = _add_sidebar_tool_btn(container, "🧹 Erase [3]", WorldCanvas.ToolMode.ERASER, "Remove tiles or entities from map. Shortcut: 3")
+	tool_buttons[WorldCanvas.ToolMode.FILL] = _add_sidebar_tool_btn(container, "🪣 Fill [4]", WorldCanvas.ToolMode.FILL, "Flood fill contiguous tiles. Shortcut: 4")
+	tool_buttons[WorldCanvas.ToolMode.RECTANGLE] = _add_sidebar_tool_btn(container, "▭ Rect [5]", WorldCanvas.ToolMode.RECTANGLE, "Paint rectangular area. Shortcut: 5")
+	tool_buttons[WorldCanvas.ToolMode.LINE] = _add_sidebar_tool_btn(container, "╱ Line", WorldCanvas.ToolMode.LINE, "Paint straight line between points.")
+	tool_buttons[WorldCanvas.ToolMode.SCATTER] = _add_sidebar_tool_btn(container, "✨ Scatter", WorldCanvas.ToolMode.SCATTER, "Randomly distribute selected asset.")
+	tool_buttons[WorldCanvas.ToolMode.TRANSITION] = _add_sidebar_tool_btn(container, "🚪 Transition", WorldCanvas.ToolMode.TRANSITION, "Create/edit world transition point.")
 
 	var sep = HSeparator.new()
 	container.add_child(sep)
@@ -405,22 +447,30 @@ func _build_tool_sidebar(container: VBoxContainer) -> void:
 	container.add_child(ent_lbl)
 
 	var spawn_btn = Button.new()
-	spawn_btn.text = "ğŸ“ Spawn"
+	spawn_btn.text = "📍 Spawn"
+	spawn_btn.tooltip_text = "Set player spawn location"
+	spawn_btn.add_theme_font_size_override("font_size", 11)
 	spawn_btn.pressed.connect(_on_set_spawn_tool)
 	container.add_child(spawn_btn)
 
 	var trans_btn = Button.new()
-	trans_btn.text = "[Transition] Transition"
+	trans_btn.text = "🚪 Transition"
+	trans_btn.tooltip_text = "Add world exit / portal transition point"
+	trans_btn.add_theme_font_size_override("font_size", 11)
 	trans_btn.pressed.connect(_on_add_transition)
 	container.add_child(trans_btn)
 
 	var npc_btn = Button.new()
-	npc_btn.text = "[NPC] NPC Point"
+	npc_btn.text = "👤 NPC Point"
+	npc_btn.tooltip_text = "Place an NPC location anchor"
+	npc_btn.add_theme_font_size_override("font_size", 11)
 	npc_btn.pressed.connect(_on_add_npc_point)
 	container.add_child(npc_btn)
 
 	var graph_btn = Button.new()
-	graph_btn.text = "[Map] Graph"
+	graph_btn.text = "🗺 Graph"
+	graph_btn.tooltip_text = "Open world transition map graph"
+	graph_btn.add_theme_font_size_override("font_size", 11)
 	graph_btn.pressed.connect(_on_open_graph_dialog)
 	container.add_child(graph_btn)
 
@@ -439,12 +489,15 @@ func _build_tool_sidebar(container: VBoxContainer) -> void:
 	layer_opt.add_item("OBJECT", 2)
 	layer_opt.add_item("DECORATION", 3)
 	layer_opt.add_item("NPC", 4)
+	layer_opt.add_theme_font_size_override("font_size", 11)
 	layer_opt.item_selected.connect(func(idx): if canvas: canvas.active_layer_name = layer_opt.get_item_text(idx))
 	container.add_child(layer_opt)
 
-func _add_sidebar_tool_btn(container: VBoxContainer, text: String, mode: WorldCanvas.ToolMode) -> Button:
+func _add_sidebar_tool_btn(container: VBoxContainer, text: String, mode: WorldCanvas.ToolMode, tooltip_msg: String = "") -> Button:
 	var btn = Button.new()
 	btn.text = text
+	btn.tooltip_text = tooltip_msg
+	btn.add_theme_font_size_override("font_size", 11)
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.pressed.connect(func(): _set_tool(mode))
 	container.add_child(btn)
@@ -456,17 +509,20 @@ func _build_layers_tab(container: VBoxContainer) -> void:
 		var hbox = HBoxContainer.new()
 		var lbl = Label.new()
 		lbl.text = l
+		lbl.add_theme_font_size_override("font_size", 11)
 		lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hbox.add_child(lbl)
 
 		var vis_check = CheckBox.new()
-		vis_check.text = "ğŸ‘ï¸"
+		vis_check.text = "👁"
+		vis_check.tooltip_text = "Toggle Layer Visibility"
 		vis_check.button_pressed = true
 		vis_check.toggled.connect(func(v): _set_layer_visible(l, v))
 		hbox.add_child(vis_check)
 
 		var lock_check = CheckBox.new()
-		lock_check.text = "[Lock]"
+		lock_check.text = "🔒"
+		lock_check.tooltip_text = "Lock Layer Against Edits"
 		lock_check.button_pressed = false
 		lock_check.toggled.connect(func(v): _set_layer_locked(l, v))
 		hbox.add_child(lock_check)
@@ -575,8 +631,14 @@ func _update_tool_highlights() -> void:
 				btn.modulate = Color(1.0, 1.0, 1.0)
 
 func _on_palette_asset_selected(asset_info: Dictionary) -> void:
+	var aid = str(asset_info.get("id", "none"))
+	var aname = str(asset_info.get("name", aid.capitalize()))
+	var atype = str(asset_info.get("type", "terrain"))
 	if status_asset_label:
-		status_asset_label.text = "Asset: " + str(asset_info.get("id", "none"))
+		if atype in ["terrain", "tile"]:
+			status_asset_label.text = "Terrain: " + aname
+		else:
+			status_asset_label.text = "Asset: " + aname
 	_set_tool(WorldCanvas.ToolMode.BRUSH)
 
 func _on_set_spawn_tool() -> void:
@@ -665,6 +727,8 @@ func _on_canvas_status_updated(info: Dictionary) -> void:
 		status_coord_label.text = "Coord: (%d, %d)" % [info.get("x", 0), info.get("y", 0)]
 	if status_zoom_label:
 		status_zoom_label.text = "Zoom: %d%%" % int(info.get("zoom", 100))
+	if btn_zoom_reset:
+		btn_zoom_reset.text = "%d%%" % int(info.get("zoom", 100))
 
 func _on_map_modified() -> void:
 	_is_dirty = true

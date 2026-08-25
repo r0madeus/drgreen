@@ -130,6 +130,7 @@ func spawn_harvest_effect(pos: Vector2) -> void:
 
 # 5. FLOATING POPUP TEXT: Floating feedback message (+1 Crop, etc.)
 func spawn_floating_text(pos: Vector2, text: String, color: Color = Color.WHITE) -> void:
+	if not is_inside_tree(): return
 	var sm = get_node_or_null("/root/SettingsManager")
 	if sm and not bool(sm.get_setting("gameplay", "floating_text", true)):
 		return

@@ -40,6 +40,85 @@ static func get_all_asset_ids() -> Array:
 	ensure_initialized()
 	return _manifest.keys()
 
+static func get_assets_by_category(category_name: String) -> Array:
+	ensure_initialized()
+	var res = []
+	for k in _manifest.keys():
+		var meta = _manifest[k]
+		var cat = str(meta.get("category", ""))
+		var t = str(meta.get("type", ""))
+		if cat == category_name or t == category_name:
+			res.append(k)
+		elif category_name == "terrain" and (cat in ["terrain", "tile"] or t in ["terrain", "tile"] or k.begins_with("tile.") or k.begins_with("terrain.")):
+			res.append(k)
+	return res
+
+static func get_assets_by_type(type_name: String) -> Array:
+	return get_assets_by_category(type_name)
+
+static func get_all_terrain_ids() -> Array[String]:
+	var list = get_terrain_assets()
+	var ids: Array[String] = []
+	for item in list:
+		ids.append(str(item.get("id", "")))
+	return ids
+
+static func get_terrain_assets() -> Array[Dictionary]:
+	ensure_initialized()
+	var res: Array[Dictionary] = []
+	var found_ids: Dictionary = {}
+	
+	# 1. Query manifest entries for terrain or tile category
+	for k in _manifest.keys():
+		var meta = _manifest[k]
+		var cat = str(meta.get("category", ""))
+		var t = str(meta.get("type", ""))
+		if cat in ["terrain", "tile"] or t in ["terrain", "tile"] or k.begins_with("tile.") or k.begins_with("terrain."):
+			var clean_id = k.trim_prefix("tile.").trim_prefix("terrain.")
+			if not found_ids.has(clean_id):
+				found_ids[clean_id] = true
+				var display_name = clean_id.replace("_", " ").capitalize()
+				var tex_path = str(meta.get("texture", ""))
+				if tex_path == "":
+					tex_path = "%stiles/%s.png" % [SPRITE_ROOT, clean_id]
+				res.append({
+					"id": clean_id,
+					"asset_id": k,
+					"name": display_name,
+					"type": "terrain",
+					"category": "terrain",
+					"layer": "GROUND" if clean_id != "fence" else "OBJECT",
+					"texture": tex_path,
+					"solid": bool(meta.get("solid", clean_id in ["fence", "water"])),
+					"walkable": bool(meta.get("walkable", not (clean_id in ["fence", "water"]))),
+					"tooltip": "%s\nTerrain asset used for ground painting." % display_name
+				})
+				
+	# 2. Discover existing terrain sprites from assets/sprites/tiles directory
+	var files = DirAccess.get_files_at(SPRITE_ROOT + "tiles/")
+	if files:
+		for f in files:
+			if f.ends_with(".png") and not f.ends_with(".import"):
+				var base = f.get_basename()
+				if "_" in base and (base.split("_")[-1].is_valid_int()):
+					continue
+				if not found_ids.has(base):
+					found_ids[base] = true
+					var display_name = base.replace("_", " ").capitalize()
+					res.append({
+						"id": base,
+						"asset_id": "tile." + base,
+						"name": display_name,
+						"type": "terrain",
+						"category": "terrain",
+						"layer": "GROUND" if base != "fence" else "OBJECT",
+						"texture": "%stiles/%s" % [SPRITE_ROOT, f],
+						"solid": base in ["fence", "water"],
+						"walkable": not (base in ["fence", "water"]),
+						"tooltip": "%s\nTerrain asset used for ground painting." % display_name
+					})
+	return res
+
 # ==============================================================================
 
 # RUNTIME ASSET SWAP / OVERRIDE API (MODDING & TESTS)
@@ -421,6 +500,18 @@ static func has_asset(asset_id: String) -> bool:
 	ensure_initialized()
 	if _resource_overrides.has(asset_id): return true
 	if _manifest.has(asset_id): return true
+	for prefix in ["prop.", "building.", "npc.", "tile.", "item.", "character."]:
+		if _manifest.has(prefix + asset_id): return true
+	var alias_keys = [
+		"rowan", "merchant", "mira", "elias", "seed_shop", "shipping_box",
+		"farm_house", "greenhouse_repaired", "greenhouse_ruined", "laboratory",
+		"barn", "storage_shed", "wooden_gate", "tree_stump", "tree",
+		"ancient_tree", "bush", "rock", "rock_small", "fallen_branch",
+		"flower_patch", "chest", "workbench", "signpost", "well", "bench",
+		"mushroom", "pond", "world_exit", "portal", "player_start",
+		"grass", "soil", "path", "fence", "water", "sand", "stone"
+	]
+	if asset_id in alias_keys: return true
 	var path = SPRITE_ROOT + asset_id + ".png"
 	if ResourceLoader.exists(path) or FileAccess.file_exists(path): return true
 	var a_path = AUDIO_ROOT + asset_id + ".ogg"

@@ -286,7 +286,7 @@ func open_ui() -> void:
 	# Pre-populate name if available
 	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm and name_input:
-		var st = psm.get_active_player_state()
+		var st = psm.get_local_player_state()
 		if st and st.display_name != "":
 			name_input.text = st.display_name
 			
@@ -415,7 +415,7 @@ func _apply_player_name() -> void:
 	
 	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
-		var st = psm.get_active_player_state()
+		var st = psm.get_local_player_state()
 		if st: st.display_name = p_name
 
 func _enter_multiplayer_gameplay() -> void:

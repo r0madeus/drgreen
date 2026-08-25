@@ -51,14 +51,21 @@ func get_max_stages(plant_id: String) -> int:
 		return 3
 	return plant.get("growth", {}).get("stages", 3)
 
-func calculate_growth(plant_id: String, current_stage: int, days_in_stage: int) -> Dictionary:
+func calculate_growth(plant_id: String, current_stage: int, days_in_stage: int, genetic_profile: Dictionary = {}) -> Dictionary:
 	var plant = get_plant(plant_id)
 	if plant.is_empty():
 		return {"new_stage": current_stage, "days_in_stage": days_in_stage, "is_mature": false}
 		
 	var growth_info = plant.get("growth", {})
 	var max_stages: int = growth_info.get("stages", 4)
-	var days_per_stage: Array = growth_info.get("days_per_stage", [1, 1, 1])
+	var days_per_stage: Array = growth_info.get("days_per_stage", [1, 1, 1]).duplicate()
+	if not genetic_profile.is_empty():
+		var g_speed = str(genetic_profile.get("growth_speed", "normal"))
+		var modifier = 0
+		if g_speed == "fast": modifier = -1
+		elif g_speed == "slow": modifier = 1
+		for i in range(days_per_stage.size()):
+			days_per_stage[i] = max(1, int(days_per_stage[i]) + modifier)
 	
 	# Last stage index is max_stages - 1 (0-indexed: 0=seed, 1=sprout, 2=growing, 3=mature)
 	var mature_stage = max_stages - 1
@@ -83,10 +90,26 @@ func calculate_growth(plant_id: String, current_stage: int, days_in_stage: int) 
 		"is_mature": is_mature
 	}
 
-func get_harvest_yield(plant_id: String) -> int:
+func get_harvest_yield(plant_id: String, genetic_profile: Dictionary = {}) -> int:
 	var plant = get_plant(plant_id)
 	if plant.is_empty():
 		return 1
+	if not genetic_profile.is_empty():
+		var prod = int(genetic_profile.get("productivity", 1))
+		var r = randf()
+		if prod == 3:
+			if r < 0.30: return 1
+			elif r < 0.70: return 2
+			else: return 3
+		elif prod == 2:
+			if r < 0.60: return 1
+			elif r < 0.90: return 2
+			else: return 3
+		else: # Level 1
+			if r < 0.80: return 1
+			elif r < 0.95: return 2
+			else: return 3
+
 	var harvest_info = plant.get("harvest", {})
 	var yield_range = harvest_info.get("yield", [1, 2])
 	var min_yield = int(yield_range[0])

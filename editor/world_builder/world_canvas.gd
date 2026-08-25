@@ -115,12 +115,29 @@ func _unhandled_input(event: InputEvent) -> void:
 			set_tool_mode(ToolMode.RECTANGLE); if get_viewport(): get_viewport().set_input_as_handled(); return
 
 func _handle_canvas_mouse_event(event: InputEvent) -> void:
+	var is_space_down = Input.is_key_pressed(KEY_SPACE)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			zoom_level = clampf(zoom_level + 0.15, 0.5, 3.5); _emit_status(); queue_redraw(); accept_event()
+			var prev_zoom = zoom_level
+			var new_zoom = clampf(zoom_level + 0.15, 0.25, 4.0)
+			if new_zoom != prev_zoom:
+				var mouse_world = (event.position - pan_offset) / (16.0 * prev_zoom)
+				zoom_level = new_zoom
+				pan_offset = event.position - mouse_world * (16.0 * zoom_level)
+				_emit_status()
+				queue_redraw()
+			accept_event()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			zoom_level = clampf(zoom_level - 0.15, 0.5, 3.5); _emit_status(); queue_redraw(); accept_event()
-		elif event.button_index == MOUSE_BUTTON_MIDDLE:
+			var prev_zoom = zoom_level
+			var new_zoom = clampf(zoom_level - 0.15, 0.25, 4.0)
+			if new_zoom != prev_zoom:
+				var mouse_world = (event.position - pan_offset) / (16.0 * prev_zoom)
+				zoom_level = new_zoom
+				pan_offset = event.position - mouse_world * (16.0 * zoom_level)
+				_emit_status()
+				queue_redraw()
+			accept_event()
+		elif event.button_index == MOUSE_BUTTON_MIDDLE or (event.button_index == MOUSE_BUTTON_LEFT and is_space_down):
 			is_middle_panning = event.pressed
 			if is_middle_panning: pan_start_pos = event.position - pan_offset
 			accept_event()
@@ -130,7 +147,7 @@ func _handle_canvas_mouse_event(event: InputEvent) -> void:
 				_erase_at(coord)
 				queue_redraw()
 			accept_event()
-		elif event.button_index == MOUSE_BUTTON_LEFT:
+		elif event.button_index == MOUSE_BUTTON_LEFT and not is_space_down:
 			var coord = _pixel_to_coord(event.position)
 			if event.pressed:
 				if _is_valid_coord(coord):
@@ -277,6 +294,7 @@ func _paint_tile(pos: Vector2i) -> void:
 		
 	if asset_type in ["tile", "terrain"]:
 		var t_id = asset.get("id", "grass")
+		var found = false
 		for t in world_data.get("tiles", []):
 			if int(t.get("x", -999)) == pos.x and int(t.get("y", -999)) == pos.y:
 				if not current_stroke_previous_tiles.has(pos): current_stroke_previous_tiles[pos] = t.duplicate(true)
@@ -287,7 +305,20 @@ func _paint_tile(pos: Vector2i) -> void:
 				t["solid"] = bool(asset.get("solid", false))
 				t["interactable"] = bool(asset.get("interactable", false))
 				t["layer"] = target_layer
+				found = true
 				break
+		if not found:
+			if not world_data.has("tiles"): world_data["tiles"] = []
+			var new_t = {
+				"x": int(pos.x),
+				"y": int(pos.y),
+				"type": t_id,
+				"walkable": bool(asset.get("walkable", true)),
+				"solid": bool(asset.get("solid", false)),
+				"interactable": bool(asset.get("interactable", false)),
+				"layer": target_layer
+			}
+			world_data["tiles"].append(new_t)
 		SmartTiler.update_tile_and_neighbors(world_data, pos)
 	elif asset_type in ["object", "plant", "transition"]:
 		var aid = asset.get("id", "chest")
@@ -576,13 +607,40 @@ func focus_coordinate(coord: Vector2i) -> void:
 	pan_offset = (size * 0.5) - Vector2(coord.x * ts, coord.y * ts)
 	queue_redraw()
 
+func zoom_in() -> void:
+	zoom_level = clampf(zoom_level + 0.25, 0.25, 4.0)
+	_emit_status()
+	queue_redraw()
+
+func zoom_out() -> void:
+	zoom_level = clampf(zoom_level - 0.25, 0.25, 4.0)
+	_emit_status()
+	queue_redraw()
+
+func reset_zoom() -> void:
+	zoom_level = 1.0
+	_emit_status()
+	queue_redraw()
+
+func center_map() -> void:
+	var w = int(world_data.get("width", 32))
+	var h = int(world_data.get("height", 24))
+	var ts = 16.0 * zoom_level
+	pan_offset = (size * 0.5) - Vector2(w * ts * 0.5, h * ts * 0.5)
+	_emit_status()
+	queue_redraw()
+
 func fit_to_screen() -> void:
 	var w = int(world_data.get("width", 32))
 	var h = int(world_data.get("height", 24))
-	var z_w = (size.x - 40.0) / (w * 16.0)
-	var z_h = (size.y - 40.0) / (h * 16.0)
-	zoom_level = clampf(minf(z_w, z_h), 0.5, 3.5)
-	pan_offset = Vector2(20, 20)
+	if w <= 0 or h <= 0: return
+	var avail_w = maxf(size.x - 40.0, 100.0)
+	var avail_h = maxf(size.y - 40.0, 100.0)
+	var z_w = avail_w / (w * 16.0)
+	var z_h = avail_h / (h * 16.0)
+	zoom_level = clampf(minf(z_w, z_h), 0.25, 4.0)
+	pan_offset = (size - Vector2(w * 16.0 * zoom_level, h * 16.0 * zoom_level)) * 0.5
+	_emit_status()
 	queue_redraw()
 
 func _remove_object_by_id(inst_id: String) -> bool:

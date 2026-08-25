@@ -7,7 +7,10 @@ signal dialogue_started(dialogue_id: String, speaker_name: String, lines: Array,
 signal line_changed(line_text: String, line_index: int, total_lines: int)
 signal dialogue_ended(dialogue_id: String)
 
+
 var dialogue_catalog: Dictionary = {}
+var session_player_id: String = ""
+
 var current_dialogue_id: String = ""
 var current_npc_id: String = ""
 var current_lines: Array = []
@@ -34,7 +37,8 @@ func load_all_dialogues() -> void:
 					dialogue_catalog[did] = json.data
 	print("[DialogueManager] Loaded %d Dialogue scripts." % dialogue_catalog.size())
 
-func start_dialogue(dialogue_id: String, speaker_name: String = "", npc_id: String = "") -> void:
+func start_dialogue(player_id: String, dialogue_id: String, speaker_name: String = "", npc_id: String = "") -> void:
+	session_player_id = player_id
 	var data = dialogue_catalog.get(dialogue_id, {})
 	if data.is_empty():
 		data = dialogue_catalog.get(npc_id, {})
@@ -47,7 +51,7 @@ func start_dialogue(dialogue_id: String, speaker_name: String = "", npc_id: Stri
 		else: dname = data.get("npc_name", dialogue_id.capitalize())
 		
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	var p_state = psm.get_active_player_state() if psm else null
+	var p_state = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
 	
 	var node_key = evaluate_dialogue_node_key(dialogue_id, p_state)
 	var nodes = data.get("nodes", {})
@@ -80,7 +84,7 @@ func start_dialogue(dialogue_id: String, speaker_name: String = "", npc_id: Stri
 	if current_lines.size() > 0:
 		line_changed.emit(current_lines[0], 0, current_lines.size())
 		
-	EventBus.npc_talked.emit(current_npc_id)
+	EventBus.npc_talked.emit(session_player_id, current_npc_id)
 
 func evaluate_dialogue_node_key(dialogue_id: String, p_state: PlayerState = null) -> String:
 	var data = dialogue_catalog.get(dialogue_id, {})
@@ -140,11 +144,11 @@ func _check_node_conditions(conditions: Array, npc_id: String, p_state: PlayerSt
 				if cur_s != req_s: return false
 			"quest_completed":
 				var req_qid = str(cond.get("quest_id", ""))
-				if not qm or qm.get_quest_status(req_qid) not in [QuestManager.STATUS_COMPLETED, QuestManager.STATUS_CLAIMED]:
+				if not qm or qm.get_quest_status(p_state.player_id if p_state else "", req_qid) not in [QuestManager.STATUS_COMPLETED, QuestManager.STATUS_CLAIMED]:
 					return false
 			"quest_active":
 				var req_qid = str(cond.get("quest_id", ""))
-				if not qm or qm.get_quest_status(req_qid) != QuestManager.STATUS_ACTIVE:
+				if not qm or qm.get_quest_status(p_state.player_id if p_state else "", req_qid) != QuestManager.STATUS_ACTIVE:
 					return false
 			"world_unlocked":
 				var req_wid = str(cond.get("world_id", ""))
@@ -190,9 +194,9 @@ func end_dialogue() -> void:
 	dialogue_ended.emit(finished_id)
 	
 	if act != "":
-		_execute_node_action(act, finished_npc)
+		_execute_node_action(session_player_id, act, finished_npc)
 
-func _execute_node_action(action_str: String, npc_id: String) -> void:
+func _execute_node_action(player_id: String, action_str: String, npc_id: String) -> void:
 	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
 	match action_str:
 		"open_shop":
@@ -204,5 +208,4 @@ func _execute_node_action(action_str: String, npc_id: String) -> void:
 				shop_mgr.open_shop(sid)
 		"trigger_quest":
 			var qm = root.get_node_or_null("/root/QuestManager") if root else null
-			if qm and qm.has_method("activate_next_available_quest"):
-				qm.activate_next_available_quest()
+			# Removed undefined activate_next_available_quest

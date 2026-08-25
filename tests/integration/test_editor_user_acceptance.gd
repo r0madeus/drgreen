@@ -374,7 +374,7 @@ func _test_UA07_real_dialogue_editor_ui_fields_and_gameplay_interaction() -> voi
 	if dm:
 		assert_true(dm.has_method("start_dialogue"), "DialogueManager has start_dialogue method")
 		if dm.has_method("load_all_dialogues"): dm.load_all_dialogues()
-		dm.start_dialogue("rowan")
+		dm.start_dialogue("player_001", "rowan")
 		assert_true(dm.is_dialogue_active or dm.current_dialogue_id == "rowan", "Dialogue interaction successfully active")
 		if dm.has_method("end_dialogue"): dm.end_dialogue()
 	else:
@@ -424,7 +424,7 @@ func _test_UA08_real_quest_editor_ui_fields_and_gameplay_progress() -> void:
 	if qm:
 		assert_true(qm.has_method("advance_objective"), "QuestManager has advance_objective method")
 		if qm.has_method("load_quests"): qm.load_quests()
-		qm.advance_objective("harvest", 1, "plant_red_flower")
+		qm.advance_objective("player_001", "harvest", 1, "plant_red_flower")
 		assert_true(true, "Quest progression objective processed")
 	else:
 		assert_true(main.current_world_scene != null, "Gameplay world active for quest progression")

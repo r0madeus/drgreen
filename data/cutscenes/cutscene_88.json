@@ -1,0 +1,16 @@
+{
+	"actors": [
+		"player"
+	],
+	"description": "",
+	"display_name": "Cutscene 88",
+	"duration": 5.0,
+	"id": "cutscene_88",
+	"tracks": [
+		{
+			"actor_id": "player",
+			"events": []
+		}
+	],
+	"trigger": {}
+}

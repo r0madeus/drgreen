@@ -1,0 +1,16 @@
+{
+	"actors": [
+		"player"
+	],
+	"description": "",
+	"display_name": "Cutscene 31",
+	"duration": 5.0,
+	"id": "cutscene_31",
+	"tracks": [
+		{
+			"actor_id": "player",
+			"events": []
+		}
+	],
+	"trigger": {}
+}

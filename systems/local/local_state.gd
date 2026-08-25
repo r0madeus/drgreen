@@ -73,6 +73,10 @@ var ui: Dictionary = {
 	"active_tab": "graphics"
 }
 
+var developer: Dictionary = {
+	"developer_mode": false
+}
+
 static func create_default() -> LocalState:
 	var script = load("res://systems/local/local_state.gd") as GDScript
 	return script.new() as LocalState
@@ -86,6 +90,7 @@ func get_value(section: String, key: String, default_val: Variant = null) -> Var
 		"language": return language.get(key, default_val)
 		"camera": return camera.get(key, default_val)
 		"ui": return ui.get(key, default_val)
+		"developer": return developer.get(key, default_val)
 		"gameplay": return graphics.get(key, default_val)
 	return default_val
 
@@ -98,6 +103,7 @@ func set_value(section: String, key: String, value: Variant) -> void:
 		"language": language[key] = value
 		"camera": camera[key] = value
 		"ui": ui[key] = value
+		"developer": developer[key] = value
 		"gameplay": graphics[key] = value
 
 func to_dict() -> Dictionary:
@@ -108,7 +114,8 @@ func to_dict() -> Dictionary:
 		"accessibility": accessibility.duplicate(true),
 		"language": language.duplicate(true),
 		"camera": camera.duplicate(true),
-		"ui": ui.duplicate(true)
+		"ui": ui.duplicate(true),
+		"developer": developer.duplicate(true)
 	}
 
 static func from_dict(data: Dictionary) -> LocalState:
@@ -140,5 +147,9 @@ static func from_dict(data: Dictionary) -> LocalState:
 	var cam = data.get("camera", {})
 	if typeof(cam) == TYPE_DICTIONARY:
 		for k in cam.keys(): state.camera[k] = cam[k]
+		
+	var dev = data.get("developer", {})
+	if typeof(dev) == TYPE_DICTIONARY:
+		for k in dev.keys(): state.developer[k] = dev[k]
 		
 	return state

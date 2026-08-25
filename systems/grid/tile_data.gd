@@ -14,6 +14,8 @@ var growth_stage: int = 0
 var days_in_stage: int = 0
 var watered_today: bool = false
 var grid_position: Vector2i = Vector2i.ZERO
+var genetic_identity: String = ""
+var genetic_profile: Dictionary = {}
 
 var walkable: bool = true
 var solid: bool = false
@@ -39,6 +41,8 @@ func to_dict() -> Dictionary:
 		"growth_stage": growth_stage,
 		"days_in_stage": days_in_stage,
 		"watered_today": watered_today,
+		"genetic_identity": genetic_identity,
+		"genetic_profile": genetic_profile,
 		"position": [grid_position.x, grid_position.y]
 	}
 
@@ -49,6 +53,8 @@ func from_dict(data: Dictionary) -> void:
 	growth_stage = data.get("growth_stage", 0)
 	days_in_stage = data.get("days_in_stage", 0)
 	watered_today = data.get("watered_today", false)
+	genetic_identity = data.get("genetic_identity", "")
+	genetic_profile = data.get("genetic_profile", {})
 	if data.has("position"):
 		var pos_arr = data["position"]
 		grid_position = Vector2i(pos_arr[0], pos_arr[1])

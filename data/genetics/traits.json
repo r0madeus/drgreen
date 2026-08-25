@@ -1,0 +1,133 @@
+{
+	"traits": {
+		"color": [
+			{
+				"display_name": "Red",
+				"id": "red",
+				"visual_color": "#E63946"
+			},
+			{
+				"display_name": "Blue",
+				"id": "blue",
+				"visual_color": "#3A86FF"
+			},
+			{
+				"display_name": "Yellow",
+				"id": "yellow",
+				"visual_color": "#FFBE0B"
+			},
+			{
+				"display_name": "Green",
+				"id": "green",
+				"visual_color": "#06D6A0"
+			},
+			{
+				"display_name": "White",
+				"id": "white",
+				"visual_color": "#F8F9FA"
+			},
+			{
+				"display_name": "Purple",
+				"id": "purple",
+				"visual_color": "#8338EC"
+			},
+			{
+				"display_name": "Orange",
+				"id": "orange",
+				"visual_color": "#FB5607"
+			},
+			{
+				"display_name": "Crimson",
+				"id": "crimson",
+				"visual_color": "#9E002D"
+			},
+			{
+				"display_name": "Pink",
+				"id": "pink",
+				"visual_color": "#FF99C8"
+			}
+		],
+		"growth_speed": [
+			"very_slow",
+			"slow",
+			"normal",
+			"fast",
+			"very_fast"
+		],
+		"productivity": [
+			1.0,
+			2.0,
+			3.0
+		],
+		"shape": [
+			{
+				"display_name": "Flower",
+				"id": "flower"
+			},
+			{
+				"display_name": "Herb",
+				"id": "herb"
+			},
+			{
+				"display_name": "Vine",
+				"id": "vine"
+			},
+			{
+				"display_name": "Lily",
+				"id": "lily"
+			},
+			{
+				"display_name": "Lotus",
+				"id": "lotus"
+			},
+			{
+				"display_name": "Bloom",
+				"id": "bloom"
+			},
+			{
+				"display_name": "Orchid",
+				"id": "orchid"
+			},
+			{
+				"display_name": "Fern",
+				"id": "fern"
+			},
+			{
+				"display_name": "Moss",
+				"id": "moss"
+			},
+			{
+				"display_name": "Tendril",
+				"id": "tendril"
+			},
+			{
+				"display_name": "Apple",
+				"id": "apple"
+			},
+			{
+				"display_name": "Banana",
+				"id": "banana"
+			},
+			{
+				"display_name": "Pear",
+				"id": "pear"
+			}
+		],
+		"size": [
+			"small",
+			"medium",
+			"large"
+		],
+		"taste_profile": [
+			"sweet",
+			"salty",
+			"sour",
+			"bitter",
+			"umami"
+		],
+		"water_required": [
+			true,
+			false
+		]
+	}
+}

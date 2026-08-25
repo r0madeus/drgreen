@@ -34,7 +34,25 @@
       "visible": true
     }
   ],
-  "objects": [],
+  "objects": [
+    {
+      "asset_id": "wooden_table",
+      "instance_id": "synthesis_station_1",
+      "layer": "OBJECT",
+      "name": "Genetics Synthesis Station",
+      "position": [
+        16,
+        12
+      ],
+      "properties": {
+        "interactable": true,
+        "solid": true,
+        "walkable": false,
+        "z_index": 1.0,
+        "interaction_type": "synthesis_station"
+      }
+    }
+  ],
   "spawn": [
     16,
     20
@@ -6956,17 +6974,14 @@
   ],
   "transitions": [
     {
-      "instance_id": "trans_to_town",
-      "name": "To Town Plaza",
+      "instance_id": "trans_to_home",
+      "name": "To House",
       "position": [
         16,
         23
       ],
-      "target_spawn": [
-        16,
-        3
-      ],
-      "target_world": "town"
+      "target_spawn": "from_lab",
+      "target_world": "home"
     }
   ],
   "version": 3,

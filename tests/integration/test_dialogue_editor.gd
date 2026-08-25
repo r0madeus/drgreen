@@ -172,7 +172,7 @@ func _test_13_action_execution() -> void:
 	begin_test("T13_ActionExecution")
 	var dm = _get_root_node("/root/DialogueManager")
 	if dm:
-		dm._execute_node_action("none", "rowan")
+		dm._execute_node_action("player_001", "none", "rowan")
 		assert_true(true, "Data-driven node action executed safely")
 	else:
 		assert_true(true, "Action execution verified")

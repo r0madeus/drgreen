@@ -6,6 +6,14 @@ extends TestCase
 func test_name_id() -> String:
 	return "NPC.SocialProgression"
 
+
+var _npc_mock = null
+func _get_npc_mock():
+	if not _npc_mock:
+		_npc_mock = load("res://systems/npc/npc_manager.gd").new()
+		_npc_mock.load_social_data()
+	return _npc_mock
+
 func _get_root_node(path: String) -> Node:
 	var loop = Engine.get_main_loop()
 	if loop and "root" in loop and loop.root:
@@ -128,7 +136,7 @@ func _test_T06_gift_inventory_consumption() -> void:
 	begin_test("T06_GiftInventoryConsumption")
 	var p = PlayerState.new("p1")
 	p.add_item("plant_sun_petal", 2)
-	var res = p.give_gift("rowan", "plant_sun_petal")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	assert_true(res.success, "Gift successful")
 	assert_eq(p.get_item_count("plant_sun_petal"), 1, "Item count decremented by 1")
 
@@ -136,7 +144,7 @@ func _test_T07_loved_gift() -> void:
 	begin_test("T07_LovedGift")
 	var p = PlayerState.new("p1")
 	p.add_item("plant_sun_petal", 1)
-	var res = p.give_gift("rowan", "plant_sun_petal")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	assert_eq(res.reaction, "loved", "Sun petal is loved by Rowan")
 	assert_eq(res.points_added, 80, "+80 friendship points for loved gift")
 
@@ -144,7 +152,7 @@ func _test_T08_liked_gift() -> void:
 	begin_test("T08_LikedGift")
 	var p = PlayerState.new("p1")
 	p.add_item("plant_red_flower", 1)
-	var res = p.give_gift("rowan", "plant_red_flower")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "plant_red_flower", p)
 	assert_eq(res.reaction, "liked", "Red flower is liked by Rowan")
 	assert_eq(res.points_added, 45, "+45 friendship points for liked gift")
 
@@ -152,7 +160,7 @@ func _test_T09_neutral_gift() -> void:
 	begin_test("T09_NeutralGift")
 	var p = PlayerState.new("p1")
 	p.add_item("wood_oak", 1)
-	var res = p.give_gift("rowan", "wood_oak")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "wood_oak", p)
 	assert_eq(res.reaction, "neutral", "Wood is neutral for Rowan")
 	assert_eq(res.points_added, 20, "+20 points for neutral gift")
 
@@ -161,7 +169,7 @@ func _test_T10_disliked_gift() -> void:
 	var p = PlayerState.new("p1")
 	p.add_friendship("rowan", 50)
 	p.add_item("weeds", 1)
-	var res = p.give_gift("rowan", "weeds")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "weeds", p)
 	assert_eq(res.reaction, "disliked", "Weeds are disliked by Rowan")
 	assert_eq(res.points_added, -20, "-20 points for disliked gift")
 
@@ -170,32 +178,32 @@ func _test_T11_hated_gift() -> void:
 	var p = PlayerState.new("p1")
 	p.add_friendship("rowan", 50)
 	p.add_item("trash", 1)
-	var res = p.give_gift("rowan", "trash")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "trash", p)
 	assert_eq(res.reaction, "hated", "Trash is hated by Rowan")
 	assert_eq(res.points_added, -40, "-40 points for hated gift")
 
 func _test_T12_invalid_gift() -> void:
 	begin_test("T12_InvalidGift")
 	var p = PlayerState.new("p1")
-	var res = p.give_gift("rowan", "nonexistent_item")
+	var res = _get_npc_mock().give_gift(p.player_id, "rowan", "nonexistent_item", p)
 	assert_false(res.success, "Cannot gift item player doesn't possess")
 
 func _test_T13_daily_gift_limit() -> void:
 	begin_test("T13_DailyGiftLimit")
 	var p = PlayerState.new("p1")
 	p.add_item("plant_sun_petal", 2)
-	var res1 = p.give_gift("rowan", "plant_sun_petal")
+	var res1 = _get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	assert_true(res1.success, "First gift accepted")
-	var res2 = p.give_gift("rowan", "plant_sun_petal")
+	var res2 = _get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	assert_false(res2.success, "Second gift on same day blocked by limit")
 
 func _test_T14_daily_gift_reset() -> void:
 	begin_test("T14_DailyGiftReset")
 	var p = PlayerState.new("p1")
 	p.add_item("plant_sun_petal", 2)
-	p.give_gift("rowan", "plant_sun_petal")
+	_get_npc_mock().give_gift(p.player_id, "rowan", "plant_sun_petal", p)
 	p.reset_daily_social_limits()
-	assert_true(p.can_give_gift("rowan", "plant_sun_petal"), "Can gift again after daily reset")
+	assert_true(_get_npc_mock().can_give_gift(p.player_id, "rowan", "plant_sun_petal", p), "Can gift again after daily reset")
 
 # --- Dialogue Conditions ---
 
@@ -327,8 +335,8 @@ func _test_T30_host_gift_validation() -> void:
 	begin_test("T30_HostGiftValidation")
 	var p = PlayerState.new("p1")
 	p.add_item("plant_sun_petal", 1)
-	assert_true(p.can_give_gift("rowan", "plant_sun_petal"), "Host validates item ownership")
-	assert_false(p.can_give_gift("rowan", "stone_mythic"), "Host rejects unowned items")
+	assert_true(_get_npc_mock().can_give_gift(p.player_id, "rowan", "plant_sun_petal", p), "Host validates item ownership")
+	assert_false(_get_npc_mock().can_give_gift(p.player_id, "rowan", "stone_mythic", p), "Host rejects unowned items")
 
 func _test_T31_late_join_relationship_snapshot() -> void:
 	begin_test("T31_LateJoinRelationshipSnapshot")

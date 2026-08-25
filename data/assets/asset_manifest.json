@@ -497,7 +497,8 @@
 			"texture": "res://assets/sprites/environment/wooden_gate.png"
 		},
 		"tile.fence": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -506,7 +507,8 @@
 			"texture": "res://assets/sprites/tiles/fence.png"
 		},
 		"tile.grass": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -515,7 +517,8 @@
 			"texture": "res://assets/sprites/tiles/grass.png"
 		},
 		"tile.path": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -524,7 +527,8 @@
 			"texture": "res://assets/sprites/tiles/path.png"
 		},
 		"tile.sand": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -533,7 +537,8 @@
 			"texture": "res://assets/sprites/tiles/path_2.png"
 		},
 		"tile.soil": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -542,7 +547,8 @@
 			"texture": "res://assets/sprites/tiles/soil.png"
 		},
 		"tile.stone": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -551,7 +557,8 @@
 			"texture": "res://assets/sprites/tiles/path_1.png"
 		},
 		"tile.water": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16
@@ -560,7 +567,8 @@
 			"texture": "res://assets/sprites/tiles/watered_soil.png"
 		},
 		"tile.watered_soil": {
-			"category": "tile",
+			"category": "terrain",
+			"type": "terrain",
 			"size": [
 				16,
 				16

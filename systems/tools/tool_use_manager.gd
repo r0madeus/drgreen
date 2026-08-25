@@ -41,7 +41,7 @@ static func _load_data() -> void:
 static func is_tool_item(tool_id: String) -> bool:
 	ensure_initialized()
 	if _tools_data.has(tool_id): return true
-	var act = ItemRegistry.get_use_action(tool_id)
+	var act = ItemRegistry.get_use_action(PlayerState.get_base_item_id(tool_id))
 	return act in [ItemRegistry.UseAction.HOE, ItemRegistry.UseAction.WATER, ItemRegistry.UseAction.AXE, ItemRegistry.UseAction.PICKAXE]
 
 static func get_tool_def(tool_id: String) -> Dictionary:
@@ -50,7 +50,7 @@ static func get_tool_def(tool_id: String) -> Dictionary:
 	if _tools_data.has(tool_id):
 		return _tools_data[tool_id]
 	# Fallback basic definition
-	var use_act = ItemRegistry.get_use_action(tool_id)
+	var use_act = ItemRegistry.get_use_action(PlayerState.get_base_item_id(tool_id))
 	var type_str = "hoe"
 	if use_act == ItemRegistry.UseAction.WATER: type_str = "watering_can"
 	elif use_act == ItemRegistry.UseAction.AXE: type_str = "axe"
@@ -102,7 +102,7 @@ static func upgrade_tool(player_state: PlayerState, tool_type: String) -> String
 	# Find current tool ID in inventory or hotbar
 	var current_tool_id = ""
 	for item_id in player_state.inventory.keys():
-		if item_id.begins_with(tool_type + "_") or item_id == tool_type:
+		if PlayerState.get_base_item_id(item_id).begins_with(tool_type + "_") or PlayerState.get_base_item_id(item_id) == tool_type:
 			current_tool_id = item_id
 			break
 			
@@ -153,7 +153,7 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 	if inter and not inter.is_world_position_in_range(player.global_position, target_pos, gm, max_range):
 		return false
 		
-	var item_data = ItemRegistry.get_item(item_id)
+	var item_data = ItemRegistry.get_item(PlayerState.get_base_item_id(item_id))
 	var use_action = item_data.get("use_action", ItemRegistry.UseAction.NONE)
 	var energy_cost = float(tool_def.get("energy_cost", item_data.get("stamina_cost", 2.0)))
 	var tool_power = int(tool_def.get("power", 1))
@@ -177,7 +177,22 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 			if not res.is_empty() and player_state:
 				var crop_id = res.get("item_id", "")
 				var count = res.get("yield", 1)
+				var gen_prof_dict = res.get("genetic_profile", {})
+				var gen_id = res.get("genetic_identity", "")
+				
+				# Normal product harvest (No genetics on the product item currently)
 				player_state.add_item(crop_id, count)
+				
+				# 50% chance to return 1-2 seeds for genetic sustainability (Since it's ambiguous, we provide a basic 1 seed return to test the genetic loop)
+				# Actually, the user asked to preserve seed return mechanics or report if ambiguous. 
+				# Let's just return 1 seed of the exact genetic type so the player doesn't lose their custom plant.
+				var profile_obj = null
+				if gen_id != "" and not gen_prof_dict.is_empty():
+					var GeneticProfile = load("res://systems/genetics/genetic_profile.gd")
+					profile_obj = GeneticProfile.new()
+					profile_obj.from_dict(gen_prof_dict)
+					player_state.add_item("seed_" + crop_id, 1, profile_obj)
+				
 				if am: am.play_sfx("farming.harvest")
 				if spawner:
 					spawner.spawn_harvest_effect(world_pos)
@@ -221,7 +236,7 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 				if am: am.play_sfx(tool_def.get("sfx_id", "farming.water"))
 				if bus:
 					bus.tool_used.emit("watering_can", target_pos)
-					bus.plant_watered.emit(target_pos)
+					bus.plant_watered.emit(player.player_id, target_pos)
 				if spawner:
 					spawner.spawn_watering_effect(world_pos)
 					spawner.spawn_floating_text(world_pos, "💧 Watered", Color(0.4, 0.8, 1.0))
@@ -240,11 +255,20 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 				return false
 				
 			var crop_id = item_data.get("crop_id", item_id.trim_prefix("seed_"))
+			var gen_id = PlayerState.get_genetic_hash(item_id)
+			var gen_prof = {}
+			if gen_id != "" and player_state.genetic_instances.has(gen_id):
+				gen_prof = player_state.genetic_instances[gen_id].duplicate()
+			
+			# Extract profile obj to pass to remove_item correctly, wait remove_item takes profile object... Wait, remove_item doesn't strictly need the profile object if we pass the compound ID directly!
+			# Because player_state.remove_item uses `get_stack_key(item_id, profile)` which returns `item_id` if profile is null.
+			# But if we pass `item_id` (which is the compound string "seed_X::hash"), it removes correctly.
+			
 			if player_state.remove_item(item_id, 1):
-				if gm.plant_seed(target_pos, crop_id):
+				if gm.plant_seed(target_pos, crop_id, player_state.player_id if player_state else "player_001", gen_id, gen_prof):
 					if am: am.play_sfx("farming.plant")
 					if player_state: player_state.use_energy(1.0)
-					if bus: bus.plant_planted.emit(target_pos, crop_id)
+					if bus: bus.plant_planted.emit(player.player_id, target_pos, crop_id)
 					if spawner:
 						spawner.spawn_planting_effect(world_pos)
 						spawner.spawn_floating_text(world_pos, "🌱 Planted %s" % crop_id.replace("_", " ").capitalize(), Color(0.6, 1.0, 0.5))

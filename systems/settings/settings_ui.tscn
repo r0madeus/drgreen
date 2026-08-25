@@ -77,6 +77,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "🌐 Language"
 
+[node name="DeveloperTabBtn" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabButtons" unique_id=909440274]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🛠️ Developer"
+
 [node name="@HSeparator@31719" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=355811637]
 layout_mode = 2
 

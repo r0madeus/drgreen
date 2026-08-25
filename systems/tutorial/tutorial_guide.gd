@@ -196,7 +196,7 @@ func _connect_event_bus() -> void:
 	EventBus.item_sold.connect(_on_item_sold)
 	EventBus.item_bought.connect(_on_item_bought)
 	EventBus.synthesis_performed.connect(_on_synthesis_performed)
-	EventBus.plant_combined.connect(func(_a, _b, _o): _on_synthesis_performed("", "", 1))
+	EventBus.plant_combined.connect(func(_pid, _a, _b, _o): _on_synthesis_performed(_pid, "", "", 1))
 	EventBus.world_unlocked.connect(_on_world_unlocked)
 	EventBus.world_changed.connect(_on_world_changed)
 
@@ -254,31 +254,31 @@ func _on_player_moved(_pos: Vector2i) -> void:
 		if step_move_counter >= 3:
 			complete_step(Step.MOVE)
 
-func _on_npc_talked(npc_id: String) -> void:
+func _on_npc_talked(_player_id: String, npc_id: String) -> void:
 	if current_step == Step.TALK_ROWAN and npc_id == "rowan":
 		complete_step(Step.TALK_ROWAN)
 
-func _on_plant_planted(_pos: Vector2i, _plant_id: String) -> void:
+func _on_plant_planted(_player_id: String, _pos: Vector2i, _plant_id: String) -> void:
 	if current_step == Step.PLANT:
 		complete_step(Step.PLANT)
 
-func _on_plant_watered(_pos: Vector2i) -> void:
+func _on_plant_watered(_player_id: String, _pos: Vector2i) -> void:
 	if current_step == Step.WATER:
 		complete_step(Step.WATER)
 
-func _on_plant_harvested(_pos: Vector2i, _plant_id: String, _cnt: int) -> void:
+func _on_plant_harvested(_player_id: String, _pos: Vector2i, _plant_id: String, _cnt: int) -> void:
 	if current_step == Step.HARVEST:
 		complete_step(Step.HARVEST)
 
-func _on_item_sold(_item_id: String, _count: int, _gold: int) -> void:
+func _on_item_sold(_player_id: String, _item_id: String, _count: int, _gold: int) -> void:
 	if current_step == Step.COMMERCE:
 		complete_step(Step.COMMERCE)
 
-func _on_item_bought(_item_id: String, _count: int, _price: int) -> void:
+func _on_item_bought(_player_id: String, _item_id: String, _count: int, _price: int) -> void:
 	if current_step == Step.COMMERCE:
 		complete_step(Step.COMMERCE)
 
-func _on_synthesis_performed(_f_id: String, _res_id: String, _cnt: int) -> void:
+func _on_synthesis_performed(_player_id: String, _f_id: String, _res_id: String, _cnt: int) -> void:
 	if current_step == Step.SYNTHESIS:
 		complete_step(Step.SYNTHESIS)
 

@@ -155,7 +155,7 @@ func _update_visuals() -> void:
 func _update_position_from_grid() -> void:
 	var root = _get_tree_root()
 	var gm = root.find_child("GridManager", true, false) if root else null
-	if gm:
+	if gm and gm.has_method("grid_to_world"):
 		position = gm.grid_to_world(grid_position, true)
 	else:
 		position = Vector2(grid_position.x * 16 + 8, grid_position.y * 16 + 8)
@@ -312,7 +312,8 @@ func teleport_to_location(loc_id: String, world_pos: Vector2, activity: String, 
 	current_waypoint_index = 0
 	var root = _get_tree_root()
 	var gm = root.find_child("GridManager", true, false) if root else null
-	if gm: grid_position = gm.world_to_grid(global_position)
+	if gm and gm.has_method("world_to_grid"): grid_position = gm.world_to_grid(global_position)
+	else: grid_position = Vector2i(int(global_position.x / 16.0), int(global_position.y / 16.0))
 	if behavior_controller:
 		behavior_controller.on_destination_reached(loc_id)
 	_update_visuals()
@@ -363,9 +364,9 @@ func interact() -> void:
 		
 	var qm = get_node_or_null("/root/QuestManager")
 	if qm:
-		qm.advance_objective("talk_to_" + npc_id, 1)
-		qm.advance_objective("talk", 1, npc_id)
-	EventBus.npc_talked.emit(npc_id)
+		qm.advance_objective("", "talk_to_" + npc_id, 1)
+		qm.advance_objective("", "talk", 1, npc_id)
+	EventBus.npc_talked.emit(player.player_id if "player_id" in player else "", npc_id)
 	_update_visuals()
 
 func _on_dialogue_ended(_did: String = "") -> void:

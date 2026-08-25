@@ -342,7 +342,7 @@ func interact() -> void:
 	if qm:
 		qm.advance_objective("talk_to_merchant", 1)
 		qm.advance_objective("talk", 1, "rowan")
-	EventBus.npc_talked.emit("rowan")
+	EventBus.npc_talked.emit(player.player_id if "player_id" in player else "", "rowan")
 	_update_visuals()
 
 func _on_dialogue_ended(_did: String = "") -> void:

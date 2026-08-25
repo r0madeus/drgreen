@@ -57,10 +57,10 @@ func load_world(world_id: String) -> Dictionary:
 	world_loaded.emit(world_id, current_world_data)
 	return current_world_data
 
-func transition_to_world(target_world_id: String, target_spawn: Variant = null, animate: bool = true) -> bool:
-	return await change_world(target_world_id, target_spawn, animate)
+func transition_to_world(player_id: String, target_world_id: String, target_spawn: Variant = null, animate: bool = true) -> bool:
+	return await change_world(player_id, target_world_id, target_spawn, animate)
 
-func change_world(target_world_id: String, target_spawn: Variant = null, animate: bool = true) -> bool:
+func change_world(player_id: String, target_world_id: String, target_spawn: Variant = null, animate: bool = true) -> bool:
 	if is_transitioning:
 		return false
 		
@@ -103,8 +103,8 @@ func change_world(target_world_id: String, target_spawn: Variant = null, animate
 		
 	var spawn_world_pos = gm.grid_to_world(spawn_coord, true) if gm else Vector2(spawn_coord.x * 16 + 8, spawn_coord.y * 16 + 8)
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	if psm:
-		var p_state = psm.get_active_player_state()
+	if psm and player_id != "":
+		var p_state = psm.get_player_state(player_id) if psm.has_method("get_player_state") else null
 		if p_state:
 			p_state.current_world = target_world_id
 			p_state.position = spawn_world_pos

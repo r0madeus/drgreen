@@ -198,11 +198,11 @@ func execute_sleep(from_exhaustion: bool = false) -> void:
 	var bus = get_node_or_null("/root/EventBus")
 	if bus: bus.day_ended.emit(current_day)
 	
-	# 2. Restore active player energy
+	# 2. Restore ALL players energy
 	var psm = get_node_or_null("/root/PlayerRegistry")
 	if psm:
-		var p_state = psm.get_active_player_state()
-		if p_state:
+		for pid in psm.players.keys():
+			var p_state = psm.players[pid]
 			var restored_energy = p_state.max_energy if not from_exhaustion else (p_state.max_energy * 0.5)
 			p_state.energy = restored_energy
 			p_state.energy_changed.emit(p_state.energy, restored_energy)

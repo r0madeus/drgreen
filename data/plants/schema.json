@@ -1,51 +1,134 @@
-﻿{
+{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "PlantSpecies",
   "type": "object",
-  "required": ["id", "name", "type", "rarity", "growth", "harvest", "value"],
+  "required": [
+    "id",
+    "name",
+    "type",
+    "rarity",
+    "growth",
+    "harvest",
+    "value",
+    "size",
+    "shape",
+    "productivity",
+    "taste_profile",
+    "water_required",
+    "growth_speed"
+  ],
   "properties": {
-    "id": { "type": "string" },
-    "name": { "type": "string" },
-    "type": { "type": "string", "enum": ["plant", "mushroom"] },
-    "rarity": { "type": "string", "enum": ["common", "uncommon", "rare", "epic", "legendary"] },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "plant",
+        "mushroom"
+      ]
+    },
+    "rarity": {
+      "type": "string",
+      "enum": [
+        "common",
+        "uncommon",
+        "rare",
+        "epic",
+        "legendary"
+      ]
+    },
     "growth": {
       "type": "object",
-      "required": ["stages", "days_per_stage", "water_daily"],
+      "required": [
+        "stages",
+        "days_per_stage",
+        "water_daily"
+      ],
       "properties": {
-        "stages": { "type": "integer", "minimum": 2, "maximum": 5 },
+        "stages": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 5
+        },
         "days_per_stage": {
           "type": "array",
-          "items": { "type": "integer", "minimum": 1 }
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
         },
-        "water_daily": { "type": "boolean" }
+        "water_daily": {
+          "type": "boolean"
+        }
       }
     },
     "harvest": {
       "type": "object",
-      "required": ["yield", "item_id"],
+      "required": [
+        "yield",
+        "item_id"
+      ],
       "properties": {
         "yield": {
           "type": "array",
-          "items": { "type": "integer" },
+          "items": {
+            "type": "integer"
+          },
           "minItems": 2,
           "maxItems": 2
         },
-        "item_id": { "type": "string" }
+        "item_id": {
+          "type": "string"
+        }
       }
     },
     "value": {
       "type": "object",
-      "required": ["base_price"],
+      "required": [
+        "base_price"
+      ],
       "properties": {
-        "base_price": { "type": "integer", "minimum": 1 }
+        "base_price": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "visual": {
       "type": "object",
       "properties": {
-        "color": { "type": "string" },
-        "accent_color": { "type": "string" }
+        "color": {
+          "type": "string"
+        },
+        "accent_color": {
+          "type": "string"
+        }
       }
+    },
+    "size": {
+      "type": "string"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "productivity": {
+      "type": "integer"
+    },
+    "taste_profile": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "water_required": {
+      "type": "boolean"
+    },
+    "growth_speed": {
+      "type": "string"
     }
   }
 }

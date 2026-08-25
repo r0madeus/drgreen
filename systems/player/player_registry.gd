@@ -2,13 +2,13 @@ extends Node
 
 ## Central Player State Registry (Autoload Singleton) managing PlayerState instances and active local player reference.
 
-signal active_player_changed(player_id: String)
+signal local_player_changed(player_id: String)
 signal player_registered(player_id: String)
 
 const DEFAULT_PLAYER_ID: String = "player_001"
 
 var players: Dictionary = {} # player_id -> PlayerState
-var active_player_id: String = DEFAULT_PLAYER_ID
+var local_player_id: String = DEFAULT_PLAYER_ID
 
 func _ready() -> void:
 	# Ensure default local player state exists
@@ -29,16 +29,16 @@ func get_or_create_player(player_id: String = DEFAULT_PLAYER_ID, display_name: S
 		player_registered.emit(player_id)
 	return players[player_id]
 
-func get_active_player_state() -> PlayerState:
-	return get_or_create_player(active_player_id)
+func get_local_player_state() -> PlayerState:
+	return get_or_create_player(local_player_id)
 
 func get_player_state(player_id: String) -> PlayerState:
 	return players.get(player_id, null)
 
 func set_active_player(player_id: String) -> void:
 	if players.has(player_id):
-		active_player_id = player_id
-		active_player_changed.emit(active_player_id)
+		local_player_id = player_id
+		local_player_changed.emit(local_player_id)
 
 func get_all_players() -> Dictionary:
 	return players.duplicate()

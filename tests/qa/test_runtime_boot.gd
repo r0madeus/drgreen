@@ -151,13 +151,13 @@ func _run_boot_suite() -> void:
 	var wl = root.get_node_or_null("WorldLoader")
 	if wl and wl.has_method("transition_to_world"):
 		print("   Transitioning to Town...")
-		await wl.transition_to_world("town", "from_farm", false)
+		await wl.transition_to_world("player_001", "town", "from_farm", false)
 		for i in range(10):
 			await process_frame
 		_assert(wl.current_world_id == "town", "World transitioned to Town")
 		
 		print("   Transitioning back to Farm...")
-		await wl.transition_to_world("farm", "from_town", false)
+		await wl.transition_to_world("player_001", "farm", "from_town", false)
 		for i in range(10):
 			await process_frame
 		_assert(wl.current_world_id == "farm", "World transitioned back to Farm")

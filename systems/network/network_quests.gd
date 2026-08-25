@@ -159,14 +159,14 @@ func host_request_advance_objective(requester_peer: int, obj_type: String, amoun
 					if next_val != cur_val:
 						prog[i] = next_val
 						if requester_peer == 1:
-							qm.advance_objective(obj_type, amount, target_filter)
+							qm.advance_objective(p_state.player_id, obj_type, amount, target_filter)
 						
 				if int(prog[i]) < req: all_done = false
 				
 			if all_done:
 				pq["status"] = "completed"
 				if requester_peer == 1:
-					qm.complete_quest(qid)
+					qm.complete_quest(p_state.player_id, qid)
 
 @rpc("any_peer", "call_local", "reliable")
 func host_request_claim_quest_reward(requester_peer: int, quest_id: String) -> void:
@@ -198,7 +198,7 @@ func host_request_claim_quest_reward(requester_peer: int, quest_id: String) -> v
 			return
 	else:
 		var pq_info = p_state.personal_quests.get(quest_id, {})
-		var st = str(pq_info.get("status", qm.get_quest_status(quest_id) if requester_peer == 1 else "locked"))
+		var st = str(pq_info.get("status", qm.get_quest_status(p_state.player_id if requester_peer != 1 else "player_001", quest_id) if requester_peer == 1 else "locked"))
 		if st not in ["completed", "claimed"]:
 			_send_error(requester_peer, "QUEST_NOT_COMPLETED")
 			return
@@ -299,7 +299,7 @@ func broadcast_shared_quest_completed(quest_id: String) -> void:
 		if qm.quest_states.has(quest_id):
 			qm.quest_states[quest_id]["status"] = "completed"
 		qm.quest_status_changed.emit(quest_id, "completed")
-		EventBus.quest_completed.emit(quest_id)
+		EventBus.quest_completed.emit("", quest_id)
 		
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("quest_complete")
@@ -332,10 +332,11 @@ func receive_quest_reward(quest_id: String, reward_summary: Dictionary) -> void:
 			qm.quest_states[quest_id]["status"] = "claimed"
 		qm.quest_status_changed.emit(quest_id, "claimed")
 		qm.quest_reward_claimed.emit(quest_id, reward_summary.get("rewards", {}))
-		EventBus.quest_claimed.emit(quest_id)
+		EventBus.quest_claimed.emit("", quest_id)
 		
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	var p_state = psm.get_active_player_state() if psm else null
+	var peer_id = multiplayer.get_remote_sender_id()
+	var p_state = _get_player_state(peer_id)
 	if p_state:
 		p_state.mark_reward_claimed(quest_id)
 		
@@ -374,8 +375,8 @@ func client_receive_quest_error(reason: String) -> void:
 
 func _local_advance_objective(obj_type: String, amount: int, target_filter: String) -> void:
 	var qm = get_node_or_null("/root/QuestManager")
-	if qm: qm.advance_objective(obj_type, amount, target_filter)
+	if qm: qm.advance_objective(p_state.player_id, obj_type, amount, target_filter)
 
 func _local_claim_quest_reward(quest_id: String) -> void:
 	var qm = get_node_or_null("/root/QuestManager")
-	if qm: qm.claim_reward(quest_id)
+	if qm: qm.claim_reward(p_state.player_id, quest_id)

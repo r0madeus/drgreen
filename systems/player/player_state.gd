@@ -15,9 +15,9 @@ signal gold_changed(new_gold: int)
 signal energy_changed(current: float, max_val: float)
 signal player_upgraded(upgrade_id: String)
 signal friendship_updated(npc_id: String, new_points: int, heart_level: int)
-signal heart_milestone_unlocked(npc_id: String, heart_level: int, rewards: Dictionary)
 
 var player_id: String = "player_001"
+var home_owner_id: String = ""
 var display_name: String = "Botanist"
 
 var current_world: String = "farm"
@@ -30,6 +30,7 @@ var hotbar_slots: Array = ["hoe_basic", "watering_can_basic", "axe_basic", "pick
 var selected_hotbar_slot: int = 0
 
 var inventory: Dictionary = {} # item_id (String) -> quantity (int)
+var genetic_instances: Dictionary = {} # genetic_identity (String) -> GeneticProfile dict
 var selected_item_id: String = "hoe_basic"
 var equipment: Dictionary = {}
 var gold: int = 100
@@ -105,9 +106,7 @@ func can_gain_talk_friendship(npc_id: String) -> bool:
 func add_friendship(npc_id: String, points: int = 10, reason: String = "generic") -> int:
 	if npc_id.is_empty(): return 0
 	
-	var old_hearts = get_heart_level(npc_id)
 	var pts_to_add = points
-	
 	if reason == "talk":
 		if not can_gain_talk_friendship(npc_id):
 			pts_to_add = 0
@@ -120,104 +119,12 @@ func add_friendship(npc_id: String, points: int = 10, reason: String = "generic"
 	
 	var new_hearts = get_heart_level(npc_id)
 	friendship_updated.emit(npc_id, new_pts, new_hearts)
-	var root = Engine.get_main_loop().root if Engine.get_main_loop() else null
-	var eb = root.get_node_or_null("/root/EventBus") if root else null
-	if eb: eb.friendship_changed.emit(npc_id, new_pts)
 	
-	if new_hearts > old_hearts:
-		check_and_grant_heart_milestones(npc_id)
-		
 	return new_pts
 
 func reset_daily_social_limits() -> void:
 	daily_talked_npcs.clear()
 	daily_gifted_npcs.clear()
-
-# --- Gifting API ---
-
-func can_give_gift(npc_id: String, item_id: String) -> bool:
-	if npc_id.is_empty() or item_id.is_empty(): return false
-	if bool(daily_gifted_npcs.get(npc_id, false)): return false
-	if not has_item(item_id, 1): return false
-	return true
-
-func get_gift_reaction_type(npc_id: String, item_id: String) -> String:
-	var path = "res://data/npcs/preferences.json"
-	if not FileAccess.file_exists(path): return "neutral"
-	var f = FileAccess.open(path, FileAccess.READ)
-	if not f: return "neutral"
-	var text = f.get_as_text()
-	f.close()
-	var json = JSON.new()
-	if json.parse(text) != OK or typeof(json.data) != TYPE_DICTIONARY: return "neutral"
-	
-	var all_prefs = json.data.get("preferences", {})
-	var npc_prefs = all_prefs.get(npc_id, {})
-	
-	if item_id in npc_prefs.get("loved", []): return "loved"
-	if item_id in npc_prefs.get("liked", []): return "liked"
-	if item_id in npc_prefs.get("disliked", []): return "disliked"
-	if item_id in npc_prefs.get("hated", []): return "hated"
-	return "neutral"
-
-func give_gift(npc_id: String, item_id: String) -> Dictionary:
-	if not can_give_gift(npc_id, item_id):
-		return { "success": false, "error": "Cannot give gift (limit reached or missing item)" }
-		
-	var reaction = get_gift_reaction_type(npc_id, item_id)
-	var pts_map = { "loved": 80, "liked": 45, "neutral": 20, "disliked": -20, "hated": -40 }
-	var pts = int(pts_map.get(reaction, 20))
-	
-	remove_item(item_id, 1)
-	daily_gifted_npcs[npc_id] = true
-	
-	var old_hearts = get_heart_level(npc_id)
-	var new_pts = add_friendship(npc_id, pts, "gift")
-	var new_hearts = get_heart_level(npc_id)
-	
-	var unlocked_milestones = []
-	if new_hearts > old_hearts:
-		unlocked_milestones = check_and_grant_heart_milestones(npc_id)
-		
-	return {
-		"success": true,
-		"reaction": reaction,
-		"points_added": pts,
-		"new_total": new_pts,
-		"new_heart_level": new_hearts,
-		"milestones_unlocked": unlocked_milestones
-	}
-
-# --- Heart Milestone Unlocks ---
-
-func check_and_grant_heart_milestones(npc_id: String) -> Array[Dictionary]:
-	var cur_heart = get_heart_level(npc_id)
-	var claimed: Array = claimed_heart_milestones.get(npc_id, [])
-	var newly_claimed: Array[Dictionary] = []
-	
-	var path = "res://data/npcs/milestones.json"
-	if not FileAccess.file_exists(path): return []
-	var f = FileAccess.open(path, FileAccess.READ)
-	if not f: return []
-	var text = f.get_as_text()
-	f.close()
-	var json = JSON.new()
-	if json.parse(text) != OK or typeof(json.data) != TYPE_DICTIONARY: return []
-	
-	var all_milestones = json.data.get("milestones", {})
-	var npc_ms: Array = all_milestones.get(npc_id, [])
-	
-	for ms in npc_ms:
-		var req_h = int(ms.get("heart_level", 1))
-		if cur_heart >= req_h and req_h not in claimed:
-			claimed.append(req_h)
-			var rew = ms.get("rewards", {})
-			RewardManager.grant_rewards(rew, self)
-			newly_claimed.append({ "npc_id": npc_id, "heart_level": req_h, "rewards": rew })
-			heart_milestone_unlocked.emit(npc_id, req_h, rew)
-			
-	claimed_heart_milestones[npc_id] = claimed
-	return newly_claimed
 
 func get_relationship_state(npc_id: String) -> Dictionary:
 	var progress = get_heart_progress(npc_id)
@@ -250,26 +157,50 @@ func has_seen_dialogue(npc_id: String, node_key: String) -> bool:
 
 # --- Inventory API ---
 
-func add_item(item_id: String, quantity: int = 1) -> void:
+static func get_base_item_id(compound_key: String) -> String:
+	var parts = compound_key.split("::")
+	return parts[0]
+
+static func get_genetic_hash(compound_key: String) -> String:
+	var parts = compound_key.split("::")
+	if parts.size() > 1:
+		return parts[1]
+	return ""
+
+func get_stack_key(item_id: String, profile: GeneticProfile = null) -> String:
+	if profile != null:
+		return item_id + "::" + profile.get_identity()
+	return item_id
+
+func add_item(item_id: String, quantity: int = 1, profile: GeneticProfile = null) -> void:
 	if quantity <= 0 or item_id == "": return
-	inventory[item_id] = inventory.get(item_id, 0) + quantity
+	var key = get_stack_key(item_id, profile)
+	if profile != null:
+		genetic_instances[profile.get_identity()] = profile.to_dict()
+	inventory[key] = inventory.get(key, 0) + quantity
 	inventory_changed.emit()
 
-func remove_item(item_id: String, quantity: int = 1) -> bool:
-	if not has_item(item_id, quantity): return false
-	inventory[item_id] -= quantity
-	if inventory[item_id] <= 0:
-		inventory.erase(item_id)
-		if selected_item_id == item_id:
+func remove_item(item_id: String, quantity: int = 1, profile: GeneticProfile = null) -> bool:
+	if not has_item(item_id, quantity, profile): return false
+	var key = get_stack_key(item_id, profile)
+	inventory[key] -= quantity
+	if inventory[key] <= 0:
+		inventory.erase(key)
+		var hash_part = PlayerState.get_genetic_hash(key)
+		if hash_part != "" and genetic_instances.has(hash_part):
+			genetic_instances.erase(hash_part)
+		if selected_item_id == key:
 			_auto_select_next_item()
 	inventory_changed.emit()
 	return true
 
-func has_item(item_id: String, quantity: int = 1) -> bool:
-	return inventory.get(item_id, 0) >= quantity
+func has_item(item_id: String, quantity: int = 1, profile: GeneticProfile = null) -> bool:
+	var key = get_stack_key(item_id, profile)
+	return inventory.get(key, 0) >= quantity
 
-func get_item_count(item_id: String) -> int:
-	return inventory.get(item_id, 0)
+func get_item_count(item_id: String, profile: GeneticProfile = null) -> int:
+	var key = get_stack_key(item_id, profile)
+	return inventory.get(key, 0)
 
 func get_all_items() -> Dictionary:
 	return inventory.duplicate()
@@ -365,16 +296,22 @@ func restore_energy(amount: float) -> void:
 	energy_changed.emit(energy, max_energy)
 
 
+
+# --- Quests ---
+var active_quests: Dictionary = {} # quest_id -> { "status": String, "progress": [int] }
+var completed_quests: Array = []
 # --- Serialization ---
 
 func to_dict() -> Dictionary:
 	return {
 		"player_id": player_id,
+		"home_owner_id": home_owner_id if home_owner_id != "" else player_id,
 		"display_name": display_name,
 		"current_world": current_world,
 		"position": [position.x, position.y],
 		"position_space": "world",
 		"inventory": inventory.duplicate(true),
+		"genetic_instances": genetic_instances.duplicate(true),
 		"hotbar_slots": hotbar_slots.duplicate(true),
 		"selected_hotbar_slot": selected_hotbar_slot,
 		"selected_item_id": selected_item_id,
@@ -384,6 +321,8 @@ func to_dict() -> Dictionary:
 		"max_energy": max_energy,
 		"purchased_upgrades": purchased_upgrades.duplicate(),
 		"personal_quests": personal_quests.duplicate(true),
+		"active_quests": active_quests.duplicate(true),
+		"completed_quests": completed_quests.duplicate(true),
 		"statistics": statistics.duplicate(true),
 		"friendship": friendship.duplicate(true),
 		"daily_talked_npcs": daily_talked_npcs.duplicate(true),
@@ -395,6 +334,7 @@ func to_dict() -> Dictionary:
 
 static func from_dict(data: Dictionary) -> PlayerState:
 	var state = PlayerState.new(data.get("player_id", "player_001"), data.get("display_name", "Botanist"))
+	state.home_owner_id = str(data.get("home_owner_id", state.player_id))
 	state.current_world = str(data.get("current_world", "farm"))
 	
 	var pspace = str(data.get("position_space", "grid"))
@@ -406,6 +346,7 @@ static func from_dict(data: Dictionary) -> PlayerState:
 			state.position = Vector2(float(raw_pos[0]), float(raw_pos[1]))
 			
 	state.inventory = data.get("inventory", {}).duplicate(true)
+	state.genetic_instances = data.get("genetic_instances", {}).duplicate(true)
 	state.hotbar_slots = data.get("hotbar_slots", []).duplicate(true)
 	state.selected_hotbar_slot = int(data.get("selected_hotbar_slot", 0))
 	state.selected_item_id = str(data.get("selected_item_id", ""))
@@ -415,6 +356,8 @@ static func from_dict(data: Dictionary) -> PlayerState:
 	state.max_energy = float(data.get("max_energy", 100.0))
 	state.purchased_upgrades = Array(data.get("purchased_upgrades", []), TYPE_STRING, "", null)
 	state.personal_quests = data.get("personal_quests", {}).duplicate(true)
+	state.active_quests = data.get("active_quests", {}).duplicate(true)
+	state.completed_quests = data.get("completed_quests", []).duplicate(true)
 	state.statistics = data.get("statistics", {}).duplicate(true)
 	state.friendship = data.get("friendship", {}).duplicate(true)
 	state.daily_talked_npcs = data.get("daily_talked_npcs", {}).duplicate(true)

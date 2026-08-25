@@ -11,17 +11,21 @@ extends Node2D
 @export var is_mature: bool = false
 
 var plant_data: Dictionary = {}
+var genetic_identity: String = ""
+var genetic_profile: Dictionary = {}
 
 func _ready() -> void:
 	update_plant_data()
 	queue_redraw()
 
-func setup(p_plant_id: String, p_pos: Vector2i, p_stage: int = 0, p_watered: bool = false) -> void:
+func setup(p_plant_id: String, p_pos: Vector2i, p_stage: int = 0, p_watered: bool = false, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	plant_id = p_plant_id
 	grid_position = p_pos
 	growth_stage = p_stage
 	days_in_stage = 0
 	watered_today = p_watered
+	genetic_identity = gen_id
+	genetic_profile = gen_prof
 	position = Vector2(p_pos.x * 16 + 8, p_pos.y * 16 + 8)
 	update_plant_data()
 	queue_redraw()
@@ -38,13 +42,17 @@ func set_watered(watered: bool) -> void:
 	queue_redraw()
 
 func advance_growth() -> bool:
-	if not watered_today:
+	var needs_water = true
+	if not genetic_profile.is_empty():
+		needs_water = bool(genetic_profile.get("water_required", true))
+		
+	if needs_water and not watered_today:
 		return false
 		
 	var old_stage = growth_stage
 	var pm = get_node_or_null("/root/PlantManager")
 	if pm:
-		var result = pm.calculate_growth(plant_id, growth_stage, days_in_stage)
+		var result = pm.calculate_growth(plant_id, growth_stage, days_in_stage, genetic_profile)
 		growth_stage = result.get("new_stage", growth_stage)
 		days_in_stage = result.get("days_in_stage", 0)
 		is_mature = result.get("is_mature", false)

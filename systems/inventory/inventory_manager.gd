@@ -15,21 +15,21 @@ func _get_player_state(player_id: String) -> PlayerState:
 		return psm.get_player_state(player_id)
 	return null
 
-func add_item(player_id: String, item_id: String, quantity: int = 1) -> void:
+func add_item(player_id: String, item_id: String, quantity: int = 1, profile: GeneticProfile = null) -> void:
 	var state = _get_player_state(player_id)
-	if state: state.add_item(item_id, quantity)
+	if state: state.add_item(item_id, quantity, profile)
 
-func remove_item(player_id: String, item_id: String, quantity: int = 1) -> bool:
+func remove_item(player_id: String, item_id: String, quantity: int = 1, profile: GeneticProfile = null) -> bool:
 	var state = _get_player_state(player_id)
-	return state.remove_item(item_id, quantity) if state else false
+	return state.remove_item(item_id, quantity, profile) if state else false
 
-func has_item(player_id: String, item_id: String, quantity: int = 1) -> bool:
+func has_item(player_id: String, item_id: String, quantity: int = 1, profile: GeneticProfile = null) -> bool:
 	var state = _get_player_state(player_id)
-	return state.has_item(item_id, quantity) if state else false
+	return state.has_item(item_id, quantity, profile) if state else false
 
-func get_item_count(player_id: String, item_id: String) -> int:
+func get_item_count(player_id: String, item_id: String, profile: GeneticProfile = null) -> int:
 	var state = _get_player_state(player_id)
-	return state.get_item_count(item_id) if state else 0
+	return state.get_item_count(item_id, profile) if state else 0
 
 func get_all_items(player_id: String) -> Dictionary:
 	var state = _get_player_state(player_id)

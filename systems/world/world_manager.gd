@@ -25,7 +25,8 @@ func _ready() -> void:
 
 func get_shared_world_state(world_id: String) -> SharedWorldState:
 	if not shared_world_states.has(world_id):
-		var dname = world_definitions.get(world_id, {}).display_name if world_definitions.has(world_id) else world_id.capitalize()
+		var base_id = world_id.split(":")[0]
+		var dname = world_definitions.get(base_id, {}).display_name if world_definitions.has(base_id) else base_id.capitalize()
 		shared_world_states[world_id] = SharedWorldState.new(world_id, dname)
 	return shared_world_states[world_id]
 
@@ -67,10 +68,12 @@ func get_current_world() -> String:
 	return current_world_id
 
 func check_world_exists(world_id: String) -> bool:
-	return world_definitions.has(world_id) or FileAccess.file_exists("res://data/worlds/%s.json" % world_id)
+	var base_id = world_id.split(":")[0]
+	return world_definitions.has(base_id) or FileAccess.file_exists("res://data/worlds/%s.json" % base_id)
 
 func get_world_definition(world_id: String) -> WorldDefinition:
-	return world_definitions.get(world_id, null)
+	var base_id = world_id.split(":")[0]
+	return world_definitions.get(base_id, null)
 
 func get_all_world_definitions() -> Dictionary:
 	return world_definitions.duplicate()
@@ -117,7 +120,8 @@ func get_transition(transition_id: String) -> Dictionary:
 	return {}
 
 func get_all_transitions_for_world(world_id: String) -> Array:
-	var path = "res://data/worlds/%s.json" % world_id
+	var base_id = world_id.split(":")[0]
+	var path = "res://data/worlds/%s.json" % base_id
 	if FileAccess.file_exists(path):
 		var f = FileAccess.open(path, FileAccess.READ)
 		if f:
@@ -136,7 +140,12 @@ func load_world(world_id: String) -> Dictionary:
 	return {}
 
 
-func transition_to(target_world_id: String, target_spawn: Variant = "default", animate: bool = true) -> bool:
+func transition_to(target_world_id: String, target_spawn: Variant = "default", animate: bool = true, player_id: String = "") -> bool:
+	var _p = get_tree().root.find_child("Player", true, false) if get_tree() and get_tree().root else null
+	if player_id == "" and _p and "player_id" in _p: player_id = _p.player_id
+	if player_id == "": player_id = "player_001"
+	if target_world_id == "home" or target_world_id == "laboratory":
+		target_world_id = target_world_id + ":" + player_id
 	if is_transitioning: return false
 	
 	var pm = get_node_or_null("/root/ProgressionManager")
@@ -189,13 +198,13 @@ func transition_to(target_world_id: String, target_spawn: Variant = "default", a
 	# 3. Delegate to WorldLoader for GridManager rebuild & per-world state caching
 	var wl = get_node_or_null("/root/WorldLoader")
 	if wl:
-		wl.change_world(target_world_id, resolved_spawn, false)
+		wl.change_world(player_id, target_world_id, resolved_spawn, false)
 		
 	current_world_id = target_world_id
 	
 	var psm = get_node_or_null("/root/PlayerRegistry")
-	if psm:
-		var p_state = psm.get_active_player_state()
+	if psm and player_id != "":
+		var p_state = psm.get_player_state(player_id) if psm.has_method("get_player_state") else null
 		if p_state:
 			p_state.current_world = target_world_id
 			p_state.position = player.global_position if player else Vector2(resolved_spawn.x * 16 + 8, resolved_spawn.y * 16 + 8)

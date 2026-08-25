@@ -12,14 +12,21 @@ const EDITOR_PANEL_SCRIPT = preload("res://editor/core/editor_panel.gd")
 const WORLD_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/world_editor_panel.gd")
 const NPC_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/npc_editor_panel.gd")
 const DIALOGUE_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/dialogue_editor_panel.gd")
+const CUTSCENE_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/cutscene_editor_panel.gd")
 const QUEST_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/quest_editor_panel.gd")
 const ITEM_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/item_editor_panel.gd")
+const GENETICS_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/genetics_editor_panel.gd")
 const MOD_MANAGER_PANEL_SCRIPT = preload("res://editor/ui/panels/mod_manager_panel.gd")
 const ASSET_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/asset_editor_panel.gd")
 const GAME_STUDIO_PANEL_SCRIPT = preload("res://editor/ui/panels/game_studio_panel.gd")
 const GAMEPLAY_RULES_PANEL_SCRIPT = preload("res://editor/ui/panels/gameplay_rules_editor_panel.gd")
 const CUSTOM_COMP_PANEL_SCRIPT = preload("res://editor/ui/panels/custom_component_editor_panel.gd")
 const MECHANIC_GRAPH_PANEL_SCRIPT = preload("res://editor/ui/panels/mechanic_graph_editor_panel.gd")
+
+const COMBINATION_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/combination_editor_panel.gd")
+const PROGRESSION_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/progression_editor_panel.gd")
+const DISCOVERY_EDITOR_PANEL_SCRIPT = preload("res://editor/ui/panels/discovery_editor_panel.gd")
+
 
 static func _static_init() -> void:
 	_ensure_defaults()
@@ -33,6 +40,14 @@ static func _ensure_defaults() -> void:
 		register_panel("custom_components", CUSTOM_COMP_PANEL_SCRIPT, "ui.editor.cat_components", "icon_component", 53)
 	if not _panel_types.has("mechanics"):
 		register_panel("mechanics", MECHANIC_GRAPH_PANEL_SCRIPT, "ui.editor.cat_mechanics", "icon_mechanics", 54)
+	
+	if not _panel_types.has("combination"):
+		register_panel("combination", COMBINATION_EDITOR_PANEL_SCRIPT, "ui.editor.cat_combination", "icon_combination", 17)
+	if not _panel_types.has("progression"):
+		register_panel("progression", PROGRESSION_EDITOR_PANEL_SCRIPT, "ui.editor.cat_progression", "icon_progression", 18)
+	if not _panel_types.has("discovery"):
+		register_panel("discovery", DISCOVERY_EDITOR_PANEL_SCRIPT, "ui.editor.cat_discovery", "icon_discovery", 19)
+
 	if not _panel_types.has("world"):
 		register_panel("world", WORLD_EDITOR_PANEL_SCRIPT, "ui.editor.cat_world", "icon_world", 10)
 	if not _panel_types.has("npc"):
@@ -40,7 +55,10 @@ static func _ensure_defaults() -> void:
 	if not _panel_types.has("dialogue"):
 		register_panel("dialogue", DIALOGUE_EDITOR_PANEL_SCRIPT, "ui.editor.cat_dialogue", "icon_dialogue", 30)
 	if not _panel_types.has("quest"):
+		register_panel("cutscene", CUTSCENE_EDITOR_PANEL_SCRIPT, "ui.editor.cat_cutscene", "icon_cutscene", 45)
 		register_panel("quest", QUEST_EDITOR_PANEL_SCRIPT, "ui.editor.cat_quest", "icon_quest", 40)
+	if not _panel_types.has("genetics"):
+		register_panel("genetics", GENETICS_EDITOR_PANEL_SCRIPT, "ui.editor.cat_genetics", "icon_genetics", 51)
 	if not _panel_types.has("item"):
 		register_panel("item", ITEM_EDITOR_PANEL_SCRIPT, "ui.editor.cat_item", "icon_item", 50)
 	if not _panel_types.has("assets"):

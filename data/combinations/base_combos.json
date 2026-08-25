@@ -1,184 +1,235 @@
 {
-  "combinations": [
-    {
-      "hidden": false,
-      "id": "combo_001",
-      "input_a": "red_flower",
-      "input_b": "blue_flower",
-      "name": "Purple Flower",
-      "output": "purple_flower",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_002",
-      "input_a": "red_flower",
-      "input_b": "yellow_herb",
-      "name": "Orange Herb",
-      "output": "orange_herb",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_003",
-      "input_a": "blue_flower",
-      "input_b": "yellow_herb",
-      "name": "Green Herb",
-      "output": "green_herb",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_004",
-      "input_a": "yellow_herb",
-      "input_b": "white_lily",
-      "name": "Golden Lily",
-      "output": "golden_lily",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_005",
-      "input_a": "green_vine",
-      "input_b": "red_flower",
-      "name": "Crimson Vine",
-      "output": "crimson_vine",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_006",
-      "input_a": "green_vine",
-      "input_b": "blue_flower",
-      "name": "Frost Vine",
-      "output": "frost_vine",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_007",
-      "input_a": "white_lily",
-      "input_b": "red_flower",
-      "name": "Pink Lily",
-      "output": "pink_lily",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_008",
-      "input_a": "white_lily",
-      "input_b": "blue_flower",
-      "name": "Sapphire Lily",
-      "output": "sapphire_lily",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_009",
-      "input_a": "green_vine",
-      "input_b": "yellow_herb",
-      "name": "Sun Vine",
-      "output": "sun_vine",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_010",
-      "input_a": "green_vine",
-      "input_b": "white_lily",
-      "name": "Moon Vine",
-      "output": "moon_vine",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_011",
-      "input_a": "red_flower",
-      "input_b": "red_flower",
-      "name": "Deep Crimson Bloom",
-      "output": "deep_crimson_bloom",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_012",
-      "input_a": "blue_flower",
-      "input_b": "blue_flower",
-      "name": "Azure Lotus",
-      "output": "azure_lotus",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_013",
-      "input_a": "yellow_herb",
-      "input_b": "yellow_herb",
-      "name": "Radiant Essence Herb",
-      "output": "radiant_essence_herb",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_014",
-      "input_a": "white_lily",
-      "input_b": "white_lily",
-      "name": "Celestial Lily",
-      "output": "celestial_lily",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_015",
-      "input_a": "green_vine",
-      "input_b": "green_vine",
-      "name": "Ancient Evergreen Tendril",
-      "output": "ancient_evergreen_tendril",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_016",
-      "input_a": "moon_orchid",
-      "input_b": "celestial_lily",
-      "name": "Lunar Bloom",
-      "output": "lunar_bloom",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_017",
-      "input_a": "glass_fern",
-      "input_b": "frost_vine",
-      "name": "Crystal Fern",
-      "output": "crystal_fern",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_018",
-      "input_a": "star_moss",
-      "input_b": "azure_lotus",
-      "name": "Astral Moss",
-      "output": "astral_moss",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_019",
-      "input_a": "moon_orchid",
-      "input_b": "pink_lily",
-      "name": "Twilight Orchid",
-      "output": "twilight_orchid",
-      "success_rate": 1.0
-    },
-    {
-      "hidden": false,
-      "id": "combo_020",
-      "input_a": "star_moss",
-      "input_b": "sun_vine",
-      "name": "Solar Moss",
-      "output": "solar_moss",
-      "success_rate": 1.0
-    }
-  ]
+	"combinations": [
+		{
+			"hidden": false,
+			"id": "combo_001",
+			"input_a": "red_flower",
+			"input_b": "blue_flower",
+			"name": "Purple Flower",
+			"output": "purple_flower",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_002",
+			"input_a": "red_flower",
+			"input_b": "yellow_herb",
+			"name": "Orange Herb",
+			"output": "orange_herb",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_003",
+			"input_a": "blue_flower",
+			"input_b": "yellow_herb",
+			"name": "Green Herb",
+			"output": "green_herb",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_004",
+			"input_a": "yellow_herb",
+			"input_b": "white_lily",
+			"name": "Golden Lily",
+			"output": "golden_lily",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_005",
+			"input_a": "green_vine",
+			"input_b": "red_flower",
+			"name": "Crimson Vine",
+			"output": "crimson_vine",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_006",
+			"input_a": "green_vine",
+			"input_b": "blue_flower",
+			"name": "Frost Vine",
+			"output": "frost_vine",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_007",
+			"input_a": "white_lily",
+			"input_b": "red_flower",
+			"name": "Pink Lily",
+			"output": "pink_lily",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_008",
+			"input_a": "white_lily",
+			"input_b": "blue_flower",
+			"name": "Sapphire Lily",
+			"output": "sapphire_lily",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_009",
+			"input_a": "green_vine",
+			"input_b": "yellow_herb",
+			"name": "Sun Vine",
+			"output": "sun_vine",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_010",
+			"input_a": "green_vine",
+			"input_b": "white_lily",
+			"name": "Moon Vine",
+			"output": "moon_vine",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_011",
+			"input_a": "red_flower",
+			"input_b": "red_flower",
+			"name": "Deep Crimson Bloom",
+			"output": "deep_crimson_bloom",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_012",
+			"input_a": "blue_flower",
+			"input_b": "blue_flower",
+			"name": "Azure Lotus",
+			"output": "azure_lotus",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_013",
+			"input_a": "yellow_herb",
+			"input_b": "yellow_herb",
+			"name": "Radiant Essence Herb",
+			"output": "radiant_essence_herb",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_014",
+			"input_a": "white_lily",
+			"input_b": "white_lily",
+			"name": "Celestial Lily",
+			"output": "celestial_lily",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_015",
+			"input_a": "green_vine",
+			"input_b": "green_vine",
+			"name": "Ancient Evergreen Tendril",
+			"output": "ancient_evergreen_tendril",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_016",
+			"input_a": "moon_orchid",
+			"input_b": "celestial_lily",
+			"name": "Lunar Bloom",
+			"output": "lunar_bloom",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_017",
+			"input_a": "glass_fern",
+			"input_b": "frost_vine",
+			"name": "Crystal Fern",
+			"output": "crystal_fern",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_018",
+			"input_a": "star_moss",
+			"input_b": "azure_lotus",
+			"name": "Astral Moss",
+			"output": "astral_moss",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_019",
+			"input_a": "moon_orchid",
+			"input_b": "pink_lily",
+			"name": "Twilight Orchid",
+			"output": "twilight_orchid",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_020",
+			"input_a": "star_moss",
+			"input_b": "sun_vine",
+			"name": "Solar Moss",
+			"output": "solar_moss",
+			"success_rate": 1.0
+		},
+		{
+			"hidden": false,
+			"id": "combo_test_1",
+			"input_a": "red_flower",
+			"input_b": "blue_flower",
+			"name": "Test Combo",
+			"output": "purple_flower",
+			"success_rate": 1.0
+		},
+		{
+			"duration": 1.0,
+			"hidden": false,
+			"id": "combo_luminous",
+			"input_a": "mushroom",
+			"input_b": "starpetal",
+			"output": "luminous_spore"
+		},
+		{
+			"duration": 1.0,
+			"hidden": false,
+			"id": "combo_luminous",
+			"input_a": "mushroom",
+			"input_b": "starpetal",
+			"output": "luminous_spore"
+		},
+		{
+			"hidden": false,
+			"id": "combo_test_1",
+			"input_a": "red_flower",
+			"input_b": "blue_flower",
+			"name": "Test Combo",
+			"output": "purple_flower",
+			"success_rate": 1.0
+		},
+		{
+			"duration": 1.0,
+			"hidden": false,
+			"id": "combo_luminous",
+			"input_a": "mushroom",
+			"input_b": "starpetal",
+			"output": "luminous_spore"
+		},
+		{
+			"hidden": false,
+			"id": "combo_test_1",
+			"input_a": "red_flower",
+			"input_b": "blue_flower",
+			"name": "Test Combo",
+			"output": "purple_flower",
+			"success_rate": 1.0
+		}
+	]
 }

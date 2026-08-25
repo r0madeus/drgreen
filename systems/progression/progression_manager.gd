@@ -43,13 +43,13 @@ func load_progression_data() -> void:
 
 func _connect_event_bus() -> void:
 	EventBus.world_changed.connect(_on_world_changed)
-	EventBus.quest_completed.connect(func(_qid): check_unlock_conditions())
-	EventBus.plant_discovered.connect(func(_pid): check_unlock_conditions())
+	EventBus.quest_completed.connect(func(_pid, _qid = ""): check_unlock_conditions())
+	EventBus.plant_discovered.connect(func(_pid, _plant_id = ""): check_unlock_conditions())
 
 func _on_world_changed(new_world: String, _wdata: Dictionary = {}) -> void:
 	visited_worlds[new_world] = true
 	var qm = get_node_or_null("/root/QuestManager")
-	if qm: qm.advance_objective("visit_world", 1, new_world)
+	if qm: qm.advance_objective("", "visit_world", 1, new_world)
 	check_unlock_conditions()
 
 
@@ -80,7 +80,7 @@ func check_unlock_conditions() -> void:
 			var ctype = str(cond.get("type", ""))
 			if ctype == "quest_completed":
 				var req_qid = str(cond.get("quest_id", ""))
-				if qm and qm.get_quest_status(req_qid) not in [QuestManager.STATUS_COMPLETED, QuestManager.STATUS_CLAIMED]:
+				if qm and qm.get_quest_status("", req_qid) not in [QuestManager.STATUS_COMPLETED, QuestManager.STATUS_CLAIMED]:
 					all_met = false
 					break
 			elif ctype == "plants_discovered":

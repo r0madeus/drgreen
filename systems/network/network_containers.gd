@@ -150,7 +150,7 @@ func host_deposit(requester_peer: int, world_id: String, container_id: String, i
 	ws.set_container_items(container_id, items)
 	
 	_broadcast_container_update(world_id, container_id, ws.get_container_items(container_id))
-	EventBus.container_deposited.emit(container_id, item_id, quantity)
+	EventBus.container_deposited.emit("", container_id, item_id, quantity)
 	print("[NetContainers] Peer %d deposited %dx %s into %s" % [requester_peer, quantity, item_id, container_id])
 
 @rpc("any_peer", "call_local", "reliable")
@@ -185,7 +185,7 @@ func host_withdraw(requester_peer: int, world_id: String, container_id: String, 
 	player_state.add_item(item_id, quantity)
 	
 	_broadcast_container_update(world_id, container_id, ws.get_container_items(container_id))
-	EventBus.container_withdrawn.emit(container_id, item_id, quantity)
+	EventBus.container_withdrawn.emit("", container_id, item_id, quantity)
 	print("[NetContainers] Peer %d withdrew %dx %s from %s" % [requester_peer, quantity, item_id, container_id])
 
 

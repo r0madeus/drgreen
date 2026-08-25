@@ -1,4 +1,4 @@
-extends Node
+﻿extends Node
 
 ## Authoritative Co-op Gameplay Synchronization Manager (Autoload Singleton).
 ## Handles Host-authoritative validation for Farming actions (Plant -> Water -> Grow -> Harvest),
@@ -28,11 +28,11 @@ func get_local_peer_id() -> int:
 # CLIENT REQUEST APIS
 # ==============================================================================
 
-func request_plant(player_id: String, world_id: String, grid_pos: Vector2i, seed_id: String) -> void:
+func request_plant(player_id: String, world_id: String, grid_pos: Vector2i, seed_id: String, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	if is_offline():
-		_execute_local_plant(player_id, world_id, grid_pos, seed_id)
+		_execute_local_plant(player_id, world_id, grid_pos, seed_id, gen_id, gen_prof)
 		return
-	rpc("client_request_plant", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y, seed_id)
+	rpc("client_request_plant", get_local_peer_id(), world_id, grid_pos.x, grid_pos.y, seed_id, gen_id, gen_prof)
 
 func request_water(player_id: String, world_id: String, grid_pos: Vector2i) -> void:
 	if is_offline():
@@ -125,7 +125,7 @@ func _get_player_state_for_peer(peer_id: int) -> PlayerState:
 	return psm.players["player_001"] if psm.players.has("player_001") else null
 
 @rpc("any_peer", "call_local", "reliable")
-func client_request_plant(requester_peer: int, world_id: String, pos_x: int, pos_y: int, seed_id: String) -> void:
+func client_request_plant(requester_peer: int, world_id: String, pos_x: int, pos_y: int, seed_id: String, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	if not is_host(): return
 	
 	var pos = Vector2i(pos_x, pos_y)
@@ -149,10 +149,10 @@ func client_request_plant(requester_peer: int, world_id: String, pos_x: int, pos
 	
 	# 2. Mutate authoritative state
 	player_state.remove_item(seed_id, 1)
-	world_state.add_or_update_plant(pos, plant_id, 0, 0, false)
+	world_state.add_or_update_plant(pos, plant_id, 0, 0, false, gen_id, gen_prof)
 	
 	# 3. Broadcast authoritative result to all peers
-	rpc("broadcast_plant_created", world_id, pos.x, pos.y, plant_id, 0, 0, false)
+	rpc("broadcast_plant_created", world_id, pos.x, pos.y, plant_id, 0, 0, false, gen_id, gen_prof)
 	print("[NetworkGameplay] Host approved planting of %s at %s for peer %d" % [plant_id, pos, requester_peer])
 
 @rpc("any_peer", "call_local", "reliable")
@@ -235,7 +235,7 @@ func client_request_snapshot(requester_peer: int, world_id: String) -> void:
 # ==============================================================================
 
 @rpc("authority", "call_local", "reliable")
-func broadcast_plant_created(world_id: String, pos_x: int, pos_y: int, plant_id: String, stage: int, days: int, watered: bool) -> void:
+func broadcast_plant_created(world_id: String, pos_x: int, pos_y: int, plant_id: String, stage: int, days: int, watered: bool, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	var pos = Vector2i(pos_x, pos_y)
 	var wm = get_node_or_null("/root/WorldManager")
 	var cur_world = wm.get_current_world() if wm else "farm"
@@ -243,7 +243,7 @@ func broadcast_plant_created(world_id: String, pos_x: int, pos_y: int, plant_id:
 	# Update local shared state cache
 	if wm:
 		var state = wm.get_shared_world_state(world_id)
-		state.add_or_update_plant(pos, plant_id, stage, days, watered)
+		state.add_or_update_plant(pos, plant_id, stage, days, watered, gen_id, gen_prof)
 		
 	# Update active scene if currently in this world
 	if cur_world == world_id:
@@ -257,7 +257,9 @@ func broadcast_plant_created(world_id: String, pos_x: int, pos_y: int, plant_id:
 				tile.days_in_stage = days
 				tile.watered_today = watered
 				tile.state = "planted"
-				gm._spawn_plant_instance(pos, plant_id, stage, days, watered)
+				tile.genetic_identity = gen_id
+				tile.genetic_profile = gen_prof
+				gm._spawn_plant_instance(pos, plant_id, stage, days, watered, gen_id, gen_prof)
 				gm.tile_updated.emit(pos, tile)
 				
 		# Local visual and sound effects
@@ -267,7 +269,7 @@ func broadcast_plant_created(world_id: String, pos_x: int, pos_y: int, plant_id:
 		if spawner and gm:
 			var world_pos = gm.grid_to_world(pos, true)
 			spawner.spawn_planting_effect(world_pos)
-			spawner.spawn_floating_text(world_pos, "🌱 Planted", Color(0.6, 1.0, 0.5))
+			spawner.spawn_floating_text(world_pos, "ğŸŒ± Planted", Color(0.6, 1.0, 0.5))
 			
 	plant_synced.emit(world_id, pos, plant_id)
 
@@ -300,7 +302,7 @@ func broadcast_plant_watered(world_id: String, pos_x: int, pos_y: int) -> void:
 		if spawner and gm:
 			var world_pos = gm.grid_to_world(pos, true)
 			spawner.spawn_watering_effect(world_pos)
-			spawner.spawn_floating_text(world_pos, "💧 Watered", Color(0.4, 0.8, 1.0))
+			spawner.spawn_floating_text(world_pos, "ğŸ’§ Watered", Color(0.4, 0.8, 1.0))
 			
 	water_synced.emit(world_id, pos)
 
@@ -339,7 +341,7 @@ func broadcast_plant_harvested(world_id: String, pos_x: int, pos_y: int, harvest
 			spawner.spawn_harvest_effect(world_pos)
 			if harvester_peer == get_local_peer_id():
 				var dname = crop_id.replace("_", " ").capitalize()
-				spawner.spawn_floating_text(world_pos, "✨ +%d %s" % [count, dname], Color(1.0, 0.9, 0.3))
+				spawner.spawn_floating_text(world_pos, "âœ¨ +%d %s" % [count, dname], Color(1.0, 0.9, 0.3))
 				
 	harvest_synced.emit(world_id, pos, crop_id, count)
 
@@ -357,10 +359,12 @@ func broadcast_plant_growth(world_id: String, growth_list: Array) -> void:
 		var stage = int(p_info.get("growth_stage", 0))
 		var days = int(p_info.get("days_in_stage", 0))
 		var watered = bool(p_info.get("watered_today", false))
+		var gen_id = str(p_info.get("genetic_identity", ""))
+		var gen_prof = p_info.get("genetic_profile", {})
 		
 		if wm:
 			var state = wm.get_shared_world_state(world_id)
-			state.add_or_update_plant(pos, plant_id, stage, days, watered)
+			state.add_or_update_plant(pos, plant_id, stage, days, watered, gen_id, gen_prof)
 			
 		if cur_world == world_id and gm:
 			var tile = gm.get_tile(pos)
@@ -370,7 +374,7 @@ func broadcast_plant_growth(world_id: String, growth_list: Array) -> void:
 				tile.days_in_stage = days
 				tile.watered_today = watered
 				tile.state = "mature" if stage >= 2 else ("growing" if stage > 0 else "planted")
-				gm._spawn_plant_instance(pos, plant_id, stage, days, watered)
+				gm._spawn_plant_instance(pos, plant_id, stage, days, watered, gen_id, gen_prof)
 				gm.tile_updated.emit(pos, tile)
 
 @rpc("authority", "call_remote", "reliable")
@@ -400,7 +404,7 @@ func notify_gameplay_error(reason: String) -> void:
 	var spawner = EffectSpawner.get_instance()
 	var player = get_tree().root.find_child("Player", true, false)
 	var pos = player.global_position if player else Vector2(240, 180)
-	if spawner: spawner.spawn_floating_text(pos, "❌ %s" % reason, Color(1.0, 0.4, 0.4))
+	if spawner: spawner.spawn_floating_text(pos, "âŒ %s" % reason, Color(1.0, 0.4, 0.4))
 
 func _send_failure(peer_id: int, reason: String) -> void:
 	if peer_id == 1 or not multiplayer.has_multiplayer_peer() or not multiplayer.get_peers().has(peer_id):
@@ -413,7 +417,7 @@ func _send_failure(peer_id: int, reason: String) -> void:
 # OFFLINE SINGLE-PLAYER FALLBACKS
 # ==============================================================================
 
-func _execute_local_plant(player_id: String, world_id: String, pos: Vector2i, seed_id: String) -> void:
+func _execute_local_plant(player_id: String, world_id: String, pos: Vector2i, seed_id: String, gen_id: String = "", gen_prof: Dictionary = {}) -> void:
 	var im = get_node_or_null("/root/InventoryManager")
 	var wm = get_node_or_null("/root/WorldManager")
 	var tree = get_tree()
@@ -423,7 +427,7 @@ func _execute_local_plant(player_id: String, world_id: String, pos: Vector2i, se
 	var plant_id = seed_id.trim_prefix("seed_")
 	
 	if im.remove_item(player_id, seed_id, 1):
-		if gm.plant_seed(pos, plant_id):
+		if gm.plant_seed(pos, plant_id, player_id, gen_id, gen_prof):
 			if wm:
 				wm.get_shared_world_state(world_id).add_or_update_plant(pos, plant_id, 0, 0, false)
 			var am = get_node_or_null("/root/AudioManager")
@@ -432,7 +436,7 @@ func _execute_local_plant(player_id: String, world_id: String, pos: Vector2i, se
 			if spawner:
 				var world_pos = gm.grid_to_world(pos, true)
 				spawner.spawn_planting_effect(world_pos)
-				spawner.spawn_floating_text(world_pos, "🌱 Planted", Color(0.6, 1.0, 0.5))
+				spawner.spawn_floating_text(world_pos, "ğŸŒ± Planted", Color(0.6, 1.0, 0.5))
 
 func _execute_local_water(player_id: String, world_id: String, pos: Vector2i) -> void:
 	var wm = get_node_or_null("/root/WorldManager")
@@ -452,7 +456,7 @@ func _execute_local_water(player_id: String, world_id: String, pos: Vector2i) ->
 		if spawner:
 			var world_pos = gm.grid_to_world(pos, true)
 			spawner.spawn_watering_effect(world_pos)
-			spawner.spawn_floating_text(world_pos, "💧 Watered", Color(0.4, 0.8, 1.0))
+			spawner.spawn_floating_text(world_pos, "ğŸ’§ Watered", Color(0.4, 0.8, 1.0))
 
 func _execute_local_harvest(player_id: String, world_id: String, pos: Vector2i) -> void:
 	var im = get_node_or_null("/root/InventoryManager")
@@ -475,7 +479,7 @@ func _execute_local_harvest(player_id: String, world_id: String, pos: Vector2i) 
 				var world_pos = gm.grid_to_world(pos, true)
 				spawner.spawn_harvest_effect(world_pos)
 				var dname = crop_id.replace("_", " ").capitalize()
-				spawner.spawn_floating_text(world_pos, "✨ +%d %s" % [count, dname], Color(1.0, 0.9, 0.3))
+				spawner.spawn_floating_text(world_pos, "âœ¨ +%d %s" % [count, dname], Color(1.0, 0.9, 0.3))
 
 # ==============================================================================
 # TIME & CLOCK SYNCHRONIZATION
@@ -504,4 +508,5 @@ func host_request_time_sync(requester_peer: int) -> void:
 	var tm = get_node_or_null("/root/TimeManager")
 	if tm:
 		rpc_id(requester_peer, "client_receive_time_sync", tm.current_day, tm.current_time_minutes, tm.current_day_phase)
+
 
