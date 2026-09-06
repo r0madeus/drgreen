@@ -21,6 +21,7 @@ var current_tab: Tab = Tab.ACTIVE
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	if close_btn: close_btn.pressed.connect(toggle_visibility)
 	if active_tab_btn: active_tab_btn.pressed.connect(func(): _switch_tab(Tab.ACTIVE))
 	if completed_tab_btn: completed_tab_btn.pressed.connect(func(): _switch_tab(Tab.COMPLETED))
@@ -44,30 +45,28 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_ESCAPE and visible:
-			visible = false
-			var am = get_node_or_null("/root/AudioManager")
-			if am: am.play_sfx("ui_close")
+			close_ui()
 			get_viewport().set_input_as_handled()
 
-func toggle_visibility() -> void:
-	visible = not visible
+func open_ui() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
+	visible = true
 	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_open")
+	UIConstants.update_player_lock(get_tree())
+	refresh_ui()
+
+func close_ui() -> void:
+	visible = false
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_close")
+	UIConstants.update_player_lock(get_tree())
+
+func toggle_visibility() -> void:
 	if visible:
-		if am: am.play_sfx("ui_open")
-		# Exclusivity: close other open modals
-		var inv = get_tree().root.find_child("InventoryUI", true, false)
-		if inv and inv.visible: inv.visible = false
-		var lab = get_tree().root.find_child("CombinationUI", true, false)
-		if lab and lab.visible: lab.visible = false
-		var jrn = get_tree().root.find_child("JournalUI", true, false)
-		if jrn and jrn.visible: jrn.visible = false
-		var shop = get_tree().root.find_child("ShopUI", true, false)
-		if shop and shop.visible: shop.close_shop()
-		var dial = get_tree().root.find_child("DialogueUI", true, false)
-		if dial and dial.visible: dial.close_dialogue()
-		refresh_ui()
+		close_ui()
 	else:
-		if am: am.play_sfx("ui_close")
+		open_ui()
 
 func _switch_tab(tab: Tab) -> void:
 	current_tab = tab
@@ -102,11 +101,14 @@ func _populate_active() -> void:
 	if not qm:
 		return
 		
-	var active_quests = qm.get_active_quests()
-	var has_quests = active_quests.size() > 0
+	var active_quest_ids = qm.get_active_quests()
+	var has_quests = active_quest_ids.size() > 0
 	
-	for q in active_quests:
-		var qid = q.get("id", "")
+	for q_item in active_quest_ids:
+		var qid = q_item if typeof(q_item) == TYPE_STRING else q_item.get("id", "")
+		var q = qm.get_quest(qid) if typeof(q_item) == TYPE_STRING else q_item
+		if q.is_empty():
+			continue
 		var title_key = q.get("title_key", "")
 		var title = tr(title_key) if title_key != "" else q.get("title", "")
 		var desc_key = q.get("description_key", "")
@@ -222,10 +224,14 @@ func _populate_completed() -> void:
 	if not qm:
 		return
 		
-	var comp_quests = qm.get_completed_quests()
-	var has_comp = comp_quests.size() > 0
+	var comp_quest_ids = qm.get_completed_quests()
+	var has_comp = comp_quest_ids.size() > 0
 	
-	for q in comp_quests:
+	for q_item in comp_quest_ids:
+		var qid = q_item if typeof(q_item) == TYPE_STRING else q_item.get("id", "")
+		var q = qm.get_quest(qid) if typeof(q_item) == TYPE_STRING else q_item
+		if q.is_empty():
+			continue
 		var title = q.get("title", "")
 		var desc = q.get("description", "")
 		var rewards = q.get("rewards", {})

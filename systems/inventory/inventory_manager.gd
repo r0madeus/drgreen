@@ -10,7 +10,9 @@ func _ready() -> void:
 
 func _get_player_state(player_id: String) -> PlayerState:
 	var root = Engine.get_main_loop().root if Engine.get_main_loop() else null
-	var psm = root.get_node_or_null("PlayerRegistry") if root else null
+	if not root: return null
+	var psm = root.get_node_or_null("/root/PlayerRegistry")
+	if not psm: psm = root.get_node_or_null("PlayerRegistry")
 	if psm and psm.has_method("get_player_state"):
 		return psm.get_player_state(player_id)
 	return null

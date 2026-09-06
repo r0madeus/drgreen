@@ -56,8 +56,25 @@ func _draw() -> void:
 	var gw = grid_manager.grid_width
 	var gh = grid_manager.grid_height
 	
-	for y in range(gh):
-		for x in range(gw):
+	var min_x = 0
+	var max_x = gw
+	var min_y = 0
+	var max_y = gh
+	
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		var cam_pos = cam.global_position
+		var v_size = get_viewport_rect().size
+		var zoom_val = cam.zoom
+		var half_w = (v_size.x / (2.0 * zoom_val.x)) + ts * 2.0
+		var half_h = (v_size.y / (2.0 * zoom_val.y)) + ts * 2.0
+		min_x = maxi(0, int((cam_pos.x - half_w) / ts))
+		max_x = mini(gw, int((cam_pos.x + half_w) / ts) + 1)
+		min_y = maxi(0, int((cam_pos.y - half_h) / ts))
+		max_y = mini(gh, int((cam_pos.y + half_h) / ts) + 1)
+		
+	for y in range(min_y, max_y):
+		for x in range(min_x, max_x):
 			var pos = Vector2i(x, y)
 			var tile = grid_manager.get_tile(pos)
 			if not tile: continue
@@ -65,11 +82,17 @@ func _draw() -> void:
 			var rect = Rect2(x * ts, y * ts, ts, ts)
 			var tile_key = "watered_soil" if (tile.type == "soil" and tile.watered_today) else tile.type
 			var custom_tex = AssetRegistry.get_tile_texture(tile_key)
-			if custom_tex:
+			if custom_tex and not "fallback" in custom_tex.resource_name:
 				var sm = get_node_or_null("/root/SeasonManager")
 				var modulate_col = sm.get_season_tint() if sm else Color.WHITE
-				if tile.type == "soil": modulate_col = Color.WHITE
+				if tile.type == "soil":
+					modulate_col = Color(0.70, 0.75, 0.90) if tile.watered_today else Color.WHITE
 				draw_texture_rect(custom_tex, rect, false, modulate_col)
+				if tile.type == "soil" and tile.watered_today:
+					# Dark moist dampening overlay with subtle water sheen
+					draw_rect(rect, Color(0.06, 0.14, 0.30, 0.25), true)
+					draw_line(Vector2(rect.position.x + 3, rect.position.y + 4), Vector2(rect.position.x + 8, rect.position.y + 4), Color(0.55, 0.85, 1.0, 0.45), 1.0)
+					draw_line(Vector2(rect.position.x + 7, rect.position.y + 11), Vector2(rect.position.x + 12, rect.position.y + 11), Color(0.55, 0.85, 1.0, 0.35), 1.0)
 				draw_rect(rect, COLOR_GRID_LINE, false, 1.0)
 				continue
 				
@@ -86,9 +109,13 @@ func _draw() -> void:
 						draw_rect(rect, COLOR_SOIL_WET)
 						draw_rect(rect.grow(-1), COLOR_SOIL_WET_INNER)
 						draw_rect(rect.grow(-3), COLOR_SOIL_WET_SHEEN)
+						draw_line(Vector2(rect.position.x + 3, rect.position.y + 4), Vector2(rect.position.x + 8, rect.position.y + 4), Color(0.55, 0.85, 1.0, 0.45), 1.0)
+						draw_line(Vector2(rect.position.x + 7, rect.position.y + 11), Vector2(rect.position.x + 12, rect.position.y + 11), Color(0.55, 0.85, 1.0, 0.35), 1.0)
 					else:
 						draw_rect(rect, COLOR_SOIL)
 						draw_rect(rect.grow(-1), COLOR_SOIL_INNER)
+						draw_line(Vector2(rect.position.x + 3, rect.position.y + 5), Vector2(rect.position.x + 13, rect.position.y + 5), COLOR_SOIL_FURROW, 1.0)
+						draw_line(Vector2(rect.position.x + 3, rect.position.y + 11), Vector2(rect.position.x + 13, rect.position.y + 11), COLOR_SOIL_FURROW, 1.0)
 				"path":
 					draw_rect(rect, COLOR_PATH)
 					draw_rect(rect.grow(-1), COLOR_PATH_INNER)

@@ -25,6 +25,7 @@ var upgrades_catalog: Dictionary = {}
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	load_all_data()
 	
 	if close_btn: close_btn.pressed.connect(close_shop)
@@ -46,8 +47,9 @@ func _ready() -> void:
 				em.upgrade_purchased.connect(func(_u): refresh_ui())
 		
 	var im = get_node_or_null("/root/InventoryManager")
-	if im:
-		EventBus.world_changed.connect(_bind_local_player)
+	var eb = get_node_or_null("/root/EventBus")
+	if im and eb:
+		eb.world_changed.connect(_bind_local_player)
 
 func _update_tab_texts() -> void:
 	if title_label: title_label.text = tr("ui.shop.title")
@@ -87,27 +89,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 func open_shop() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
 	visible = true
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("shop_open")
-	
-	# Exclusivity: close other open modals
-	var inv = get_tree().root.find_child("InventoryUI", true, false)
-	if inv and inv.visible: inv.visible = false
-	var lab = get_tree().root.find_child("CombinationUI", true, false)
-	if lab and lab.visible: lab.visible = false
-	var jrn = get_tree().root.find_child("JournalUI", true, false)
-	if jrn and jrn.visible: jrn.visible = false
-	var qst = get_tree().root.find_child("QuestUI", true, false)
-	if qst and qst.visible: qst.visible = false
-	var dial = get_tree().root.find_child("DialogueUI", true, false)
-	if dial and dial.visible: dial.close_dialogue()
-	
-	# Lock player movement
-	var player = get_tree().root.find_child("Player", true, false)
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(true)
-		
+	UIConstants.update_player_lock(get_tree())
 	_switch_tab(Tab.SEEDS)
 
 func close_shop() -> void:
@@ -116,11 +102,7 @@ func close_shop() -> void:
 	visible = false
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("shop_close")
-	
-	# Unlock player movement
-	var player = get_tree().root.find_child("Player", true, false)
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(false)
+	UIConstants.update_player_lock(get_tree())
 
 func _switch_tab(tab: Tab) -> void:
 	current_tab = tab

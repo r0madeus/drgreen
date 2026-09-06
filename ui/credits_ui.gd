@@ -13,6 +13,7 @@ var content_vbox: VBoxContainer
 var close_button: Button
 
 func _ready() -> void:
+	theme = UIConstants.get_theme()
 	set_anchors_preset(PRESET_FULL_RECT)
 	_build_ui()
 	_load_and_populate_credits()

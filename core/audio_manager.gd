@@ -198,4 +198,3 @@ func set_music_volume(vol: float) -> void:
 	music_volume = clampf(vol, 0.0, 1.0)
 	if _music_player and _music_player.playing:
 		_music_player.volume_db = linear_to_db(music_volume * master_volume)
-

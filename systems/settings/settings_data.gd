@@ -8,11 +8,11 @@ const SETTINGS_FILE_PATH: String = "user://settings.json"
 static func get_default_settings() -> Dictionary:
 	return {
 		"graphics": {
-			"resolution": "1152x648",
+			"resolution": "1920x1080",
 			"window_mode": "windowed",
 			"vsync": true,
 			"fps_limit": 60,
-			"ui_scale": 1.0,
+			"ui_scale": 1.5,
 			"camera_zoom": 1.0,
 			"integer_scaling": false
 		},
@@ -42,8 +42,9 @@ static func get_default_settings() -> Dictionary:
 			"move_down": ["S", "Down"],
 			"move_left": ["A", "Left"],
 			"move_right": ["D", "Right"],
-			"interact": ["E", "Space"],
-			"inventory": ["I", "Tab"],
+			"use_tool": ["MouseLeft"],
+			"interact": ["E", "MouseRight"],
+			"inventory": ["I", "Tab", "B"],
 			"journal": ["J"],
 			"combination": ["C"],
 			"quest": ["Q"],

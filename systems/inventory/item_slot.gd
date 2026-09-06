@@ -8,6 +8,7 @@ signal slot_clicked(item_id: String)
 var item_id: String = ""
 var quantity: int = 0
 var is_selected: bool = false
+var player_id: String = "player_001"
 
 @onready var name_label: Label = $MarginContainer/VBoxContainer/NameLabel
 @onready var count_label: Label = $MarginContainer/VBoxContainer/CountLabel

@@ -188,17 +188,19 @@ func _build_ui() -> void:
 	vbox.add_child(instruction_label)
 
 func _connect_event_bus() -> void:
-	EventBus.player_moved.connect(_on_player_moved)
-	EventBus.npc_talked.connect(_on_npc_talked)
-	EventBus.plant_planted.connect(_on_plant_planted)
-	EventBus.plant_watered.connect(_on_plant_watered)
-	EventBus.plant_harvested.connect(_on_plant_harvested)
-	EventBus.item_sold.connect(_on_item_sold)
-	EventBus.item_bought.connect(_on_item_bought)
-	EventBus.synthesis_performed.connect(_on_synthesis_performed)
-	EventBus.plant_combined.connect(func(_pid, _a, _b, _o): _on_synthesis_performed(_pid, "", "", 1))
-	EventBus.world_unlocked.connect(_on_world_unlocked)
-	EventBus.world_changed.connect(_on_world_changed)
+	var eb = get_node_or_null("/root/EventBus")
+	if not eb: return
+	eb.player_moved.connect(_on_player_moved)
+	eb.npc_talked.connect(_on_npc_talked)
+	eb.plant_planted.connect(_on_plant_planted)
+	eb.plant_watered.connect(_on_plant_watered)
+	eb.plant_harvested.connect(_on_plant_harvested)
+	eb.item_sold.connect(_on_item_sold)
+	eb.item_bought.connect(_on_item_bought)
+	eb.synthesis_performed.connect(_on_synthesis_performed)
+	eb.plant_combined.connect(func(_pid, _a, _b, _o): _on_synthesis_performed(_pid, "", "", 1))
+	eb.world_unlocked.connect(_on_world_unlocked)
+	eb.world_changed.connect(_on_world_changed)
 
 func start_tutorial() -> void:
 	current_step = Step.MOVE

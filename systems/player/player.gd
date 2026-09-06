@@ -123,8 +123,10 @@ func _update_mouse_targeting() -> void:
 	var tooltip = ""
 	var valid = in_range
 	
-	var im = get_node_or_null("/root/InventoryManager")
-	var selected = im.get_selected_item(player_id) if im else ""
+	var selected = player_state.selected_item_id if player_state else ""
+	if selected == "":
+		var im = get_node_or_null("/root/InventoryManager")
+		if im: selected = im.get_selected_item(player_id)
 	var use_act = ItemRegistry.get_use_action(selected)
 	
 	# Detect entity / tile state
@@ -187,44 +189,77 @@ func _update_mouse_targeting() -> void:
 		
 	tile_highlight.update_target(mouse_grid_position, in_range, valid, mode, tooltip)
 
+func _get_hotbar_slot_from_event(event: InputEventKey) -> int:
+	var code = event.keycode
+	if code == KEY_NONE or code == 0:
+		code = event.physical_keycode
+	if code == KEY_NONE or code == 0:
+		code = event.key_label
+		
+	if code >= KEY_1 and code <= KEY_9:
+		return code - KEY_1
+	elif code == KEY_0:
+		return 9
+	elif code >= KEY_KP_1 and code <= KEY_KP_9:
+		return code - KEY_KP_1
+	elif code == KEY_KP_0:
+		return 9
+		
+	if event.unicode >= 49 and event.unicode <= 57: # '1'..'9'
+		return event.unicode - 49
+	elif event.unicode == 48: # '0'
+		return 9
+		
+	return -1
+
 func _unhandled_input(event: InputEvent) -> void:
-	if is_movement_locked or interaction.is_mouse_over_ui():
+	if is_movement_locked:
 		return
 		
-	# 1. Hotbar Mouse Wheel (10 Slots)
+	# 1. Number Keys 1..9, 0 & Numpad for 10-Slot Hotbar Selection (Works regardless of mouse position)
+	if event is InputEventKey and event.pressed and not event.echo:
+		var slot_idx = _get_hotbar_slot_from_event(event)
+		if slot_idx >= 0 and slot_idx < 10:
+			if player_state:
+				player_state.select_hotbar_slot(slot_idx)
+			else:
+				var im = get_node_or_null("/root/InventoryManager")
+				if im: im.select_slot_index(player_id, slot_idx)
+			get_viewport().set_input_as_handled()
+			return
+
+	# 2. Hotbar Mouse Wheel (10 Slots)
 	if event.is_action_pressed("hotbar_next") or (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
-		var im = get_node_or_null("/root/InventoryManager")
-		if im: im.cycle_hotbar(player_id, 1)
+		if player_state:
+			player_state.cycle_hotbar_slot(1)
+		else:
+			var im = get_node_or_null("/root/InventoryManager")
+			if im: im.cycle_hotbar(player_id, 1)
 		get_viewport().set_input_as_handled()
 		return
 	elif event.is_action_pressed("hotbar_prev") or (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_WHEEL_UP):
-		var im = get_node_or_null("/root/InventoryManager")
-		if im: im.cycle_hotbar(player_id, -1)
+		if player_state:
+			player_state.cycle_hotbar_slot(-1)
+		else:
+			var im = get_node_or_null("/root/InventoryManager")
+			if im: im.cycle_hotbar(player_id, -1)
 		get_viewport().set_input_as_handled()
 		return
-		
-	# 2. Number Keys 1..0 for 10-Slot Hotbar Selection
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
-			var slot_idx = event.keycode - KEY_1
-			var im = get_node_or_null("/root/InventoryManager")
-			if im: im.select_slot_index(player_id, slot_idx)
-			get_viewport().set_input_as_handled()
-			return
-		elif event.keycode == KEY_0:
-			var im = get_node_or_null("/root/InventoryManager")
-			if im: im.select_slot_index(player_id, 9) # 10th Slot (Index 9)
-			get_viewport().set_input_as_handled()
-			return
-			
-	# 3. Left Mouse Button (Use Selected Item / Tool)
+
+	if interaction.is_mouse_over_ui():
+		return
+
+	# 3. Left Mouse Button (Use Selected Item / Tool / Plant / Water - Stardew Valley Style)
 	if event.is_action_pressed("use_tool") or (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
 		if not grid_manager: return
 		var mouse_grid = grid_manager.world_to_grid(get_global_mouse_position())
-		if interaction.is_world_position_in_range(global_position, mouse_grid, grid_manager):
-			_face_towards(mouse_grid)
-			use_tool_at(mouse_grid)
-			get_viewport().set_input_as_handled()
+		_face_towards(mouse_grid)
+		
+		var in_range = interaction.is_world_position_in_range(global_position, mouse_grid, grid_manager)
+		var target_grid = mouse_grid if in_range else (grid_position + facing_direction)
+		
+		use_tool_at(target_grid)
+		get_viewport().set_input_as_handled()
 		return
 		
 	# 4. Right Mouse Button (Generic Interaction ONLY: NPC, Shop, Chest, World Exit, Dialogue)
@@ -250,8 +285,10 @@ func _face_towards(target_grid: Vector2i) -> void:
 
 func use_tool_at(target_pos: Vector2i) -> bool:
 	if not grid_manager: return false
-	var im = get_node_or_null("/root/InventoryManager")
-	var selected = im.get_selected_item(player_id) if im else ""
+	var selected = player_state.selected_item_id if player_state else ""
+	if selected == "":
+		var im = get_node_or_null("/root/InventoryManager")
+		if im: selected = im.get_selected_item(player_id)
 	return ToolUseManager.use_selected_item(self, target_pos, selected)
 
 func _on_movement_started(_target_pos: Vector2i) -> void:

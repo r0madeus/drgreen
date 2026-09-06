@@ -33,15 +33,15 @@ func _run_test() -> void:
 	root.add_child(shell)
 	
 	# Wait for layout
-	await get_tree().process_frame
-	await get_tree().process_frame
+	await process_frame
+	await process_frame
 	
 	shell.open_editor()
-	await get_tree().process_frame
+	await process_frame
 	
 	# Select world module
 	service.select_module("world")
-	await get_tree().process_frame
+	await process_frame
 	
 	# Find WorldEditorPanel
 	var world_panel = null
@@ -74,7 +74,7 @@ func _run_test() -> void:
 		ev.position = Vector2(100, 100)
 		canvas._gui_input(ev)
 		
-	await get_tree().process_frame
+	await process_frame
 	
 	# If we didn't crash, the UI hierarchy is sound
 	print("World Editor UI hierarchy and input test passed!")

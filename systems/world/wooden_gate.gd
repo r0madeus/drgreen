@@ -9,8 +9,10 @@ extends Node2D
 @onready var prompt_label: Label = $PromptLabel
 
 func _ready() -> void:
-	EventBus.player_interacted.connect(_on_player_interacted)
-	EventBus.world_changed.connect(_on_world_changed)
+	var eb = get_node_or_null("/root/EventBus")
+	if eb:
+		eb.player_interacted.connect(_on_player_interacted)
+		eb.world_changed.connect(_on_world_changed)
 	var wl = get_node_or_null("/root/WorldLoader")
 	_check_world_visibility(wl.current_world_id if wl else "farm")
 

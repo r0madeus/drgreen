@@ -120,6 +120,329 @@ static func get_terrain_assets() -> Array[Dictionary]:
 	return res
 
 # ==============================================================================
+# SMART AUTO-DISCOVERY, SUFFIX PARSER & ASSET SYNCHRONIZATION
+# ==============================================================================
+
+static func scan_and_sync_all_assets() -> Dictionary:
+	ensure_initialized()
+	var stats = {
+		"scanned": 0,
+		"new_assets": 0,
+		"updated": 0,
+		"categories": {}
+	}
+	
+	_scan_sprite_directory_recursive("res://assets/sprites/", "", stats)
+	_scan_audio_directory_recursive("res://assets/audio/", "", stats)
+	
+	save_manifest()
+	_texture_cache.clear()
+	return stats
+
+static func save_manifest() -> void:
+	var dir = MANIFEST_PATH.get_base_dir()
+	if not DirAccess.dir_exists_absolute(dir):
+		DirAccess.make_dir_recursive_absolute(dir)
+	var f = FileAccess.open(MANIFEST_PATH, FileAccess.WRITE)
+	if f:
+		var root_dict = { "assets": _manifest }
+		f.store_string(JSON.stringify(root_dict, "\t"))
+		f.close()
+
+static func _scan_sprite_directory_recursive(dir_path: String, rel_sub: String, stats: Dictionary) -> void:
+	if not DirAccess.dir_exists_absolute(dir_path):
+		return
+	
+	var dir = DirAccess.open(dir_path)
+	if not dir:
+		return
+		
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if file_name.begins_with("."):
+			file_name = dir.get_next()
+			continue
+			
+		var full_path = dir_path.path_join(file_name)
+		var next_rel = rel_sub.path_join(file_name) if rel_sub != "" else file_name
+		
+		if dir.current_is_dir():
+			_scan_sprite_directory_recursive(full_path, next_rel, stats)
+		elif file_name.ends_with(".png") and not file_name.ends_with(".import"):
+			stats["scanned"] += 1
+			_register_discovered_sprite(full_path, next_rel, stats)
+			
+		file_name = dir.get_next()
+	dir.list_dir_end()
+
+static func _register_discovered_sprite(full_path: String, rel_path: String, stats: Dictionary) -> void:
+	var base_name = rel_path.get_file().get_basename()
+	var folder_name = rel_path.get_base_dir().split("/")[0] if "/" in rel_path.get_base_dir() else rel_path.get_base_dir()
+	if folder_name == "":
+		folder_name = "environment"
+		
+	# Parse suffixes and clean display name
+	var parsed = parse_asset_filename(base_name, folder_name)
+	var clean_id = parsed["clean_id"]
+	var category = parsed["category"]
+	var asset_prefix = parsed["prefix"]
+	var asset_id = asset_prefix + clean_id
+	
+	# Determine dimensions
+	var w = int(parsed.get("width", 16))
+	var h = int(parsed.get("height", 16))
+	var img = Image.load_from_file(ProjectSettings.globalize_path(full_path))
+	if img and not img.is_empty():
+		w = img.get_width()
+		h = img.get_height()
+		
+	var existing = _manifest.get(asset_id, {})
+	var is_new = existing.is_empty()
+	
+	var meta = {
+		"id": clean_id,
+		"asset_id": asset_id,
+		"name": parsed["display_name"],
+		"category": category,
+		"type": parsed["type"],
+		"layer": parsed["layer"],
+		"texture": full_path,
+		"size": [w, h],
+		"solid": parsed["solid"],
+		"walkable": parsed["walkable"],
+		"interactable": parsed["interactable"],
+		"emits_light": parsed["emits_light"]
+	}
+	
+	# Preserve existing custom interactions or custom dialogue if already defined in manifest
+	if not is_new:
+		for k in ["interaction_type", "dialogue_id", "shop_id", "container_id", "spawn_id"]:
+			if existing.has(k): meta[k] = existing[k]
+			
+	_manifest[asset_id] = meta
+	
+	if is_new:
+		stats["new_assets"] += 1
+	else:
+		stats["updated"] += 1
+		
+	stats["categories"][category] = stats["categories"].get(category, 0) + 1
+
+static func parse_asset_filename(filename: String, folder_hint: String = "") -> Dictionary:
+	var clean = filename
+	var is_solid = (folder_hint in ["environment", "buildings", "npc"])
+	var is_walkable = (folder_hint in ["tiles", "items", "plants"])
+	var is_interact = false
+	var emits_light = false
+	var custom_w = 16
+	var custom_h = 16
+	
+	# Iteratively strip dimension and property suffixes in any order
+	var changed = true
+	while changed:
+		changed = false
+		var parts = clean.split("_")
+		if parts.size() > 1 and "x" in parts[-1]:
+			var dim_parts = parts[-1].split("x")
+			if dim_parts.size() == 2 and dim_parts[0].is_valid_int() and dim_parts[1].is_valid_int():
+				custom_w = int(dim_parts[0])
+				custom_h = int(dim_parts[1])
+				parts.remove_at(parts.size() - 1)
+				clean = "_".join(parts)
+				changed = true
+				continue
+				
+		if clean.ends_with("_solid"):
+			is_solid = true
+			is_walkable = false
+			clean = clean.trim_suffix("_solid")
+			changed = true
+		elif clean.ends_with("_pass") or clean.ends_with("_walkable") or clean.ends_with("_decor"):
+			is_solid = false
+			is_walkable = true
+			clean = clean.trim_suffix("_pass").trim_suffix("_walkable").trim_suffix("_decor")
+			changed = true
+			
+		if clean.ends_with("_interact") or clean.ends_with("_chest") or clean.ends_with("_door") or clean.ends_with("_shop"):
+			is_interact = true
+			clean = clean.trim_suffix("_interact").trim_suffix("_chest").trim_suffix("_door").trim_suffix("_shop")
+			changed = true
+			
+		if clean.ends_with("_light"):
+			emits_light = true
+			clean = clean.trim_suffix("_light")
+			changed = true
+			
+	# Category and prefix mapping
+	var category = "environment"
+	var type = "object"
+	var layer = "DECORATION"
+	var prefix = "prop."
+	
+	match folder_hint:
+		"tiles":
+			category = "terrain"
+			type = "tile"
+			layer = "GROUND" if clean != "fence" else "OBJECT"
+			prefix = "tile."
+			is_solid = clean in ["fence", "water"]
+			is_walkable = not (clean in ["fence", "water"])
+		"items":
+			category = "item"
+			type = "item"
+			layer = "OBJECT"
+			prefix = "item."
+			is_solid = false
+			is_walkable = true
+		"plants":
+			category = "plant"
+			type = "plant"
+			layer = "DECORATION"
+			prefix = "plant."
+			is_solid = false
+			is_walkable = true
+		"npc":
+			category = "npc"
+			type = "npc"
+			layer = "NPC"
+			prefix = "npc."
+			is_solid = true
+			is_walkable = false
+		"buildings", "structures":
+			category = "building"
+			type = "object"
+			layer = "OBJECT"
+			prefix = "building."
+			is_solid = true
+			is_walkable = false
+		"ui":
+			category = "ui"
+			type = "ui"
+			layer = "OVERLAY"
+			prefix = "ui."
+		_:
+			category = "environment"
+			type = "object"
+			layer = "DECORATION"
+			prefix = "prop."
+			
+	var display_name = clean.replace("_", " ").capitalize()
+	
+	return {
+		"clean_id": clean,
+		"display_name": display_name,
+		"category": category,
+		"type": type,
+		"layer": layer,
+		"prefix": prefix,
+		"solid": is_solid,
+		"walkable": is_walkable,
+		"interactable": is_interact,
+		"emits_light": emits_light,
+		"width": custom_w,
+		"height": custom_h
+	}
+
+static func _scan_audio_directory_recursive(dir_path: String, rel_sub: String, stats: Dictionary) -> void:
+	if not DirAccess.dir_exists_absolute(dir_path):
+		return
+	var dir = DirAccess.open(dir_path)
+	if not dir:
+		return
+		
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if file_name.begins_with("."):
+			file_name = dir.get_next()
+			continue
+		var full_path = dir_path.path_join(file_name)
+		var next_rel = rel_sub.path_join(file_name) if rel_sub != "" else file_name
+		if dir.current_is_dir():
+			_scan_audio_directory_recursive(full_path, next_rel, stats)
+		elif file_name.ends_with(".wav") or file_name.ends_with(".ogg") or file_name.ends_with(".mp3"):
+			if not file_name.ends_with(".import"):
+				stats["scanned"] += 1
+				var base = file_name.get_basename()
+				var folder = rel_sub.split("/")[0] if "/" in rel_sub else rel_sub
+				var cat = "audio_sfx" if folder == "sfx" else "audio_music"
+				var pfx = "audio.sfx." if folder == "sfx" else "audio.music."
+				var aid = pfx + base
+				if not _manifest.has(aid):
+					_manifest[aid] = {
+						"id": base,
+						"asset_id": aid,
+						"category": cat,
+						"path": full_path
+					}
+					stats["new_assets"] += 1
+		file_name = dir.get_next()
+	dir.list_dir_end()
+
+static func get_all_palette_assets() -> Dictionary:
+	ensure_initialized()
+	var grouped: Dictionary = {
+		"Terrain": get_terrain_assets(),
+		"Nature": [],
+		"Buildings": [],
+		"Interactive": [],
+		"NPC": [],
+		"Items": [],
+		"Prefabs": []
+	}
+	
+	var found_ids: Dictionary = {}
+	for t in grouped["Terrain"]:
+		found_ids[t.get("id", "")] = true
+		
+	for asset_id in _manifest.keys():
+		var meta = _manifest[asset_id]
+		var cat = str(meta.get("category", ""))
+		var t = str(meta.get("type", ""))
+		var clean_id = str(meta.get("id", asset_id.split(".")[-1]))
+		
+		if cat in ["audio_sfx", "audio_music", "ui"] or asset_id.begins_with("audio.") or asset_id.begins_with("ui."):
+			continue
+			
+		if found_ids.has(clean_id) and cat in ["terrain", "tile"]:
+			continue
+			
+		var item = {
+			"id": clean_id,
+			"asset_id": asset_id,
+			"name": meta.get("name", clean_id.replace("_", " ").capitalize()),
+			"type": t if t != "" else "object",
+			"layer": meta.get("layer", "DECORATION"),
+			"category": cat,
+			"texture": meta.get("texture", ""),
+			"size": meta.get("size", [16, 16]),
+			"solid": bool(meta.get("solid", false)),
+			"walkable": bool(meta.get("walkable", true)),
+			"interactable": bool(meta.get("interactable", false)),
+			"interaction_type": meta.get("interaction_type", "custom")
+		}
+		
+		# Categorize into palette tabs
+		if cat == "terrain" or t in ["tile", "terrain"] or asset_id.begins_with("tile."):
+			if not found_ids.has(clean_id):
+				found_ids[clean_id] = true
+				grouped["Terrain"].append(item)
+		elif cat == "building" or "house" in clean_id or "shed" in clean_id or "barn" in clean_id or "lab" in clean_id or "shop" in clean_id:
+			grouped["Buildings"].append(item)
+		elif cat == "npc" or t == "npc" or asset_id.begins_with("npc."):
+			grouped["NPC"].append(item)
+		elif meta.get("interactable", false) or "chest" in clean_id or "gate" in clean_id or "well" in clean_id or "bench" in clean_id or "signpost" in clean_id:
+			grouped["Interactive"].append(item)
+		elif cat == "item" or t == "item" or asset_id.begins_with("item."):
+			grouped["Items"].append(item)
+		else:
+			# Nature / Decor default
+			grouped["Nature"].append(item)
+			
+	return grouped
+
+# ==============================================================================
 
 # RUNTIME ASSET SWAP / OVERRIDE API (MODDING & TESTS)
 # ==============================================================================
@@ -393,12 +716,7 @@ static func get_ui_icon(icon_name: String) -> Texture2D:
 static func get_effect_texture(effect_name: String) -> Texture2D:
 	ensure_initialized()
 	var key = "effect." + effect_name
-	if _resource_overrides.has(key): return _resource_overrides[key] as Texture2D
-	
-	var path = "%senvironment/%s.png" % [SPRITE_ROOT, effect_name]
-	var tex = _load_texture_safe(path)
-	if tex: return tex
-	return get_fallback_placeholder_texture(effect_name, Color(0.4, 0.9, 0.9))
+	return null
 
 ## Unified generic asset texture resolver for World Builder, UI & Gameplay
 static func get_asset_texture(asset_id: String, asset_type: String = "") -> Texture2D:
@@ -408,15 +726,35 @@ static func get_asset_texture(asset_id: String, asset_type: String = "") -> Text
 	if _resource_overrides.has(asset_id) and _resource_overrides[asset_id] is Texture2D:
 		return _resource_overrides[asset_id] as Texture2D
 		
-	# Check manifest entry first
+	# 1. Direct manifest lookup
 	if _manifest.has(asset_id):
 		var meta = _manifest[asset_id]
-		var tex_path = str(meta.get("texture", ""))
+		var tex_path = str(meta.get("texture", meta.get("path", "")))
 		if tex_path != "":
 			var tex = _load_texture_safe(tex_path)
 			if tex: return tex
+
+	# 2. Prefixed manifest lookup
+	var possible_prefixes = ["tile.", "prop.", "building.", "item.", "plant.", "npc.", "tool."]
+	for pfx in possible_prefixes:
+		var full_k = pfx + asset_id
+		if _manifest.has(full_k):
+			var p_meta = _manifest[full_k]
+			var p_tex_path = str(p_meta.get("texture", p_meta.get("path", "")))
+			if p_tex_path != "":
+				var p_tex = _load_texture_safe(p_tex_path)
+				if p_tex: return p_tex
+
+	# 3. Clean ID / metadata lookup across manifest
+	for k in _manifest.keys():
+		var m = _manifest[k]
+		if m.get("id") == asset_id or m.get("clean_id") == asset_id:
+			var m_path = str(m.get("texture", m.get("path", "")))
+			if m_path != "":
+				var m_tex = _load_texture_safe(m_path)
+				if m_tex: return m_tex
 	
-	# Check prefixes
+	# 4. Check prefixes
 	if asset_id.begins_with("item."): return get_item_icon(asset_id.substr(5))
 	if asset_id.begins_with("tile."): return get_tile_texture(asset_id.substr(5))
 	if asset_id.begins_with("prop."): return get_environment_prop(asset_id.substr(5))
@@ -429,24 +767,24 @@ static func get_asset_texture(asset_id: String, asset_type: String = "") -> Text
 	if asset_id.begins_with("plant."): return get_plant_texture(asset_id.substr(6))
 	if asset_id.begins_with("tool."): return get_tool_icon(asset_id.substr(5))
 	
-	# 1. Check tile textures
+	# 5. Check tile textures
 	if asset_type in ["tile", "terrain"] or asset_id in ["grass", "soil", "path", "fence", "water", "sand", "stone", "watered_soil"]:
 		var t_tex = get_tile_texture(asset_id)
 		if t_tex: return t_tex
 		
-	# 2. Check environment props & buildings
+	# 6. Check environment props & buildings
 	var env_tex = get_environment_prop(asset_id)
 	if env_tex: return env_tex
 	
-	# 3. Check plant textures (stage 3)
+	# 7. Check plant textures (stage 3)
 	var plant_tex = get_plant_texture(asset_id, 3)
 	if plant_tex: return plant_tex
 	
-	# 4. Check NPC textures
+	# 8. Check NPC textures
 	var npc_tex = get_npc_texture(asset_id)
 	if npc_tex: return npc_tex
 	
-	# 5. Check item icons
+	# 9. Check item icons
 	var item_tex = get_item_icon(asset_id)
 	if item_tex: return item_tex
 	

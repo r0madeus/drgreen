@@ -1,4 +1,4 @@
-﻿class_name SleepConfirmationUI
+class_name SleepConfirmationUI
 extends Control
 
 ## Modal dialog asking player for confirmation before advancing to the next day.
@@ -13,6 +13,7 @@ var btn_yes: Button
 var btn_no: Button
 
 func _ready() -> void:
+	theme = UIConstants.get_theme()
 	anchors_preset = PRESET_FULL_RECT
 	anchor_right = 1.0
 	anchor_bottom = 1.0
@@ -106,14 +107,17 @@ func _update_texts() -> void:
 		btn_no.text = lm.get_text("ui.sleep.confirm_no", "Cancel") if lm else "Cancel"
 
 func show_dialog() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
 	_update_texts()
 	visible = true
+	UIConstants.update_player_lock(get_tree())
 	var tm = get_node_or_null("/root/TimeManager")
 	if tm: tm.pause_time("SLEEP_UI")
 	if btn_yes: btn_yes.grab_focus()
 
 func hide_dialog() -> void:
 	visible = false
+	UIConstants.update_player_lock(get_tree())
 	var tm = get_node_or_null("/root/TimeManager")
 	if tm: tm.resume_time("SLEEP_UI")
 

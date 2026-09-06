@@ -3,14 +3,19 @@ extends Control
 
 ## UI panel displaying player inventory items and active selection.
 
-@onready var grid_container: GridContainer = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer
-@onready var selected_label: Label = $PanelContainer/MarginContainer/VBoxContainer/Header/SelectedLabel
+@onready var grid_container: GridContainer = find_child("GridContainer", true, false)
+@onready var selected_label: Label = find_child("SelectedLabel", true, false)
+@onready var close_button: Button = find_child("CloseButton", true, false)
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
+	if close_button:
+		close_button.pressed.connect(close_inventory)
 	var im = get_node_or_null("/root/InventoryManager")
-	if im:
-		EventBus.world_changed.connect(_bind_local_player)
+	var eb = get_node_or_null("/root/EventBus")
+	if im and eb:
+		eb.world_changed.connect(_bind_local_player)
 		
 	var lm = get_node_or_null("/root/LocalizationManager")
 	if lm:
@@ -23,28 +28,32 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_ESCAPE and visible:
-			visible = false
-			var am = get_node_or_null("/root/AudioManager")
-			if am: am.play_sfx("ui_close")
+			close_inventory()
 			get_viewport().set_input_as_handled()
 
-func toggle_visibility() -> void:
-	visible = not visible
+func open_inventory() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
+	visible = true
 	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_open")
+	UIConstants.update_player_lock(get_tree())
+	refresh_ui()
+
+func close_inventory() -> void:
+	visible = false
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_close")
+	UIConstants.update_player_lock(get_tree())
+
+func toggle_visibility() -> void:
 	if visible:
-		if am: am.play_sfx("ui_open")
-		var lab = get_tree().root.find_child("CombinationUI", true, false)
-		if lab and lab.visible: lab.visible = false
-		var jrn = get_tree().root.find_child("JournalUI", true, false)
-		if jrn and jrn.visible: jrn.visible = false
-		var shop = get_tree().root.find_child("ShopUI", true, false)
-		if shop and shop.visible: shop.close_shop()
-		refresh_ui()
+		close_inventory()
 	else:
-		if am: am.play_sfx("ui_close")
+		open_inventory()
 
 func refresh_ui() -> void:
-	var _p = get_tree().get_first_node_in_group("local_player")
+	var tree = get_tree()
+	var _p = tree.get_first_node_in_group("local_player") if tree else null
 	var player_id = _p.player_id if _p and "player_id" in _p else ""
 	if not grid_container:
 		return

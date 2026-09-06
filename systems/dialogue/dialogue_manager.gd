@@ -37,7 +37,34 @@ func load_all_dialogues() -> void:
 					dialogue_catalog[did] = json.data
 	print("[DialogueManager] Loaded %d Dialogue scripts." % dialogue_catalog.size())
 
-func start_dialogue(player_id: String, dialogue_id: String, speaker_name: String = "", npc_id: String = "") -> void:
+func start_dialogue(arg1: String, arg2: String = "", arg3: String = "", arg4: String = "") -> void:
+	var player_id = ""
+	var dialogue_id = ""
+	var speaker_name = ""
+	var npc_id = ""
+	
+	var psm = get_node_or_null("/root/PlayerRegistry")
+	var default_pid = psm.local_player_id if (psm and "local_player_id" in psm and psm.local_player_id != "") else "player_001"
+	
+	if psm and psm.has_method("has_player") and psm.has_player(arg1):
+		player_id = arg1
+		dialogue_id = arg2
+		speaker_name = arg3
+		npc_id = arg4
+	elif dialogue_catalog.has(arg1) or (arg2 == "" and arg3 == "") or arg1.begins_with("dialogue_") or arg1 in ["rowan", "elias", "mira"]:
+		player_id = default_pid
+		dialogue_id = arg1
+		speaker_name = arg2
+		npc_id = arg3 if arg3 != "" else arg1
+	else:
+		player_id = arg1 if arg1 != "" else default_pid
+		dialogue_id = arg2
+		speaker_name = arg3
+		npc_id = arg4
+
+	if dialogue_id == "" and npc_id != "":
+		dialogue_id = npc_id
+
 	session_player_id = player_id
 	var data = dialogue_catalog.get(dialogue_id, {})
 	if data.is_empty():
@@ -50,8 +77,9 @@ func start_dialogue(player_id: String, dialogue_id: String, speaker_name: String
 		if name_key != "": dname = tr(name_key)
 		else: dname = data.get("npc_name", dialogue_id.capitalize())
 		
-	var psm = get_node_or_null("/root/PlayerRegistry")
 	var p_state = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
+	if not p_state and psm and psm.has_method("get_player_state"):
+		p_state = psm.get_player_state(default_pid)
 	
 	var node_key = evaluate_dialogue_node_key(dialogue_id, p_state)
 	var nodes = data.get("nodes", {})

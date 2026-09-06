@@ -344,8 +344,7 @@ multiplayer.error.server_creation_failed,Failed to create host server on port {p
 multiplayer.error.connection_failed,Could not reach host server,Sunucuya ulaşılamadı
 multiplayer.error.timeout,Connection timed out,Bağlantı zaman aşımına uğradı
 multiplayer.error.disconnected,Disconnected from host server,Sunucu ile bağlantı koptu
-farming.feedback.invalid,Invalid target for farming tool!,Tarım aleti için geçersiz hedef!
-
+farming.feedback.invalid_target,Invalid target for farming tool!,Tarım aleti için geçersiz hedef!
 
 
 

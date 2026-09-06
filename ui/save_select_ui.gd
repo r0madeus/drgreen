@@ -15,6 +15,7 @@ var slot_to_delete: int = -1
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	if back_btn: back_btn.pressed.connect(_on_back_pressed)
 	if confirm_dialog:
 		confirm_dialog.confirmed.connect(_on_delete_confirmed)

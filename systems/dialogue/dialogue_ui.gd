@@ -16,6 +16,7 @@ var current_npc_id: String = ""
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	if next_button: next_button.pressed.connect(_on_next_pressed)
 	if shop_button: shop_button.pressed.connect(_on_shop_pressed)
 	if close_button: close_button.pressed.connect(close_dialogue)
@@ -33,31 +34,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.keycode == KEY_ESCAPE:
 			close_dialogue()
 			get_viewport().set_input_as_handled()
-		elif event.keycode == KEY_SPACE or event.keycode == KEY_E:
+		elif event.keycode == KEY_E or event.is_action_pressed("interact"):
 			if next_button and next_button.visible:
 				_on_next_pressed()
 				get_viewport().set_input_as_handled()
 
 func _on_dialogue_started(npc_id: String, npc_name: String, _lines: Array, portrait: Texture2D) -> void:
 	current_npc_id = npc_id
+	UIConstants.close_all_modals(get_tree(), self)
 	visible = true
-	
-	# Exclusivity: close other modals
-	var inv = get_tree().root.find_child("InventoryUI", true, false)
-	if inv and inv.visible: inv.visible = false
-	var lab = get_tree().root.find_child("CombinationUI", true, false)
-	if lab and lab.visible: lab.visible = false
-	var jrn = get_tree().root.find_child("JournalUI", true, false)
-	if jrn and jrn.visible: jrn.visible = false
-	var shop = get_tree().root.find_child("ShopUI", true, false)
-	if shop and shop.visible: shop.close_shop()
-	var quest = get_tree().root.find_child("QuestUI", true, false)
-	if quest and quest.visible: quest.visible = false
-	
-	# Lock player movement
-	var player = get_tree().root.find_child("Player", true, false)
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(true)
+	UIConstants.update_player_lock(get_tree())
 		
 	if speaker_label: speaker_label.text = "💬 " + npc_name
 	if portrait_rect and portrait:
@@ -95,6 +81,4 @@ func close_dialogue() -> void:
 	if dm and dm.is_dialogue_active:
 		dm.is_dialogue_active = false
 		
-	var player = get_tree().root.find_child("Player", true, false)
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(false)
+	UIConstants.update_player_lock(get_tree())

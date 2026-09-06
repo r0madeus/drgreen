@@ -44,6 +44,7 @@ func _init() -> void:
 	grow_vertical = GROW_DIRECTION_BOTH
 
 func _ready() -> void:
+	theme = UIConstants.get_theme()
 	_build_ui()
 	_bind_network_events()
 	_update_localized_texts()

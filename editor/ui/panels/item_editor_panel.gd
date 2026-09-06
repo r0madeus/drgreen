@@ -105,7 +105,7 @@ func _build_ui() -> void:
 	var top_title = Label.new()
 	top_title.text = "🧰 Item, Crop, Tool & Economy Editor"
 	top_title.add_theme_font_size_override("font_size", 13)
-	top_title.modulate = Color(0.9, 0.85, 0.4)
+	top_title.modulate = Color(0.92, 0.94, 0.98)
 	top_hbox.add_child(top_title)
 
 	top_hbox.add_spacer(false)
@@ -130,7 +130,6 @@ func _build_ui() -> void:
 
 	var playtest_btn = Button.new()
 	playtest_btn.text = " Playtest"
-	playtest_btn.modulate = Color(0.5, 1.0, 0.6)
 	playtest_btn.pressed.connect(_on_playtest_entry)
 	top_hbox.add_child(playtest_btn)
 
@@ -508,8 +507,13 @@ func _load_item_catalog() -> void:
 		var is_overridden = editor_service.data_service.has_override(k) if editor_service else false
 		btn.text = (" " if is_overridden else "") + raw_id
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		btn.modulate = Color.WHITE
 		if raw_id == current_item_id:
-			btn.modulate = Color(1.0, 0.9, 0.5)
+			btn.add_theme_stylebox_override("normal", UIConstants.create_active_button_stylebox())
+			btn.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+		else:
+			btn.remove_theme_stylebox_override("normal")
+			btn.remove_theme_color_override("font_color")
 		btn.pressed.connect(func(): _select_item(raw_id))
 		item_list_container.add_child(btn)
 

@@ -4,9 +4,12 @@ extends PanelContainer
 ## Left-side Asset Palette with Search, Filter Categories, Nature, Buildings, Interactive & NPC entities.
 
 signal asset_selected(asset_info: Dictionary)
+signal customize_asset_requested(asset_id: String, asset_info: Dictionary)
 
 var search_edit: LineEdit
 var tab_container: TabContainer
+var context_menu: PopupMenu
+var _context_asset: Dictionary = {}
 
 var categories: Dictionary = {
 	"All": [],
@@ -102,70 +105,114 @@ func _build_ui() -> void:
 	add_child(margin)
 
 	var root_vbox = VBoxContainer.new()
-	root_vbox.add_theme_constant_override("separation", 4)
+	root_vbox.add_theme_constant_override("separation", 8)
 	margin.add_child(root_vbox)
 
 	var lbl = Label.new()
-	lbl.text = "🎨 Palette & Assets"
-	lbl.add_theme_font_size_override("font_size", 13)
-	lbl.modulate = Color(1.0, 0.85, 0.3)
+	lbl.text = "🎨 Asset Palette"
+	lbl.add_theme_font_size_override("font_size", 14)
+	lbl.modulate = Color(0.92, 0.94, 0.98)
 	root_vbox.add_child(lbl)
 
 	# --- ACTIVE SELECTION CARD ---
 	preview_card = PanelContainer.new()
-	preview_card.custom_minimum_size = Vector2(0, 44)
+	preview_card.custom_minimum_size = Vector2(0, 52)
 	root_vbox.add_child(preview_card)
 
 	var p_margin = MarginContainer.new()
-	p_margin.add_theme_constant_override("margin_left", 4)
-	p_margin.add_theme_constant_override("margin_top", 4)
-	p_margin.add_theme_constant_override("margin_right", 4)
-	p_margin.add_theme_constant_override("margin_bottom", 4)
+	p_margin.add_theme_constant_override("margin_left", 8)
+	p_margin.add_theme_constant_override("margin_top", 8)
+	p_margin.add_theme_constant_override("margin_right", 8)
+	p_margin.add_theme_constant_override("margin_bottom", 8)
 	preview_card.add_child(p_margin)
 
 	var p_hbox = HBoxContainer.new()
-	p_hbox.add_theme_constant_override("separation", 8)
+	p_hbox.add_theme_constant_override("separation", 12)
 	p_margin.add_child(p_hbox)
 
 	preview_icon = TextureRect.new()
-	preview_icon.custom_minimum_size = Vector2(32, 32)
+	preview_icon.custom_minimum_size = Vector2(40, 40)
 	preview_icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	preview_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	p_hbox.add_child(preview_icon)
 
 	var p_vbox = VBoxContainer.new()
 	p_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	p_vbox.add_theme_constant_override("separation", 0)
+	p_vbox.add_theme_constant_override("separation", 2)
 	p_hbox.add_child(p_vbox)
 
 	preview_name = Label.new()
 	preview_name.text = "No Asset Selected"
-	preview_name.add_theme_font_size_override("font_size", 12)
+	preview_name.add_theme_font_size_override("font_size", 14)
 	p_vbox.add_child(preview_name)
 
 	preview_info = Label.new()
-	preview_info.text = "Select from categories below"
-	preview_info.add_theme_font_size_override("font_size", 10)
+	preview_info.text = "Select an asset from the categories below"
+	preview_info.add_theme_font_size_override("font_size", 12)
 	preview_info.modulate = Color(0.7, 0.7, 0.7)
 	p_vbox.add_child(preview_info)
 
+	var search_hbox = HBoxContainer.new()
+	search_hbox.add_theme_constant_override("separation", 6)
+	root_vbox.add_child(search_hbox)
+
 	search_edit = LineEdit.new()
 	search_edit.placeholder_text = "🔍 Search assets..."
-	search_edit.add_theme_font_size_override("font_size", 11)
-	root_vbox.add_child(search_edit)
+	search_edit.custom_minimum_size = Vector2(0, 34)
+	search_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	search_edit.add_theme_font_size_override("font_size", 13)
+	search_hbox.add_child(search_edit)
+
+	var sync_btn = Button.new()
+	sync_btn.text = "🔄 Sync"
+	sync_btn.custom_minimum_size = Vector2(75, 34)
+	sync_btn.add_theme_font_size_override("font_size", 12)
+	sync_btn.tooltip_text = "Scan all asset folders & auto-register new files"
+	sync_btn.pressed.connect(_on_sync_pressed)
+	search_hbox.add_child(sync_btn)
 
 	tab_container = TabContainer.new()
 	tab_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	tab_container.add_theme_font_size_override("font_size", 11)
+	tab_container.add_theme_font_size_override("font_size", 13)
 	root_vbox.add_child(tab_container)
 
+	context_menu = PopupMenu.new()
+	context_menu.add_item("⚙ Customize in Asset Editor...", 0)
+	context_menu.add_item("📋 Copy Asset ID", 1)
+	context_menu.id_pressed.connect(_on_context_menu_id_pressed)
+	add_child(context_menu)
+
+func _on_context_menu_id_pressed(id: int) -> void:
+	if _context_asset.is_empty(): return
+	var aid = str(_context_asset.get("asset_id", _context_asset.get("id", "")))
+	if id == 0:
+		customize_asset_requested.emit(aid, _context_asset)
+		var shell_cls = load("res://editor/ui/editor_shell.gd")
+		if shell_cls and shell_cls.has_method("open_asset_in_editor"):
+			shell_cls.open_asset_in_editor(aid)
+	elif id == 1:
+		DisplayServer.clipboard_set(aid)
+
+func _show_asset_context_menu(asset: Dictionary, global_pos: Vector2) -> void:
+	_context_asset = asset
+	if context_menu:
+		context_menu.position = Vector2i(global_pos)
+		context_menu.popup()
+
+func _on_sync_pressed() -> void:
+	AssetRegistry.scan_and_sync_all_assets()
+	refresh_assets_list()
+	_populate_palette()
 
 func refresh_prefabs_list() -> void:
 	refresh_assets_list()
 
 func refresh_assets_list() -> void:
 	AssetRegistry.ensure_initialized()
-	categories["Terrain"] = AssetRegistry.get_terrain_assets()
+	var pal_assets = AssetRegistry.get_all_palette_assets()
+	for cat_k in pal_assets.keys():
+		categories[cat_k] = pal_assets[cat_k]
+		
 	categories["Prefabs"] = []
 	var files = DirAccess.get_files_at("res://data/prefabs/")
 	if files:
@@ -183,7 +230,6 @@ func refresh_assets_list() -> void:
 
 	if ClassDB.class_exists("AssetDefinitionManager"):
 		var defs = AssetDefinitionManager.get_all_definitions()
-		var mapped = []
 		for asset_id in defs.keys():
 			var def_data = defs[asset_id]
 			var t = def_data.get("identity", {}).get("type", "object")
@@ -193,31 +239,17 @@ func refresh_assets_list() -> void:
 				"type": t,
 				"layer": def_data.get("components", {}).get("visual", {}).get("layer", "OBJECT")
 			}
-			# Basic properties for palette
 			var props = AssetDefinitionManager.resolve_instance_properties(asset_id, {})
 			for k in props.keys():
 				item[k] = props[k]
-			mapped.append(item)
-
-		if mapped.size() > 0:
-			categories["Nature"] = []
-			categories["Buildings"] = []
-			categories["Interactive"] = []
-			categories["NPC"] = []
-			for m in mapped:
-				if m["type"] in ["tile", "terrain"]:
-					var existing = false
-					for existing_item in categories["Terrain"]:
-						if existing_item.get("id") == m["id"]:
-							existing = true
-							break
-					if not existing:
-						categories["Terrain"].append(m)
-				elif m["type"] == "plant" or "tree" in m["id"] or "rock" in m["id"]: categories["Nature"].append(m)
-				elif "house" in m["id"] or "shed" in m["id"] or "barn" in m["id"]: categories["Buildings"].append(m)
-				elif m.get("interactable", false) and m["type"] != "plant" and m["type"] != "NPC": categories["Interactive"].append(m)
-				elif m["type"] == "NPC" or "npc" in m.get("tags", []): categories["NPC"].append(m)
-				else: categories["Nature"].append(m) # fallback
+			if "house" in asset_id or "shed" in asset_id or "barn" in asset_id:
+				categories["Buildings"].append(item)
+			elif item.get("interactable", false):
+				categories["Interactive"].append(item)
+			elif t == "NPC":
+				categories["NPC"].append(item)
+			else:
+				categories["Nature"].append(item)
 	
 func _populate_palette() -> void:
 	if not tab_container: return
@@ -267,13 +299,20 @@ func _populate_palette() -> void:
 				btn.icon = tex
 				btn.expand_icon = true
 				
+			btn.modulate = Color.WHITE
 			if selected_asset.get("id", "") == aid:
-				btn.modulate = Color(1.3, 1.3, 0.7)
+				btn.add_theme_stylebox_override("normal", UIConstants.create_active_button_stylebox())
+				btn.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
 			else:
-				btn.modulate = Color.WHITE
+				btn.remove_theme_stylebox_override("normal")
+				btn.remove_theme_color_override("font_color")
 				
 			btn.pressed.connect(func():
 				_select_asset(asset)
+			)
+			btn.gui_input.connect(func(ev: InputEvent):
+				if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_RIGHT:
+					_show_asset_context_menu(asset, btn.get_global_mouse_position())
 			)
 			grid.add_child(btn)
 			
@@ -288,7 +327,13 @@ func _highlight_selected_button(asset_id: String) -> void:
 			for btn in grid.get_children():
 				if btn is Button:
 					var is_match = btn.get_meta("asset_id", "") == asset_id
-					btn.modulate = Color(1.3, 1.3, 0.7) if is_match else Color.WHITE
+					btn.modulate = Color.WHITE
+					if is_match:
+						btn.add_theme_stylebox_override("normal", UIConstants.create_active_button_stylebox())
+						btn.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+					else:
+						btn.remove_theme_stylebox_override("normal")
+						btn.remove_theme_color_override("font_color")
 
 func _select_asset(asset: Dictionary) -> void:
 	selected_asset = asset

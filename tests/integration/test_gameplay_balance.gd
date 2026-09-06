@@ -240,7 +240,7 @@ func _test_T14_no_save_load_exploit() -> void:
 	var save_blob = p.to_dict()
 	var reloaded_p = PlayerState.from_dict(save_blob)
 	
-	assert_false(reloaded__get_npc_mock().can_give_gift(p.player_id, "rowan", "plant_sun_petal", p), "Reloading save retains daily gift cooldown")
+	assert_false(_get_npc_mock().can_give_gift(p.player_id, "rowan", "plant_sun_petal", p), "Reloading save retains daily gift cooldown")
 	assert_eq(reloaded_p.get_item_count("plant_sun_petal"), 0, "Reloading does not duplicate consumed gift item")
 
 func _test_T15_no_time_exploit() -> void:

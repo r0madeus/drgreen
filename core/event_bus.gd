@@ -67,5 +67,3 @@ signal npc_activity_finished(npc_id: String, activity_id: String)
 signal npc_social_started(npc_a: String, npc_b: String, social_type: String)
 signal npc_social_finished(npc_a: String, npc_b: String)
 signal npc_schedule_changed(npc_id: String, schedule_entry: Dictionary)
-
-

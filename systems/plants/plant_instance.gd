@@ -72,17 +72,23 @@ func advance_growth() -> bool:
 func _draw() -> void:
 	# 1. Check for custom sprite asset via AssetRegistry
 	var custom_tex = AssetRegistry.get_plant_texture(plant_id, growth_stage)
-	if custom_tex:
+	if custom_tex and not "fallback" in custom_tex.resource_name:
 		draw_texture(custom_tex, Vector2(-8, -8))
+		if growth_stage == 0:
+			# Extra seed planted visual cue: subtle earthy mound & seed grain
+			draw_circle(Vector2(0, 3), 3.0, Color(0.28, 0.15, 0.05, 0.7))
+			draw_circle(Vector2(0, 2), 1.4, Color(0.85, 0.75, 0.45, 0.9))
 		if watered_today:
-			draw_circle(Vector2(5, -5), 1.5, Color(0.2, 0.7, 1.0, 0.9))
+			draw_circle(Vector2(5, -5), 2.2, Color(0.2, 0.75, 1.0, 0.95))
+			draw_circle(Vector2(4.5, -5.5), 0.8, Color.WHITE)
 		return
 
 	# 2. Draw watering moisture highlight around base if watered
 	if watered_today:
 		draw_circle(Vector2(0, 4), 6.0, Color(0.12, 0.38, 0.65, 0.45))
-		# Tiny blue droplet icon
-		draw_circle(Vector2(5, -5), 1.6, Color(0.2, 0.75, 1.0, 0.95))
+		# Droplet icon
+		draw_circle(Vector2(5, -5), 2.2, Color(0.2, 0.75, 1.0, 0.95))
+		draw_circle(Vector2(4.5, -5.5), 0.8, Color.WHITE)
 
 	var color_str = plant_data.get("visual", {}).get("color", "#E63946")
 	var accent_str = plant_data.get("visual", {}).get("accent_color", "#FF758F")
@@ -93,10 +99,11 @@ func _draw() -> void:
 	var leaf_dark = Color(0.18, 0.48, 0.18)
 	
 	match growth_stage:
-		0: # Seed / Mound & Tiny Sprout Tip
-			draw_circle(Vector2(0, 4), 4.0, Color(0.35, 0.20, 0.10))
-			draw_circle(Vector2(0, 3), 2.0, Color(0.70, 0.58, 0.38))
-			draw_line(Vector2(0, 2), Vector2(0, 0), Color(0.45, 0.82, 0.35), 1.2)
+		0: # Seed / Mound & Germination Point
+			draw_circle(Vector2(0, 4), 4.5, Color(0.32, 0.16, 0.06))
+			draw_circle(Vector2(-1, 3), 2.0, Color(0.82, 0.68, 0.42))
+			draw_circle(Vector2(1, 4), 1.5, Color(0.72, 0.58, 0.32))
+			draw_line(Vector2(0, 2), Vector2(0, -1), Color(0.45, 0.85, 0.35), 1.4)
 		1: # Sprout / Cotyledon Leaves
 			draw_line(Vector2(0, 5), Vector2(0, -1), stem_color, 1.5)
 			# Left leaf

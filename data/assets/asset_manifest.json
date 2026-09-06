@@ -8,6 +8,18 @@
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/snow_wind.wav"
 		},
+		"audio.sfx.buy": {
+			"asset_id": "audio.sfx.buy",
+			"category": "audio_sfx",
+			"id": "buy",
+			"path": "res://assets/audio/sfx/buy.wav"
+		},
+		"audio.sfx.combine": {
+			"asset_id": "audio.sfx.combine",
+			"category": "audio_sfx",
+			"id": "combine",
+			"path": "res://assets/audio/sfx/combine.wav"
+		},
 		"audio.sfx.dialogue.next": {
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/dialogue_next.wav"
@@ -15,6 +27,24 @@
 		"audio.sfx.dialogue.open": {
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/dialogue_open.wav"
+		},
+		"audio.sfx.dialogue_next": {
+			"asset_id": "audio.sfx.dialogue_next",
+			"category": "audio_sfx",
+			"id": "dialogue_next",
+			"path": "res://assets/audio/sfx/dialogue_next.wav"
+		},
+		"audio.sfx.dialogue_open": {
+			"asset_id": "audio.sfx.dialogue_open",
+			"category": "audio_sfx",
+			"id": "dialogue_open",
+			"path": "res://assets/audio/sfx/dialogue_open.wav"
+		},
+		"audio.sfx.discovery": {
+			"asset_id": "audio.sfx.discovery",
+			"category": "audio_sfx",
+			"id": "discovery",
+			"path": "res://assets/audio/sfx/discovery.wav"
 		},
 		"audio.sfx.farming.combine": {
 			"category": "audio_sfx",
@@ -36,6 +66,36 @@
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/water.wav"
 		},
+		"audio.sfx.gate_open": {
+			"asset_id": "audio.sfx.gate_open",
+			"category": "audio_sfx",
+			"id": "gate_open",
+			"path": "res://assets/audio/sfx/gate_open.wav"
+		},
+		"audio.sfx.greenhouse_repair": {
+			"asset_id": "audio.sfx.greenhouse_repair",
+			"category": "audio_sfx",
+			"id": "greenhouse_repair",
+			"path": "res://assets/audio/sfx/greenhouse_repair.wav"
+		},
+		"audio.sfx.harvest": {
+			"asset_id": "audio.sfx.harvest",
+			"category": "audio_sfx",
+			"id": "harvest",
+			"path": "res://assets/audio/sfx/harvest.wav"
+		},
+		"audio.sfx.insufficient_gold": {
+			"asset_id": "audio.sfx.insufficient_gold",
+			"category": "audio_sfx",
+			"id": "insufficient_gold",
+			"path": "res://assets/audio/sfx/insufficient_gold.wav"
+		},
+		"audio.sfx.plant": {
+			"asset_id": "audio.sfx.plant",
+			"category": "audio_sfx",
+			"id": "plant",
+			"path": "res://assets/audio/sfx/plant.wav"
+		},
 		"audio.sfx.quest.accept": {
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/quest_accept.wav"
@@ -44,6 +104,42 @@
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/quest_complete.wav"
 		},
+		"audio.sfx.quest_accept": {
+			"asset_id": "audio.sfx.quest_accept",
+			"category": "audio_sfx",
+			"id": "quest_accept",
+			"path": "res://assets/audio/sfx/quest_accept.wav"
+		},
+		"audio.sfx.quest_complete": {
+			"asset_id": "audio.sfx.quest_complete",
+			"category": "audio_sfx",
+			"id": "quest_complete",
+			"path": "res://assets/audio/sfx/quest_complete.wav"
+		},
+		"audio.sfx.rain_ambient": {
+			"asset_id": "audio.sfx.rain_ambient",
+			"category": "audio_sfx",
+			"id": "rain_ambient",
+			"path": "res://assets/audio/sfx/rain_ambient.wav"
+		},
+		"audio.sfx.reward": {
+			"asset_id": "audio.sfx.reward",
+			"category": "audio_sfx",
+			"id": "reward",
+			"path": "res://assets/audio/sfx/reward.wav"
+		},
+		"audio.sfx.season_transition": {
+			"asset_id": "audio.sfx.season_transition",
+			"category": "audio_sfx",
+			"id": "season_transition",
+			"path": "res://assets/audio/sfx/season_transition.wav"
+		},
+		"audio.sfx.sell": {
+			"asset_id": "audio.sfx.sell",
+			"category": "audio_sfx",
+			"id": "sell",
+			"path": "res://assets/audio/sfx/sell.wav"
+		},
 		"audio.sfx.shop.buy": {
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/buy.wav"
@@ -51,6 +147,24 @@
 		"audio.sfx.shop.sell": {
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/sell.wav"
+		},
+		"audio.sfx.shop_close": {
+			"asset_id": "audio.sfx.shop_close",
+			"category": "audio_sfx",
+			"id": "shop_close",
+			"path": "res://assets/audio/sfx/shop_close.wav"
+		},
+		"audio.sfx.shop_open": {
+			"asset_id": "audio.sfx.shop_open",
+			"category": "audio_sfx",
+			"id": "shop_open",
+			"path": "res://assets/audio/sfx/shop_open.wav"
+		},
+		"audio.sfx.snow_wind": {
+			"asset_id": "audio.sfx.snow_wind",
+			"category": "audio_sfx",
+			"id": "snow_wind",
+			"path": "res://assets/audio/sfx/snow_wind.wav"
 		},
 		"audio.sfx.ui.close": {
 			"category": "audio_sfx",
@@ -64,11 +178,41 @@
 			"category": "audio_sfx",
 			"path": "res://assets/audio/sfx/ui_select.wav"
 		},
+		"audio.sfx.ui_close": {
+			"asset_id": "audio.sfx.ui_close",
+			"category": "audio_sfx",
+			"id": "ui_close",
+			"path": "res://assets/audio/sfx/ui_close.wav"
+		},
+		"audio.sfx.ui_open": {
+			"asset_id": "audio.sfx.ui_open",
+			"category": "audio_sfx",
+			"id": "ui_open",
+			"path": "res://assets/audio/sfx/ui_open.wav"
+		},
+		"audio.sfx.ui_select": {
+			"asset_id": "audio.sfx.ui_select",
+			"category": "audio_sfx",
+			"id": "ui_select",
+			"path": "res://assets/audio/sfx/ui_select.wav"
+		},
+		"audio.sfx.upgrade_purchase": {
+			"asset_id": "audio.sfx.upgrade_purchase",
+			"category": "audio_sfx",
+			"id": "upgrade_purchase",
+			"path": "res://assets/audio/sfx/upgrade_purchase.wav"
+		},
+		"audio.sfx.water": {
+			"asset_id": "audio.sfx.water",
+			"category": "audio_sfx",
+			"id": "water",
+			"path": "res://assets/audio/sfx/water.wav"
+		},
 		"building.barn": {
 			"category": "building",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/greenhouse_repaired.png"
@@ -76,8 +220,8 @@
 		"building.farm_house": {
 			"category": "building",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/greenhouse_repaired.png"
@@ -85,8 +229,8 @@
 		"building.greenhouse_repaired": {
 			"category": "building",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/greenhouse_repaired.png"
@@ -94,8 +238,8 @@
 		"building.greenhouse_ruined": {
 			"category": "building",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/greenhouse_ruined.png"
@@ -103,8 +247,8 @@
 		"building.laboratory": {
 			"category": "building",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/greenhouse_ruined.png"
@@ -112,8 +256,8 @@
 		"building.seed_shop": {
 			"category": "building",
 			"size": [
-				32,
-				32
+				32.0,
+				32.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/npc/market_stall.png"
@@ -121,8 +265,8 @@
 		"building.shipping_box": {
 			"category": "building",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/npc/market_stall.png"
@@ -130,8 +274,8 @@
 		"building.storage_shed": {
 			"category": "building",
 			"size": [
-				32,
-				32
+				32.0,
+				32.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/greenhouse_ruined.png"
@@ -139,8 +283,8 @@
 		"character.player": {
 			"category": "player",
 			"size": [
-				16,
-				24
+				16.0,
+				24.0
 			],
 			"texture": "res://assets/sprites/player/player_down.png"
 		},
@@ -164,190 +308,3410 @@
 			"color": "#3a82e8",
 			"type": "particles"
 		},
-		"item.astral_moss": {
+		"item.ancient_evergreen_tendril": {
+			"asset_id": "item.ancient_evergreen_tendril",
 			"category": "item",
+			"emits_light": false,
+			"id": "ancient_evergreen_tendril",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Ancient Evergreen Tendril",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/astral_moss.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/ancient_evergreen_tendril.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.astral_moss": {
+			"asset_id": "item.astral_moss",
+			"category": "item",
+			"emits_light": false,
+			"id": "astral_moss",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Astral Moss",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/astral_moss.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.axe_basic": {
+			"asset_id": "item.axe_basic",
+			"category": "item",
+			"emits_light": false,
+			"id": "axe_basic",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Axe Basic",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/axe_basic.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.azure_lotus": {
+			"asset_id": "item.azure_lotus",
+			"category": "item",
+			"emits_light": false,
+			"id": "azure_lotus",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Azure Lotus",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/azure_lotus.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.better_tools": {
+			"asset_id": "item.better_tools",
+			"category": "item",
+			"emits_light": false,
+			"id": "better_tools",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Better Tools",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/better_tools.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.blue_flower": {
+			"asset_id": "item.blue_flower",
 			"category": "item",
+			"emits_light": false,
+			"id": "blue_flower",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Blue Flower",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/blue_flower.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/blue_flower.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.botanists_notebook": {
+			"asset_id": "item.botanists_notebook",
+			"category": "item",
+			"emits_light": false,
+			"id": "botanists_notebook",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Botanists Notebook",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/botanists_notebook.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.celestial_lily": {
+			"asset_id": "item.celestial_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "celestial_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Celestial Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/celestial_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.crimson_vine": {
+			"asset_id": "item.crimson_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "crimson_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Crimson Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/crimson_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.crystal_fern": {
+			"asset_id": "item.crystal_fern",
+			"category": "item",
+			"emits_light": false,
+			"id": "crystal_fern",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Crystal Fern",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/crystal_fern.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.deep_crimson_bloom": {
+			"asset_id": "item.deep_crimson_bloom",
+			"category": "item",
+			"emits_light": false,
+			"id": "deep_crimson_bloom",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Deep Crimson Bloom",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/deep_crimson_bloom.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.expanded_satchel": {
+			"asset_id": "item.expanded_satchel",
+			"category": "item",
+			"emits_light": false,
+			"id": "expanded_satchel",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Expanded Satchel",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/expanded_satchel.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.fertilizer": {
+			"asset_id": "item.fertilizer",
+			"category": "item",
+			"emits_light": false,
+			"id": "fertilizer",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Fertilizer",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/fertilizer.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.fertilizer_growth": {
 			"category": "item",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/fertilizer.png"
 		},
 		"item.frost_leaf": {
+			"asset_id": "item.frost_leaf",
 			"category": "item",
+			"emits_light": false,
+			"id": "frost_leaf",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Frost Leaf",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/frost_leaf.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/frost_leaf.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.frost_vine": {
+			"asset_id": "item.frost_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "frost_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Frost Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/frost_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.glass_fern": {
+			"asset_id": "item.glass_fern",
+			"category": "item",
+			"emits_light": false,
+			"id": "glass_fern",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Glass Fern",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/glass_fern.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.golden_lily": {
+			"asset_id": "item.golden_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "golden_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Golden Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/golden_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.green_herb": {
+			"asset_id": "item.green_herb",
+			"category": "item",
+			"emits_light": false,
+			"id": "green_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Green Herb",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/green_herb.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.green_vine": {
+			"asset_id": "item.green_vine",
 			"category": "item",
+			"emits_light": false,
+			"id": "green_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Green Vine",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/green_vine.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/green_vine.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.herbal_tonic": {
 			"category": "item",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/tonic.png"
 		},
-		"item.red_flower": {
+		"item.hoe_basic": {
+			"asset_id": "item.hoe_basic",
 			"category": "item",
+			"emits_light": false,
+			"id": "hoe_basic",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Hoe Basic",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/red_flower.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/hoe_basic.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.hoe_copper": {
+			"asset_id": "item.hoe_copper",
+			"category": "item",
+			"emits_light": false,
+			"id": "hoe_copper",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Hoe Copper",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/hoe_copper.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.hoe_gold": {
+			"asset_id": "item.hoe_gold",
+			"category": "item",
+			"emits_light": false,
+			"id": "hoe_gold",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Hoe Gold",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/hoe_gold.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.hoe_iron": {
+			"asset_id": "item.hoe_iron",
+			"category": "item",
+			"emits_light": false,
+			"id": "hoe_iron",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Hoe Iron",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/hoe_iron.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.lunar_bloom": {
+			"asset_id": "item.lunar_bloom",
+			"category": "item",
+			"emits_light": false,
+			"id": "lunar_bloom",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Lunar Bloom",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/lunar_bloom.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.moon_orchid": {
+			"asset_id": "item.moon_orchid",
+			"category": "item",
+			"emits_light": false,
+			"id": "moon_orchid",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Moon Orchid",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/moon_orchid.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.moon_vine": {
+			"asset_id": "item.moon_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "moon_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Moon Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/moon_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.orange_herb": {
+			"asset_id": "item.orange_herb",
+			"category": "item",
+			"emits_light": false,
+			"id": "orange_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Orange Herb",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/orange_herb.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.pickaxe_basic": {
+			"asset_id": "item.pickaxe_basic",
+			"category": "item",
+			"emits_light": false,
+			"id": "pickaxe_basic",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Pickaxe Basic",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/pickaxe_basic.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.pink_lily": {
+			"asset_id": "item.pink_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "pink_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Pink Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/pink_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.purple_flower": {
+			"asset_id": "item.purple_flower",
+			"category": "item",
+			"emits_light": false,
+			"id": "purple_flower",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Purple Flower",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/purple_flower.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.radiant_essence_herb": {
+			"asset_id": "item.radiant_essence_herb",
+			"category": "item",
+			"emits_light": false,
+			"id": "radiant_essence_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Radiant Essence Herb",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/radiant_essence_herb.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.red_flower": {
+			"asset_id": "item.red_flower",
+			"category": "item",
+			"emits_light": false,
+			"id": "red_flower",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Red Flower",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/red_flower.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.sapphire_lily": {
+			"asset_id": "item.sapphire_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "sapphire_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Sapphire Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/sapphire_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_ancient_evergreen_tendril": {
+			"asset_id": "item.seed_ancient_evergreen_tendril",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_ancient_evergreen_tendril",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Ancient Evergreen Tendril",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_ancient_evergreen_tendril.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_astral_moss": {
+			"asset_id": "item.seed_astral_moss",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_astral_moss",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Astral Moss",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_astral_moss.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_azure_lotus": {
+			"asset_id": "item.seed_azure_lotus",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_azure_lotus",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Azure Lotus",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_azure_lotus.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.seed_blue_flower": {
+			"asset_id": "item.seed_blue_flower",
 			"category": "item",
+			"emits_light": false,
+			"id": "seed_blue_flower",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Blue Flower",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/seed_blue_flower.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_blue_flower.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_celestial_lily": {
+			"asset_id": "item.seed_celestial_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_celestial_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Celestial Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_celestial_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_crimson_vine": {
+			"asset_id": "item.seed_crimson_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_crimson_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Crimson Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_crimson_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_crystal_fern": {
+			"asset_id": "item.seed_crystal_fern",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_crystal_fern",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Crystal Fern",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_crystal_fern.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_deep_crimson_bloom": {
+			"asset_id": "item.seed_deep_crimson_bloom",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_deep_crimson_bloom",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Deep Crimson Bloom",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_deep_crimson_bloom.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_frost_vine": {
+			"asset_id": "item.seed_frost_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_frost_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Frost Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_frost_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_glass_fern": {
+			"asset_id": "item.seed_glass_fern",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_glass_fern",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Glass Fern",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_glass_fern.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_golden_lily": {
+			"asset_id": "item.seed_golden_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_golden_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Golden Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_golden_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_green_herb": {
+			"asset_id": "item.seed_green_herb",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_green_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Green Herb",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_green_herb.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.seed_green_vine": {
+			"asset_id": "item.seed_green_vine",
 			"category": "item",
+			"emits_light": false,
+			"id": "seed_green_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Green Vine",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/seed_green_vine.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_green_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_lunar_bloom": {
+			"asset_id": "item.seed_lunar_bloom",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_lunar_bloom",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Lunar Bloom",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_lunar_bloom.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_moon_orchid": {
+			"asset_id": "item.seed_moon_orchid",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_moon_orchid",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Moon Orchid",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_moon_orchid.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_moon_vine": {
+			"asset_id": "item.seed_moon_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_moon_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Moon Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_moon_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_orange_herb": {
+			"asset_id": "item.seed_orange_herb",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_orange_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Orange Herb",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_orange_herb.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_pink_lily": {
+			"asset_id": "item.seed_pink_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_pink_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Pink Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_pink_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_purple_flower": {
+			"asset_id": "item.seed_purple_flower",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_purple_flower",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Purple Flower",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_purple_flower.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_radiant_essence_herb": {
+			"asset_id": "item.seed_radiant_essence_herb",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_radiant_essence_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Radiant Essence Herb",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_radiant_essence_herb.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.seed_red_flower": {
+			"asset_id": "item.seed_red_flower",
 			"category": "item",
+			"emits_light": false,
+			"id": "seed_red_flower",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Red Flower",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/seed_red_flower.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_red_flower.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_sapphire_lily": {
+			"asset_id": "item.seed_sapphire_lily",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_sapphire_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Sapphire Lily",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_sapphire_lily.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_solar_moss": {
+			"asset_id": "item.seed_solar_moss",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_solar_moss",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Solar Moss",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_solar_moss.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_star_moss": {
+			"asset_id": "item.seed_star_moss",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_star_moss",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Star Moss",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_star_moss.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_sun_vine": {
+			"asset_id": "item.seed_sun_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_sun_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Sun Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_sun_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.seed_twilight_orchid": {
+			"asset_id": "item.seed_twilight_orchid",
+			"category": "item",
+			"emits_light": false,
+			"id": "seed_twilight_orchid",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Twilight Orchid",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_twilight_orchid.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.seed_white_lily": {
+			"asset_id": "item.seed_white_lily",
 			"category": "item",
+			"emits_light": false,
+			"id": "seed_white_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed White Lily",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/seed_white_lily.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_white_lily.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.seed_yellow_herb": {
+			"asset_id": "item.seed_yellow_herb",
 			"category": "item",
+			"emits_light": false,
+			"id": "seed_yellow_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Seed Yellow Herb",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/seed_yellow_herb.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/seed_yellow_herb.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.shadow_root": {
+			"asset_id": "item.shadow_root",
 			"category": "item",
+			"emits_light": false,
+			"id": "shadow_root",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Shadow Root",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/shadow_root.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/shadow_root.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.solar_moss": {
+			"asset_id": "item.solar_moss",
+			"category": "item",
+			"emits_light": false,
+			"id": "solar_moss",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Solar Moss",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/solar_moss.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.star_moss": {
+			"asset_id": "item.star_moss",
+			"category": "item",
+			"emits_light": false,
+			"id": "star_moss",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Star Moss",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/star_moss.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.sun_petal": {
+			"asset_id": "item.sun_petal",
 			"category": "item",
+			"emits_light": false,
+			"id": "sun_petal",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Sun Petal",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/sun_petal.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/sun_petal.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.sun_vine": {
+			"asset_id": "item.sun_vine",
+			"category": "item",
+			"emits_light": false,
+			"id": "sun_vine",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Sun Vine",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/sun_vine.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.tonic": {
+			"asset_id": "item.tonic",
+			"category": "item",
+			"emits_light": false,
+			"id": "tonic",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Tonic",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/tonic.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.twilight_orchid": {
+			"asset_id": "item.twilight_orchid",
+			"category": "item",
+			"emits_light": false,
+			"id": "twilight_orchid",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Twilight Orchid",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/twilight_orchid.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.watering_can_basic": {
+			"asset_id": "item.watering_can_basic",
+			"category": "item",
+			"emits_light": false,
+			"id": "watering_can_basic",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Watering Can Basic",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/watering_can_basic.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.watering_can_copper": {
+			"asset_id": "item.watering_can_copper",
+			"category": "item",
+			"emits_light": false,
+			"id": "watering_can_copper",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Watering Can Copper",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/watering_can_copper.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.watering_can_gold": {
+			"asset_id": "item.watering_can_gold",
+			"category": "item",
+			"emits_light": false,
+			"id": "watering_can_gold",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Watering Can Gold",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/watering_can_gold.png",
+			"type": "item",
+			"walkable": true
+		},
+		"item.watering_can_iron": {
+			"asset_id": "item.watering_can_iron",
+			"category": "item",
+			"emits_light": false,
+			"id": "watering_can_iron",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Watering Can Iron",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/items/watering_can_iron.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.white_lily": {
+			"asset_id": "item.white_lily",
 			"category": "item",
+			"emits_light": false,
+			"id": "white_lily",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "White Lily",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/white_lily.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/white_lily.png",
+			"type": "item",
+			"walkable": true
 		},
 		"item.yellow_herb": {
+			"asset_id": "item.yellow_herb",
 			"category": "item",
+			"emits_light": false,
+			"id": "yellow_herb",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Yellow Herb",
 			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/yellow_herb.png"
+			"solid": false,
+			"texture": "res://assets/sprites/items/yellow_herb.png",
+			"type": "item",
+			"walkable": true
 		},
 		"npc.elias": {
 			"category": "npc",
 			"portrait": "npc.elias.portrait",
 			"size": [
-				16,
-				24
+				16.0,
+				24.0
 			],
 			"texture": "res://assets/sprites/npc/elias_idle_0.png"
 		},
 		"npc.elias.portrait": {
 			"category": "npc_portrait",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"texture": "res://assets/sprites/npc/elias_portrait.png"
+		},
+		"npc.elias_idle_0": {
+			"asset_id": "npc.elias_idle_0",
+			"category": "npc",
+			"emits_light": false,
+			"id": "elias_idle_0",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Elias Idle 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/elias_idle_0.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.elias_idle_1": {
+			"asset_id": "npc.elias_idle_1",
+			"category": "npc",
+			"emits_light": false,
+			"id": "elias_idle_1",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Elias Idle 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/elias_idle_1.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.elias_portrait": {
+			"asset_id": "npc.elias_portrait",
+			"category": "npc",
+			"emits_light": false,
+			"id": "elias_portrait",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Elias Portrait",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/elias_portrait.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.market_stall": {
+			"asset_id": "npc.market_stall",
+			"category": "npc",
+			"emits_light": false,
+			"id": "market_stall",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Market Stall",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/market_stall.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.merchant_idle_0": {
+			"asset_id": "npc.merchant_idle_0",
+			"category": "npc",
+			"emits_light": false,
+			"id": "merchant_idle_0",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Merchant Idle 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/merchant_idle_0.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.merchant_idle_1": {
+			"asset_id": "npc.merchant_idle_1",
+			"category": "npc",
+			"emits_light": false,
+			"id": "merchant_idle_1",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Merchant Idle 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/merchant_idle_1.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.merchant_portrait": {
+			"asset_id": "npc.merchant_portrait",
+			"category": "npc",
+			"emits_light": false,
+			"id": "merchant_portrait",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Merchant Portrait",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/merchant_portrait.png",
+			"type": "npc",
+			"walkable": false
 		},
 		"npc.mira": {
 			"category": "npc",
 			"portrait": "npc.mira.portrait",
 			"size": [
-				16,
-				24
+				16.0,
+				24.0
 			],
 			"texture": "res://assets/sprites/npc/mira_idle_0.png"
 		},
 		"npc.mira.portrait": {
 			"category": "npc_portrait",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"texture": "res://assets/sprites/npc/mira_portrait.png"
+		},
+		"npc.mira_idle_0": {
+			"asset_id": "npc.mira_idle_0",
+			"category": "npc",
+			"emits_light": false,
+			"id": "mira_idle_0",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Mira Idle 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/mira_idle_0.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.mira_idle_1": {
+			"asset_id": "npc.mira_idle_1",
+			"category": "npc",
+			"emits_light": false,
+			"id": "mira_idle_1",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Mira Idle 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/mira_idle_1.png",
+			"type": "npc",
+			"walkable": false
+		},
+		"npc.mira_portrait": {
+			"asset_id": "npc.mira_portrait",
+			"category": "npc",
+			"emits_light": false,
+			"id": "mira_portrait",
+			"interactable": false,
+			"layer": "NPC",
+			"name": "Mira Portrait",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/npc/mira_portrait.png",
+			"type": "npc",
+			"walkable": false
 		},
 		"npc.rowan": {
 			"category": "npc",
 			"portrait": "npc.rowan.portrait",
 			"size": [
-				16,
-				24
+				16.0,
+				24.0
 			],
 			"texture": "res://assets/sprites/npc/merchant_idle_0.png"
 		},
 		"npc.rowan.portrait": {
 			"category": "npc_portrait",
 			"size": [
-				48,
-				48
+				48.0,
+				48.0
 			],
 			"texture": "res://assets/sprites/npc/merchant_portrait.png"
+		},
+		"plant.ancient_evergreen_tendril_stage_0": {
+			"asset_id": "plant.ancient_evergreen_tendril_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "ancient_evergreen_tendril_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Ancient Evergreen Tendril Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/ancient_evergreen_tendril_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.ancient_evergreen_tendril_stage_1": {
+			"asset_id": "plant.ancient_evergreen_tendril_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "ancient_evergreen_tendril_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Ancient Evergreen Tendril Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/ancient_evergreen_tendril_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.ancient_evergreen_tendril_stage_2": {
+			"asset_id": "plant.ancient_evergreen_tendril_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "ancient_evergreen_tendril_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Ancient Evergreen Tendril Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/ancient_evergreen_tendril_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.ancient_evergreen_tendril_stage_3": {
+			"asset_id": "plant.ancient_evergreen_tendril_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "ancient_evergreen_tendril_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Ancient Evergreen Tendril Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/ancient_evergreen_tendril_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.astral_moss_stage_0": {
+			"asset_id": "plant.astral_moss_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "astral_moss_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Astral Moss Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/astral_moss_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.astral_moss_stage_1": {
+			"asset_id": "plant.astral_moss_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "astral_moss_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Astral Moss Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/astral_moss_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.astral_moss_stage_2": {
+			"asset_id": "plant.astral_moss_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "astral_moss_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Astral Moss Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/astral_moss_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.astral_moss_stage_3": {
+			"asset_id": "plant.astral_moss_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "astral_moss_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Astral Moss Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/astral_moss_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.azure_lotus_stage_0": {
+			"asset_id": "plant.azure_lotus_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "azure_lotus_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Azure Lotus Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/azure_lotus_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.azure_lotus_stage_1": {
+			"asset_id": "plant.azure_lotus_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "azure_lotus_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Azure Lotus Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/azure_lotus_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.azure_lotus_stage_2": {
+			"asset_id": "plant.azure_lotus_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "azure_lotus_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Azure Lotus Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/azure_lotus_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.azure_lotus_stage_3": {
+			"asset_id": "plant.azure_lotus_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "azure_lotus_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Azure Lotus Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/azure_lotus_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.blue_flower_stage_0": {
+			"asset_id": "plant.blue_flower_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "blue_flower_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Blue Flower Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/blue_flower_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.blue_flower_stage_1": {
+			"asset_id": "plant.blue_flower_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "blue_flower_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Blue Flower Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/blue_flower_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.blue_flower_stage_2": {
+			"asset_id": "plant.blue_flower_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "blue_flower_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Blue Flower Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/blue_flower_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.blue_flower_stage_3": {
+			"asset_id": "plant.blue_flower_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "blue_flower_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Blue Flower Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/blue_flower_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.celestial_lily_stage_0": {
+			"asset_id": "plant.celestial_lily_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "celestial_lily_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Celestial Lily Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/celestial_lily_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.celestial_lily_stage_1": {
+			"asset_id": "plant.celestial_lily_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "celestial_lily_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Celestial Lily Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/celestial_lily_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.celestial_lily_stage_2": {
+			"asset_id": "plant.celestial_lily_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "celestial_lily_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Celestial Lily Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/celestial_lily_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.celestial_lily_stage_3": {
+			"asset_id": "plant.celestial_lily_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "celestial_lily_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Celestial Lily Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/celestial_lily_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crimson_vine_stage_0": {
+			"asset_id": "plant.crimson_vine_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crimson_vine_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crimson Vine Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crimson_vine_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crimson_vine_stage_1": {
+			"asset_id": "plant.crimson_vine_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crimson_vine_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crimson Vine Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crimson_vine_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crimson_vine_stage_2": {
+			"asset_id": "plant.crimson_vine_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crimson_vine_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crimson Vine Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crimson_vine_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crimson_vine_stage_3": {
+			"asset_id": "plant.crimson_vine_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crimson_vine_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crimson Vine Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crimson_vine_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crystal_fern_stage_0": {
+			"asset_id": "plant.crystal_fern_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crystal_fern_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crystal Fern Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crystal_fern_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crystal_fern_stage_1": {
+			"asset_id": "plant.crystal_fern_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crystal_fern_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crystal Fern Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crystal_fern_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crystal_fern_stage_2": {
+			"asset_id": "plant.crystal_fern_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crystal_fern_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crystal Fern Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crystal_fern_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.crystal_fern_stage_3": {
+			"asset_id": "plant.crystal_fern_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "crystal_fern_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Crystal Fern Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/crystal_fern_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.deep_crimson_bloom_stage_0": {
+			"asset_id": "plant.deep_crimson_bloom_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "deep_crimson_bloom_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Deep Crimson Bloom Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/deep_crimson_bloom_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.deep_crimson_bloom_stage_1": {
+			"asset_id": "plant.deep_crimson_bloom_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "deep_crimson_bloom_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Deep Crimson Bloom Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/deep_crimson_bloom_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.deep_crimson_bloom_stage_2": {
+			"asset_id": "plant.deep_crimson_bloom_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "deep_crimson_bloom_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Deep Crimson Bloom Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/deep_crimson_bloom_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.deep_crimson_bloom_stage_3": {
+			"asset_id": "plant.deep_crimson_bloom_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "deep_crimson_bloom_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Deep Crimson Bloom Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/deep_crimson_bloom_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.frost_vine_stage_0": {
+			"asset_id": "plant.frost_vine_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "frost_vine_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Frost Vine Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/frost_vine_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.frost_vine_stage_1": {
+			"asset_id": "plant.frost_vine_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "frost_vine_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Frost Vine Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/frost_vine_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.frost_vine_stage_2": {
+			"asset_id": "plant.frost_vine_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "frost_vine_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Frost Vine Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/frost_vine_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.frost_vine_stage_3": {
+			"asset_id": "plant.frost_vine_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "frost_vine_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Frost Vine Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/frost_vine_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.glass_fern_stage_0": {
+			"asset_id": "plant.glass_fern_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "glass_fern_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Glass Fern Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/glass_fern_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.glass_fern_stage_1": {
+			"asset_id": "plant.glass_fern_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "glass_fern_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Glass Fern Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/glass_fern_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.glass_fern_stage_2": {
+			"asset_id": "plant.glass_fern_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "glass_fern_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Glass Fern Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/glass_fern_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.glass_fern_stage_3": {
+			"asset_id": "plant.glass_fern_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "glass_fern_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Glass Fern Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/glass_fern_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.golden_lily_stage_0": {
+			"asset_id": "plant.golden_lily_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "golden_lily_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Golden Lily Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/golden_lily_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.golden_lily_stage_1": {
+			"asset_id": "plant.golden_lily_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "golden_lily_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Golden Lily Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/golden_lily_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.golden_lily_stage_2": {
+			"asset_id": "plant.golden_lily_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "golden_lily_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Golden Lily Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/golden_lily_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.golden_lily_stage_3": {
+			"asset_id": "plant.golden_lily_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "golden_lily_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Golden Lily Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/golden_lily_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_herb_stage_0": {
+			"asset_id": "plant.green_herb_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_herb_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Herb Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_herb_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_herb_stage_1": {
+			"asset_id": "plant.green_herb_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_herb_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Herb Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_herb_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_herb_stage_2": {
+			"asset_id": "plant.green_herb_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_herb_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Herb Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_herb_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_herb_stage_3": {
+			"asset_id": "plant.green_herb_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_herb_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Herb Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_herb_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_vine_stage_0": {
+			"asset_id": "plant.green_vine_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_vine_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Vine Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_vine_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_vine_stage_1": {
+			"asset_id": "plant.green_vine_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_vine_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Vine Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_vine_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_vine_stage_2": {
+			"asset_id": "plant.green_vine_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_vine_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Vine Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_vine_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.green_vine_stage_3": {
+			"asset_id": "plant.green_vine_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "green_vine_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Green Vine Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/green_vine_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.lunar_bloom_stage_0": {
+			"asset_id": "plant.lunar_bloom_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "lunar_bloom_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Lunar Bloom Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/lunar_bloom_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.lunar_bloom_stage_1": {
+			"asset_id": "plant.lunar_bloom_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "lunar_bloom_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Lunar Bloom Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/lunar_bloom_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.lunar_bloom_stage_2": {
+			"asset_id": "plant.lunar_bloom_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "lunar_bloom_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Lunar Bloom Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/lunar_bloom_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.lunar_bloom_stage_3": {
+			"asset_id": "plant.lunar_bloom_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "lunar_bloom_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Lunar Bloom Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/lunar_bloom_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_orchid_stage_0": {
+			"asset_id": "plant.moon_orchid_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_orchid_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Orchid Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_orchid_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_orchid_stage_1": {
+			"asset_id": "plant.moon_orchid_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_orchid_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Orchid Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_orchid_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_orchid_stage_2": {
+			"asset_id": "plant.moon_orchid_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_orchid_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Orchid Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_orchid_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_orchid_stage_3": {
+			"asset_id": "plant.moon_orchid_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_orchid_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Orchid Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_orchid_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_vine_stage_0": {
+			"asset_id": "plant.moon_vine_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_vine_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Vine Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_vine_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_vine_stage_1": {
+			"asset_id": "plant.moon_vine_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_vine_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Vine Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_vine_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_vine_stage_2": {
+			"asset_id": "plant.moon_vine_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_vine_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Vine Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_vine_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.moon_vine_stage_3": {
+			"asset_id": "plant.moon_vine_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "moon_vine_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Moon Vine Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/moon_vine_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.orange_herb_stage_0": {
+			"asset_id": "plant.orange_herb_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "orange_herb_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Orange Herb Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/orange_herb_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.orange_herb_stage_1": {
+			"asset_id": "plant.orange_herb_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "orange_herb_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Orange Herb Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/orange_herb_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.orange_herb_stage_2": {
+			"asset_id": "plant.orange_herb_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "orange_herb_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Orange Herb Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/orange_herb_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.orange_herb_stage_3": {
+			"asset_id": "plant.orange_herb_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "orange_herb_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Orange Herb Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/orange_herb_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.pink_lily_stage_0": {
+			"asset_id": "plant.pink_lily_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "pink_lily_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Pink Lily Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/pink_lily_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.pink_lily_stage_1": {
+			"asset_id": "plant.pink_lily_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "pink_lily_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Pink Lily Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/pink_lily_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.pink_lily_stage_2": {
+			"asset_id": "plant.pink_lily_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "pink_lily_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Pink Lily Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/pink_lily_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.pink_lily_stage_3": {
+			"asset_id": "plant.pink_lily_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "pink_lily_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Pink Lily Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/pink_lily_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.purple_flower_stage_0": {
+			"asset_id": "plant.purple_flower_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "purple_flower_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Purple Flower Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/purple_flower_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.purple_flower_stage_1": {
+			"asset_id": "plant.purple_flower_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "purple_flower_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Purple Flower Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/purple_flower_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.purple_flower_stage_2": {
+			"asset_id": "plant.purple_flower_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "purple_flower_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Purple Flower Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/purple_flower_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.purple_flower_stage_3": {
+			"asset_id": "plant.purple_flower_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "purple_flower_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Purple Flower Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/purple_flower_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.radiant_essence_herb_stage_0": {
+			"asset_id": "plant.radiant_essence_herb_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "radiant_essence_herb_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Radiant Essence Herb Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/radiant_essence_herb_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.radiant_essence_herb_stage_1": {
+			"asset_id": "plant.radiant_essence_herb_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "radiant_essence_herb_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Radiant Essence Herb Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/radiant_essence_herb_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.radiant_essence_herb_stage_2": {
+			"asset_id": "plant.radiant_essence_herb_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "radiant_essence_herb_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Radiant Essence Herb Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/radiant_essence_herb_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.radiant_essence_herb_stage_3": {
+			"asset_id": "plant.radiant_essence_herb_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "radiant_essence_herb_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Radiant Essence Herb Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/radiant_essence_herb_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.red_flower_stage_0": {
+			"asset_id": "plant.red_flower_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "red_flower_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Red Flower Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/red_flower_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.red_flower_stage_1": {
+			"asset_id": "plant.red_flower_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "red_flower_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Red Flower Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/red_flower_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.red_flower_stage_2": {
+			"asset_id": "plant.red_flower_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "red_flower_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Red Flower Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/red_flower_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.red_flower_stage_3": {
+			"asset_id": "plant.red_flower_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "red_flower_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Red Flower Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/red_flower_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sapphire_lily_stage_0": {
+			"asset_id": "plant.sapphire_lily_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sapphire_lily_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sapphire Lily Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sapphire_lily_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sapphire_lily_stage_1": {
+			"asset_id": "plant.sapphire_lily_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sapphire_lily_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sapphire Lily Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sapphire_lily_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sapphire_lily_stage_2": {
+			"asset_id": "plant.sapphire_lily_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sapphire_lily_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sapphire Lily Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sapphire_lily_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sapphire_lily_stage_3": {
+			"asset_id": "plant.sapphire_lily_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sapphire_lily_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sapphire Lily Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sapphire_lily_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.solar_moss_stage_0": {
+			"asset_id": "plant.solar_moss_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "solar_moss_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Solar Moss Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/solar_moss_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.solar_moss_stage_1": {
+			"asset_id": "plant.solar_moss_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "solar_moss_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Solar Moss Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/solar_moss_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.solar_moss_stage_2": {
+			"asset_id": "plant.solar_moss_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "solar_moss_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Solar Moss Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/solar_moss_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.solar_moss_stage_3": {
+			"asset_id": "plant.solar_moss_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "solar_moss_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Solar Moss Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/solar_moss_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.star_moss_stage_0": {
+			"asset_id": "plant.star_moss_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "star_moss_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Star Moss Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/star_moss_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.star_moss_stage_1": {
+			"asset_id": "plant.star_moss_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "star_moss_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Star Moss Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/star_moss_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.star_moss_stage_2": {
+			"asset_id": "plant.star_moss_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "star_moss_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Star Moss Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/star_moss_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.star_moss_stage_3": {
+			"asset_id": "plant.star_moss_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "star_moss_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Star Moss Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/star_moss_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sun_vine_stage_0": {
+			"asset_id": "plant.sun_vine_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sun_vine_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sun Vine Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sun_vine_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sun_vine_stage_1": {
+			"asset_id": "plant.sun_vine_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sun_vine_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sun Vine Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sun_vine_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sun_vine_stage_2": {
+			"asset_id": "plant.sun_vine_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sun_vine_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sun Vine Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sun_vine_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.sun_vine_stage_3": {
+			"asset_id": "plant.sun_vine_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "sun_vine_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Sun Vine Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/sun_vine_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.twilight_orchid_stage_0": {
+			"asset_id": "plant.twilight_orchid_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "twilight_orchid_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Twilight Orchid Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/twilight_orchid_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.twilight_orchid_stage_1": {
+			"asset_id": "plant.twilight_orchid_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "twilight_orchid_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Twilight Orchid Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/twilight_orchid_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.twilight_orchid_stage_2": {
+			"asset_id": "plant.twilight_orchid_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "twilight_orchid_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Twilight Orchid Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/twilight_orchid_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.twilight_orchid_stage_3": {
+			"asset_id": "plant.twilight_orchid_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "twilight_orchid_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Twilight Orchid Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/twilight_orchid_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.white_lily_stage_0": {
+			"asset_id": "plant.white_lily_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "white_lily_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "White Lily Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/white_lily_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.white_lily_stage_1": {
+			"asset_id": "plant.white_lily_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "white_lily_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "White Lily Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/white_lily_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.white_lily_stage_2": {
+			"asset_id": "plant.white_lily_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "white_lily_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "White Lily Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/white_lily_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.white_lily_stage_3": {
+			"asset_id": "plant.white_lily_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "white_lily_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "White Lily Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/white_lily_stage_3.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.yellow_herb_stage_0": {
+			"asset_id": "plant.yellow_herb_stage_0",
+			"category": "plant",
+			"emits_light": false,
+			"id": "yellow_herb_stage_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Yellow Herb Stage 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/yellow_herb_stage_0.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.yellow_herb_stage_1": {
+			"asset_id": "plant.yellow_herb_stage_1",
+			"category": "plant",
+			"emits_light": false,
+			"id": "yellow_herb_stage_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Yellow Herb Stage 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/yellow_herb_stage_1.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.yellow_herb_stage_2": {
+			"asset_id": "plant.yellow_herb_stage_2",
+			"category": "plant",
+			"emits_light": false,
+			"id": "yellow_herb_stage_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Yellow Herb Stage 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/yellow_herb_stage_2.png",
+			"type": "plant",
+			"walkable": true
+		},
+		"plant.yellow_herb_stage_3": {
+			"asset_id": "plant.yellow_herb_stage_3",
+			"category": "plant",
+			"emits_light": false,
+			"id": "yellow_herb_stage_3",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Yellow Herb Stage 3",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/plants/yellow_herb_stage_3.png",
+			"type": "plant",
+			"walkable": true
 		},
 		"prop.ancient_tree": {
 			"category": "prop",
 			"size": [
-				32,
-				32
+				32.0,
+				32.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/bush_small.png"
@@ -355,8 +3719,8 @@
 		"prop.bench": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/tree_stump.png"
@@ -364,53 +3728,392 @@
 		"prop.bush": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/bush_small.png"
 		},
-		"prop.chest": {
-			"category": "prop",
+		"prop.bush_small": {
+			"asset_id": "prop.bush_small",
+			"category": "environment",
+			"emits_light": false,
+			"id": "bush_small",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Bush Small",
 			"size": [
 				16,
 				16
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/bush_small.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.chest": {
+			"category": "prop",
+			"size": [
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/items/expanded_satchel.png"
 		},
 		"prop.fallen_branch": {
-			"category": "prop",
+			"asset_id": "prop.fallen_branch",
+			"category": "environment",
+			"emits_light": false,
+			"id": "fallen_branch",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Fallen Branch",
 			"size": [
 				16,
 				16
 			],
 			"solid": true,
-			"texture": "res://assets/sprites/environment/fallen_branch.png"
+			"texture": "res://assets/sprites/environment/fallen_branch.png",
+			"type": "object",
+			"walkable": false
 		},
 		"prop.flower_patch": {
-			"category": "prop",
+			"asset_id": "prop.flower_patch",
+			"category": "environment",
+			"emits_light": false,
+			"id": "flower_patch",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Flower Patch",
 			"size": [
 				16,
 				16
 			],
-			"solid": false,
-			"texture": "res://assets/sprites/environment/flower_patch.png"
+			"solid": true,
+			"texture": "res://assets/sprites/environment/flower_patch.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.greenhouse_repaired": {
+			"asset_id": "prop.greenhouse_repaired",
+			"category": "environment",
+			"emits_light": false,
+			"id": "greenhouse_repaired",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Greenhouse Repaired",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_repaired.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.greenhouse_ruined": {
+			"asset_id": "prop.greenhouse_ruined",
+			"category": "environment",
+			"emits_light": false,
+			"id": "greenhouse_ruined",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Greenhouse Ruined",
+			"size": [
+				32,
+				32
+			],
+			"solid": true,
+			"texture": "res://assets/sprites/environment/greenhouse_ruined.png",
+			"type": "object",
+			"walkable": false
 		},
 		"prop.mushroom": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": false,
 			"texture": "res://assets/sprites/plants/crystal_fern_stage_3.png"
 		},
+		"prop.player_down": {
+			"asset_id": "prop.player_down",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_down",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Down",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_down.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_down_0": {
+			"asset_id": "prop.player_down_0",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_down_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Down 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_down_0.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_down_1": {
+			"asset_id": "prop.player_down_1",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_down_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Down 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_down_1.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_down_2": {
+			"asset_id": "prop.player_down_2",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_down_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Down 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_down_2.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_left": {
+			"asset_id": "prop.player_left",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_left",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Left",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_left.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_left_0": {
+			"asset_id": "prop.player_left_0",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_left_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Left 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_left_0.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_left_1": {
+			"asset_id": "prop.player_left_1",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_left_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Left 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_left_1.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_left_2": {
+			"asset_id": "prop.player_left_2",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_left_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Left 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_left_2.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_right": {
+			"asset_id": "prop.player_right",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_right",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Right",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_right.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_right_0": {
+			"asset_id": "prop.player_right_0",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_right_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Right 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_right_0.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_right_1": {
+			"asset_id": "prop.player_right_1",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_right_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Right 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_right_1.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_right_2": {
+			"asset_id": "prop.player_right_2",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_right_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Right 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_right_2.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_up": {
+			"asset_id": "prop.player_up",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_up",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Up",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_up.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_up_0": {
+			"asset_id": "prop.player_up_0",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_up_0",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Up 0",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_up_0.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_up_1": {
+			"asset_id": "prop.player_up_1",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_up_1",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Up 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_up_1.png",
+			"type": "object",
+			"walkable": false
+		},
+		"prop.player_up_2": {
+			"asset_id": "prop.player_up_2",
+			"category": "environment",
+			"emits_light": false,
+			"id": "player_up_2",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Player Up 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/player/player_up_2.png",
+			"type": "object",
+			"walkable": false
+		},
 		"prop.pond": {
 			"category": "prop",
 			"size": [
-				32,
-				32
+				32.0,
+				32.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/flower_patch.png"
@@ -418,8 +4121,8 @@
 		"prop.portal": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": false,
 			"texture": "res://assets/sprites/items/astral_moss.png"
@@ -427,26 +4130,34 @@
 		"prop.rock": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/rock_small.png"
 		},
 		"prop.rock_small": {
-			"category": "prop",
+			"asset_id": "prop.rock_small",
+			"category": "environment",
+			"emits_light": false,
+			"id": "rock_small",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Rock Small",
 			"size": [
 				16,
 				16
 			],
 			"solid": true,
-			"texture": "res://assets/sprites/environment/rock_small.png"
+			"texture": "res://assets/sprites/environment/rock_small.png",
+			"type": "object",
+			"walkable": false
 		},
 		"prop.signpost": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/wooden_gate.png"
@@ -454,35 +4165,51 @@
 		"prop.tree": {
 			"category": "prop",
 			"size": [
-				32,
-				32
+				32.0,
+				32.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/environment/tree_stump.png"
 		},
 		"prop.tree_stump": {
-			"category": "prop",
+			"asset_id": "prop.tree_stump",
+			"category": "environment",
+			"emits_light": false,
+			"id": "tree_stump",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Tree Stump",
 			"size": [
 				16,
 				16
 			],
 			"solid": true,
-			"texture": "res://assets/sprites/environment/tree_stump.png"
+			"texture": "res://assets/sprites/environment/tree_stump.png",
+			"type": "object",
+			"walkable": false
 		},
 		"prop.wooden_gate": {
-			"category": "prop",
+			"asset_id": "prop.wooden_gate",
+			"category": "environment",
+			"emits_light": false,
+			"id": "wooden_gate",
+			"interactable": false,
+			"layer": "DECORATION",
+			"name": "Wooden Gate",
 			"size": [
 				16,
 				16
 			],
 			"solid": true,
-			"texture": "res://assets/sprites/environment/wooden_gate.png"
+			"texture": "res://assets/sprites/environment/wooden_gate.png",
+			"type": "object",
+			"walkable": false
 		},
 		"prop.workbench": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
 			"texture": "res://assets/sprites/items/better_tools.png"
@@ -490,98 +4217,524 @@
 		"prop.world_exit": {
 			"category": "prop",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": false,
 			"texture": "res://assets/sprites/environment/wooden_gate.png"
 		},
-		"tile.fence": {
+		"tile.custom_gpt_grass_sheet": {
+			"asset_id": "tile.custom_gpt_grass_sheet",
 			"category": "terrain",
-			"type": "terrain",
+			"emits_light": false,
+			"id": "custom_gpt_grass_sheet",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Custom Gpt Grass Sheet",
+			"size": [
+				128,
+				128
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_gpt_grass_sheet.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.fence": {
+			"asset_id": "tile.fence",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "fence",
+			"interactable": false,
+			"layer": "OBJECT",
+			"name": "Fence",
 			"size": [
 				16,
 				16
 			],
 			"solid": true,
-			"texture": "res://assets/sprites/tiles/fence.png"
+			"texture": "res://assets/sprites/tiles/fence.png",
+			"type": "tile",
+			"walkable": false
+		},
+		"tile.gpt_dirt_full": {
+			"asset_id": "tile.gpt_dirt_full",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_dirt_full",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Dirt Full",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_dirt_full.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_bottom_edge_1": {
+			"asset_id": "tile.gpt_grass_bottom_edge_1",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_bottom_edge_1",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Bottom Edge 1",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_bottom_edge_1.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_bottom_edge_2": {
+			"asset_id": "tile.gpt_grass_bottom_edge_2",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_bottom_edge_2",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Bottom Edge 2",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_bottom_edge_2.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_bottom_left_corner": {
+			"asset_id": "tile.gpt_grass_bottom_left_corner",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_bottom_left_corner",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Bottom Left Corner",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_bottom_left_corner.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_bottom_right_corner": {
+			"asset_id": "tile.gpt_grass_bottom_right_corner",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_bottom_right_corner",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Bottom Right Corner",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_bottom_right_corner.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_curve_right": {
+			"asset_id": "tile.gpt_grass_curve_right",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_curve_right",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Curve Right",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_curve_right.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_full": {
+			"asset_id": "tile.gpt_grass_full",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_full",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Full",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_full.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_inner_corner_tl": {
+			"asset_id": "tile.gpt_grass_inner_corner_tl",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_inner_corner_tl",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Inner Corner Tl",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_inner_corner_tl.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_inner_edge_1": {
+			"asset_id": "tile.gpt_grass_inner_edge_1",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_inner_edge_1",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Inner Edge 1",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_inner_edge_1.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_inner_edge_2": {
+			"asset_id": "tile.gpt_grass_inner_edge_2",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_inner_edge_2",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Inner Edge 2",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_inner_edge_2.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_left_edge": {
+			"asset_id": "tile.gpt_grass_left_edge",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_left_edge",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Left Edge",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_left_edge.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_right_edge": {
+			"asset_id": "tile.gpt_grass_right_edge",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_right_edge",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Right Edge",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_right_edge.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_top_edge_1": {
+			"asset_id": "tile.gpt_grass_top_edge_1",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_top_edge_1",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Top Edge 1",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_top_edge_1.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_top_edge_2": {
+			"asset_id": "tile.gpt_grass_top_edge_2",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_top_edge_2",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Top Edge 2",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_top_edge_2.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_top_left_corner": {
+			"asset_id": "tile.gpt_grass_top_left_corner",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_top_left_corner",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Top Left Corner",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_top_left_corner.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.gpt_grass_top_right_corner": {
+			"asset_id": "tile.gpt_grass_top_right_corner",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "gpt_grass_top_right_corner",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Gpt Grass Top Right Corner",
+			"size": [
+				32,
+				32
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/custom_grass_path/gpt_grass_top_right_corner.png",
+			"type": "tile",
+			"walkable": true
 		},
 		"tile.grass": {
+			"asset_id": "tile.grass",
 			"category": "terrain",
-			"type": "terrain",
+			"emits_light": false,
+			"id": "grass",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Grass",
 			"size": [
 				16,
 				16
 			],
 			"solid": false,
-			"texture": "res://assets/sprites/tiles/grass.png"
+			"texture": "res://assets/sprites/tiles/grass.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.grass_1": {
+			"asset_id": "tile.grass_1",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "grass_1",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Grass 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/grass_1.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.grass_2": {
+			"asset_id": "tile.grass_2",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "grass_2",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Grass 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/grass_2.png",
+			"type": "tile",
+			"walkable": true
 		},
 		"tile.path": {
+			"asset_id": "tile.path",
 			"category": "terrain",
-			"type": "terrain",
+			"emits_light": false,
+			"id": "path",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Path",
 			"size": [
 				16,
 				16
 			],
 			"solid": false,
-			"texture": "res://assets/sprites/tiles/path.png"
+			"texture": "res://assets/sprites/tiles/path.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.path_1": {
+			"asset_id": "tile.path_1",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "path_1",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Path 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/path_1.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.path_2": {
+			"asset_id": "tile.path_2",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "path_2",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Path 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/path_2.png",
+			"type": "tile",
+			"walkable": true
 		},
 		"tile.sand": {
 			"category": "terrain",
-			"type": "terrain",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": false,
-			"texture": "res://assets/sprites/tiles/path_2.png"
+			"texture": "res://assets/sprites/tiles/path_2.png",
+			"type": "terrain"
 		},
 		"tile.soil": {
+			"asset_id": "tile.soil",
 			"category": "terrain",
-			"type": "terrain",
+			"emits_light": false,
+			"id": "soil",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Soil",
 			"size": [
 				16,
 				16
 			],
 			"solid": false,
-			"texture": "res://assets/sprites/tiles/soil.png"
+			"texture": "res://assets/sprites/tiles/soil.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.soil_1": {
+			"asset_id": "tile.soil_1",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "soil_1",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Soil 1",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/soil_1.png",
+			"type": "tile",
+			"walkable": true
+		},
+		"tile.soil_2": {
+			"asset_id": "tile.soil_2",
+			"category": "terrain",
+			"emits_light": false,
+			"id": "soil_2",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Soil 2",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/tiles/soil_2.png",
+			"type": "tile",
+			"walkable": true
 		},
 		"tile.stone": {
 			"category": "terrain",
-			"type": "terrain",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": false,
-			"texture": "res://assets/sprites/tiles/path_1.png"
+			"texture": "res://assets/sprites/tiles/path_1.png",
+			"type": "terrain"
 		},
 		"tile.water": {
 			"category": "terrain",
-			"type": "terrain",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"solid": true,
-			"texture": "res://assets/sprites/tiles/watered_soil.png"
+			"texture": "res://assets/sprites/tiles/watered_soil.png",
+			"type": "terrain"
 		},
 		"tile.watered_soil": {
+			"asset_id": "tile.watered_soil",
 			"category": "terrain",
-			"type": "terrain",
+			"emits_light": false,
+			"id": "watered_soil",
+			"interactable": false,
+			"layer": "GROUND",
+			"name": "Watered Soil",
 			"size": [
 				16,
 				16
 			],
 			"solid": false,
-			"texture": "res://assets/sprites/tiles/watered_soil.png"
+			"texture": "res://assets/sprites/tiles/watered_soil.png",
+			"type": "tile",
+			"walkable": true
 		},
 		"tool.axe.basic": {
 			"category": "tool",
 			"quality": "basic",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/axe_basic.png"
 		},
@@ -589,8 +4742,8 @@
 			"category": "tool",
 			"quality": "basic",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/hoe_basic.png"
 		},
@@ -598,8 +4751,8 @@
 			"category": "tool",
 			"quality": "copper",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/hoe_copper.png"
 		},
@@ -607,8 +4760,8 @@
 			"category": "tool",
 			"quality": "gold",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/hoe_gold.png"
 		},
@@ -616,8 +4769,8 @@
 			"category": "tool",
 			"quality": "iron",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/hoe_iron.png"
 		},
@@ -625,8 +4778,8 @@
 			"category": "tool",
 			"quality": "basic",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/pickaxe_basic.png"
 		},
@@ -634,8 +4787,8 @@
 			"category": "tool",
 			"quality": "basic",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/watering_can_basic.png"
 		},
@@ -643,8 +4796,8 @@
 			"category": "tool",
 			"quality": "copper",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/watering_can_copper.png"
 		},
@@ -652,8 +4805,8 @@
 			"category": "tool",
 			"quality": "gold",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/items/watering_can_gold.png"
 		},
@@ -661,120 +4814,260 @@
 			"category": "tool",
 			"quality": "iron",
 			"size": [
+				16.0,
+				16.0
+			],
+			"texture": "res://assets/sprites/items/watering_can_iron.png"
+		},
+		"ui.icon": {
+			"asset_id": "ui.icon",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon",
+			"interactable": true,
+			"layer": "OVERLAY",
+			"name": "Icon",
+			"size": [
 				16,
 				16
 			],
-			"texture": "res://assets/sprites/items/watering_can_iron.png"
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_shop.png",
+			"type": "ui",
+			"walkable": false
 		},
 		"ui.icon.day": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_day.png"
 		},
 		"ui.icon.gold": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_gold.png"
 		},
 		"ui.icon.inventory": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_inventory.png"
 		},
 		"ui.icon.journal": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_journal.png"
 		},
 		"ui.icon.lab": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_lab.png"
 		},
 		"ui.icon.load": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_load.png"
 		},
 		"ui.icon.quest": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_quest.png"
 		},
 		"ui.icon.save": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_save.png"
 		},
 		"ui.icon.settings": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_settings.png"
 		},
 		"ui.icon.shop": {
 			"category": "ui_icon",
 			"size": [
-				16,
-				16
+				16.0,
+				16.0
 			],
 			"texture": "res://assets/sprites/ui/icon_shop.png"
-		}
-	},
-	"pixel_art_rules": {
-		"base_tile_size": [
-			16,
-			16
-		],
-		"character_size": [
-			16,
-			24
-		],
-		"prop_sizes": {
-			"large": [
-				48,
-				48
-			],
-			"medium": [
-				32,
-				32
-			],
-			"small": [
+		},
+		"ui.icon_day": {
+			"asset_id": "ui.icon_day",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_day",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Day",
+			"size": [
 				16,
 				16
-			]
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_day.png",
+			"type": "ui",
+			"walkable": false
 		},
-		"texture_filter": "nearest",
-		"viewport_base": [
-			1152,
-			648
-		]
-	},
-	"version": "1.0"
+		"ui.icon_gold": {
+			"asset_id": "ui.icon_gold",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_gold",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Gold",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_gold.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_inventory": {
+			"asset_id": "ui.icon_inventory",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_inventory",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Inventory",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_inventory.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_journal": {
+			"asset_id": "ui.icon_journal",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_journal",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Journal",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_journal.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_lab": {
+			"asset_id": "ui.icon_lab",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_lab",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Lab",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_lab.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_load": {
+			"asset_id": "ui.icon_load",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_load",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Load",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_load.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_quest": {
+			"asset_id": "ui.icon_quest",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_quest",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Quest",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_quest.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_save": {
+			"asset_id": "ui.icon_save",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_save",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Save",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_save.png",
+			"type": "ui",
+			"walkable": false
+		},
+		"ui.icon_settings": {
+			"asset_id": "ui.icon_settings",
+			"category": "ui",
+			"emits_light": false,
+			"id": "icon_settings",
+			"interactable": false,
+			"layer": "OVERLAY",
+			"name": "Icon Settings",
+			"size": [
+				16,
+				16
+			],
+			"solid": false,
+			"texture": "res://assets/sprites/ui/icon_settings.png",
+			"type": "ui",
+			"walkable": false
+		}
+	}
 }

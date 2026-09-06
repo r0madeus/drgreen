@@ -14,58 +14,96 @@ signal panel_closed()
 var is_open: bool = false
 
 func _ready() -> void:
+	theme = UIConstants.get_theme()
 	_setup_ui()
 	visible = false
 
 func _setup_ui() -> void:
-	anchor_left = 0.5
-	anchor_top = 0.5
-	anchor_right = 0.5
-	anchor_bottom = 0.5
-	offset_left = -160
-	offset_top = -110
-	offset_right = 160
-	offset_bottom = 110
+	anchors_preset = PRESET_FULL_RECT
+	anchor_right = 1.0
+	anchor_bottom = 1.0
+	grow_horizontal = GROW_DIRECTION_BOTH
+	grow_vertical = GROW_DIRECTION_BOTH
+	mouse_filter = MOUSE_FILTER_PASS
 	
-	var panel = Panel.new()
-	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(panel)
+	var center = CenterContainer.new()
+	center.set_anchors_preset(PRESET_FULL_RECT)
+	center.grow_horizontal = GROW_DIRECTION_BOTH
+	center.grow_vertical = GROW_DIRECTION_BOTH
+	center.mouse_filter = MOUSE_FILTER_PASS
+	add_child(center)
 	
-	title_label.text = tr("social.ui.relationships")
-	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title_label.position = Vector2(0, 8)
-	title_label.size = Vector2(320, 24)
-	add_child(title_label)
+	var panel = PanelContainer.new()
+	panel.custom_minimum_size = Vector2(360, 240)
+	center.add_child(panel)
 	
-	container.position = Vector2(16, 36)
-	container.size = Vector2(288, 130)
-	add_child(container)
+	var margin = MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_top", 14)
+	margin.add_theme_constant_override("margin_bottom", 14)
+	panel.add_child(margin)
 	
-	close_btn.text = "✖ Close"
-	close_btn.position = Vector2(120, 175)
-	close_btn.size = Vector2(80, 24)
+	var vbox = VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 10)
+	margin.add_child(vbox)
+	
+	var header = HBoxContainer.new()
+	vbox.add_child(header)
+	
+	title_label.text = "❤️ " + tr("social.ui.relationships")
+	title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header.add_child(title_label)
+	
+	close_btn.text = "✖"
+	close_btn.custom_minimum_size = Vector2(28, 28)
 	close_btn.pressed.connect(close)
-	add_child(close_btn)
+	header.add_child(close_btn)
+	
+	var sep = HSeparator.new()
+	vbox.add_child(sep)
+	
+	var scroll = ScrollContainer.new()
+	scroll.custom_minimum_size = Vector2(320, 160)
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vbox.add_child(scroll)
+	
+	container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.add_child(container)
 
 func open() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
 	refresh()
 	visible = true
 	is_open = true
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_open")
+	UIConstants.update_player_lock(get_tree())
 
 func close() -> void:
 	visible = false
 	is_open = false
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_close")
+	UIConstants.update_player_lock(get_tree())
 	panel_closed.emit()
 
 func refresh() -> void:
-	for c in container.get_children():
-		c.queue_free()
+	if container:
+		for c in container.get_children():
+			c.queue_free()
 		
-		var p_state = null
+	var p_state: PlayerState = null
 	if is_inside_tree():
 		var player = get_tree().get_first_node_in_group("local_player")
 		if player and "player_state" in player:
 			p_state = player.player_state
+	if not p_state:
+		var psm = get_node_or_null("/root/PlayerRegistry")
+		if psm and psm.has_method("get_player_state"):
+			var pid = psm.local_player_id if "local_player_id" in psm and psm.local_player_id != "" else "player_001"
+			p_state = psm.get_player_state(pid)
 	if not p_state: return
 	
 	var npcs = ["rowan", "elias", "mira"]

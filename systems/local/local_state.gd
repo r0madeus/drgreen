@@ -5,11 +5,11 @@ extends RefCounted
 ## Strictly isolated from PlayerState and SharedWorldState; never serialized in savegame, never replicated over network.
 
 var graphics: Dictionary = {
-	"resolution": "1152x648",
+	"resolution": "1920x1080",
 	"window_mode": "windowed",
 	"vsync": true,
 	"fps_limit": 60,
-	"ui_scale": 1.0,
+	"ui_scale": 1.5,
 	"camera_zoom": 1.0,
 	"screen_shake": true,
 	"particle_quality": "full",
@@ -31,12 +31,12 @@ var controls: Dictionary = {
 	"move_down": ["S", "Down"],
 	"move_left": ["A", "Left"],
 	"move_right": ["D", "Right"],
-	"use_tool": ["MouseLeft", "C"],
-	"interact": ["MouseRight", "E", "Space"],
-	"inventory": ["E", "I", "Tab"],
-	"journal": ["F", "J"],
+	"use_tool": ["MouseLeft"],
+	"interact": ["E", "MouseRight"],
+	"inventory": ["I", "Tab", "B"],
+	"journal": ["J"],
 	"combination": ["C"],
-	"quest": ["F", "Q"],
+	"quest": ["Q"],
 	"run": ["Shift"],
 	"hotbar_next": ["MouseWheelDown"],
 	"hotbar_prev": ["MouseWheelUp"],
@@ -46,7 +46,7 @@ var controls: Dictionary = {
 }
 
 var accessibility: Dictionary = {
-	"ui_scale": 1.0,
+	"ui_scale": 1.5,
 	"text_size": "normal",
 	"high_contrast": false,
 	"reduced_motion": false,
