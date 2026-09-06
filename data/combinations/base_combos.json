@@ -28,6 +28,7 @@
 			"success_rate": 1.0
 		},
 		{
+			"description": "",
 			"hidden": false,
 			"id": "combo_004",
 			"input_a": "yellow_herb",

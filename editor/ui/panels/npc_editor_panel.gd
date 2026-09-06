@@ -99,7 +99,7 @@ func _build_ui() -> void:
 	var top_title = Label.new()
 	top_title.text = " In-Game NPC & Schedule Editor"
 	top_title.add_theme_font_size_override("font_size", 13)
-	top_title.modulate = Color(0.9, 0.85, 0.4)
+	top_title.modulate = Color(0.92, 0.94, 0.98)
 	top_hbox.add_child(top_title)
 
 	top_hbox.add_spacer(false)
@@ -124,7 +124,6 @@ func _build_ui() -> void:
 
 	var test_btn = Button.new()
 	test_btn.text = " Test NPC"
-	test_btn.modulate = Color(0.5, 1.0, 0.6)
 	test_btn.pressed.connect(_on_playtest_npc)
 	top_hbox.add_child(test_btn)
 
@@ -583,8 +582,13 @@ func _refresh_schedule_timeline() -> void:
 		var btn = Button.new()
 		btn.text = "%s  %s  [%s]   %s (Priority %s)" % [s_str, e_str, act, loc, str(entry.get("priority", 2))]
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		btn.modulate = Color.WHITE
 		if i == selected_schedule_idx:
-			btn.modulate = Color(1.0, 0.9, 0.5)
+			btn.add_theme_stylebox_override("normal", UIConstants.create_active_button_stylebox())
+			btn.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+		else:
+			btn.remove_theme_stylebox_override("normal")
+			btn.remove_theme_color_override("font_color")
 		btn.pressed.connect(func(): _select_schedule_entry(i))
 		schedule_list_container.add_child(btn)
 

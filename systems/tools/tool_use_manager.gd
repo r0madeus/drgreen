@@ -147,7 +147,7 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 	
 	# Range validation
 	var tool_def = get_tool_def(item_id)
-	var max_range = int(tool_def.get("range", 1))
+	var max_range = int(tool_def.get("range", 2))
 	var inter = player.get_node_or_null("Interaction")
 	# Tool reach originates at the player's continuous physical position.
 	if inter and not inter.is_world_position_in_range(player.global_position, target_pos, gm, max_range):
@@ -162,6 +162,10 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 	var spawner = EffectSpawner.get_instance()
 	var am = player.get_node_or_null("/root/AudioManager")
 	var player_state = player.player_state if "player_state" in player else null
+	if not player_state:
+		var psm = player.get_node_or_null("/root/PlayerRegistry")
+		if psm and psm.has_method("get_player_state"):
+			player_state = psm.get_player_state(player.player_id if "player_id" in player else "player_001")
 	var wl = player.get_node_or_null("/root/WorldLoader")
 	var current_world = wl.current_world_id if wl else "farm"
 	var ng = player.get_node_or_null("/root/NetworkGameplay")
@@ -183,9 +187,6 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 				# Normal product harvest (No genetics on the product item currently)
 				player_state.add_item(crop_id, count)
 				
-				# 50% chance to return 1-2 seeds for genetic sustainability (Since it's ambiguous, we provide a basic 1 seed return to test the genetic loop)
-				# Actually, the user asked to preserve seed return mechanics or report if ambiguous. 
-				# Let's just return 1 seed of the exact genetic type so the player doesn't lose their custom plant.
 				var profile_obj = null
 				if gen_id != "" and not gen_prof_dict.is_empty():
 					var GeneticProfile = load("res://systems/genetics/genetic_profile.gd")
@@ -212,7 +213,7 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 				_show_invalid_feedback(world_pos, spawner)
 				return false
 				
-			if player_state: player_state.use_energy(energy_cost)
+			if player_state: player_state.consume_energy(energy_cost)
 			if gm.till_tile(target_pos):
 				if am: am.play_sfx(tool_def.get("sfx_id", "farming.plant"))
 				if bus:
@@ -227,16 +228,21 @@ static func use_selected_item(player: Node2D, target_pos: Vector2i, item_id: Str
 			return true
 			
 		ItemRegistry.UseAction.WATER:
-			if not (tile.type == "soil" and not tile.watered_today):
+			if not (tile.type == "soil"):
 				_show_invalid_feedback(world_pos, spawner)
 				return false
 				
-			if player_state: player_state.use_energy(energy_cost)
-			if gm.water_tile(target_pos):
+			if tile.watered_today:
+				if am: am.play_sfx(tool_def.get("sfx_id", "farming.water"))
+				if spawner: spawner.spawn_floating_text(world_pos, "💧 Already Watered", Color(0.6, 0.9, 1.0))
+				return true
+				
+			if player_state: player_state.consume_energy(energy_cost)
+			if gm.water_tile(target_pos, player.player_id if "player_id" in player else "player_001"):
 				if am: am.play_sfx(tool_def.get("sfx_id", "farming.water"))
 				if bus:
 					bus.tool_used.emit("watering_can", target_pos)
-					bus.plant_watered.emit(player.player_id, target_pos)
+					bus.plant_watered.emit(player.player_id if "player_id" in player else "player_001", target_pos)
 				if spawner:
 					spawner.spawn_watering_effect(world_pos)
 					spawner.spawn_floating_text(world_pos, "💧 Watered", Color(0.4, 0.8, 1.0))

@@ -8,6 +8,7 @@ enum ToolMode { SELECT, BRUSH, ERASER, RECTANGLE, FILL, LINE, SCATTER, TRANSITIO
 signal hover_coord_changed(coord: Vector2i)
 signal map_modified()
 signal status_updated(info: Dictionary)
+signal transition_created(tr: Dictionary)
 
 var current_tool: ToolMode = ToolMode.BRUSH
 var show_grid_lines: bool = true
@@ -21,7 +22,7 @@ var pan_offset: Vector2 = Vector2(40, 40)
 
 var world_data: Dictionary = {}
 var hovered_tile: Vector2i = Vector2i(-1, -1)
-var is_middle_panning: bool = false
+var is_panning: bool = false
 var pan_start_pos: Vector2 = Vector2.ZERO
 
 var rect_drag_start: Vector2i = Vector2i(-1, -1)
@@ -29,6 +30,11 @@ var is_rect_dragging: bool = false
 
 var line_drag_start: Vector2i = Vector2i(-1, -1)
 var is_line_dragging: bool = false
+
+var transition_drag_start: Vector2i = Vector2i(-1, -1)
+var transition_drag_start_anchor: Vector2 = Vector2(-1, -1)
+var is_transition_dragging: bool = false
+var hovered_anchor: Vector2 = Vector2(-1, -1)
 
 var is_dragging_objects: bool = false
 var drag_start_coord: Vector2i = Vector2i(-1, -1)
@@ -48,7 +54,8 @@ var current_stroke_previous_tiles: Dictionary = {}
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	set_process_unhandled_input(true)
-	custom_minimum_size = Vector2(600, 500)
+	clip_contents = true
+	custom_minimum_size = Vector2(100, 100)
 
 func setup(p_data: Dictionary, p_history: EditorHistory, p_selection: SelectionManager, p_palette: AssetPalette) -> void:
 	world_data = p_data
@@ -64,17 +71,58 @@ func resize_world(nw: int, nh: int) -> void:
 	if nw == ow and nh == oh: return
 	
 	if history:
-		history.commit_action("Resize World", self, "_apply_resize", [nw, nh, world_data.get("tiles", [])], [ow, oh, world_data.get("tiles", []).duplicate(true)])
+		history.push_action({
+			"name": "Resize World",
+			"type": "resize",
+			"old_width": ow,
+			"old_height": oh,
+			"old_tiles": world_data.get("tiles", []).duplicate(true),
+			"new_width": nw,
+			"new_height": nh
+		})
 	_apply_resize(nw, nh, world_data.get("tiles", []))
 
 func _apply_resize(nw: int, nh: int, old_tiles: Array) -> void:
 	world_data["width"] = nw
 	world_data["height"] = nh
-	var new_tiles = []
+	
+	# Existing tile lookup table
+	var tile_map: Dictionary = {}
 	for t in old_tiles:
-		if int(t.get("x", 0)) < nw and int(t.get("y", 0)) < nh:
-			new_tiles.append(t.duplicate(true))
+		var tx = int(t.get("x", -1))
+		var ty = int(t.get("y", -1))
+		if tx >= 0 and tx < nw and ty >= 0 and ty < nh:
+			tile_map[Vector2i(tx, ty)] = t.duplicate(true)
+			
+	# Construct new full grid tiles (preserving existing, creating default grass for new bounds)
+	var new_tiles = []
+	for y in range(nh):
+		for x in range(nw):
+			var pos = Vector2i(x, y)
+			if tile_map.has(pos):
+				new_tiles.append(tile_map[pos])
+			else:
+				new_tiles.append({
+					"x": x,
+					"y": y,
+					"type": "grass",
+					"layer": "GROUND",
+					"walkable": true,
+					"solid": false,
+					"interactable": false
+				})
+				
 	world_data["tiles"] = new_tiles
+	
+	# Filter out objects outside new bounds
+	if world_data.has("objects") and world_data["objects"] is Array:
+		var valid_objects = []
+		for o in world_data["objects"]:
+			var pos_arr = o.get("position", [0, 0])
+			if int(pos_arr[0]) < nw and int(pos_arr[1]) < nh:
+				valid_objects.append(o)
+		world_data["objects"] = valid_objects
+		
 	map_modified.emit()
 	queue_redraw()
 
@@ -137,15 +185,10 @@ func _handle_canvas_mouse_event(event: InputEvent) -> void:
 				_emit_status()
 				queue_redraw()
 			accept_event()
-		elif event.button_index == MOUSE_BUTTON_MIDDLE or (event.button_index == MOUSE_BUTTON_LEFT and is_space_down):
-			is_middle_panning = event.pressed
-			if is_middle_panning: pan_start_pos = event.position - pan_offset
-			accept_event()
-		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			var coord = _pixel_to_coord(event.position)
-			if _is_valid_coord(coord):
-				_erase_at(coord)
-				queue_redraw()
+		elif event.button_index == MOUSE_BUTTON_RIGHT or event.button_index == MOUSE_BUTTON_MIDDLE or (event.button_index == MOUSE_BUTTON_LEFT and is_space_down):
+			is_panning = event.pressed
+			if is_panning:
+				pan_start_pos = event.position - pan_offset
 			accept_event()
 		elif event.button_index == MOUSE_BUTTON_LEFT and not is_space_down:
 			var coord = _pixel_to_coord(event.position)
@@ -160,7 +203,9 @@ func _handle_canvas_mouse_event(event: InputEvent) -> void:
 						ToolMode.SCATTER:
 							_scatter_objects_around(coord, 2, 0.4)
 						ToolMode.TRANSITION:
-							_create_transition_point(coord)
+							is_transition_dragging = true
+							transition_drag_start = coord
+							transition_drag_start_anchor = _get_snapped_anchor(event.position)
 						ToolMode.ERASER:
 							is_brush_painting = true
 							current_stroke_previous_tiles.clear()
@@ -185,19 +230,31 @@ func _handle_canvas_mouse_event(event: InputEvent) -> void:
 					_paint_line(line_drag_start, coord)
 					is_line_dragging = false
 					line_drag_start = Vector2i(-1, -1)
+				if is_transition_dragging:
+					var end_anchor = _get_snapped_anchor(event.position)
+					if transition_drag_start_anchor.distance_to(end_anchor) > 0.05:
+						_create_subtile_line_transition(transition_drag_start_anchor, end_anchor)
+					elif _is_valid_coord(transition_drag_start) and _is_valid_coord(coord):
+						_create_line_transition(transition_drag_start, coord)
+					is_transition_dragging = false
+					transition_drag_start = Vector2i(-1, -1)
+					transition_drag_start_anchor = Vector2(-1, -1)
 				if is_box_selecting: _finalize_box_select()
 				if is_dragging_objects: _finalize_drag_move(coord)
 			queue_redraw()
 			accept_event()
 
 	elif event is InputEventMouseMotion:
-		if is_middle_panning:
+		if is_panning:
 			pan_offset = event.position - pan_start_pos
 			queue_redraw()
 			accept_event()
 		else:
 			var prev_hover = hovered_tile
 			hovered_tile = _pixel_to_coord(event.position)
+			if current_tool == ToolMode.TRANSITION:
+				hovered_anchor = _get_snapped_anchor(event.position)
+				queue_redraw()
 			if hovered_tile != prev_hover:
 				hover_coord_changed.emit(hovered_tile)
 				_emit_status()
@@ -580,27 +637,93 @@ func focus_selection() -> void:
 	pan_offset = (size * 0.5) - Vector2(int(p[0]) * ts, int(p[1]) * ts)
 	queue_redraw()
 
-func _create_transition_point(coord: Vector2i) -> void:
+func _get_snapped_anchor(screen_pos: Vector2) -> Vector2:
+	var ts = 16.0 * zoom_level
+	var float_pos = (screen_pos - pan_offset) / ts
+	var tx = floorf(float_pos.x)
+	var ty = floorf(float_pos.y)
+	var fx = float_pos.x - tx
+	var fy = float_pos.y - ty
+	
+	# The 5 primary candidate points (4 corners + 1 center) plus 4 edge midpoints
+	var local_anchors = [
+		Vector2(0.0, 0.0), # Top-Left
+		Vector2(1.0, 0.0), # Top-Right
+		Vector2(0.0, 1.0), # Bottom-Left
+		Vector2(1.0, 1.0), # Bottom-Right
+		Vector2(0.5, 0.5), # Center
+		Vector2(0.5, 0.0), # Top Edge Midpoint
+		Vector2(0.5, 1.0), # Bottom Edge Midpoint
+		Vector2(0.0, 0.5), # Left Edge Midpoint
+		Vector2(1.0, 0.5)  # Right Edge Midpoint
+	]
+	
+	var best_pt = local_anchors[0]
+	var min_dist = 999999.0
+	for a in local_anchors:
+		var d = Vector2(fx, fy).distance_to(a)
+		if d < min_dist:
+			min_dist = d
+			best_pt = a
+			
+	return Vector2(tx + best_pt.x, ty + best_pt.y)
+
+func _create_subtile_line_transition(p1: Vector2, p2: Vector2) -> void:
 	if world_data.is_empty(): return
-	if not world_data.has("objects"): world_data["objects"] = []
-	var new_obj = {
-		"position": [coord.x, coord.y],
-		"asset_id": "invisible_block",
-		"layer": "OBJECT",
-		"properties": {
-			"interaction_type": "world_transition",
-			"target_world": "town",
-			"interaction_id": "town_from_farm",
-			"walkable": true,
-			"solid": false,
-			"interactable": true
-		}
+	if not world_data.has("transitions"): world_data["transitions"] = []
+	
+	var min_x = minf(p1.x, p2.x)
+	var max_x = maxf(p1.x, p2.x)
+	var min_y = minf(p1.y, p2.y)
+	var max_y = maxf(p1.y, p2.y)
+	
+	var w = float(world_data.get("width", 32))
+	var h = float(world_data.get("height", 24))
+	
+	var dir = "north"
+	if min_y <= 0.05 and max_y <= 0.05: dir = "north"
+	elif min_y >= h - 0.05 or max_y >= h - 0.05: dir = "south"
+	elif min_x >= w - 0.05 or max_x >= w - 0.05: dir = "east"
+	elif min_x <= 0.05 and max_x <= 0.05: dir = "west"
+	
+	var current_wid = str(world_data.get("id", "farm"))
+	var default_target = "central_town"
+	if current_wid in ["central_town", "town"]: default_target = "farm"
+	elif current_wid == "forest": default_target = "farm"
+	
+	# Detect edge alignment name
+	var align_name = "custom"
+	if absf(p1.y - p2.y) < 0.01:
+		var fy = p1.y - floorf(p1.y)
+		if fy < 0.1: align_name = "top_edge"
+		elif fy > 0.9: align_name = "bottom_edge"
+		elif absf(fy - 0.5) < 0.1: align_name = "center_horizontal"
+	elif absf(p1.x - p2.x) < 0.01:
+		var fx = p1.x - floorf(p1.x)
+		if fx < 0.1: align_name = "left_edge"
+		elif fx > 0.9: align_name = "right_edge"
+		elif absf(fx - 0.5) < 0.1: align_name = "center_vertical"
+		
+	var tr_id = "trans_line_%.1f_%.1f_to_%.1f_%.1f" % [p1.x, p1.y, p2.x, p2.y]
+	var new_tr = {
+		"id": tr_id,
+		"name": "To " + default_target.capitalize(),
+		"start_point": [p1.x, p1.y],
+		"end_point": [p2.x, p2.y],
+		"from": [int(floorf(min_x)), int(floorf(min_y))],
+		"to": [int(floorf(max_x)), int(floorf(max_y))],
+		"alignment": align_name,
+		"target_world": default_target,
+		"target_spawn": "default",
+		"direction": dir
 	}
-	world_data["objects"].append(new_obj)
+	world_data["transitions"].append(new_tr)
+	transition_created.emit(new_tr)
 	map_modified.emit()
 	queue_redraw()
-	if selection:
-		selection.select_single_object(new_obj)
+
+func _create_line_transition(p1: Vector2i, p2: Vector2i) -> void:
+	_create_subtile_line_transition(Vector2(p1), Vector2(p2))
 
 func focus_coordinate(coord: Vector2i) -> void:
 	var ts = 16.0 * zoom_level
@@ -700,12 +823,24 @@ func _draw() -> void:
 	
 	draw_rect(Rect2(pan_offset, Vector2(w * ts, h * ts)), Color(0.12, 0.12, 0.12, 1.0))
 	
-	# Draw Tiles
+	# View Frustum Culling (Only render tiles visible in the viewport)
+	var canvas_sz = size
+	var min_gx = maxi(0, int(floor(-pan_offset.x / ts)) - 1)
+	var max_gx = mini(w - 1, int(ceil((canvas_sz.x - pan_offset.x) / ts)) + 1)
+	var min_gy = maxi(0, int(floor(-pan_offset.y / ts)) - 1)
+	var max_gy = mini(h - 1, int(ceil((canvas_sz.y - pan_offset.y) / ts)) + 1)
+	
+	# Draw Tiles (Culled)
 	for t in world_data.get("tiles", []):
+		var tx = int(t.get("x", -1))
+		var ty = int(t.get("y", -1))
+		if tx < min_gx or tx > max_gx or ty < min_gy or ty > max_gy:
+			continue
+			
 		var t_layer = t.get("layer", "GROUND")
 		if not _is_layer_visible(t_layer): continue
-		var rx = pan_offset.x + int(t["x"]) * ts
-		var ry = pan_offset.y + int(t["y"]) * ts
+		var rx = pan_offset.x + tx * ts
+		var ry = pan_offset.y + ty * ts
 		var rect = Rect2(rx, ry, ts, ts)
 		var t_type = str(t.get("type", "grass"))
 		
@@ -721,13 +856,18 @@ func _draw() -> void:
 		var tex = AssetRegistry.get_tile_texture(t_type) if t_type in ["grass", "soil", "path", "fence"] else AssetRegistry.get_asset_texture(t_type, "tile")
 		if tex: draw_texture_rect(tex, rect, false)
 			
-	# Draw Objects
+	# Draw Objects (Culled)
 	for o in world_data.get("objects", []):
+		var p = o.get("position", [0, 0])
+		var ox = int(p[0])
+		var oy = int(p[1])
+		if ox < min_gx or ox > max_gx or oy < min_gy or oy > max_gy:
+			continue
+			
 		var o_layer = o.get("layer", "OBJECT")
 		if not _is_layer_visible(o_layer): continue
-		var p = o.get("position", [0, 0])
-		var rx = pan_offset.x + int(p[0]) * ts
-		var ry = pan_offset.y + int(p[1]) * ts
+		var rx = pan_offset.x + ox * ts
+		var ry = pan_offset.y + oy * ts
 		var rect = Rect2(rx, ry, ts, ts)
 		var aid = str(o.get("asset_id", ""))
 		var tex = AssetRegistry.get_asset_texture(aid, str(o.get("type", "object")))
@@ -827,6 +967,92 @@ func _draw() -> void:
 		draw_rect(hrect, Color(1.0, 1.0, 0.3, 0.35))
 		draw_rect(hrect, Color(1.0, 1.0, 0.3, 0.9), false, 2.0)
 		
+	# Draw 5 Anchor Points on Hovered Tile when in TRANSITION tool
+	if current_tool == ToolMode.TRANSITION and _is_valid_coord(hovered_tile):
+		var hx = pan_offset.x + hovered_tile.x * ts
+		var hy = pan_offset.y + hovered_tile.y * ts
+		
+		# Draw square tile boundary
+		draw_rect(Rect2(hx, hy, ts, ts), Color(0.1, 0.8, 1.0, 0.12), true)
+		draw_rect(Rect2(hx, hy, ts, ts), Color(0.1, 0.8, 1.0, 0.5), false, 1.0)
+		
+		# The 5 primary candidate points (4 corners + 1 center)
+		var anchors = [
+			Vector2(hx, hy),                     # Sol Üst (Top-Left)
+			Vector2(hx + ts, hy),                # Sağ Üst (Top-Right)
+			Vector2(hx, hy + ts),                # Sol Alt (Bottom-Left)
+			Vector2(hx + ts, hy + ts),           # Sağ Alt (Bottom-Right)
+			Vector2(hx + ts * 0.5, hy + ts * 0.5)# Tam Orta (Center)
+		]
+		
+		for a in anchors:
+			draw_circle(a, 3.5, Color(0.0, 0.5, 0.9, 0.85))
+			draw_circle(a, 2.0, Color.WHITE)
+			
+		# Highlight snapped anchor
+		if hovered_anchor.x >= 0.0:
+			var snp_px = pan_offset + hovered_anchor * ts
+			draw_circle(snp_px, 6.5, Color(0.1, 0.95, 1.0, 0.95))
+			draw_circle(snp_px, 3.5, Color.WHITE)
+
+	# Draw Transitions (Straight Vector Lines)
+	for tr in world_data.get("transitions", []):
+		var start_px = Vector2.ZERO
+		var end_px = Vector2.ZERO
+		
+		if tr.has("start_point") and tr.has("end_point"):
+			var sp_arr = tr.get("start_point", [0.0, 0.0])
+			var ep_arr = tr.get("end_point", [0.0, 0.0])
+			start_px = pan_offset + Vector2(float(sp_arr[0]) * ts, float(sp_arr[1]) * ts)
+			end_px = pan_offset + Vector2(float(ep_arr[0]) * ts, float(ep_arr[1]) * ts)
+		elif tr.has("from") and tr.has("to"):
+			var p1_arr = tr.get("from", [0, 0])
+			var p2_arr = tr.get("to", [0, 0])
+			start_px = pan_offset + Vector2(float(p1_arr[0]) * ts + ts * 0.5, float(p1_arr[1]) * ts + ts * 0.5)
+			end_px = pan_offset + Vector2(float(p2_arr[0]) * ts + ts * 0.5, float(p2_arr[1]) * ts + ts * 0.5)
+		elif tr.has("position"):
+			var p = tr.get("position", [0, 0])
+			start_px = pan_offset + Vector2(float(p[0]) * ts + ts * 0.5, float(p[1]) * ts + ts * 0.5)
+			end_px = start_px
+		else:
+			continue
+			
+		# 1. Glowing outer line aura
+		draw_line(start_px, end_px, Color(0.0, 0.75, 1.0, 0.35), 9.0)
+		# 2. Main sharp neon transition line
+		draw_line(start_px, end_px, Color(0.1, 0.95, 1.0, 1.0), 3.5)
+		# 3. Terminal caps / circular connection pins
+		draw_circle(start_px, 6.0, Color(0.1, 0.95, 1.0, 1.0))
+		draw_circle(end_px, 6.0, Color(0.1, 0.95, 1.0, 1.0))
+		draw_circle(start_px, 3.0, Color.WHITE)
+		draw_circle(end_px, 3.0, Color.WHITE)
+		
+		# 4. Floating Badge with Target Info
+		var mid_px = (start_px + end_px) * 0.5
+		var label_txt = "🚪 %s ➔ %s (%s)" % [
+			str(tr.get("name", "Gate")),
+			str(tr.get("target_world", "")).capitalize(),
+			str(tr.get("target_spawn", "default"))
+		]
+		var str_sz = ThemeDB.fallback_font.get_string_size(label_txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 11)
+		var badge_rect = Rect2(mid_px.x - str_sz.x * 0.5 - 6, mid_px.y - 18, str_sz.x + 12, 18)
+		draw_rect(badge_rect, Color(0.05, 0.12, 0.22, 0.92), true)
+		draw_rect(badge_rect, Color(0.2, 0.9, 1.0, 0.95), false, 1.5)
+		draw_string(ThemeDB.fallback_font, Vector2(mid_px.x - str_sz.x * 0.5, mid_px.y - 5), label_txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color(1.0, 1.0, 1.0, 0.98))
+
+	# Transition Drag Preview (Straight Line Snapped to Anchors)
+	if is_transition_dragging and transition_drag_start_anchor.x >= 0.0 and hovered_anchor.x >= 0.0:
+		var start_px = pan_offset + transition_drag_start_anchor * ts
+		var end_px = pan_offset + hovered_anchor * ts
+		draw_line(start_px, end_px, Color(0.2, 1.0, 0.5, 0.4), 9.0)
+		draw_line(start_px, end_px, Color(0.4, 1.0, 0.6, 1.0), 3.5)
+		draw_circle(start_px, 6.0, Color(0.4, 1.0, 0.6, 1.0))
+		draw_circle(end_px, 6.0, Color(0.4, 1.0, 0.6, 1.0))
+		draw_circle(start_px, 3.0, Color.WHITE)
+		draw_circle(end_px, 3.0, Color.WHITE)
+		var preview_txt = "🚪 New Line [%.1f, %.1f] ➔ [%.1f, %.1f]" % [transition_drag_start_anchor.x, transition_drag_start_anchor.y, hovered_anchor.x, hovered_anchor.y]
+		draw_string(ThemeDB.fallback_font, (start_px + end_px) * 0.5 + Vector2(-50, -10), preview_txt, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color.WHITE)
+
 	# Multi-Selection Highlights
 	if selection and selection.has_selection():
 		if selection.current_mode == SelectionManager.SelectionMode.SINGLE_TILE:

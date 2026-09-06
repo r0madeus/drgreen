@@ -375,8 +375,12 @@ func client_receive_quest_error(reason: String) -> void:
 
 func _local_advance_objective(obj_type: String, amount: int, target_filter: String) -> void:
 	var qm = get_node_or_null("/root/QuestManager")
-	if qm: qm.advance_objective(p_state.player_id, obj_type, amount, target_filter)
+	var psm = get_node_or_null("/root/PlayerRegistry")
+	var pid = psm.local_player_id if (psm and "local_player_id" in psm and psm.local_player_id != "") else "player_001"
+	if qm: qm.advance_objective(pid, obj_type, amount, target_filter)
 
 func _local_claim_quest_reward(quest_id: String) -> void:
 	var qm = get_node_or_null("/root/QuestManager")
-	if qm: qm.claim_reward(p_state.player_id, quest_id)
+	var psm = get_node_or_null("/root/PlayerRegistry")
+	var pid = psm.local_player_id if (psm and "local_player_id" in psm and psm.local_player_id != "") else "player_001"
+	if qm: qm.claim_reward(pid, quest_id)

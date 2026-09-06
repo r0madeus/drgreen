@@ -1,8 +1,16 @@
-extends "res://tests/test_base.gd"
+extends RefCounted
 
 ## FINAL PRODUCTION RUNTIME QA RUNNER
 ## Orchestrates the strict, end-to-end verification of the final Godot runtime
 ## architecture for the Botanical Haven project.
+
+var test_name: String = ""
+
+func assert_not_null(val: Variant, msg: String = "") -> void:
+	assert(val != null, msg)
+
+func assert_eq(a: Variant, b: Variant, msg: String = "") -> void:
+	assert(a == b, msg)
 
 func test_name_id() -> String:
 	return "FINAL_QA.ProductionRuntimeGate"

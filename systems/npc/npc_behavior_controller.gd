@@ -83,7 +83,8 @@ func set_activity(p_activity: String, p_location_id: String, p_world_pos: Vector
 	else:
 		current_state = STATE_TRAVELING
 		
-	EventBus.npc_activity_started.emit(npc.npc_id if npc else "unknown", p_activity)
+	var eb = Engine.get_main_loop().root.get_node_or_null("/root/EventBus") if (Engine.get_main_loop() and "root" in Engine.get_main_loop() and Engine.get_main_loop().root) else null
+	if eb: eb.npc_activity_started.emit(npc.npc_id if npc else "unknown", p_activity)
 	return true
 
 func on_destination_reached(loc_id: String) -> void:
@@ -115,7 +116,8 @@ func on_destination_reached(loc_id: String) -> void:
 		_:
 			current_state = STATE_AT_DESTINATION
 			
-	EventBus.npc_activity_finished.emit(npc.npc_id if npc else "unknown", current_activity)
+	var eb = Engine.get_main_loop().root.get_node_or_null("/root/EventBus") if (Engine.get_main_loop() and "root" in Engine.get_main_loop() and Engine.get_main_loop().root) else null
+	if eb: eb.npc_activity_finished.emit(npc.npc_id if npc else "unknown", current_activity)
 
 func on_player_interaction_started() -> void:
 	if current_state == STATE_SOCIALIZING:
@@ -155,9 +157,8 @@ func end_social_interaction_early() -> void:
 		var partner = social_partner_id
 		social_partner_id = ""
 		current_interrupt_level = INTERRUPT_NONE
-		current_state = saved_state if saved_state != STATE_SOCIALIZING else STATE_IDLE
-		social_cooldown = DEFAULT_SOCIAL_COOLDOWN
-		EventBus.npc_social_finished.emit(npc.npc_id if npc else "unknown", partner)
+		var eb = Engine.get_main_loop().root.get_node_or_null("/root/EventBus") if (Engine.get_main_loop() and "root" in Engine.get_main_loop() and Engine.get_main_loop().root) else null
+		if eb: eb.npc_social_finished.emit(npc.npc_id if npc else "unknown", partner)
 
 func can_start_social_interaction() -> bool:
 	if current_interrupt_level >= INTERRUPT_QUEST: return false
@@ -177,7 +178,8 @@ func start_social_interaction(partner_id: String, duration: float = 4.0) -> void
 		npc.velocity = Vector2.ZERO
 		npc.is_moving = false
 		
-	EventBus.npc_social_started.emit(npc.npc_id if npc else "unknown", partner_id, "casual_greeting")
+	var eb = Engine.get_main_loop().root.get_node_or_null("/root/EventBus") if (Engine.get_main_loop() and "root" in Engine.get_main_loop() and Engine.get_main_loop().root) else null
+	if eb: eb.npc_social_started.emit(npc.npc_id if npc else "unknown", partner_id, "casual_greeting")
 
 func update(delta: float) -> void:
 	if social_cooldown > 0.0:
@@ -191,7 +193,8 @@ func update(delta: float) -> void:
 			social_partner_id = ""
 			current_interrupt_level = INTERRUPT_NONE
 			current_state = saved_state if saved_state != STATE_SOCIALIZING else STATE_IDLE
-			EventBus.npc_social_finished.emit(npc.npc_id if npc else "unknown", finished_partner)
+			var eb = Engine.get_main_loop().root.get_node_or_null("/root/EventBus") if (Engine.get_main_loop() and "root" in Engine.get_main_loop() and Engine.get_main_loop().root) else null
+			if eb: eb.npc_social_finished.emit(npc.npc_id if npc else "unknown", finished_partner)
 		return
 
 		

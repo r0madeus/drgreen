@@ -137,9 +137,26 @@ func change_world(player_id: String, target_world_id: String, target_spawn: Vari
 
 func check_transition_trigger(pos: Vector2i) -> Dictionary:
 	for tr in current_world_data.get("transitions", []):
-		var p = tr.get("position", [-1, -1])
-		if int(p[0]) == pos.x and int(p[1]) == pos.y:
-			return tr
+		# 1. Sub-tile / Endpoint line segment check:
+		if tr.has("start_point") and tr.has("end_point"):
+			var p1_arr = tr.get("start_point", [0.0, 0.0])
+			var p2_arr = tr.get("end_point", [0.0, 0.0])
+			var p1 = Vector2(float(p1_arr[0]), float(p1_arr[1]))
+			var p2 = Vector2(float(p2_arr[0]), float(p2_arr[1]))
+			if _tile_touches_line(pos, p1, p2):
+				return tr
+		# 2. Grid coord line check:
+		elif tr.has("from") and tr.has("to"):
+			var p1_arr = tr.get("from", [0, 0])
+			var p2_arr = tr.get("to", [0, 0])
+			var p1 = Vector2i(int(p1_arr[0]), int(p1_arr[1]))
+			var p2 = Vector2i(int(p2_arr[0]), int(p2_arr[1]))
+			if _point_on_line_segment(pos, p1, p2):
+				return tr
+		elif tr.has("position"):
+			var p = tr.get("position", [-1, -1])
+			if int(p[0]) == pos.x and int(p[1]) == pos.y:
+				return tr
 			
 	var gm = get_tree().root.find_child("GridManager", true, false)
 	if gm and gm.interactables.has(pos):
@@ -154,6 +171,58 @@ func check_transition_trigger(pos: Vector2i) -> Dictionary:
 			}
 			
 	return {}
+
+func _tile_touches_line(pos: Vector2i, p1: Vector2, p2: Vector2) -> bool:
+	var min_x = minf(p1.x, p2.x) - 0.05
+	var max_x = maxf(p1.x, p2.x) + 0.05
+	var min_y = minf(p1.y, p2.y) - 0.05
+	var max_y = maxf(p1.y, p2.y) + 0.05
+	
+	# Horizontal edge line
+	if absf(p1.y - p2.y) < 0.05:
+		var edge_y = roundf(p1.y)
+		if edge_y == 0.0 and pos.y == 0:
+			return float(pos.x) >= min_x - 1.0 and float(pos.x) <= max_x
+		elif edge_y > 0.0 and (pos.y == int(edge_y) or pos.y == int(edge_y) - 1):
+			return float(pos.x) >= min_x - 1.0 and float(pos.x) <= max_x
+			
+	# Vertical edge line
+	if absf(p1.x - p2.x) < 0.05:
+		var edge_x = roundf(p1.x)
+		if edge_x == 0.0 and pos.x == 0:
+			return float(pos.y) >= min_y - 1.0 and float(pos.y) <= max_y
+		elif edge_x > 0.0 and (pos.x == int(edge_x) or pos.x == int(edge_x) - 1):
+			return float(pos.y) >= min_y - 1.0 and float(pos.y) <= max_y
+			
+	# Check tile center distance to segment
+	var center = Vector2(pos) + Vector2(0.5, 0.5)
+	var seg_v = p2 - p1
+	var l2 = seg_v.length_squared()
+	if l2 == 0.0:
+		return center.distance_to(p1) < 0.8
+	var t = clampf((center - p1).dot(seg_v) / l2, 0.0, 1.0)
+	var proj = p1 + t * seg_v
+	return center.distance_to(proj) < 0.85
+
+func _point_on_line_segment(pos: Vector2i, p1: Vector2i, p2: Vector2i) -> bool:
+	var min_x = mini(p1.x, p2.x)
+	var max_x = maxi(p1.x, p2.x)
+	var min_y = mini(p1.y, p2.y)
+	var max_y = maxi(p1.y, p2.y)
+	
+	# Horizontal line
+	if p1.y == p2.y:
+		return pos.y == p1.y and pos.x >= min_x and pos.x <= max_x
+	# Vertical line
+	if p1.x == p2.x:
+		return pos.x == p1.x and pos.y >= min_y and pos.y <= max_y
+	# General segment
+	if pos.x < min_x or pos.x > max_x or pos.y < min_y or pos.y > max_y:
+		return false
+	var v_seg = Vector2(p2 - p1)
+	var v_pt = Vector2(pos - p1)
+	var cross = absf(v_pt.x * v_seg.y - v_pt.y * v_seg.x)
+	return cross < 0.75 * v_seg.length()
 
 func get_current_world_id() -> String:
 	return current_world_id

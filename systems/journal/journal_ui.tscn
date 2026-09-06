@@ -4,139 +4,148 @@
 
 [node name="JournalUI" type="Control" unique_id=1684015128]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_sjqjk")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=441150263]
-custom_minimum_size = Vector2(580, 430)
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1003000771]
 layout_mode = 1
-offset_left = 286.0
-offset_top = 109.0
-offset_right = 866.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1918954375]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=441150263]
+custom_minimum_size = Vector2(580, 430)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1918954375]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1187850934]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1187850934]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1176356873]
+[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1176356873]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TabHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=2092052925]
+[node name="TabHBox" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=2092052925]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="PlantsTabButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header/TabHBox" unique_id=1287530449]
+[node name="PlantsTabButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header/TabHBox" unique_id=1287530449]
 layout_mode = 2
 text = "🌿 Botanical Codex"
 
-[node name="CombosTabButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header/TabHBox" unique_id=1879217334]
+[node name="CombosTabButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header/TabHBox" unique_id=1879217334]
 layout_mode = 2
 text = "⚗️ Formulas"
 
-[node name="ProgressLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=2085830594]
+[node name="ProgressLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=2085830594]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "🌿 Plants: 5/20 | ⚗️ Formulas: 0/15"
 horizontal_alignment = 1
 
-[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1973564182]
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1973564182]
 layout_mode = 2
 text = " ✖ "
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=895759355]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=895759355]
 layout_mode = 2
 
-[node name="PlantsView" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=955586184]
+[node name="PlantsView" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=955586184]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="ListScroll" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView" unique_id=449573580]
+[node name="ListScroll" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView" unique_id=449573580]
 custom_minimum_size = Vector2(240, 320)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlantsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/ListScroll" unique_id=116246920]
+[node name="PlantsList" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/ListScroll" unique_id=116246920]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 4
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView" unique_id=1942299532]
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView" unique_id=1942299532]
 layout_mode = 2
 
-[node name="DetailPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView" unique_id=857721757]
+[node name="DetailPanel" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView" unique_id=857721757]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel" unique_id=148213312]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel" unique_id=148213312]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer" unique_id=1322200890]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer" unique_id=1322200890]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="IconContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1289641570]
+[node name="IconContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1289641570]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="DetailIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/IconContainer" unique_id=1276059064]
+[node name="DetailIcon" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/IconContainer" unique_id=1276059064]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 stretch_mode = 5
 
-[node name="DetailName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=292065592]
+[node name="DetailName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=292065592]
 layout_mode = 2
 text = "🌸 Plant Name"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=186465831]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=186465831]
 layout_mode = 2
 
-[node name="DetailType" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=454425938]
+[node name="DetailType" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=454425938]
 layout_mode = 2
 text = "Category: Plant"
 
-[node name="DetailRarity" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1328927383]
+[node name="DetailRarity" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1328927383]
 layout_mode = 2
 text = "Rarity: Common"
 
-[node name="DetailPrice" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1363633275]
+[node name="DetailPrice" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1363633275]
 layout_mode = 2
 text = "Base Value: 50 Gold"
 
-[node name="DetailGrowth" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=231045218]
+[node name="DetailGrowth" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=231045218]
 layout_mode = 2
 text = "Growth: 4 Stages"
 
-[node name="DetailYield" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1214417878]
+[node name="DetailYield" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer" unique_id=1214417878]
 layout_mode = 2
 text = "Harvest Yield: 1-2 units"
 
-[node name="CombosView" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1078443684]
+[node name="CombosView" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1078443684]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CombosScroll" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CombosView" unique_id=1639513233]
+[node name="CombosScroll" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CombosView" unique_id=1639513233]
 custom_minimum_size = Vector2(530, 320)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CombosList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CombosView/CombosScroll" unique_id=1218584077]
+[node name="CombosList" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CombosView/CombosScroll" unique_id=1218584077]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

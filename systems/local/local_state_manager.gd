@@ -99,10 +99,10 @@ func apply_display() -> void:
 	if not state: return
 	
 	# 1. Parse resolution
-	var res_str = str(state.get_value("graphics", "resolution", "1152x648"))
+	var res_str = str(state.get_value("graphics", "resolution", "1920x1080"))
 	var parts = res_str.split("x")
-	var target_w = 1152
-	var target_h = 648
+	var target_w = 1920
+	var target_h = 1080
 	if parts.size() == 2:
 		target_w = maxi(640, int(parts[0]))
 		target_h = maxi(360, int(parts[1]))
@@ -144,6 +144,12 @@ func apply_display() -> void:
 	if player:
 		var cam = player.get_node_or_null("Camera2D") as Camera2D
 		if cam: cam.zoom = Vector2(cam_zoom, cam_zoom)
+		
+	# 6. UI Scale / Content Scale Factor
+	var ui_scale = float(state.get_value("graphics", "ui_scale", 1.5))
+	if ui_scale <= 0.5: ui_scale = 1.5
+	if get_tree() and get_tree().root:
+		get_tree().root.content_scale_factor = ui_scale
 
 
 func apply_audio() -> void:

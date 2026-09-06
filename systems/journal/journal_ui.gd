@@ -7,28 +7,29 @@ enum Tab { PLANTS, COMBINATIONS, WORLDS }
 var current_tab: Tab = Tab.PLANTS
 var selected_plant_id: String = "red_flower"
 
-@onready var plants_tab_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/Header/TabHBox/PlantsTabButton
-@onready var combos_tab_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/Header/TabHBox/CombosTabButton
-@onready var close_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/Header/CloseButton
-@onready var progress_label: Label = $PanelContainer/MarginContainer/VBoxContainer/Header/ProgressLabel
+@onready var plants_tab_btn: Button = find_child("PlantsTabButton", true, false)
+@onready var combos_tab_btn: Button = find_child("CombosTabButton", true, false)
+@onready var close_btn: Button = find_child("CloseButton", true, false)
+@onready var progress_label: Label = find_child("ProgressLabel", true, false)
 var worlds_tab_btn: Button = null
 
-@onready var plants_view: HBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/PlantsView
-@onready var plants_list_container: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/ListScroll/PlantsList
-@onready var detail_icon: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/IconContainer/DetailIcon
-@onready var detail_name: Label = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/DetailName
-@onready var detail_rarity: Label = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/DetailRarity
-@onready var detail_type: Label = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/DetailType
-@onready var detail_price: Label = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/DetailPrice
-@onready var detail_growth: Label = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/DetailGrowth
-@onready var detail_yield: Label = $PanelContainer/MarginContainer/VBoxContainer/PlantsView/DetailPanel/MarginContainer/VBoxContainer/DetailYield
+@onready var plants_view: HBoxContainer = find_child("PlantsView", true, false)
+@onready var plants_list_container: VBoxContainer = find_child("PlantsList", true, false)
+@onready var detail_icon: TextureRect = find_child("DetailIcon", true, false)
+@onready var detail_name: Label = find_child("DetailName", true, false)
+@onready var detail_rarity: Label = find_child("DetailRarity", true, false)
+@onready var detail_type: Label = find_child("DetailType", true, false)
+@onready var detail_price: Label = find_child("DetailPrice", true, false)
+@onready var detail_growth: Label = find_child("DetailGrowth", true, false)
+@onready var detail_yield: Label = find_child("DetailYield", true, false)
 
-@onready var combos_view: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/CombosView
-@onready var combos_list_container: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/CombosView/CombosScroll/CombosList
+@onready var combos_view: VBoxContainer = find_child("CombosView", true, false)
+@onready var combos_list_container: VBoxContainer = find_child("CombosList", true, false)
 var worlds_view: VBoxContainer = null
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	if not InputMap.has_action("journal"):
 		InputMap.add_action("journal")
 		var ev = InputEventKey.new()
@@ -56,13 +57,41 @@ func _ready() -> void:
 	if combos_tab_btn:
 		combos_tab_btn.pressed.connect(func(): _switch_tab(Tab.COMBINATIONS))
 	if close_btn:
-		close_btn.pressed.connect(func(): visible = false)
+		close_btn.pressed.connect(close_ui)
 		
 	var jm = get_node_or_null("/root/JournalManager")
 	if jm:
 		jm.journal_updated.connect(refresh_ui)
 		
 	refresh_ui()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("journal") or (event is InputEventKey and event.pressed and not event.echo and (event.keycode == KEY_J or event.physical_keycode == KEY_J)):
+		toggle_visibility()
+		get_viewport().set_input_as_handled()
+	elif visible and (event.is_action_pressed("pause") or (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE)):
+		close_ui()
+		get_viewport().set_input_as_handled()
+
+func open_ui() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
+	visible = true
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_open")
+	UIConstants.update_player_lock(get_tree())
+	refresh_ui()
+
+func close_ui() -> void:
+	visible = false
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_close")
+	UIConstants.update_player_lock(get_tree())
+
+func toggle_visibility() -> void:
+	if visible:
+		close_ui()
+	else:
+		open_ui()
 
 func _switch_tab(tab: Tab) -> void:
 	var am = get_node_or_null("/root/AudioManager")

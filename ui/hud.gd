@@ -27,6 +27,7 @@ var hotbar_ui: HotbarUI
 
 func _ready() -> void:
 	# Configure root HUD to span the full viewport with ignore filter
+	theme = UIConstants.get_theme()
 	anchors_preset = PRESET_FULL_RECT
 	anchor_right = 1.0
 	anchor_bottom = 1.0
@@ -59,46 +60,46 @@ func _create_top_left_card() -> void:
 	top_left_card = PanelContainer.new()
 	top_left_card.name = "TopLeftCard"
 	top_left_card.set_anchors_preset(PRESET_TOP_LEFT)
-	top_left_card.position = Vector2(16, 12)
+	top_left_card.position = Vector2(20, 16)
 	top_left_card.mouse_filter = MOUSE_FILTER_PASS
 	
 	var sb = StyleBoxFlat.new()
-	sb.bg_color = Color(0.09, 0.11, 0.15, 0.88)
+	sb.bg_color = Color(0.09, 0.11, 0.15, 0.90)
 	sb.set_border_width_all(2)
 	sb.border_color = Color(0.24, 0.32, 0.28, 0.95)
-	sb.set_corner_radius_all(4)
-	sb.shadow_size = 4
-	sb.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
+	sb.set_corner_radius_all(5)
+	sb.shadow_size = 5
+	sb.shadow_color = Color(0.0, 0.0, 0.0, 0.45)
 	top_left_card.add_theme_stylebox_override("panel", sb)
 	
 	var margin = MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 12)
-	margin.add_theme_constant_override("margin_right", 12)
-	margin.add_theme_constant_override("margin_top", 6)
-	margin.add_theme_constant_override("margin_bottom", 6)
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_right", 14)
+	margin.add_theme_constant_override("margin_top", 8)
+	margin.add_theme_constant_override("margin_bottom", 8)
 	top_left_card.add_child(margin)
 	
 	var vbox = VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 2)
+	vbox.add_theme_constant_override("separation", 3)
 	margin.add_child(vbox)
 	
 	# Location Badge
 	loc_label = Label.new()
-	loc_label.add_theme_font_size_override("font_size", 12)
+	loc_label.add_theme_font_size_override("font_size", 14)
 	loc_label.add_theme_color_override("font_color", Color(1.0, 0.92, 0.55, 1.0))
 	loc_label.text = "📍 Peaceful Farm"
 	vbox.add_child(loc_label)
 	
 	# Date & Season
 	date_label = Label.new()
-	date_label.add_theme_font_size_override("font_size", 10)
+	date_label.add_theme_font_size_override("font_size", 12)
 	date_label.add_theme_color_override("font_color", Color(0.85, 0.88, 0.95, 0.9))
 	date_label.text = "📅 Day 1 • Spring"
 	vbox.add_child(date_label)
 	
 	# Weather & Clock
 	weather_label = Label.new()
-	weather_label.add_theme_font_size_override("font_size", 10)
+	weather_label.add_theme_font_size_override("font_size", 12)
 	weather_label.add_theme_color_override("font_color", Color(0.65, 0.85, 1.0, 0.9))
 	weather_label.text = "☀️ Clear • 06:00 AM"
 	vbox.add_child(weather_label)
@@ -115,47 +116,47 @@ func _create_top_right_card() -> void:
 	top_right_card.anchor_bottom = 0.0
 	top_right_card.grow_horizontal = GROW_DIRECTION_BEGIN
 	top_right_card.grow_vertical = GROW_DIRECTION_END
-	top_right_card.offset_right = -16
-	top_right_card.offset_top = 12
-	top_right_card.offset_left = -236
+	top_right_card.offset_right = -20
+	top_right_card.offset_top = 16
+	top_right_card.offset_left = -280
 	top_right_card.mouse_filter = MOUSE_FILTER_PASS
 
 	
 	var sb = StyleBoxFlat.new()
-	sb.bg_color = Color(0.09, 0.11, 0.15, 0.88)
+	sb.bg_color = Color(0.09, 0.11, 0.15, 0.90)
 	sb.set_border_width_all(2)
 	sb.border_color = Color(0.32, 0.28, 0.22, 0.95)
-	sb.set_corner_radius_all(4)
-	sb.shadow_size = 4
-	sb.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
+	sb.set_corner_radius_all(5)
+	sb.shadow_size = 5
+	sb.shadow_color = Color(0.0, 0.0, 0.0, 0.45)
 	top_right_card.add_theme_stylebox_override("panel", sb)
 	
 	var margin = MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 10)
-	margin.add_theme_constant_override("margin_right", 10)
-	margin.add_theme_constant_override("margin_top", 6)
-	margin.add_theme_constant_override("margin_bottom", 6)
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_top", 8)
+	margin.add_theme_constant_override("margin_bottom", 8)
 	top_right_card.add_child(margin)
 	
 	var vbox = VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 4)
+	vbox.add_theme_constant_override("separation", 5)
 	margin.add_child(vbox)
 	
 	# Top Line: Gold & Stamina Header
 	var stats_hbox = HBoxContainer.new()
-	stats_hbox.add_theme_constant_override("separation", 10)
+	stats_hbox.add_theme_constant_override("separation", 12)
 	vbox.add_child(stats_hbox)
 	
 	# Gold Display
 	gold_label = Label.new()
-	gold_label.add_theme_font_size_override("font_size", 12)
+	gold_label.add_theme_font_size_override("font_size", 14)
 	gold_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.2, 1.0))
 	gold_label.text = "🪙 100 G"
 	stats_hbox.add_child(gold_label)
 	
 	# Stamina Label
 	stamina_label = Label.new()
-	stamina_label.add_theme_font_size_override("font_size", 10)
+	stamina_label.add_theme_font_size_override("font_size", 12)
 	stamina_label.add_theme_color_override("font_color", Color(0.4, 1.0, 0.6, 1.0))
 	stamina_label.text = "⚡ 100 / 100"
 	stamina_label.size_flags_horizontal = SIZE_EXPAND_FILL
@@ -164,25 +165,25 @@ func _create_top_right_card() -> void:
 	
 	# Stamina Progress Bar
 	stamina_bar = ProgressBar.new()
-	stamina_bar.custom_minimum_size = Vector2(180, 6)
+	stamina_bar.custom_minimum_size = Vector2(230, 8)
 	stamina_bar.show_percentage = false
 	stamina_bar.max_value = 100.0
 	stamina_bar.value = 100.0
 	
 	var bar_bg = StyleBoxFlat.new()
 	bar_bg.bg_color = Color(0.15, 0.18, 0.2, 0.8)
-	bar_bg.set_corner_radius_all(2)
+	bar_bg.set_corner_radius_all(3)
 	stamina_bar.add_theme_stylebox_override("background", bar_bg)
 	
 	var bar_fill = StyleBoxFlat.new()
 	bar_fill.bg_color = Color(0.2, 0.85, 0.45, 0.95)
-	bar_fill.set_corner_radius_all(2)
+	bar_fill.set_corner_radius_all(3)
 	stamina_bar.add_theme_stylebox_override("fill", bar_fill)
 	vbox.add_child(stamina_bar)
 	
 	# Compact Action Buttons Bar
 	var btn_hbox = HBoxContainer.new()
-	btn_hbox.add_theme_constant_override("separation", 3)
+	btn_hbox.add_theme_constant_override("separation", 4)
 	btn_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	vbox.add_child(btn_hbox)
 	
@@ -199,15 +200,15 @@ func _add_quick_btn(container: HBoxContainer, btn_key: String, title: String, to
 	var btn = Button.new()
 	btn.text = title
 	btn.tooltip_text = tooltip
-	btn.custom_minimum_size = Vector2(28, 20)
-	btn.add_theme_font_size_override("font_size", 9)
+	btn.custom_minimum_size = Vector2(34, 24)
+	btn.add_theme_font_size_override("font_size", 11)
 	btn.mouse_filter = MOUSE_FILTER_STOP
 	
 	var btn_style = StyleBoxFlat.new()
 	btn_style.bg_color = Color(0.16, 0.19, 0.25, 0.85)
 	btn_style.set_border_width_all(1)
 	btn_style.border_color = Color(0.35, 0.4, 0.5, 0.6)
-	btn_style.set_corner_radius_all(2)
+	btn_style.set_corner_radius_all(3)
 	btn.add_theme_stylebox_override("normal", btn_style)
 	
 	var hover_style = btn_style.duplicate()
@@ -239,7 +240,8 @@ func _connect_managers() -> void:
 	if wm: wm.weather_changed.connect(func(_o, _n): update_day_display())
 		
 		
-	EventBus.world_changed.connect(func(_wid, _wdata = {}): _bind_and_refresh())
+	var eb = get_node_or_null("/root/EventBus")
+	if eb: eb.world_changed.connect(func(_wid, _wdata = {}): _bind_and_refresh())
 	
 	var lm = get_node_or_null("/root/LocalizationManager")
 	if lm:
@@ -354,20 +356,26 @@ func update_stamina_display() -> void:
 
 
 func toggle_inventory() -> void:
+	if not inventory_ui: inventory_ui = get_tree().root.find_child("InventoryUI", true, false)
 	if inventory_ui: inventory_ui.toggle_visibility()
 
 func toggle_lab() -> void:
+	if not combination_ui: combination_ui = get_tree().root.find_child("CombinationUI", true, false)
 	if combination_ui: combination_ui.toggle_visibility()
 
 func toggle_journal() -> void:
+	if not journal_ui: journal_ui = get_tree().root.find_child("JournalUI", true, false)
 	if journal_ui: journal_ui.toggle_visibility()
 
 func toggle_quest() -> void:
+	if not quest_ui: quest_ui = get_tree().root.find_child("QuestUI", true, false)
 	if quest_ui: quest_ui.toggle_visibility()
 
 func toggle_pause_menu() -> void:
 	var pause_menu = get_tree().root.find_child("PauseMenu", true, false)
-	if pause_menu and pause_menu.has_method("toggle_pause"):
+	if pause_menu and pause_menu.has_method("toggle_menu"):
+		pause_menu.toggle_menu()
+	elif pause_menu and pause_menu.has_method("toggle_pause"):
 		pause_menu.toggle_pause()
 	elif pause_menu:
 		pause_menu.visible = not pause_menu.visible

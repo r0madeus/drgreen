@@ -33,6 +33,7 @@ var rebind_action: String = ""
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	_bind_header_footer()
 	var lm = get_node_or_null("/root/LocalizationManager")
 	if lm:
@@ -78,28 +79,18 @@ func open_settings() -> void:
 	if sm: temp_settings = sm.settings.duplicate(true)
 	else: temp_settings = SettingsData.get_default_settings()
 	
+	UIConstants.close_all_modals(get_tree(), self)
 	visible = true
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("ui_open")
-	
-	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
-	var player = root.find_child("Player", true, false) if root else null
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(true)
-		
+	UIConstants.update_player_lock(get_tree())
 	_switch_tab(current_tab)
-
 
 func close_settings() -> void:
 	visible = false
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("ui_close")
-	
-	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
-	var player = root.find_child("Player", true, false) if root else null
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(false)
-		
+	UIConstants.update_player_lock(get_tree())
 	back_pressed.emit()
 	closed.emit()
 
@@ -129,8 +120,15 @@ func _switch_tab(tab: Tab) -> void:
 	
 	var tab_btns = [tab_graphics_btn, tab_audio_btn, tab_gameplay_btn, tab_controls_btn, tab_access_btn, tab_lang_btn, tab_developer_btn]
 	for i in range(tab_btns.size()):
-		if tab_btns[i]:
-			tab_btns[i].modulate = Color(1.3, 1.3, 0.8) if i == tab else Color.WHITE
+		var b: Button = tab_btns[i]
+		if b:
+			b.modulate = Color.WHITE
+			if i == tab:
+				b.add_theme_stylebox_override("normal", UIConstants.create_active_button_stylebox())
+				b.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+			else:
+				b.remove_theme_stylebox_override("normal")
+				b.remove_theme_color_override("font_color")
 			
 	if not content_vbox: return
 	for c in content_vbox.get_children(): c.queue_free()
@@ -146,7 +144,7 @@ func _switch_tab(tab: Tab) -> void:
 
 func _populate_graphics() -> void:
 	var g = temp_settings.get("graphics", {})
-	_add_option_dropdown("Resolution", ["1152x648", "1280x720", "1366x768", "1600x900", "1920x1080", "2560x1440"], str(g.get("resolution", "1152x648")), func(v): g["resolution"] = v)
+	_add_option_dropdown("Resolution", ["1280x720", "1366x768", "1600x900", "1920x1080", "2560x1440", "3840x2160"], str(g.get("resolution", "1920x1080")), func(v): g["resolution"] = v)
 	_add_option_dropdown("Window Mode", ["Windowed", "Borderless", "Fullscreen"], str(g.get("window_mode", "Windowed")).capitalize(), func(v): g["window_mode"] = v.to_lower())
 	_add_option_checkbox("VSync", bool(g.get("vsync", true)), func(b): g["vsync"] = b)
 	
@@ -243,6 +241,7 @@ func _add_option_checkbox(label_text: String, is_checked: bool, on_toggle: Calla
 	
 	var chk = CheckBox.new()
 	chk.button_pressed = is_checked
+	UIConstants.apply_checkbox_style(chk)
 	chk.toggled.connect(on_toggle)
 	hbox.add_child(chk)
 	content_vbox.add_child(hbox)

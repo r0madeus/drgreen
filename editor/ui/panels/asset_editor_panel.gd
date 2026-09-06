@@ -13,29 +13,20 @@ extends EditorPanel
 # Default Category Definitions (dynamically extended by asset_manifest.json)
 # ---------------------------------------------------------------------------
 const DEFAULT_CATEGORIES := [
-	"player", "npc", "npc_portrait", "npc_animation",
-	"crops", "items", "seeds", "tools",
-	"tiles", "props", "buildings",
-	"vfx", "ui", "sfx", "music", "ambience"
+	"terrain", "nature", "buildings", "plants", "items", "tools", "npc", "player", "ui", "audio"
 ]
 
 const CATEGORY_PREFIXES := {
-	"player": ["player."],
-	"npc": ["npc."],
-	"npc_portrait": ["npc.portrait."],
-	"npc_animation": ["npc.anim."],
-	"crops": ["crop.", "plant."],
-	"items": ["item."],
-	"seeds": ["item.seed_"],
-	"tools": ["tool."],
-	"tiles": ["tile."],
-	"props": ["prop."],
+	"terrain": ["tile.", "terrain"],
+	"nature": ["prop.", "environment."],
 	"buildings": ["building."],
-	"vfx": ["effect.", "vfx."],
-	"ui": ["ui.icon.", "ui."],
-	"sfx": ["audio.sfx."],
-	"music": ["audio.music.", "audio.bgm."],
-	"ambience": ["audio.sfx.ambient."]
+	"plants": ["plant.", "crop."],
+	"items": ["item."],
+	"tools": ["tool."],
+	"npc": ["npc."],
+	"player": ["player."],
+	"ui": ["ui.", "ui.icon."],
+	"audio": ["audio.", "audio.sfx.", "audio.music."]
 }
 
 # ---------------------------------------------------------------------------
@@ -73,12 +64,13 @@ var _btn_zoom_in: Button
 var _btn_zoom_out: Button
 var _btn_zoom_fit: Button
 var _zoom_label: Label
-var _zoom_level: float = 2.0
+var _zoom_level: float = 4.0
 var _frame_label: Label
 var _direction_group_container: HBoxContainer
 
 # Right Zone (Tabbed Inspector)
 var _tab_container: TabContainer
+var _icon_cache: Dictionary = {}
 
 # Tab 0: General
 var _stable_id_label: Label
@@ -127,6 +119,9 @@ var _btn_save_meta: Button
 
 # Dialogs
 var _file_dialog: FileDialog = null
+var _save_as_new_dialog: ConfirmationDialog = null
+var _save_new_id_field: LineEdit = null
+var _save_new_name_field: LineEdit = null
 var _import_target_id: String = ""
 var _is_replacing_current: bool = false
 
@@ -157,9 +152,12 @@ func setup(p_service: Variant) -> void:
 
 func open_panel() -> void:
 	super.open_panel()
-	_populate_categories()
-	_scan_missing_assets()
-	_refresh_asset_list()
+	if not _category_list:
+		_build_ui()
+		_build_dialogs()
+	if _category_list and _category_list.item_count == 0:
+		_populate_categories()
+		_refresh_asset_list()
 
 func refresh() -> void:
 	_refresh_asset_list()
@@ -172,6 +170,7 @@ func refresh() -> void:
 
 func _build_ui() -> void:
 	name = "AssetEditorPanel"
+	theme = UIConstants.get_theme()
 	set_anchors_preset(PRESET_FULL_RECT)
 	grow_horizontal = GROW_DIRECTION_BOTH
 	grow_vertical = GROW_DIRECTION_BOTH
@@ -189,9 +188,9 @@ func _build_ui() -> void:
 	root_vbox.add_child(toolbar)
 
 	var title_lbl := Label.new()
-	title_lbl.text = " Asset & Visual Content Editor"
-	title_lbl.add_theme_font_size_override("font_size", 14)
-	title_lbl.modulate = Color(0.5, 0.9, 1.0)
+	title_lbl.text = "🎨 Asset & Visual Content Editor"
+	title_lbl.add_theme_font_size_override("font_size", 13)
+	title_lbl.modulate = Color(0.92, 0.94, 0.98)
 	toolbar.add_child(title_lbl)
 
 	var spacer := Control.new()
@@ -260,21 +259,24 @@ func _build_left_panel() -> void:
 
 	# Filter checkboxes
 	var filter_hbox := HBoxContainer.new()
-	filter_hbox.add_theme_constant_override("separation", 4)
+	filter_hbox.add_theme_constant_override("separation", 6)
 	left_vbox.add_child(filter_hbox)
 
 	_filter_check_modified = CheckBox.new()
 	_filter_check_modified.text = "Modified"
+	UIConstants.apply_checkbox_style(_filter_check_modified)
 	_filter_check_modified.toggled.connect(_on_filter_changed)
 	filter_hbox.add_child(_filter_check_modified)
 
 	_filter_check_missing = CheckBox.new()
 	_filter_check_missing.text = "Missing"
+	UIConstants.apply_checkbox_style(_filter_check_missing)
 	_filter_check_missing.toggled.connect(_on_filter_changed)
 	filter_hbox.add_child(_filter_check_missing)
 
 	_filter_check_favorites = CheckBox.new()
-	_filter_check_favorites.text = " Favs"
+	_filter_check_favorites.text = "Favs"
+	UIConstants.apply_checkbox_style(_filter_check_favorites)
 	_filter_check_favorites.toggled.connect(_on_filter_changed)
 	filter_hbox.add_child(_filter_check_favorites)
 
@@ -344,7 +346,7 @@ func _build_center_panel() -> void:
 	zoom_hbox.add_child(_btn_zoom_out)
 
 	_zoom_label = Label.new()
-	_zoom_label.text = "200%"
+	_zoom_label.text = "400%"
 	_zoom_label.custom_minimum_size = Vector2(50, 0)
 	_zoom_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	zoom_hbox.add_child(_zoom_label)
@@ -367,22 +369,26 @@ func _build_center_panel() -> void:
 	var preview_bg := PanelContainer.new()
 	preview_bg.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	preview_bg.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	preview_bg.clip_contents = true
+	preview_bg.gui_input.connect(_on_preview_gui_input)
 	center_vbox.add_child(preview_bg)
 
 	_checker_bg = ColorRect.new()
 	_checker_bg.set_anchors_preset(PRESET_FULL_RECT)
 	_checker_bg.color = Color(0.12, 0.14, 0.16, 0.95)
+	_checker_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	preview_bg.add_child(_checker_bg)
 
 	var center_box := CenterContainer.new()
 	center_box.set_anchors_preset(PRESET_FULL_RECT)
 	center_box.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	center_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	center_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	preview_bg.add_child(center_box)
 
 	_preview_texture_rect = TextureRect.new()
-	_preview_texture_rect.expand_mode = TextureRect.EXPAND_KEEP_SIZE
-	_preview_texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+	_preview_texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_preview_texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_preview_texture_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	center_box.add_child(_preview_texture_rect)
 
@@ -463,6 +469,7 @@ func _build_right_panel() -> void:
 
 	_tab_container = TabContainer.new()
 	_tab_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_tab_container.tab_changed.connect(_on_inspector_tab_changed)
 	right_vbox.add_child(_tab_container)
 
 	_build_tab_general()
@@ -473,31 +480,41 @@ func _build_right_panel() -> void:
 	# Bottom Action Buttons
 	var actions_grid := GridContainer.new()
 	actions_grid.columns = 2
-	actions_grid.add_theme_constant_override("h_separation", 4)
-	actions_grid.add_theme_constant_override("v_separation", 4)
+	actions_grid.add_theme_constant_override("h_separation", 6)
+	actions_grid.add_theme_constant_override("v_separation", 6)
 	right_vbox.add_child(actions_grid)
 
-	var btn_apply := Button.new()
-	btn_apply.text = " Apply / Save"
-	btn_apply.tooltip_text = "Stage changes into active overrides"
-	btn_apply.pressed.connect(_on_create_override)
-	actions_grid.add_child(btn_apply)
+	var btn_overwrite := Button.new()
+	btn_overwrite.text = "💾 Overwrite Asset"
+	btn_overwrite.tooltip_text = "Overwrite existing asset properties and save to manifest"
+	btn_overwrite.custom_minimum_size = Vector2(0, 32)
+	btn_overwrite.add_theme_font_size_override("font_size", 12)
+	btn_overwrite.modulate = Color(0.4, 1.0, 0.6)
+	btn_overwrite.pressed.connect(_on_overwrite_asset)
+	actions_grid.add_child(btn_overwrite)
+
+	var btn_save_new := Button.new()
+	btn_save_new.text = "➕ Save as New Asset..."
+	btn_save_new.tooltip_text = "Save modified asset under a new ID and display name"
+	btn_save_new.custom_minimum_size = Vector2(0, 32)
+	btn_save_new.add_theme_font_size_override("font_size", 12)
+	btn_save_new.modulate = Color(0.3, 0.9, 1.0)
+	btn_save_new.pressed.connect(_on_save_as_new_pressed)
+	actions_grid.add_child(btn_save_new)
 
 	var btn_replace := Button.new()
-	btn_replace.text = " Replace Asset"
+	btn_replace.text = "🔄 Replace Image"
 	btn_replace.tooltip_text = "Replace visual asset for this ID"
+	btn_replace.custom_minimum_size = Vector2(0, 30)
+	btn_replace.add_theme_font_size_override("font_size", 12)
 	btn_replace.pressed.connect(_on_replace_asset)
 	actions_grid.add_child(btn_replace)
-
-	var btn_import := Button.new()
-	btn_import.text = " Import Asset"
-	btn_import.tooltip_text = "Import external image asset"
-	btn_import.pressed.connect(_on_import_asset)
-	actions_grid.add_child(btn_import)
 
 	var btn_revert := Button.new()
 	btn_revert.text = "↺ Reset Asset"
 	btn_revert.tooltip_text = "Reset this asset to default"
+	btn_revert.custom_minimum_size = Vector2(0, 30)
+	btn_revert.add_theme_font_size_override("font_size", 12)
 	btn_revert.pressed.connect(_on_reset_asset)
 	actions_grid.add_child(btn_revert)
 
@@ -627,11 +644,13 @@ func _build_tab_visual() -> void:
 
 	_flip_h_check = CheckBox.new()
 	_flip_h_check.text = "Flip H"
+	UIConstants.apply_checkbox_style(_flip_h_check)
 	_flip_h_check.toggled.connect(_on_flip_h_changed)
 	flip_hbox.add_child(_flip_h_check)
 
 	_flip_v_check = CheckBox.new()
 	_flip_v_check.text = "Flip V"
+	UIConstants.apply_checkbox_style(_flip_v_check)
 	_flip_v_check.toggled.connect(_on_flip_v_changed)
 	flip_hbox.add_child(_flip_v_check)
 
@@ -726,6 +745,7 @@ func _build_tab_animation() -> void:
 
 	_anim_loop_check = CheckBox.new()
 	_anim_loop_check.text = "Loop Animation"
+	UIConstants.apply_checkbox_style(_anim_loop_check)
 	_anim_loop_check.button_pressed = true
 	tab.add_child(_anim_loop_check)
 
@@ -786,6 +806,32 @@ func _build_dialogs() -> void:
 	_file_dialog.file_selected.connect(_on_file_selected)
 	add_child(_file_dialog)
 
+	_save_as_new_dialog = ConfirmationDialog.new()
+	_save_as_new_dialog.title = "➕ Save as New Asset (Yeni Varlık Olarak Kaydet)"
+	_save_as_new_dialog.size = Vector2i(450, 200)
+	_save_as_new_dialog.confirmed.connect(_on_save_as_new_confirmed)
+	add_child(_save_as_new_dialog)
+
+	var d_vbox := VBoxContainer.new()
+	d_vbox.add_theme_constant_override("separation", 8)
+	_save_as_new_dialog.add_child(d_vbox)
+
+	var id_lbl := Label.new(); id_lbl.text = "New Asset ID (Benzersiz Kimlik):"; id_lbl.add_theme_font_size_override("font_size", 12)
+	d_vbox.add_child(id_lbl)
+	_save_new_id_field = LineEdit.new()
+	_save_new_id_field.custom_minimum_size = Vector2(0, 30)
+	_save_new_id_field.placeholder_text = "e.g. prop.statue_mossy or tile.crystal_floor"
+	_save_new_id_field.add_theme_font_size_override("font_size", 12)
+	d_vbox.add_child(_save_new_id_field)
+
+	var name_lbl := Label.new(); name_lbl.text = "Display Name (Görünen İsim):"; name_lbl.add_theme_font_size_override("font_size", 12)
+	d_vbox.add_child(name_lbl)
+	_save_new_name_field = LineEdit.new()
+	_save_new_name_field.custom_minimum_size = Vector2(0, 30)
+	_save_new_name_field.placeholder_text = "e.g. Mossy Stone Statue"
+	_save_new_name_field.add_theme_font_size_override("font_size", 12)
+	d_vbox.add_child(_save_new_name_field)
+
 # --- Helper Builders ---
 func _make_section_label(text: String) -> Label:
 	var lbl := Label.new()
@@ -808,21 +854,19 @@ func _populate_categories() -> void:
 	if not _category_list: return
 	_category_list.clear()
 
-	AssetRegistry.ensure_initialized()
-	var manifest_cats: Dictionary = {}
-	for aid in AssetRegistry.get_all_asset_ids():
-		var meta := AssetRegistry.get_metadata(aid)
-		if meta.has("category"):
-			manifest_cats[str(meta["category"]).to_lower()] = true
-
-	var all_cats: Array = DEFAULT_CATEGORIES.duplicate()
-	for cat in manifest_cats.keys():
-		if not all_cats.has(cat):
-			all_cats.append(str(cat))
-
 	_category_list.add_item("All")
-	for cat in all_cats:
-		_category_list.add_item(cat.capitalize().replace("_", " "))
+	for cat in DEFAULT_CATEGORIES:
+		var display_name = cat.capitalize()
+		if cat == "terrain": display_name = "Terrain & Tiles"
+		elif cat == "nature": display_name = "Nature & Props"
+		elif cat == "plants": display_name = "Plants & Crops"
+		elif cat == "items": display_name = "Items & Inventory"
+		elif cat == "tools": display_name = "Tools & Equipment"
+		elif cat == "npc": display_name = "NPCs & Characters"
+		elif cat == "player": display_name = "Player Sprites"
+		elif cat == "ui": display_name = "UI Icons & Themes"
+		elif cat == "audio": display_name = "Audio & SFX"
+		_category_list.add_item(display_name)
 
 	_category_list.select(0)
 	_selected_category = ""
@@ -841,15 +885,16 @@ func _refresh_asset_list() -> void:
 	var show_favs := _filter_check_favorites.button_pressed if _filter_check_favorites else false
 
 	AssetRegistry.ensure_initialized()
-	var manifest_ids := AssetRegistry.get_all_asset_ids()
+	var all_ids: Array = AssetRegistry.get_all_asset_ids().duplicate()
 
 	var ds = _get_data_service()
-	var all_ids := manifest_ids.duplicate()
 	if ds and ds.has_method("get_all_stable_ids"):
 		var ds_ids: Array = ds.get_all_stable_ids()
 		for sid in ds_ids:
-			if not all_ids.has(sid):
-				all_ids.append(sid)
+			var sid_str := str(sid)
+			if sid_str.begins_with("custom.") or sid_str.begins_with("tile.") or sid_str.begins_with("prop.") or sid_str.begins_with("building.") or sid_str.begins_with("item.") or sid_str.begins_with("npc."):
+				if not all_ids.has(sid_str):
+					all_ids.append(sid_str)
 
 	var candidate_ids: Array[String] = []
 	for aid in all_ids:
@@ -866,10 +911,24 @@ func _refresh_asset_list() -> void:
 			continue
 		candidate_ids.append(aid_str)
 
-	candidate_ids.sort()
+	# Sort visual assets first, then audio
+	candidate_ids.sort_custom(func(a: String, b: String):
+		var a_audio = a.begins_with("audio.") or a.begins_with("effect.")
+		var b_audio = b.begins_with("audio.") or b.begins_with("effect.")
+		if a_audio != b_audio:
+			return not a_audio
+		return a < b
+	)
+	
 	for aid in candidate_ids:
 		var display := str(aid)
-		var icon := AssetRegistry.get_asset_texture(str(aid))
+		var icon: Texture2D = null
+		if _icon_cache.has(display):
+			icon = _icon_cache[display]
+		else:
+			icon = AssetRegistry.get_asset_texture(display)
+			_icon_cache[display] = icon
+			
 		if icon:
 			_asset_list.add_item(display, icon)
 		else:
@@ -881,19 +940,39 @@ func _refresh_asset_list() -> void:
 			_asset_list.set_item_custom_fg_color(idx, Color(1.0, 0.45, 0.3))
 		if _favorites.has(str(aid)):
 			_asset_list.set_item_custom_bg_color(idx, Color(0.25, 0.22, 0.05))
+		if str(aid) == _selected_asset_id:
+			_asset_list.select(idx)
+			_asset_list.ensure_current_is_visible()
 
 func _id_matches_category(asset_id: String, category: String) -> bool:
 	if category == "" or category == "All" or category == "all":
 		return true
 	var internal_key := category.to_lower().replace(" ", "_")
+	if "terrain" in internal_key or "tile" in internal_key: internal_key = "terrain"
+	elif "nature" in internal_key or "prop" in internal_key: internal_key = "nature"
+	elif "building" in internal_key: internal_key = "buildings"
+	elif "plant" in internal_key or "crop" in internal_key: internal_key = "plants"
+	elif "tool" in internal_key: internal_key = "tools"
+	elif "item" in internal_key: internal_key = "items"
+	elif "npc" in internal_key or "character" in internal_key: internal_key = "npc"
+	elif "player" in internal_key: internal_key = "player"
+	elif "ui" in internal_key: internal_key = "ui"
+	elif "audio" in internal_key or "sfx" in internal_key or "music" in internal_key: internal_key = "audio"
+	
 	if CATEGORY_PREFIXES.has(internal_key):
 		for prefix in CATEGORY_PREFIXES[internal_key]:
 			if asset_id.begins_with(prefix):
 				return true
-		return false
+				
 	var meta := AssetRegistry.get_metadata(asset_id)
 	if meta.has("category"):
-		return str(meta["category"]).to_lower() == internal_key
+		var m_cat = str(meta["category"]).to_lower()
+		if m_cat == internal_key: return true
+		if internal_key == "terrain" and (m_cat in ["terrain", "tile"] or "gpt" in asset_id): return true
+		if internal_key == "nature" and m_cat in ["nature", "environment", "prop"]: return true
+		if internal_key == "plants" and m_cat in ["plant", "crop"]: return true
+		if internal_key == "buildings" and (m_cat in ["building", "structures"] or "house" in asset_id or "shed" in asset_id or "barn" in asset_id): return true
+		if internal_key == "audio" and (m_cat.begins_with("audio") or m_cat in ["sfx", "music"]): return true
 	return false
 
 func _is_modified(asset_id: String) -> bool:
@@ -941,7 +1020,7 @@ func _show_asset(asset_id: String) -> void:
 	_current_preview_texture = tex
 	if _preview_texture_rect:
 		_preview_texture_rect.texture = tex
-		_preview_texture_rect.custom_minimum_size = Vector2(16, 16) * _zoom_level
+		_update_zoom_display()
 
 	# Animation metadata
 	var meta := AssetRegistry.get_metadata(asset_id)
@@ -961,7 +1040,8 @@ func _show_asset(asset_id: String) -> void:
 	_populate_general_tab(asset_id, meta)
 	_populate_visual_tab(asset_id, meta)
 	_populate_animation_tab(asset_id, meta)
-	_populate_metadata_tab(asset_id, meta)
+	if _tab_container and _tab_container.current_tab == 3:
+		_populate_metadata_tab(asset_id, meta)
 
 	# Cross-editor and directional button visibility
 	var is_character := asset_id.begins_with("npc.") or asset_id.begins_with("player.") or asset_id == "player"
@@ -976,6 +1056,10 @@ func _show_asset(asset_id: String) -> void:
 		_btn_place_in_world.visible = (
 			asset_id.begins_with("tile.") or asset_id.begins_with("prop.") or asset_id.begins_with("building.")
 		)
+
+func _on_inspector_tab_changed(tab_idx: int) -> void:
+	if tab_idx == 3 and _selected_asset_id != "":
+		_populate_metadata_tab(_selected_asset_id, AssetRegistry.get_metadata(_selected_asset_id))
 
 func _populate_general_tab(asset_id: String, meta: Dictionary) -> void:
 	if _stable_id_label: _stable_id_label.text = asset_id
@@ -1060,13 +1144,27 @@ func _find_used_by(asset_id: String, ds: Variant) -> Array:
 		var parts = search_stem.split(".")
 		search_stem = parts[parts.size() - 1]
 
-	for sid in ds.get_all_stable_ids():
+	var all_sids: Array = ds.get_all_stable_ids()
+	for sid in all_sids:
 		if sid == asset_id: continue
 		var obj: Dictionary = ds.get_resolved_object(sid)
-		var obj_str := JSON.stringify(obj)
-		if obj_str.contains(asset_id) or obj_str.contains(search_stem):
-			refs.append(sid)
+		if _contains_ref(obj, asset_id, search_stem):
+			refs.append(str(sid))
+			if refs.size() >= 15:
+				break
 	return refs
+
+func _contains_ref(val: Variant, aid: String, stem: String) -> bool:
+	if typeof(val) == TYPE_STRING:
+		var s := str(val)
+		return s == aid or s == stem or s.contains(aid)
+	elif typeof(val) == TYPE_DICTIONARY:
+		for k in val.keys():
+			if _contains_ref(val[k], aid, stem): return true
+	elif typeof(val) == TYPE_ARRAY:
+		for item in val:
+			if _contains_ref(item, aid, stem): return true
+	return false
 
 # ---------------------------------------------------------------------------
 # ANIMATION PLAYBACK & FRAME ADVANCE
@@ -1118,24 +1216,14 @@ func _scan_missing_assets() -> void:
 	if _missing_list: _missing_list.clear()
 
 	AssetRegistry.ensure_initialized()
-	var all_ids: Array = AssetRegistry.get_all_asset_ids().duplicate()
-	var ds = _get_data_service()
-	if ds and ds.has_method("get_all_stable_ids"):
-		for sid in ds.get_all_stable_ids():
-			if not all_ids.has(str(sid)):
-				all_ids.append(str(sid))
+	var all_ids: Array = AssetRegistry.get_all_asset_ids()
 
 	for aid in all_ids:
 		var aid_str := str(aid)
-		var tex_path := ""
-		if ds and ds.has_override(aid_str, "texture"):
-			tex_path = str(ds.get_resolved_value(aid_str, "texture"))
-		elif ds and ds.has_override(aid_str):
-			var res_obj = ds.get_resolved_object(aid_str)
-			tex_path = str(res_obj.get("texture", ""))
-		else:
-			var meta := AssetRegistry.get_metadata(aid_str)
-			tex_path = str(meta.get("texture", meta.get("path", "")))
+		if aid_str.begins_with("audio.") or aid_str.begins_with("effect."):
+			continue
+		var meta := AssetRegistry.get_metadata(aid_str)
+		var tex_path := str(meta.get("texture", meta.get("path", "")))
 
 		if tex_path != "" and not ResourceLoader.exists(tex_path) and not FileAccess.file_exists(tex_path):
 			_missing_assets[aid_str] = {
@@ -1159,6 +1247,16 @@ func _on_category_selected(index: int) -> void:
 		_selected_category = _category_list.get_item_text(index)
 	_refresh_asset_list()
 
+func _select_category_by_name(cat_name: String) -> void:
+	if not _category_list: return
+	var target := cat_name.to_lower().replace(" ", "_").replace("&", "").strip_edges()
+	for i in range(_category_list.item_count):
+		var t := _category_list.get_item_text(i).to_lower().replace(" ", "_").replace("&", "").strip_edges()
+		if t == target or target in t or (target == "all" and i == 0):
+			_category_list.select(i)
+			_on_category_selected(i)
+			return
+
 func _on_search_changed(_text: String) -> void:
 	_refresh_asset_list()
 
@@ -1179,23 +1277,41 @@ func _on_missing_selected(index: int) -> void:
 # SIGNAL HANDLERS — Center Panel
 # ---------------------------------------------------------------------------
 
+func _on_preview_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_on_zoom_in()
+			accept_event()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_on_zoom_out()
+			accept_event()
+
 func _on_zoom_in() -> void:
-	_zoom_level = min(_zoom_level + 0.5, 8.0)
+	_zoom_level = minf(_zoom_level + 1.0, 16.0)
 	_update_zoom_display()
 
 func _on_zoom_out() -> void:
-	_zoom_level = max(_zoom_level - 0.5, 0.5)
+	_zoom_level = maxf(_zoom_level - 1.0, 1.0)
 	_update_zoom_display()
 
 func _on_zoom_fit() -> void:
-	_zoom_level = 2.0
+	_zoom_level = 4.0
 	_update_zoom_display()
 
 func _update_zoom_display() -> void:
 	if _zoom_label:
 		_zoom_label.text = "%d%%" % int(_zoom_level * 100)
 	if _preview_texture_rect:
-		_preview_texture_rect.custom_minimum_size = Vector2(32, 32) * _zoom_level
+		var base_sz := Vector2(32, 32)
+		if _preview_texture_rect.texture:
+			base_sz = _preview_texture_rect.texture.get_size()
+		elif _current_preview_texture:
+			base_sz = _current_preview_texture.get_size()
+		if base_sz.x <= 0: base_sz.x = 32
+		if base_sz.y <= 0: base_sz.y = 32
+		var scaled_sz := base_sz * _zoom_level
+		_preview_texture_rect.custom_minimum_size = scaled_sz
+		_preview_texture_rect.size = scaled_sz
 
 func _on_play_toggled(pressed: bool) -> void:
 	_anim_playing = pressed
@@ -1331,21 +1447,140 @@ func _on_reset_asset() -> void:
 	panel_dirtied.emit()
 
 func _on_create_override() -> void:
+	_on_overwrite_asset()
+
+func _on_overwrite_asset() -> void:
 	if _selected_asset_id == "": return
+	
+	AssetRegistry.ensure_initialized()
+	var meta: Dictionary = AssetRegistry.get_metadata(_selected_asset_id).duplicate(true)
+	if _display_name_field and _display_name_field.text != "":
+		meta["name"] = _display_name_field.text
+		meta["display_name"] = _display_name_field.text
+	if _texture_path_field and _texture_path_field.text != "":
+		meta["texture"] = _texture_path_field.text
+	if _size_w_spin and _size_h_spin:
+		meta["size"] = [int(_size_w_spin.value), int(_size_h_spin.value)]
+	if _modulate_picker:
+		meta["modulate"] = _modulate_picker.color.to_html()
+	if _anim_cols_spin and _anim_rows_spin:
+		meta["frames"] = int(_anim_cols_spin.value) * int(_anim_rows_spin.value)
+		meta["fps"] = int(_anim_fps_spin.value)
+		meta["loop"] = _anim_loop_check.button_pressed
+	if _meta_tags_field:
+		var tags_raw: PackedStringArray = _meta_tags_field.text.split(",")
+		var tags_arr: Array[String] = []
+		for t in tags_raw:
+			var cl := t.strip_edges()
+			if cl != "": tags_arr.append(cl)
+		meta["tags"] = tags_arr
+		
+	AssetRegistry._manifest[_selected_asset_id] = meta
+	AssetRegistry.save_manifest()
+	
 	var ds = _get_data_service()
 	if ds:
-		if not ds.has_override(_selected_asset_id):
-			ds.set_staged_override(_selected_asset_id, "_override_created", true)
+		ds.set_staged_override(_selected_asset_id, "_overwritten", true)
 		if _texture_path_field and _texture_path_field.text != "":
 			ds.set_staged_override(_selected_asset_id, "texture", _texture_path_field.text)
 		if _display_name_field and _display_name_field.text != "":
 			ds.set_staged_override(_selected_asset_id, "display_name", _display_name_field.text)
 		AssetRegistry.sync_with_data_service(ds)
+		
 	_refresh_asset_list()
+	_show_asset(_selected_asset_id)
 	if _status_badge_label:
-		_status_badge_label.text = " Overridden (User Mod)"
-		_status_badge_label.modulate = Color(0.5, 1.0, 0.5)
+		_status_badge_label.text = " Overwritten & Saved to Manifest"
+		_status_badge_label.modulate = Color(0.4, 1.0, 0.6)
 	panel_dirtied.emit()
+
+func _on_save_as_new_pressed() -> void:
+	if _selected_asset_id == "": return
+	var clean := _selected_asset_id
+	var prefix := "prop."
+	if clean.contains("."):
+		prefix = clean.split(".")[0] + "."
+		clean = clean.split(".")[1]
+	if _save_new_id_field:
+		_save_new_id_field.text = prefix + clean + "_custom"
+	var cur_name: String = _display_name_field.text if (_display_name_field and _display_name_field.text != "") else clean.capitalize()
+	if _save_new_name_field:
+		_save_new_name_field.text = cur_name + " (Custom)"
+	if _save_as_new_dialog:
+		_save_as_new_dialog.popup_centered()
+
+func _on_save_as_new_confirmed() -> void:
+	if not _save_new_id_field: return
+	var new_id := _save_new_id_field.text.strip_edges()
+	var new_name: String = _save_new_name_field.text.strip_edges() if _save_new_name_field else ""
+	if new_id == "": return
+	if new_name == "": new_name = new_id.capitalize()
+	
+	AssetRegistry.ensure_initialized()
+	var meta: Dictionary = AssetRegistry.get_metadata(_selected_asset_id).duplicate(true)
+	meta["id"] = new_id.split(".")[-1]
+	meta["asset_id"] = new_id
+	meta["name"] = new_name
+	meta["display_name"] = new_name
+	if _texture_path_field and _texture_path_field.text != "":
+		meta["texture"] = _texture_path_field.text
+	if _size_w_spin and _size_h_spin:
+		meta["size"] = [int(_size_w_spin.value), int(_size_h_spin.value)]
+	if _modulate_picker:
+		meta["modulate"] = _modulate_picker.color.to_html()
+	if _anim_cols_spin and _anim_rows_spin:
+		meta["frames"] = int(_anim_cols_spin.value) * int(_anim_rows_spin.value)
+		meta["fps"] = int(_anim_fps_spin.value)
+		meta["loop"] = _anim_loop_check.button_pressed
+	if _meta_tags_field:
+		var tags_raw: PackedStringArray = _meta_tags_field.text.split(",")
+		var tags_arr: Array[String] = []
+		for t in tags_raw:
+			var cl := t.strip_edges()
+			if cl != "": tags_arr.append(cl)
+		meta["tags"] = tags_arr
+		
+	AssetRegistry._manifest[new_id] = meta
+	AssetRegistry.save_manifest()
+	
+	var ds = _get_data_service()
+	if ds:
+		AssetRegistry.sync_with_data_service(ds)
+		
+	_populate_categories()
+	select_and_focus_asset(new_id)
+	panel_dirtied.emit()
+
+func select_and_focus_asset(target_id: String) -> void:
+	if not _category_list:
+		_build_ui()
+		_build_dialogs()
+	if _category_list and _category_list.item_count == 0:
+		_populate_categories()
+	
+	# Infer category
+	var target_cat := "All"
+	for cat in DEFAULT_CATEGORIES:
+		var p_list: Array = CATEGORY_PREFIXES.get(cat, [])
+		for prefix in p_list:
+			if target_id.begins_with(prefix):
+				target_cat = cat
+				break
+		if target_cat != "All": break
+		
+	# Select category in list
+	if _category_list:
+		for i in range(_category_list.item_count):
+			var c_text := _category_list.get_item_text(i).to_lower().replace(" ", "_").replace("&", "").strip_edges()
+			var t_clean := target_cat.to_lower().replace(" ", "_").replace("&", "").strip_edges()
+			if c_text == t_clean or t_clean in c_text or (target_cat == "All" and i == 0):
+				_category_list.select(i)
+				_selected_category = "" if target_cat == "All" else _category_list.get_item_text(i)
+				break
+				
+	_selected_asset_id = target_id
+	_refresh_asset_list()
+	_show_asset(target_id)
 
 # ---------------------------------------------------------------------------
 # ASSET IMPORT & REPLACEMENT (REAL PIPELINE)

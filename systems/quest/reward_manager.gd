@@ -3,7 +3,27 @@ extends RefCounted
 
 ## Central static distributor for quest rewards (gold, items, seeds, discoveries).
 
-static func grant_rewards(player_id: String, rewards: Dictionary) -> Dictionary:
+static func grant_rewards(arg1: Variant, arg2: Variant = {}) -> Dictionary:
+	var player_id: String = ""
+	var rewards: Dictionary = {}
+	var p_state: PlayerState = null
+	
+	if typeof(arg1) == TYPE_DICTIONARY:
+		rewards = arg1
+		if arg2 is PlayerState:
+			p_state = arg2
+			player_id = p_state.player_id
+		elif typeof(arg2) == TYPE_STRING:
+			player_id = str(arg2)
+	else:
+		if arg1 is PlayerState:
+			p_state = arg1
+			player_id = p_state.player_id
+		elif typeof(arg1) == TYPE_STRING:
+			player_id = str(arg1)
+		if typeof(arg2) == TYPE_DICTIONARY:
+			rewards = arg2
+
 	var granted_summary = {
 		"gold": 0,
 		"items": [],
@@ -12,10 +32,10 @@ static func grant_rewards(player_id: String, rewards: Dictionary) -> Dictionary:
 		"world_unlock": ""
 	}
 	
-
 	var root = Engine.get_main_loop().root if (Engine.get_main_loop() and "root" in Engine.get_main_loop()) else null
 	var psm = root.get_node_or_null("PlayerRegistry") if root else null
-	var p_state: PlayerState = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
+	if not p_state and psm and psm.has_method("get_player_state") and player_id != "":
+		p_state = psm.get_player_state(player_id)
 		
 	# 1. Gold
 	var gold_amt = int(rewards.get("gold", 0))

@@ -48,71 +48,81 @@ func _build_ui() -> void:
 	margin.add_child(root_vbox)
 
 	title_label = Label.new()
-	title_label.text = "[Inspector] Inspector"
-	title_label.modulate = Color(1.0, 0.85, 0.3)
+	title_label.text = "🔍 Inspector"
+	title_label.add_theme_font_size_override("font_size", 14)
+	title_label.modulate = Color(0.92, 0.94, 0.98)
 	root_vbox.add_child(title_label)
 
 	empty_label = Label.new()
 	empty_label.text = "No element selected.\nClick a tile or drag-select objects."
+	empty_label.add_theme_font_size_override("font_size", 13)
 	empty_label.modulate = Color(0.6, 0.6, 0.6)
 	empty_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	root_vbox.add_child(empty_label)
 
 	props_container = VBoxContainer.new()
 	props_container.visible = false
+	props_container.add_theme_constant_override("separation", 8)
 	root_vbox.add_child(props_container)
 
 	# Presets grid
 	var grid = GridContainer.new()
 	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 8)
+	grid.add_theme_constant_override("v_separation", 8)
 	props_container.add_child(grid)
 
-	var p_walk = Button.new(); p_walk.text = "Walkable"; p_walk.name = "PresetWalkable"; grid.add_child(p_walk)
-	var p_sol = Button.new(); p_sol.text = "Solid"; p_sol.name = "PresetSolid"; grid.add_child(p_sol)
-	var p_int = Button.new(); p_int.text = "Interact"; p_int.name = "PresetInteractable"; grid.add_child(p_int)
-	var p_dec = Button.new(); p_dec.text = "Decor"; p_dec.name = "PresetDecoration"; grid.add_child(p_dec)
+	var p_walk = Button.new(); p_walk.text = "Walkable"; p_walk.custom_minimum_size = Vector2(0, 34); p_walk.add_theme_font_size_override("font_size", 13); p_walk.name = "PresetWalkable"; grid.add_child(p_walk)
+	var p_sol = Button.new(); p_sol.text = "Solid"; p_sol.custom_minimum_size = Vector2(0, 34); p_sol.add_theme_font_size_override("font_size", 13); p_sol.name = "PresetSolid"; grid.add_child(p_sol)
+	var p_int = Button.new(); p_int.text = "Interact"; p_int.custom_minimum_size = Vector2(0, 34); p_int.add_theme_font_size_override("font_size", 13); p_int.name = "PresetInteractable"; grid.add_child(p_int)
+	var p_dec = Button.new(); p_dec.text = "Decor"; p_dec.custom_minimum_size = Vector2(0, 34); p_dec.add_theme_font_size_override("font_size", 13); p_dec.name = "PresetDecoration"; grid.add_child(p_dec)
 
 	props_container.add_child(HSeparator.new())
 
 	# Asset ID
 	var hbox_asset = HBoxContainer.new()
-	var l_asset = Label.new(); l_asset.text = "Asset ID:"; l_asset.custom_minimum_size = Vector2(70, 0)
+	var l_asset = Label.new(); l_asset.text = "Asset ID:"; l_asset.custom_minimum_size = Vector2(90, 0); l_asset.add_theme_font_size_override("font_size", 13)
 	hbox_asset.add_child(l_asset)
 	asset_id_label = Label.new()
+	asset_id_label.add_theme_font_size_override("font_size", 13)
 	hbox_asset.add_child(asset_id_label)
 	props_container.add_child(hbox_asset)
 
 	# Instance ID
 	var hbox_inst = HBoxContainer.new()
-	var l_inst = Label.new(); l_inst.text = "Instance:"; l_inst.custom_minimum_size = Vector2(70, 0)
+	var l_inst = Label.new(); l_inst.text = "Instance:"; l_inst.custom_minimum_size = Vector2(90, 0); l_inst.add_theme_font_size_override("font_size", 13)
 	hbox_inst.add_child(l_inst)
 	instance_id_edit = LineEdit.new()
 	instance_id_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	instance_id_edit.custom_minimum_size = Vector2(0, 34)
+	instance_id_edit.add_theme_font_size_override("font_size", 13)
 	hbox_inst.add_child(instance_id_edit)
 	props_container.add_child(hbox_inst)
 
 	# Position
 	var hbox_pos = HBoxContainer.new()
-	var l_pos = Label.new(); l_pos.text = "Pos (X,Y):"; l_pos.custom_minimum_size = Vector2(70, 0)
+	var l_pos = Label.new(); l_pos.text = "Pos (X,Y):"; l_pos.custom_minimum_size = Vector2(90, 0); l_pos.add_theme_font_size_override("font_size", 13)
 	hbox_pos.add_child(l_pos)
-	pos_x_spin = SpinBox.new()
+	pos_x_spin = SpinBox.new(); pos_x_spin.custom_minimum_size = Vector2(0, 34)
 	hbox_pos.add_child(pos_x_spin)
-	pos_y_spin = SpinBox.new()
+	pos_y_spin = SpinBox.new(); pos_y_spin.custom_minimum_size = Vector2(0, 34)
 	hbox_pos.add_child(pos_y_spin)
 	props_container.add_child(hbox_pos)
 
 	# Layer
 	var hbox_layer = HBoxContainer.new()
-	var l_layer = Label.new(); l_layer.text = "Layer:"; l_layer.custom_minimum_size = Vector2(70, 0)
+	var l_layer = Label.new(); l_layer.text = "Layer:"; l_layer.custom_minimum_size = Vector2(90, 0); l_layer.add_theme_font_size_override("font_size", 13)
 	hbox_layer.add_child(l_layer)
 	layer_opt = OptionButton.new()
 	layer_opt.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	layer_opt.custom_minimum_size = Vector2(0, 34)
+	layer_opt.add_theme_font_size_override("font_size", 13)
 	hbox_layer.add_child(layer_opt)
 	props_container.add_child(hbox_layer)
 
-	walkable_check = CheckBox.new(); walkable_check.text = "Walkable"; props_container.add_child(walkable_check)
-	solid_check = CheckBox.new(); solid_check.text = "Solid"; props_container.add_child(solid_check)
-	interactable_check = CheckBox.new(); interactable_check.text = "Interactable"; props_container.add_child(interactable_check)
+	walkable_check = CheckBox.new(); walkable_check.text = "Walkable"; walkable_check.add_theme_font_size_override("font_size", 13); UIConstants.apply_checkbox_style(walkable_check); props_container.add_child(walkable_check)
+	solid_check = CheckBox.new(); solid_check.text = "Solid"; solid_check.add_theme_font_size_override("font_size", 13); UIConstants.apply_checkbox_style(solid_check); props_container.add_child(solid_check)
+	interactable_check = CheckBox.new(); interactable_check.text = "Interactable"; interactable_check.add_theme_font_size_override("font_size", 13); UIConstants.apply_checkbox_style(interactable_check); props_container.add_child(interactable_check)
 
 func _setup_layer_options() -> void:
 	if not layer_opt: return
@@ -127,7 +137,8 @@ func _setup_interaction_section() -> void:
 	
 	var int_title = Label.new()
 	int_title.text = " Interaction & Events"
-	int_title.modulate = Color(1.0, 0.85, 0.3)
+	int_title.add_theme_font_size_override("font_size", 13)
+	int_title.modulate = Color(0.90, 0.92, 0.96)
 	props_container.add_child(int_title)
 	
 	# Interaction Type

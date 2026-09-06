@@ -4,44 +4,53 @@
 
 [node name="InventoryUI" type="Control" unique_id=245397055]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_13i4w")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1582434426]
-custom_minimum_size = Vector2(450, 300)
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1002888991]
 layout_mode = 1
-offset_left = 351.0
-offset_top = 174.0
-offset_right = 801.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=355551337]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1582434426]
+custom_minimum_size = Vector2(480, 320)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2079303268]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=355551337]
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=143258039]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=2079303268]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1183956975]
+[node name="Header" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=143258039]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1183956975]
 layout_mode = 2
 text = "🎒 Inventory"
 
-[node name="SelectedLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1627078267]
+[node name="SelectedLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=1627078267]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Selected: None"
 
-[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=739095485]
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=739095485]
 layout_mode = 2
 text = " ✖ "
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=83747229]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=83747229]
 custom_minimum_size = Vector2(400, 220)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1594305668]
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1594305668]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

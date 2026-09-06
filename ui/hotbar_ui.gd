@@ -5,8 +5,8 @@ extends Control
 ## Displays item icons, stack counts, slot numbers, tool quality, active selection and tooltips.
 
 const SLOT_COUNT: int = 10
-const SLOT_SIZE: Vector2 = Vector2(40, 40)
-const SLOT_GAP: int = 4
+const SLOT_SIZE: Vector2 = Vector2(46, 46)
+const SLOT_GAP: int = 5
 
 var slot_container: HBoxContainer
 var slot_panels: Array[PanelContainer] = []
@@ -23,12 +23,12 @@ func _ready() -> void:
 	grow_horizontal = GROW_DIRECTION_BOTH
 	grow_vertical = GROW_DIRECTION_BEGIN
 	
-	var total_w = SLOT_COUNT * SLOT_SIZE.x + (SLOT_COUNT - 1) * SLOT_GAP + 16
+	var total_w = SLOT_COUNT * SLOT_SIZE.x + (SLOT_COUNT - 1) * SLOT_GAP + 18
 	offset_left = -total_w / 2.0
 	offset_right = total_w / 2.0
-	offset_bottom = -14
-	offset_top = -64
-	custom_minimum_size = Vector2(total_w, 50)
+	offset_bottom = -16
+	offset_top = -76
+	custom_minimum_size = Vector2(total_w, 58)
 	mouse_filter = MOUSE_FILTER_PASS
 
 	
@@ -40,20 +40,20 @@ func _ready() -> void:
 	bg_panel.mouse_filter = MOUSE_FILTER_PASS
 	
 	var bg_style = StyleBoxFlat.new()
-	bg_style.bg_color = Color(0.08, 0.09, 0.12, 0.88)
+	bg_style.bg_color = Color(0.08, 0.09, 0.12, 0.90)
 	bg_style.set_border_width_all(2)
 	bg_style.border_color = Color(0.24, 0.28, 0.35, 0.95)
-	bg_style.set_corner_radius_all(4)
-	bg_style.shadow_size = 4
-	bg_style.shadow_color = Color(0.0, 0.0, 0.0, 0.4)
+	bg_style.set_corner_radius_all(5)
+	bg_style.shadow_size = 5
+	bg_style.shadow_color = Color(0.0, 0.0, 0.0, 0.45)
 	bg_panel.add_theme_stylebox_override("panel", bg_style)
 	add_child(bg_panel)
 	
 	var margin = MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 6)
-	margin.add_theme_constant_override("margin_right", 6)
-	margin.add_theme_constant_override("margin_top", 4)
-	margin.add_theme_constant_override("margin_bottom", 4)
+	margin.add_theme_constant_override("margin_left", 7)
+	margin.add_theme_constant_override("margin_right", 7)
+	margin.add_theme_constant_override("margin_top", 5)
+	margin.add_theme_constant_override("margin_bottom", 5)
 	margin.mouse_filter = MOUSE_FILTER_PASS
 	bg_panel.add_child(margin)
 	
@@ -86,18 +86,18 @@ func _create_slots() -> void:
 		var num_lbl = Label.new()
 		num_lbl.name = "Num"
 		num_lbl.text = str((i + 1) % 10)
-		num_lbl.add_theme_font_size_override("font_size", 9)
+		num_lbl.add_theme_font_size_override("font_size", 11)
 		num_lbl.add_theme_color_override("font_color", Color(0.75, 0.78, 0.85, 0.8))
 		num_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 		num_lbl.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 		num_lbl.mouse_filter = MOUSE_FILTER_IGNORE
-		num_lbl.position = Vector2(3, 1)
+		num_lbl.position = Vector2(4, 2)
 		
 		# Icon Label (Centered)
 		var icon_lbl = Label.new()
 		icon_lbl.name = "Icon"
 		icon_lbl.text = ""
-		icon_lbl.add_theme_font_size_override("font_size", 18)
+		icon_lbl.add_theme_font_size_override("font_size", 22)
 		icon_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		icon_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		icon_lbl.mouse_filter = MOUSE_FILTER_IGNORE
@@ -109,7 +109,7 @@ func _create_slots() -> void:
 		var count_lbl = Label.new()
 		count_lbl.name = "Count"
 		count_lbl.text = ""
-		count_lbl.add_theme_font_size_override("font_size", 9)
+		count_lbl.add_theme_font_size_override("font_size", 11)
 		count_lbl.add_theme_color_override("font_color", Color(1.0, 0.92, 0.4, 1.0))
 		count_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		count_lbl.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
@@ -289,3 +289,33 @@ func _on_slot_mouse_entered(slot_idx: int) -> void:
 func _on_slot_mouse_exited(_slot_idx: int) -> void:
 	if tooltip_card:
 		tooltip_card.visible = false
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not is_visible_in_tree(): return
+	if event is InputEventKey and event.pressed and not event.echo:
+		var code = event.keycode
+		if code == KEY_NONE or code == 0:
+			code = event.physical_keycode
+		if code == KEY_NONE or code == 0:
+			code = event.key_label
+			
+		var slot = -1
+		if code >= KEY_1 and code <= KEY_9:
+			slot = code - KEY_1
+		elif code == KEY_0:
+			slot = 9
+		elif code >= KEY_KP_1 and code <= KEY_KP_9:
+			slot = code - KEY_KP_1
+		elif code == KEY_KP_0:
+			slot = 9
+		elif event.unicode >= 49 and event.unicode <= 57:
+			slot = event.unicode - 49
+		elif event.unicode == 48:
+			slot = 9
+			
+		if slot >= 0 and slot < SLOT_COUNT:
+			var state = _get_active_state()
+			if state:
+				state.select_hotbar_slot(slot)
+				get_viewport().set_input_as_handled()
+

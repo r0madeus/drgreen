@@ -123,29 +123,63 @@ func get_quest(quest_id: String) -> Dictionary:
 func get_all_quests() -> Array:
 	return quests.duplicate(true)
 
-func get_quest_status(player_id: String, quest_id: String) -> String:
-	
+func get_quest_status(arg1: String, arg2: String = "") -> String:
+	var player_id = ""
+	var quest_id = ""
+	if arg2 == "":
+		player_id = ""
+		quest_id = arg1
+	else:
+		player_id = arg1
+		quest_id = arg2
 	var ps = _get_player_state(player_id)
 	if not ps: return STATUS_LOCKED
 	if ps.completed_quests.has(quest_id): return STATUS_COMPLETED
 	if ps.active_quests.has(quest_id): return ps.active_quests[quest_id].get("status", STATUS_ACTIVE)
 	return STATUS_LOCKED
 
-func get_quest_progress(player_id: String, quest_id: String) -> Array:
-	
+func get_quest_progress(arg1: String, arg2: String = "") -> Array:
+	var player_id = ""
+	var quest_id = ""
+	if arg2 == "":
+		player_id = ""
+		quest_id = arg1
+	else:
+		player_id = arg1
+		quest_id = arg2
 	var ps = _get_player_state(player_id)
 	if not ps or not ps.active_quests.has(quest_id): return []
 	return ps.active_quests[quest_id].get("progress", [])
 
-func get_active_quests(player_id: String) -> Array:
+func get_active_quests(player_id: String = "") -> Array:
 	var ps = _get_player_state(player_id)
 	return ps.active_quests.keys() if ps else []
 
-func get_completed_quests(player_id: String) -> Array:
+func get_completed_quests(player_id: String = "") -> Array:
 	var ps = _get_player_state(player_id)
 	return ps.completed_quests if ps else []
 
-func advance_objective(player_id: String, obj_type: String, amount: int = 1, target_filter: String = "") -> void:
+func advance_objective(arg1: Variant, arg2: Variant = "", arg3: Variant = 1, arg4: Variant = "") -> void:
+	var player_id = ""
+	var obj_type = ""
+	var amount = 1
+	var target_filter = ""
+	
+	if typeof(arg2) == TYPE_INT or typeof(arg2) == TYPE_FLOAT:
+		# Called as advance_objective(obj_type, amount, target_filter)
+		player_id = ""
+		obj_type = str(arg1)
+		amount = int(arg2)
+		target_filter = str(arg3) if typeof(arg3) == TYPE_STRING else ""
+	else:
+		# Called as advance_objective(player_id, obj_type, amount, target_filter)
+		player_id = str(arg1)
+		obj_type = str(arg2)
+		amount = int(arg3) if (typeof(arg3) == TYPE_INT or typeof(arg3) == TYPE_FLOAT) else 1
+		target_filter = str(arg4)
+		
+	if obj_type == "": return
+	
 	if player_id == "":
 		var psm = get_node_or_null("/root/PlayerRegistry")
 		if psm:
@@ -209,10 +243,19 @@ func complete_quest(player_id: String, quest_id: String) -> void:
 		_unlock_dependent_quests(player_id, quest_id)
 		claim_reward(player_id, quest_id)
 
-func claim_reward(player_id: String, quest_id: String) -> bool:
+func claim_reward(arg1: String, arg2: String = "") -> bool:
+	var player_id = ""
+	var quest_id = ""
+	if arg2 == "":
+		player_id = ""
+		quest_id = arg1
+	else:
+		player_id = arg1
+		quest_id = arg2
 	
 	var ps = _get_player_state(player_id)
 	if not ps: return false
+	var pid = ps.player_id if "player_id" in ps else player_id
 	
 	if not ps.completed_quests.has(quest_id):
 		return false
@@ -221,10 +264,11 @@ func claim_reward(player_id: String, quest_id: String) -> bool:
 	if q.is_empty(): return false
 	
 	var rewards = q.get("rewards", {})
-	RewardManager.grant_rewards(player_id, rewards)
+	RewardManager.grant_rewards(pid, rewards)
 	
 	var EventBus = get_node_or_null("/root/EventBus")
-	if EventBus: EventBus.quest_claimed.emit(player_id, quest_id)
+	if EventBus: EventBus.quest_claimed.emit(pid, quest_id)
+	quest_reward_claimed.emit(quest_id, rewards)
 	
 	return true
 

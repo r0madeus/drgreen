@@ -7,18 +7,19 @@ var slot_a_item: String = ""
 var slot_b_item: String = ""
 var active_slot_target: int = 1 # 1: choosing for Slot A, 2: choosing for Slot B
 
-@onready var slot_a_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/SlotsHBox/SlotAButton
-@onready var slot_b_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/SlotsHBox/SlotBButton
-@onready var combine_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/ActionsHBox/CombineButton
-@onready var clear_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/ActionsHBox/ClearButton
-@onready var close_btn: Button = $PanelContainer/MarginContainer/VBoxContainer/Header/CloseButton
-@onready var result_label: Label = $PanelContainer/MarginContainer/VBoxContainer/ResultBanner/ResultLabel
-@onready var result_panel: PanelContainer = $PanelContainer/MarginContainer/VBoxContainer/ResultBanner
-@onready var picker_grid: GridContainer = $PanelContainer/MarginContainer/VBoxContainer/PickerScroll/PickerGrid
-@onready var instruction_label: Label = $PanelContainer/MarginContainer/VBoxContainer/InstructionLabel
+@onready var slot_a_btn: Button = find_child("SlotAButton", true, false)
+@onready var slot_b_btn: Button = find_child("SlotBButton", true, false)
+@onready var combine_btn: Button = find_child("CombineButton", true, false)
+@onready var clear_btn: Button = find_child("ClearButton", true, false)
+@onready var close_btn: Button = find_child("CloseButton", true, false)
+@onready var result_label: Label = find_child("ResultLabel", true, false)
+@onready var result_panel: PanelContainer = find_child("ResultBanner", true, false)
+@onready var picker_grid: GridContainer = find_child("PickerGrid", true, false)
+@onready var instruction_label: Label = find_child("InstructionLabel", true, false)
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	if slot_a_btn:
 		slot_a_btn.pressed.connect(func(): _set_active_target(1))
 	if slot_b_btn:
@@ -28,7 +29,7 @@ func _ready() -> void:
 	if clear_btn:
 		clear_btn.pressed.connect(clear_slots)
 	if close_btn:
-		close_btn.pressed.connect(func(): visible = false)
+		close_btn.pressed.connect(close_ui)
 		
 	var cm = get_node_or_null("/root/CombinationManager")
 	if cm:
@@ -42,20 +43,28 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_ESCAPE and visible:
-			visible = false
+			close_ui()
 			get_viewport().set_input_as_handled()
 
+func open_ui() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
+	visible = true
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_open")
+	UIConstants.update_player_lock(get_tree())
+	refresh_ui()
+
+func close_ui() -> void:
+	visible = false
+	var am = get_node_or_null("/root/AudioManager")
+	if am: am.play_sfx("ui_close")
+	UIConstants.update_player_lock(get_tree())
+
 func toggle_visibility() -> void:
-	visible = not visible
 	if visible:
-		# Close standard inventory, journal and shop if open to avoid clutter
-		var inv = get_tree().root.find_child("InventoryUI", true, false)
-		if inv and inv.visible: inv.visible = false
-		var jrn = get_tree().root.find_child("JournalUI", true, false)
-		if jrn and jrn.visible: jrn.visible = false
-		var shop = get_tree().root.find_child("ShopUI", true, false)
-		if shop and shop.visible: shop.close_shop()
-		refresh_ui()
+		close_ui()
+	else:
+		open_ui()
 
 func _set_active_target(target: int) -> void:
 	active_slot_target = target

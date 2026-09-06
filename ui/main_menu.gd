@@ -38,6 +38,7 @@ func _init() -> void:
 	grow_vertical = GROW_DIRECTION_BOTH
 
 func _ready() -> void:
+	theme = UIConstants.get_theme()
 	_bind_buttons()
 	var lm = _get_localization_manager()
 	if lm:
@@ -81,7 +82,7 @@ func _update_localized_texts() -> void:
 	if continue_btn: continue_btn.text = "📂 " + tr("ui.menu.continue")
 	if new_game_btn: new_game_btn.text = "🌱 " + tr("ui.menu.new_game")
 	if saves_btn: saves_btn.text = "💾 " + tr("ui.menu.saves")
-	if editor_btn: editor_btn.text = "🛠️ EDITOR"
+	if editor_btn: editor_btn.text = "🛠️ " + tr("ui.menu.editor")
 	if multiplayer_btn: multiplayer_btn.text = "🌐 " + tr("ui.menu.multiplayer")
 	if settings_btn: settings_btn.text = "⚙️ " + tr("ui.menu.settings")
 	if credits_btn: credits_btn.text = "📜 " + tr("ui.menu.credits")
@@ -126,18 +127,7 @@ func _update_continue_button() -> void:
 
 func _update_editor_button_visibility() -> void:
 	if not editor_btn: return
-	var is_dev_mode = false
-	var sm = _get_settings_manager()
-	if sm:
-		is_dev_mode = bool(sm.get_setting("developer", "developer_mode", false))
-	else:
-		var lsm = _get_local_state_manager()
-		if lsm:
-			is_dev_mode = bool(lsm.get_setting("developer", "developer_mode", false))
-		else:
-			var defs = SettingsData.get_default_settings()
-			is_dev_mode = bool(defs.get("developer", {}).get("developer_mode", false))
-	editor_btn.visible = is_dev_mode
+	editor_btn.visible = true
 
 func open_menu() -> void:
 	visible = true

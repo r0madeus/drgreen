@@ -13,6 +13,7 @@ extends Control
 
 func _ready() -> void:
 	visible = false
+	theme = UIConstants.get_theme()
 	if resume_btn: resume_btn.pressed.connect(close_menu)
 	if save_btn: save_btn.pressed.connect(_on_save_pressed)
 	if load_btn: load_btn.pressed.connect(_on_load_pressed)
@@ -61,18 +62,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_tree().root.find_child("ShopUI", true, false),
 				get_tree().root.find_child("DialogueUI", true, false)
 			]
-			var any_open = false
-			for m in modals:
-				if m and m.visible:
-					if m.has_method("close_shop"): m.close_shop()
-					elif m.has_method("close_dialogue"): m.close_dialogue()
-					else: m.visible = false
-					any_open = true
-					
-			if any_open:
-				var player = get_tree().root.find_child("Player", true, false)
-				if player and player.has_method("set_movement_locked"):
-					player.set_movement_locked(false)
+			if UIConstants.is_any_modal_open(get_tree()):
+				UIConstants.close_all_modals(get_tree(), null)
+				UIConstants.update_player_lock(get_tree())
 				get_viewport().set_input_as_handled()
 				return
 				
@@ -87,21 +79,18 @@ func toggle_menu() -> void:
 		open_menu()
 
 func open_menu() -> void:
+	UIConstants.close_all_modals(get_tree(), self)
 	visible = true
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("ui_select")
-	var player = get_tree().root.find_child("Player", true, false)
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(true)
+	UIConstants.update_player_lock(get_tree())
 
 func close_menu() -> void:
 	visible = false
 	if options_panel: options_panel.visible = false
 	var am = get_node_or_null("/root/AudioManager")
 	if am: am.play_sfx("ui_select")
-	var player = get_tree().root.find_child("Player", true, false)
-	if player and player.has_method("set_movement_locked"):
-		player.set_movement_locked(false)
+	UIConstants.update_player_lock(get_tree())
 
 var settings_ui: SettingsUI = null
 

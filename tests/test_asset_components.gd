@@ -1,4 +1,7 @@
-extends GutTest
+extends RefCounted
+
+func assert_eq(a: Variant, b: Variant, msg: String = "") -> void:
+	assert(a == b, msg)
 
 func before_all():
 	if not ClassDB.class_exists("AssetDefinitionManager"):

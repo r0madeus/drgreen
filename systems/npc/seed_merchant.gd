@@ -71,8 +71,10 @@ func _ready() -> void:
 		anim_timer.timeout.connect(_on_anim_timer_timeout)
 		anim_timer.start()
 		
-	EventBus.player_interacted.connect(_on_player_interacted)
-	EventBus.world_changed.connect(_on_world_changed)
+	var eb = get_node_or_null("/root/EventBus")
+	if eb:
+		eb.player_interacted.connect(_on_player_interacted)
+		eb.world_changed.connect(_on_world_changed)
 	var wl = get_node_or_null("/root/WorldLoader")
 	_check_world_visibility(wl.current_world_id if wl else "farm")
 	var dm = get_node_or_null("/root/DialogueManager")
@@ -332,17 +334,20 @@ func interact() -> void:
 	if behavior_controller:
 		behavior_controller.on_player_interaction_started()
 
+	var pid: String = player.player_id if (player and "player_id" in player) else "player_001"
+
 	var net_npc = get_node_or_null("/root/NetworkNPC")
 	if net_npc:
 		net_npc.request_npc_interaction("farm", "rowan")
 	else:
 		var dm = get_node_or_null("/root/DialogueManager")
-		if dm: dm.start_dialogue("rowan", "Rowan the Herbalist", "rowan")
+		if dm: dm.start_dialogue(pid, "rowan", "Rowan the Herbalist", "rowan")
+	
 	var qm = get_node_or_null("/root/QuestManager")
 	if qm:
-		qm.advance_objective("talk_to_merchant", 1)
-		qm.advance_objective("talk", 1, "rowan")
-	EventBus.npc_talked.emit(player.player_id if "player_id" in player else "", "rowan")
+		qm.advance_objective(pid, "talk_to_merchant", 1, "")
+	var eb = get_node_or_null("/root/EventBus")
+	if eb: eb.npc_talked.emit(pid, "rowan")
 	_update_visuals()
 
 func _on_dialogue_ended(_did: String = "") -> void:

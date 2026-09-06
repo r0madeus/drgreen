@@ -8,6 +8,7 @@ extends Control
 signal exit_requested()
 signal test_preview_requested()
 
+static var instance: Variant = null
 var editor_service: EditorService = null
 
 # Top Bar UI
@@ -43,6 +44,7 @@ var _ui_built: bool = false
 
 func _init() -> void:
 	name = "EditorShell"
+	instance = self
 	editor_service = EditorService.get_instance()
 	set_anchors_preset(PRESET_FULL_RECT)
 
@@ -52,10 +54,18 @@ func _init() -> void:
 	_connect_service_signals()
 
 func _ready() -> void:
+	instance = self
 	if not _ui_built:
 		_build_ui()
 		_connect_service_signals()
 	_refresh_all()
+
+static func open_asset_in_editor(asset_id: String) -> void:
+	if instance:
+		instance._select_category("assets", "asset.")
+		var panel = instance._panels_cache.get("assets", null)
+		if panel and panel.has_method("select_and_focus_asset"):
+			panel.select_and_focus_asset(asset_id)
 
 func _connect_service_signals() -> void:
 	if not editor_service: return
@@ -88,6 +98,8 @@ func _build_ui() -> void:
 	if _ui_built: return
 	_ui_built = true
 
+	theme = UIConstants.get_theme()
+
 	# Main Background
 	var bg = ColorRect.new()
 	bg.set_anchors_preset(PRESET_FULL_RECT)
@@ -100,7 +112,7 @@ func _build_ui() -> void:
 
 	# --- GLOBAL HEADER ---
 	var top_bar = PanelContainer.new()
-	top_bar.custom_minimum_size = Vector2(0, 32)
+	top_bar.custom_minimum_size = Vector2(0, 36)
 	main_vbox.add_child(top_bar)
 
 	var top_hbox = HBoxContainer.new()
@@ -108,9 +120,9 @@ func _build_ui() -> void:
 	top_bar.add_child(top_hbox)
 
 	title_label = Label.new()
-	title_label.text = " Botanical Haven Editor "
+	title_label.text = "🌿 Botanical Haven Editor "
 	title_label.add_theme_font_size_override("font_size", 13)
-	title_label.modulate = Color(0.6, 1.0, 0.7)
+	title_label.modulate = Color(0.92, 0.94, 0.98)
 	top_hbox.add_child(title_label)
 
 	var top_sep1 = VSeparator.new()
@@ -128,6 +140,7 @@ func _build_ui() -> void:
 	undo_btn = Button.new()
 	undo_btn.text = "↶ Undo"
 	undo_btn.tooltip_text = "Undo last change (Ctrl+Z)"
+	undo_btn.custom_minimum_size = Vector2(0, 26)
 	undo_btn.add_theme_font_size_override("font_size", 12)
 	undo_btn.pressed.connect(_on_undo_pressed)
 	top_hbox.add_child(undo_btn)
@@ -135,6 +148,7 @@ func _build_ui() -> void:
 	redo_btn = Button.new()
 	redo_btn.text = "↷ Redo"
 	redo_btn.tooltip_text = "Redo last undone change (Ctrl+Y)"
+	redo_btn.custom_minimum_size = Vector2(0, 26)
 	redo_btn.add_theme_font_size_override("font_size", 12)
 	redo_btn.pressed.connect(_on_redo_pressed)
 	top_hbox.add_child(redo_btn)
@@ -142,6 +156,7 @@ func _build_ui() -> void:
 	save_btn = Button.new()
 	save_btn.text = "💾 Save"
 	save_btn.tooltip_text = "Save all modifications (Ctrl+S)"
+	save_btn.custom_minimum_size = Vector2(0, 26)
 	save_btn.add_theme_font_size_override("font_size", 12)
 	save_btn.pressed.connect(_on_save_pressed)
 	top_hbox.add_child(save_btn)
@@ -149,7 +164,7 @@ func _build_ui() -> void:
 	test_btn = Button.new()
 	test_btn.text = "▶ Play"
 	test_btn.tooltip_text = "Test current slice in live gameplay"
-	test_btn.modulate = Color(0.4, 1.0, 0.5)
+	test_btn.custom_minimum_size = Vector2(0, 26)
 	test_btn.add_theme_font_size_override("font_size", 12)
 	test_btn.pressed.connect(_on_test_preview_pressed)
 	top_hbox.add_child(test_btn)
@@ -160,7 +175,7 @@ func _build_ui() -> void:
 	exit_btn = Button.new()
 	exit_btn.text = "✕ Exit"
 	exit_btn.tooltip_text = "Return to Main Menu (Esc)"
-	exit_btn.modulate = Color(1.0, 0.7, 0.7)
+	exit_btn.custom_minimum_size = Vector2(0, 26)
 	exit_btn.add_theme_font_size_override("font_size", 12)
 	exit_btn.pressed.connect(_on_exit_pressed)
 	top_hbox.add_child(exit_btn)
@@ -168,16 +183,18 @@ func _build_ui() -> void:
 	# --- MAIN WORKSPACE ---
 	workspace_container = PanelContainer.new()
 	workspace_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	workspace_container.clip_contents = true
 	main_vbox.add_child(workspace_container)
 
 	active_panel_container = PanelContainer.new()
 	active_panel_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	active_panel_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	active_panel_container.clip_contents = true
 	workspace_container.add_child(active_panel_container)
 
 	# --- BOTTOM STATUS BAR ---
 	var bottom_bar = PanelContainer.new()
-	bottom_bar.custom_minimum_size = Vector2(0, 22)
+	bottom_bar.custom_minimum_size = Vector2(0, 26)
 	main_vbox.add_child(bottom_bar)
 
 	var bottom_hbox = HBoxContainer.new()
@@ -185,7 +202,7 @@ func _build_ui() -> void:
 
 	status_label = Label.new()
 	status_label.text = "Status: Ready"
-	status_label.add_theme_font_size_override("font_size", 11)
+	status_label.add_theme_font_size_override("font_size", 12)
 	bottom_hbox.add_child(status_label)
 
 	var bspacer = Control.new()
@@ -193,11 +210,11 @@ func _build_ui() -> void:
 	bottom_hbox.add_child(bspacer)
 
 	changes_label = Label.new()
-	changes_label.add_theme_font_size_override("font_size", 11)
+	changes_label.add_theme_font_size_override("font_size", 12)
 	bottom_hbox.add_child(changes_label)
 
 	dirty_label = Label.new()
-	dirty_label.add_theme_font_size_override("font_size", 11)
+	dirty_label.add_theme_font_size_override("font_size", 12)
 	bottom_hbox.add_child(dirty_label)
 
 	validation_label = Label.new()
@@ -242,8 +259,15 @@ func _select_category(cat_id: String, prefix: String) -> void:
 		editor_service.select_module(cat_id)
 
 	for k in _nav_buttons.keys():
-		if _nav_buttons[k]:
-			_nav_buttons[k].modulate = Color(0.5, 1.0, 0.7) if k == cat_id else Color.WHITE
+		var b: Button = _nav_buttons[k]
+		if b:
+			b.modulate = Color.WHITE
+			if k == cat_id:
+				b.add_theme_stylebox_override("normal", UIConstants.create_active_button_stylebox())
+				b.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0))
+			else:
+				b.remove_theme_stylebox_override("normal")
+				b.remove_theme_color_override("font_color")
 
 	var panel_id = cat_id
 	if cat_id in ["items", "crops", "tools", "crop", "tool", "item", "shops", "schedules", "assets"]:

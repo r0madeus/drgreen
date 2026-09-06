@@ -86,4 +86,3 @@ func get_sell_price_multiplier(player_id: String, plant_id: String) -> float:
 		if plant_id not in ["red_flower", "blue_flower", "yellow_herb", "green_vine", "white_lily"]:
 			return 1.10
 	return 1.0
-

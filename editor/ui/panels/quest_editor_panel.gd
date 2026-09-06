@@ -110,9 +110,9 @@ func _build_ui() -> void:
 	top_bar.add_child(top_hbox)
 
 	var top_title = Label.new()
-	top_title.text = " In-Game Quest & Event Editor"
+	top_title.text = "📜 In-Game Quest & Event Editor"
 	top_title.add_theme_font_size_override("font_size", 13)
-	top_title.modulate = Color(0.9, 0.85, 0.4)
+	top_title.modulate = Color(0.92, 0.94, 0.98)
 	top_hbox.add_child(top_title)
 
 	top_hbox.add_spacer(false)
@@ -142,7 +142,6 @@ func _build_ui() -> void:
 
 	var test_btn = Button.new()
 	test_btn.text = " Play Quest"
-	test_btn.modulate = Color(0.5, 1.0, 0.6)
 	test_btn.pressed.connect(_on_play_quest_in_game)
 	top_hbox.add_child(test_btn)
 
