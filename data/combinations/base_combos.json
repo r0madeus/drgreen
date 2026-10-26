@@ -182,55 +182,12 @@
 			"success_rate": 1.0
 		},
 		{
-			"hidden": false,
-			"id": "combo_test_1",
-			"input_a": "red_flower",
-			"input_b": "blue_flower",
-			"name": "Test Combo",
-			"output": "purple_flower",
-			"success_rate": 1.0
-		},
-		{
 			"duration": 1.0,
 			"hidden": false,
 			"id": "combo_luminous",
 			"input_a": "mushroom",
 			"input_b": "starpetal",
 			"output": "luminous_spore"
-		},
-		{
-			"duration": 1.0,
-			"hidden": false,
-			"id": "combo_luminous",
-			"input_a": "mushroom",
-			"input_b": "starpetal",
-			"output": "luminous_spore"
-		},
-		{
-			"hidden": false,
-			"id": "combo_test_1",
-			"input_a": "red_flower",
-			"input_b": "blue_flower",
-			"name": "Test Combo",
-			"output": "purple_flower",
-			"success_rate": 1.0
-		},
-		{
-			"duration": 1.0,
-			"hidden": false,
-			"id": "combo_luminous",
-			"input_a": "mushroom",
-			"input_b": "starpetal",
-			"output": "luminous_spore"
-		},
-		{
-			"hidden": false,
-			"id": "combo_test_1",
-			"input_a": "red_flower",
-			"input_b": "blue_flower",
-			"name": "Test Combo",
-			"output": "purple_flower",
-			"success_rate": 1.0
 		}
 	]
 }

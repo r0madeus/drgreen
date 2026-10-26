@@ -7052,7 +7052,32 @@
 	  "y": 23
 	}
   ],
-  "transitions": [],
+  "transitions": [
+	{
+	  "instance_id": "farm_to_town",
+	  "name": "Path to Botanist Village",
+	  "position": [
+		16,
+		0
+	  ],
+	  "required_progression": "",
+	  "target_spawn": "town_from_farm",
+	  "target_world": "town",
+	  "transition_id": "farm_to_town"
+	},
+	{
+	  "instance_id": "farm_to_grove",
+	  "name": "Secret Path to Botanical Grove",
+	  "position": [
+		31,
+		12
+	  ],
+	  "required_progression": "botanical_grove",
+	  "target_spawn": "grove_from_farm",
+	  "target_world": "botanical_grove",
+	  "transition_id": "farm_to_grove"
+	}
+  ],
   "version": 3,
   "width": 32,
   "world_id": "farm"

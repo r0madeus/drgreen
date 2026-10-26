@@ -410,6 +410,13 @@ func reset_section(category_prefix: String) -> void:
 		_staged_overrides.erase(k)
 	dirty_state_changed.emit(is_dirty())
 
+func discard_all_overrides() -> void:
+	_staged_overrides.clear()
+	_change_log.clear()
+	if undo_manager:
+		undo_manager.clear()
+	dirty_state_changed.emit(is_dirty())
+
 func reset_all_modifications() -> void:
 	_staged_overrides.clear()
 	_saved_overrides.clear()
@@ -725,7 +732,15 @@ func apply_to_gameplay_managers() -> void:
 		for sid in get_all_stable_ids("world."):
 			var w_id = sid.replace("world.", "")
 			var obj = get_resolved_object(sid)
-			world_mgr.world_definitions[w_id] = obj
+			if world_mgr.world_definitions.has(w_id) and world_mgr.world_definitions[w_id] is WorldDefinition:
+				var existing_def: WorldDefinition = world_mgr.world_definitions[w_id]
+				if obj.has("display_name"): existing_def.display_name = str(obj["display_name"])
+				if obj.has("width"): existing_def.width = int(obj["width"])
+				if obj.has("height"): existing_def.height = int(obj["height"])
+				if obj.has("spawn_points"): existing_def.spawn_points = obj["spawn_points"]
+				if obj.has("connections") and not obj["connections"].is_empty(): existing_def.connections = obj["connections"]
+			else:
+				world_mgr.world_definitions[w_id] = WorldDefinition.from_dict(w_id, obj)
 			
 	# 6. Sync Visual Textures
 	AssetRegistry.sync_with_data_service(self)

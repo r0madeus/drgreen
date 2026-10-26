@@ -130,7 +130,6 @@ func evaluate_dialogue_node_key(dialogue_id: String, p_state: PlayerState = null
 		if not (node is Dictionary): continue
 		var priority = int(node.get("priority", 0 if key == "default" else 1))
 		var conditions: Array = node.get("conditions", [])
-		
 		if _check_node_conditions(conditions, nid, p_state):
 			if priority > best_priority:
 				best_priority = priority

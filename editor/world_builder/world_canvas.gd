@@ -49,6 +49,7 @@ var active_layer_name: String = "TERRAIN"
 
 # Continuous brush batch tracking
 var is_brush_painting: bool = false
+var is_right_erasing: bool = false
 var current_stroke_previous_tiles: Dictionary = {}
 
 func _ready() -> void:
@@ -185,7 +186,23 @@ func _handle_canvas_mouse_event(event: InputEvent) -> void:
 				_emit_status()
 				queue_redraw()
 			accept_event()
-		elif event.button_index == MOUSE_BUTTON_RIGHT or event.button_index == MOUSE_BUTTON_MIDDLE or (event.button_index == MOUSE_BUTTON_LEFT and is_space_down):
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			var coord = _pixel_to_coord(event.position)
+			if event.pressed and _is_valid_coord(coord):
+				is_right_erasing = true
+				current_stroke_previous_tiles.clear()
+				_erase_at(coord)
+				queue_redraw()
+			elif not event.pressed and is_right_erasing:
+				is_right_erasing = false
+				_record_brush_stroke_undo()
+				queue_redraw()
+			else:
+				is_panning = event.pressed
+				if is_panning:
+					pan_start_pos = event.position - pan_offset
+			accept_event()
+		elif event.button_index == MOUSE_BUTTON_MIDDLE or (event.button_index == MOUSE_BUTTON_LEFT and is_space_down):
 			is_panning = event.pressed
 			if is_panning:
 				pan_start_pos = event.position - pan_offset
@@ -258,7 +275,9 @@ func _handle_canvas_mouse_event(event: InputEvent) -> void:
 			if hovered_tile != prev_hover:
 				hover_coord_changed.emit(hovered_tile)
 				_emit_status()
-				if is_brush_painting and _is_valid_coord(hovered_tile):
+				if is_right_erasing and _is_valid_coord(hovered_tile):
+					_erase_at(hovered_tile)
+				elif is_brush_painting and _is_valid_coord(hovered_tile):
 					if current_tool == ToolMode.BRUSH: _paint_tile(hovered_tile)
 					elif current_tool == ToolMode.ERASER: _erase_at(hovered_tile)
 				if is_box_selecting: box_select_end = hovered_tile

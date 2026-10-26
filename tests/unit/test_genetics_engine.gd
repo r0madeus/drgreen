@@ -33,6 +33,11 @@ func _test_E01_deterministic_breeding() -> void:
 
 func _test_E02_statistical_distribution() -> void:
 	begin_test("E02_StatisticalDistribution")
+	var root = Engine.get_main_loop().root if Engine.get_main_loop() else null
+	var tr = root.get_node_or_null("TraitRegistry") if root else null
+	if tr and root:
+		root.remove_child(tr)
+	seed(42)
 	var p1 = GeneticProfile.new()
 	p1.size = "small"
 	var p2 = GeneticProfile.new()
@@ -52,6 +57,9 @@ func _test_E02_statistical_distribution() -> void:
 	var ratio_a = float(count_a) / 10000.0
 	var ratio_b = float(count_b) / 10000.0
 	var ratio_m = float(count_mut) / 10000.0
+	
+	if tr and root:
+		root.add_child(tr)
 	
 	# Verify within 5% tolerance
 	assert_true(abs(ratio_a - 0.70) < 0.05, "Parent A ratio approx 70%")

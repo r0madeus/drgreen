@@ -441,10 +441,12 @@ func save_game(target = null) -> bool:
 		save.players = psm.get_all_player_states_dict()
 		var _p1 = psm.players.get("player_001")
 		if _p1:
+			var p_node = get_tree().root.find_child("Player", true, false) if get_tree() else null
+			var p_pos = p_node.position if p_node else _p1.position
 			save.player = {
-				"position": [_p1.grid_position.x, _p1.grid_position.y],
+				"position": [p_pos.x, p_pos.y],
 				"facing": [_p1.facing_direction.x, _p1.facing_direction.y],
-				"position_space": "grid"
+				"position_space": "world"
 			}
 			save.inventory = {
 				"items": _p1.inventory.duplicate(true),
@@ -613,18 +615,23 @@ func load_game(target = null) -> bool:
 	# 5. Player Facing & Position
 	var player = get_tree().root.find_child("Player", true, false)
 	var gm_ref = get_tree().root.find_child("GridManager", true, false)
-	if player and gm_ref:
-		var pos_arr = save.player.get("position", [16, 12])
-		var facing_arr = save.player.get("facing", [0, 1])
-		var is_world_position = str(save.player.get("position_space", "grid")) == "world"
-		var world_pos = Vector2(float(pos_arr[0]), float(pos_arr[1])) if is_world_position else gm_ref.grid_to_world(Vector2i(int(pos_arr[0]), int(pos_arr[1])), true)
-		var facing_dir = Vector2i(facing_arr[0], facing_arr[1])
-		player.grid_position = gm_ref.world_to_grid(world_pos)
+	var pos_arr = save.player.get("position", [16, 12])
+	var facing_arr = save.player.get("facing", [0, 1])
+	var is_world_position = str(save.player.get("position_space", "grid")) == "world"
+	var world_pos = Vector2(float(pos_arr[0]), float(pos_arr[1])) if is_world_position else (gm_ref.grid_to_world(Vector2i(int(pos_arr[0]), int(pos_arr[1])), true) if gm_ref else Vector2(float(pos_arr[0]) * 16.0 + 8.0, float(pos_arr[1]) * 16.0 + 8.0))
+	var facing_dir = Vector2i(facing_arr[0], facing_arr[1])
+	if player:
+		if gm_ref: player.grid_position = gm_ref.world_to_grid(world_pos)
 		player.facing_direction = facing_dir
 		player.position = world_pos
 		player.velocity = Vector2.ZERO
 		if player.animation_handler:
 			player.animation_handler.set_direction(facing_dir)
+	if psm:
+		var p_local = psm.get_local_player_state()
+		if p_local:
+			p_local.position = world_pos
+			p_local.facing_direction = facing_dir
 			
 	# 6. Economy
 	pass # Economy is now loaded per-player via PlayerState

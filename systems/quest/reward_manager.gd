@@ -48,19 +48,29 @@ static func grant_rewards(arg1: Variant, arg2: Variant = {}) -> Dictionary:
 		granted_summary["gold"] = gold_amt
 			
 	# 2. Items / Seeds
-	var items_arr = rewards.get("items", [])
-	if typeof(items_arr) == TYPE_ARRAY:
-		for itm in items_arr:
-			var item_id = str(itm.get("item_id", ""))
-			var count = int(itm.get("amount", itm.get("count", 1)))
-			if item_id != "" and count > 0:
-				if p_state:
-					p_state.add_item(item_id, count)
-				else:
-					var im = root.get_node_or_null("InventoryManager") if root else null
-					if im: im.add_item(item_id, count)
-				granted_summary["items"].append({ "item_id": item_id, "amount": count })
-				
+	# Accepts "items": [{item_id, amount}] as well as {item_id: count} maps under "items"/"item"
+	var items_arr: Array = []
+	for key in ["items", "item"]:
+		var raw = rewards.get(key, null)
+		if raw is Array:
+			items_arr.append_array(raw)
+		elif raw is Dictionary:
+			for k in raw.keys():
+				items_arr.append({ "item_id": str(k), "amount": int(raw[k]) })
+		elif raw is String and raw != "":
+			items_arr.append({ "item_id": raw, "amount": 1 })
+	for itm in items_arr:
+		if not (itm is Dictionary): continue
+		var item_id = str(itm.get("item_id", ""))
+		var count = int(itm.get("amount", itm.get("count", 1)))
+		if item_id != "" and count > 0:
+			if p_state:
+				p_state.add_item(item_id, count)
+			else:
+				var im = root.get_node_or_null("InventoryManager") if root else null
+				if im: im.add_item(item_id, count)
+			granted_summary["items"].append({ "item_id": item_id, "amount": count })
+
 	# 3. Friendship
 	var friend_data = rewards.get("friendship", {})
 	if typeof(friend_data) == TYPE_DICTIONARY and not friend_data.is_empty():
@@ -70,8 +80,19 @@ static func grant_rewards(arg1: Variant, arg2: Variant = {}) -> Dictionary:
 			if p_state: p_state.add_friendship(npc_id, pts)
 			granted_summary["friendship"] = { "npc_id": npc_id, "points": pts }
 			
-	# 4. Recipe / Formula Unlock
+	# 4. Recipe / Formula Unlock / General Unlock
 	var recipes = rewards.get("recipes", rewards.get("recipe", []))
+	var unlock_val = str(rewards.get("unlock", ""))
+	if unlock_val != "":
+		if unlock_val.begins_with("quest_"):
+			var qm = root.get_node_or_null("QuestManager") if root else null
+			if qm and qm.has_method("unlock_quest"):
+				qm.unlock_quest(unlock_val, player_id)
+			elif p_state and not p_state.active_quests.has(unlock_val) and not p_state.completed_quests.has(unlock_val):
+				p_state.active_quests[unlock_val] = { "status": "active", "progress": [0] }
+		elif unlock_val.begins_with("recipe_"):
+			if typeof(recipes) != TYPE_ARRAY: recipes = [recipes] if recipes is String else []
+			recipes.append(unlock_val)
 	if typeof(recipes) == TYPE_STRING: recipes = [recipes]
 	if typeof(recipes) == TYPE_ARRAY:
 		for r in recipes:
