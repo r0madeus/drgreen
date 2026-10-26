@@ -52,6 +52,13 @@ func run_all() -> void:
 	_test_33_export()
 	_test_34_import()
 	_test_35_npc_editor_navigation()
+	
+	var es = EditorService.get_instance()
+	if es and es.data_service:
+		es.data_service.discard_all_overrides()
+	var dm = Engine.get_main_loop().root.get_node_or_null("/root/DialogueManager") if Engine.get_main_loop() else null
+	if dm and dm.has_method("load_all_dialogues"):
+		dm.load_all_dialogues()
 
 # --- 1. Panel Lifecycle & Lists ---
 

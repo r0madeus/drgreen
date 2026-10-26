@@ -475,15 +475,23 @@ func give_gift(player_id: String, npc_id: String, item_id: String, _override_pst
 	p_state.daily_gifted_npcs[npc_id] = true
 	
 	var old_hearts = p_state.get_heart_level(npc_id)
+	var claimed_before: Array = p_state.claimed_heart_milestones.get(npc_id, []).duplicate()
 	var new_pts = p_state.add_friendship(npc_id, pts, "gift")
 	var new_hearts = p_state.get_heart_level(npc_id)
 	
-	var EventBus = get_node_or_null("/root/EventBus")
-	if EventBus: EventBus.friendship_changed.emit(player_id, npc_id, new_pts)
+	var loop = Engine.get_main_loop()
+	var EventBus = loop.root.get_node_or_null("EventBus") if (loop and "root" in loop and loop.root) else null
+	if EventBus and EventBus.has_signal("friendship_changed"): EventBus.friendship_changed.emit(player_id, npc_id, new_pts)
 	
 	var unlocked_milestones = []
 	if new_hearts > old_hearts:
-		unlocked_milestones = check_and_grant_heart_milestones(player_id, npc_id, _override_pstate)
+		# add_friendship already grants milestones; report the ones claimed during this gift
+		check_and_grant_heart_milestones(player_id, npc_id, p_state)
+		var claimed_after: Array = p_state.claimed_heart_milestones.get(npc_id, [])
+		for ms in milestones_catalog.get(npc_id, []):
+			var req_h = int(ms.get("heart_level", 1))
+			if req_h in claimed_after and req_h not in claimed_before:
+				unlocked_milestones.append({ "npc_id": npc_id, "heart_level": req_h, "rewards": ms.get("rewards", {}) })
 		
 	return {
 		"success": true,
@@ -499,7 +507,7 @@ func check_and_grant_heart_milestones(player_id: String, npc_id: String, _overri
 	if not p_state: return []
 	
 	var cur_heart = p_state.get_heart_level(npc_id)
-	var claimed: Array = p_state.claimed_heart_milestones.get(npc_id, [])
+	var claimed: Array = p_state.claimed_heart_milestones.get(npc_id, []).duplicate()
 	var newly_claimed: Array[Dictionary] = []
 	
 	var npc_ms: Array = milestones_catalog.get(npc_id, [])
@@ -508,13 +516,16 @@ func check_and_grant_heart_milestones(player_id: String, npc_id: String, _overri
 		var req_h = int(ms.get("heart_level", 1))
 		if cur_heart >= req_h and req_h not in claimed:
 			claimed.append(req_h)
+			# Commit before granting: rewards may re-enter via add_friendship
+			p_state.claimed_heart_milestones[npc_id] = claimed.duplicate()
 			var rew = ms.get("rewards", {})
 			RewardManager.grant_rewards(rew, p_state)
 			newly_claimed.append({ "npc_id": npc_id, "heart_level": req_h, "rewards": rew })
 			
-			var EventBus = get_node_or_null("/root/EventBus")
-			if EventBus and EventBus.has_signal("heart_milestone_unlocked"):
-				EventBus.heart_milestone_unlocked.emit(player_id, npc_id, req_h, rew)
+			var loop2 = Engine.get_main_loop()
+			var eb = loop2.root.get_node_or_null("EventBus") if (loop2 and "root" in loop2 and loop2.root) else null
+			if eb and eb.has_signal("heart_milestone_unlocked"):
+				eb.heart_milestone_unlocked.emit(player_id, npc_id, req_h, rew)
 			
 	p_state.claimed_heart_milestones[npc_id] = claimed
 	return newly_claimed

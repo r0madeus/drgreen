@@ -37,9 +37,10 @@ func init_player_quests(player_id: String) -> void:
 	var ps = psm.get_player_state(player_id) if psm and psm.has_method("get_player_state") else null
 	if not ps: return
 	for q in quests:
+		if not (q is Dictionary): continue
 		var qid = q.get("id", "")
 		var unl = q.get("unlock", {})
-		if unl.get("type", "") == "auto":
+		if unl is Dictionary and unl.get("type", "") == "auto":
 			if not ps.completed_quests.has(qid) and not ps.active_quests.has(qid):
 				var prog_arr: Array = []
 				for obj in q.get("objectives", []): prog_arr.append(0)
@@ -282,7 +283,9 @@ func _unlock_dependent_quests(player_id: String, completed_quest_id: String) -> 
 			continue
 		
 		var unl = q.get("unlock", {})
+		if not (unl is Dictionary): unl = {}
 		var reqs = q.get("requirements", {})
+		if not (reqs is Dictionary): reqs = {}
 		var can_unlock = false
 		
 		if unl.get("type", "") == "quest_completed" and unl.get("quest_id", "") == completed_quest_id:
@@ -306,3 +309,21 @@ func _unlock_dependent_quests(player_id: String, completed_quest_id: String) -> 
 				"progress": progress
 			}
 			quest_status_changed.emit(q_id, STATUS_ACTIVE)
+
+func unlock_quest(quest_id: String, player_id: String = "") -> bool:
+	var ps = _get_player_state(player_id)
+	if not ps: return false
+	if ps.completed_quests.has(quest_id) or ps.active_quests.has(quest_id):
+		return false
+	var q = get_quest(quest_id)
+	var obj_count = q.get("objectives", []).size() if not q.is_empty() else 1
+	var progress = []
+	progress.resize(obj_count)
+	progress.fill(0)
+	ps.active_quests[quest_id] = {
+		"status": STATUS_ACTIVE,
+		"progress": progress
+	}
+	quest_status_changed.emit(quest_id, STATUS_ACTIVE)
+	return true
+

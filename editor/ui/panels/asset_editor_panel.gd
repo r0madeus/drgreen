@@ -13,19 +13,33 @@ extends EditorPanel
 # Default Category Definitions (dynamically extended by asset_manifest.json)
 # ---------------------------------------------------------------------------
 const DEFAULT_CATEGORIES := [
-	"terrain", "nature", "buildings", "plants", "items", "tools", "npc", "player", "ui", "audio"
+	"player", "npc", "npc_portrait", "npc_animation",
+	"crops", "items", "seeds", "tools",
+	"tiles", "props", "buildings",
+	"vfx", "ui", "sfx", "music", "ambience",
+	"terrain", "nature", "plants", "audio"
 ]
 
 const CATEGORY_PREFIXES := {
+	"player": ["player."],
+	"npc": ["npc."],
+	"npc_portrait": ["portrait.", "npc."],
+	"npc_animation": ["anim.", "npc."],
+	"crops": ["crop.", "plant."],
+	"items": ["item."],
+	"seeds": ["seed."],
+	"tools": ["tool."],
+	"tiles": ["tile.", "terrain"],
+	"props": ["prop.", "environment."],
+	"buildings": ["building."],
+	"vfx": ["vfx."],
+	"ui": ["ui.", "ui.icon."],
+	"sfx": ["sfx.", "audio.sfx."],
+	"music": ["music.", "audio.music."],
+	"ambience": ["ambience.", "audio.ambience."],
 	"terrain": ["tile.", "terrain"],
 	"nature": ["prop.", "environment."],
-	"buildings": ["building."],
 	"plants": ["plant.", "crop."],
-	"items": ["item."],
-	"tools": ["tool."],
-	"npc": ["npc."],
-	"player": ["player."],
-	"ui": ["ui.", "ui.icon."],
 	"audio": ["audio.", "audio.sfx.", "audio.music."]
 }
 
@@ -1216,13 +1230,21 @@ func _scan_missing_assets() -> void:
 	if _missing_list: _missing_list.clear()
 
 	AssetRegistry.ensure_initialized()
-	var all_ids: Array = AssetRegistry.get_all_asset_ids()
+	var all_ids: Array = AssetRegistry.get_all_asset_ids().duplicate()
+	if editor_service and editor_service.data_service:
+		for s_id in editor_service.data_service._staged_overrides.keys():
+			if not all_ids.has(s_id):
+				all_ids.append(s_id)
 
 	for aid in all_ids:
 		var aid_str := str(aid)
 		if aid_str.begins_with("audio.") or aid_str.begins_with("effect."):
 			continue
-		var meta := AssetRegistry.get_metadata(aid_str)
+		var meta: Dictionary = AssetRegistry.get_metadata(aid_str).duplicate(true)
+		if editor_service and editor_service.data_service:
+			var staged: Dictionary = editor_service.data_service._staged_overrides.get(aid_str, {})
+			for prop_k in staged.keys():
+				meta[prop_k] = staged[prop_k]
 		var tex_path := str(meta.get("texture", meta.get("path", "")))
 
 		if tex_path != "" and not ResourceLoader.exists(tex_path) and not FileAccess.file_exists(tex_path):
@@ -1287,15 +1309,15 @@ func _on_preview_gui_input(event: InputEvent) -> void:
 			accept_event()
 
 func _on_zoom_in() -> void:
-	_zoom_level = minf(_zoom_level + 1.0, 16.0)
+	_zoom_level = minf(_zoom_level + 0.5, 16.0)
 	_update_zoom_display()
 
 func _on_zoom_out() -> void:
-	_zoom_level = maxf(_zoom_level - 1.0, 1.0)
+	_zoom_level = maxf(_zoom_level - 0.5, 0.5)
 	_update_zoom_display()
 
 func _on_zoom_fit() -> void:
-	_zoom_level = 4.0
+	_zoom_level = 2.0
 	_update_zoom_display()
 
 func _update_zoom_display() -> void:

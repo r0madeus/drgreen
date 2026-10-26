@@ -122,7 +122,14 @@ func _run() -> void:
 	print("[Author4A] Creating Combination...")
 	var ComboDS = load("res://systems/combination/combination_data_service.gd")
 	ComboDS.ensure_loaded()
-	ComboDS.update_combo(-1, {
+	# Reuse the existing slot so re-running the script does not duplicate the combo
+	var luminous_idx := -1
+	var all_combos: Array = ComboDS.get_all_combos()
+	for i in all_combos.size():
+		if str(all_combos[i].get("id", "")) == "combo_luminous":
+			luminous_idx = i
+			break
+	ComboDS.update_combo(luminous_idx, {
 		"id": "combo_luminous",
 		"input_a": "mushroom",
 		"input_b": "starpetal",

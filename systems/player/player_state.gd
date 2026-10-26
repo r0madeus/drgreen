@@ -103,6 +103,9 @@ func get_heart_progress(npc_id: String) -> Dictionary:
 func can_gain_talk_friendship(npc_id: String) -> bool:
 	return not bool(daily_talked_npcs.get(npc_id, false))
 
+static var _milestones_cache: Dictionary = {}
+static var _milestones_loaded: bool = false
+
 func add_friendship(npc_id: String, points: int = 10, reason: String = "generic") -> int:
 	if npc_id.is_empty(): return 0
 	
@@ -120,7 +123,43 @@ func add_friendship(npc_id: String, points: int = 10, reason: String = "generic"
 	var new_hearts = get_heart_level(npc_id)
 	friendship_updated.emit(npc_id, new_pts, new_hearts)
 	
+	_check_and_grant_heart_milestones(npc_id)
+	
 	return new_pts
+
+func _check_and_grant_heart_milestones(npc_id: String) -> void:
+	var loop = Engine.get_main_loop()
+	var root = loop.root if (loop and "root" in loop) else null
+	var nm = root.get_node_or_null("NPCManager") if root else null
+	if nm and nm.has_method("check_and_grant_heart_milestones") and not nm.milestones_catalog.is_empty():
+		nm.check_and_grant_heart_milestones(player_id, npc_id, self)
+		return
+
+	if not _milestones_loaded:
+		if FileAccess.file_exists("res://data/npcs/milestones.json"):
+			var f = FileAccess.open("res://data/npcs/milestones.json", FileAccess.READ)
+			if f:
+				var j = JSON.new()
+				if j.parse(f.get_as_text()) == OK and typeof(j.data) == TYPE_DICTIONARY:
+					_milestones_cache = j.data.get("milestones", {})
+				f.close()
+		_milestones_loaded = true
+
+	var cur_heart = get_heart_level(npc_id)
+	var claimed: Array = claimed_heart_milestones.get(npc_id, []).duplicate()
+	var npc_ms: Array = _milestones_cache.get(npc_id, [])
+	for ms in npc_ms:
+		var req_h = int(ms.get("heart_level", 1))
+		if cur_heart >= req_h and req_h not in claimed:
+			claimed.append(req_h)
+			# Commit before granting: rewards may re-enter via add_friendship
+			claimed_heart_milestones[npc_id] = claimed.duplicate()
+			var rew = ms.get("rewards", {})
+			RewardManager.grant_rewards(rew, self)
+			var eb = root.get_node_or_null("EventBus") if root else null
+			if eb and eb.has_signal("heart_milestone_unlocked"):
+				eb.heart_milestone_unlocked.emit(player_id, npc_id, req_h, rew)
+	claimed_heart_milestones[npc_id] = claimed
 
 func reset_daily_social_limits() -> void:
 	daily_talked_npcs.clear()
@@ -224,13 +263,18 @@ func _auto_select_next_item() -> void:
 # --- Hotbar API ---
 
 func set_hotbar_slot(slot_index: int, item_id: String) -> void:
+	if slot_index >= hotbar_slots.size():
+		var old_size = hotbar_slots.size()
+		hotbar_slots.resize(maxi(10, slot_index + 1))
+		for i in range(old_size, hotbar_slots.size()):
+			hotbar_slots[i] = ""
 	if slot_index >= 0 and slot_index < hotbar_slots.size():
 		hotbar_slots[slot_index] = item_id
 		hotbar_changed.emit()
 
 func get_hotbar_slot(slot_index: int) -> String:
-	if slot_index >= 0 and slot_index < hotbar_slots.size():
-		return hotbar_slots[slot_index]
+	if slot_index >= 0 and slot_index < hotbar_slots.size() and hotbar_slots[slot_index] != null:
+		return str(hotbar_slots[slot_index])
 	return ""
 
 func select_hotbar_slot(slot_index: int) -> void:
@@ -347,7 +391,11 @@ static func from_dict(data: Dictionary) -> PlayerState:
 			
 	state.inventory = data.get("inventory", {}).duplicate(true)
 	state.genetic_instances = data.get("genetic_instances", {}).duplicate(true)
-	state.hotbar_slots = data.get("hotbar_slots", []).duplicate(true)
+	var raw_hotbar = data.get("hotbar_slots", null)
+	if raw_hotbar is Array and not raw_hotbar.is_empty():
+		state.hotbar_slots = raw_hotbar.duplicate(true)
+	else:
+		state.hotbar_slots = ["hoe_basic", "watering_can_basic", "axe_basic", "pickaxe_basic", "seed_red_flower", "seed_blue_flower", "seed_yellow_herb", "", "", ""]
 	state.selected_hotbar_slot = int(data.get("selected_hotbar_slot", 0))
 	state.selected_item_id = str(data.get("selected_item_id", ""))
 	state.equipment = data.get("equipment", {}).duplicate(true)

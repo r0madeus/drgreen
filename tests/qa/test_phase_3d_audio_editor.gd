@@ -6,8 +6,11 @@ const AudioDataServiceScript = preload("res://systems/audio/audio_data_service.g
 var panel: EditorPanel
 var _custom_pass_count: int = 0
 var _custom_fail_count: int = 0
+var _original_audio_map = null # Snapshot of the real data file, restored after each test
 
 func _before_each() -> void:
+	if _original_audio_map == null:
+		_original_audio_map = FileAccess.get_file_as_string(AudioDataServiceScript.CONFIG_PATH) if FileAccess.file_exists(AudioDataServiceScript.CONFIG_PATH) else ""
 	AudioDataServiceScript._audio_map.clear()
 	panel = AudioEditorPanelScript.new()
 	panel.setup_ui()
@@ -16,6 +19,16 @@ func _after_each() -> void:
 	EditorService.get_instance().undo_manager.clear()
 	if panel: panel.queue_free()
 	AudioDataServiceScript._audio_map.clear()
+	_restore_audio_map()
+
+func _restore_audio_map() -> void:
+	if _original_audio_map == null: return
+	if _original_audio_map == "":
+		if FileAccess.file_exists(AudioDataServiceScript.CONFIG_PATH):
+			DirAccess.remove_absolute(AudioDataServiceScript.CONFIG_PATH)
+		return
+	var f = FileAccess.open(AudioDataServiceScript.CONFIG_PATH, FileAccess.WRITE)
+	if f: f.store_string(_original_audio_map)
 
 func assert_not_null_custom(val: Variant, msg: String = "") -> void:
 	var res = (val != null)
@@ -222,7 +235,7 @@ func _test_t19_undo():
 func _test_t20_redo():
 	_before_each()
 	panel._on_new_pressed()
-	
+	panel.id_edit.text = "redo_test"
 	panel.path_edit.text = "res://assets/audio/sfx/ui_select.wav"
 	panel._on_apply_pressed()
 	EditorService.get_instance().undo_manager.undo()

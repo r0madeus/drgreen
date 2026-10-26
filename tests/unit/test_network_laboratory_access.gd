@@ -58,6 +58,11 @@ func get_local_peer_id() -> int: return 1
 	player_b.home_owner_id = "player_B"
 	
 	# Mock NetworkGameplay for player state lookup
+	var old_ng = tree.root.get_node_or_null("NetworkGameplay")
+	if old_ng:
+		tree.root.remove_child(old_ng)
+		old_ng.queue_free()
+
 	mock_ng = Node.new()
 	mock_ng.name = "NetworkGameplay"
 	

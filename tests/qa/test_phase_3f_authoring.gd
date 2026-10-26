@@ -16,6 +16,7 @@ func _test_combination_editor() -> void:
 	var ds = load("res://systems/combination/combination_data_service.gd")
 	ds.ensure_loaded()
 	var initial_count = ds.get_all_combos().size()
+	var original_file = FileAccess.get_file_as_string(ds.COMBOS_PATH)
 	
 	var c = {
 		"id": "combo_test_1",
@@ -38,6 +39,12 @@ func _test_combination_editor() -> void:
 	
 	ds.update_combo(initial_count, c)
 	assert_eq(ds.get_all_combos().size(), initial_count + 1, "T07 Combination redo")
+
+	# Clean up: never leave test combos in the shipped data file
+	ds.remove_combo(initial_count)
+	if original_file != "":
+		var f = FileAccess.open(ds.COMBOS_PATH, FileAccess.WRITE)
+		if f: f.store_string(original_file)
 
 func _test_discovery_editor() -> void:
 	var panel = load("res://editor/ui/panels/discovery_editor_panel.gd").new()

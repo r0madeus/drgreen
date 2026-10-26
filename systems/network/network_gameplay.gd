@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 
 ## Authoritative Co-op Gameplay Synchronization Manager (Autoload Singleton).
 ## Handles Host-authoritative validation for Farming actions (Plant -> Water -> Grow -> Harvest),
@@ -112,7 +112,7 @@ func _get_player_state_for_peer(peer_id: int) -> PlayerState:
 		return psm.players["player_001"] if psm.players.has("player_001") else null
 		
 	var nm = get_node_or_null("/root/NetworkManager")
-	if nm and nm.session:
+	if nm and "session" in nm and nm.session:
 		var ident = nm.session.get_peer(peer_id)
 		if ident and psm.players.has(ident.player_id):
 			return psm.players[ident.player_id]
