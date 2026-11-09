@@ -1,3 +1,14 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Local test/debug output and one-off fix scripts
+/*_output*.txt
+/baseline_run.txt
+/fix_*.ps1
+/fix_*.py
+/run_all_*.ps1
+
+# Save files written by the game and tests
+/slot_*
+/test_slot
