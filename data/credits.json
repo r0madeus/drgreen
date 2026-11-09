@@ -3,8 +3,16 @@
 	"version": "1.0.0-phase26",
 	"sections": [
 		{
-			"role": "Game Design & Architecture",
-			"members": ["Google DeepMind Team", "Antigravity Pair Programmer", "Botanical Haven Studio"]
+			"role": "Game Design & Direction",
+			"members": ["r0madeus"]
+		},
+		{
+			"role": "Code",
+			"members": ["Written with AI coding assistants, directed by r0madeus"]
+		},
+		{
+			"role": "Art & Audio",
+			"members": ["AI-generated sprites and sound effects, directed by r0madeus"]
 		},
 		{
 			"role": "Engine & Technology",
@@ -23,9 +31,9 @@
 		{
 			"role": "Special Thanks",
 			"members": [
-				"All Botanical Haven Beta Testers",
 				"Open Source Godot Community",
-				"Pixel Art & Audio Creators"
+				"Godot MCP add-on by Regi Ellis (MIT)",
+				"Kenney prototype textures (CC0)"
 			]
 		}
 	]
